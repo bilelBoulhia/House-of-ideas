@@ -1,6 +1,7 @@
 'use client'
-import {BackgroundBeams} from "../../../../../excompo/src/app/Components/ui/BackgroundBeams";
+
 import {motion} from "framer-motion";
+import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 
 export default function Hero  (){
     return(
