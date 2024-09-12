@@ -18,6 +18,35 @@ const config = {
       },
     },
     extend: {
+
+    screens: {
+
+      'iphone5': '320px',
+      // => @media (min-width: 320px) { ... }
+      'medium-phone': '380px',
+
+      'slighty-large-phone': '450px',
+
+      // => @media (min-width: 380px) { ... }
+      'large-phone': '520px',
+      // => @media (min-width: 480px) { ... }
+
+
+
+      'tablet': '640px',
+      // => @media (min-width: 640px) { ... }
+
+
+      'large-tablet': '768px',
+
+      'extra-large-tablet': '968px',
+
+      'laptop': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'desktop': '1280px',
+
+    },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

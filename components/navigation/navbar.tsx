@@ -43,6 +43,7 @@ export default function Navbar() {
             <Button
                 variant="ghost"
                 size="icon"
+
                 className={`block slighty-large-phone:hidden fixed top-4 left-4 z-50
             
                     ${isOpen ? "hidden" : "block"}`
@@ -54,14 +55,14 @@ export default function Navbar() {
                 <Menu className="h-6 w-6"/>
             </Button>
             <div
-                className={` z-20 block slighty-large-phone:hidden  fixed inset-0 bg-background/80 backdrop-blur-sm transition-opacity duration-300 ${
+                className={` block slighty-large-phone:hidden  fixed inset-0 backdrop-blur-sm transition-opacity duration-300 ${
                     isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
             />
 
             <nav
                 ref={navRef}
-                className={`block z-21 slighty-large-phone:hidden  fixed top-0 left-0 bottom-0 w-64 bg-background shadow-lg transform transition-transform duration-300 ease-in-out ${
+                className={`block z-21 slighty-large-phone:hidden  fixed top-0 left-0 bottom-0 w-64  shadow-lg transform transition-transform duration-300 ease-in-out ${
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >
@@ -82,12 +83,12 @@ export default function Navbar() {
                     </ul>
                 </div>
             </nav>
-            <nav>
+            <nav className="z-50 relative">
                 <div className='flex-row   items-center p-1 justify-center hidden slighty-large-phone:flex '>
                     <ExcompoIcon className='size-14'/>
 
                     {links.map((link, index) => (
-                        <Linkcomp href={link.href} key={index}>{link.label}</Linkcomp>
+                        <Linkcomp href={'/'} key={index}>{link.label}</Linkcomp>
                     ))}
                 </div>
             </nav>

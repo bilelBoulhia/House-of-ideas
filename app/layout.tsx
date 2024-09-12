@@ -7,6 +7,7 @@ import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import "@/app/style/globals.css";
+import Header from "@/app/sections/Header";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -24,8 +25,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className} suppressHydrationWarning>
+    <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground">
+      <Header/>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -33,7 +35,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main className="min-h-screen flex flex-col items-center">
-
+            {children}
           </main>
         </ThemeProvider>
       </body>
