@@ -2,7 +2,7 @@ import Image, {StaticImageData} from "next/image";
 import clsx from "clsx";
 import {AnimatePresence, motion} from "framer-motion";
 import React, {HTMLProps, useState} from "react";
-import {cn} from "../../../../../cinema-app/lib/utils";
+import {cn} from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority"
 
 

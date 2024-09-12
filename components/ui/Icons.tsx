@@ -1,5 +1,6 @@
 import {SVGProps} from "react";
-import {cn} from "../../../../../cinema-app/lib/utils";
+import {cn} from "@/lib/utils";
+
 
 interface IconProps extends SVGProps<SVGSVGElement> {
     className?: string;

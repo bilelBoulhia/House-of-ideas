@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "../../../../../cinema-app/lib/utils";
+import {cn} from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import React, {
     ReactNode,
@@ -9,7 +9,7 @@ import React, {
     useRef,
     useState,
 } from "react";
-import {Button} from "@mui/material";
+
 import {Slot} from "@radix-ui/react-slot";
 
 interface ModalContextType {
@@ -219,8 +219,7 @@ const CloseIcon = () => {
     );
 };
 
-// Hook to detect clicks outside of a component.
-// Add it in a separate file, I've added here for simplicity
+
 export const useOutsideClick = (
     ref: React.RefObject<HTMLDivElement>,
     callback: Function

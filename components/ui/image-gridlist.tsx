@@ -3,11 +3,11 @@ import clsx from "clsx";
 import Image, {StaticImageData} from "next/image";
 import {AnimatePresence, motion} from "framer-motion";
 import {useState} from "react";
-import {CategoryData} from "../../../../../cinema-app/app/(main)/sections/Categories";
 
 
 
-const ImageGridlist = ({data}:{data:CategoryData[]})=>{
+
+const ImageGridlist = ({data}:{data:any[]})=>{
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (

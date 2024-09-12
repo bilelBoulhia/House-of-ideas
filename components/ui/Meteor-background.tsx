@@ -1,4 +1,4 @@
-import { cn } from "../../../../../cinema-app/lib/utils";
+import {cn} from "@/lib/utils";
 import React from "react";
 
 export const Meteors = ({

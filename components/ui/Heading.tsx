@@ -1,6 +1,6 @@
 import React, {HTMLAttributes} from "react";
 import { cva, type VariantProps } from "class-variance-authority"
-import {cn} from "../../../../../cinema-app/lib/utils";
+import {cn} from "@/lib/utils";
 
 const headervariants = cva("",{
     variants:{

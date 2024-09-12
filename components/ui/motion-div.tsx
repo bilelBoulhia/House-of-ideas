@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "../../../../../cinema-app/lib/utils";
+import {cn} from "@/lib/utils";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { ReactElement, useEffect, useRef } from "react";
 export default function MotionDiv({

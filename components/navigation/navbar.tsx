@@ -1,10 +1,11 @@
 "use client"
 import React from "react"
-import { ExcompoIcon } from "../../../../excompo/src/app/Components/ui/Icons"
-import Linkcomp from "../../../../excompo/src/app/Components/ui/link";
+
 import { useState, useEffect, useRef } from "react"
 import { Menu } from "lucide-react"
-import { Button } from "../../../../excompo/src/app/Components/ui/Button"
+import { Button } from "@/components/ui/button"
+import {ExcompoIcon} from "@/components/ui/Icons";
+import Linkcomp from "@/components/ui/link";
 
 interface Item {
     label: string
