@@ -22,9 +22,9 @@ const EmblaCarousel: React.FC<PropType> = ({ options, children, className, ...pr
     const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi)
 
     return (
-        <section className={cn("max-w-full mx-auto", className)} {...props}>
+        <section className={cn("max-w-full mx-auto m-5 ", className)} {...props}>
             <div className="relative" ref={emblaRef}>
-                <div className="flex touch-pan-y">
+                <div className="flex touch-pan-y ">
                     {children}
                 </div>
             </div>
