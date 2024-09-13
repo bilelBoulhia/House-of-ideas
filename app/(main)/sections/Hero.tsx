@@ -24,7 +24,7 @@ export default function Hero() {
     return (
         <div>
             <BackgroundBeams className='max-h-screen'/>
-            <div className='flex flex-col gap-6 h-full w-full p-5'>
+            <div className='flex flex-col gap-6 h-full w-full p-4'>
                 <motion.div
                     initial={{opacity: 0, y: -20}}
                     animate={{opacity: 1, y: 0}}
@@ -60,7 +60,7 @@ export default function Hero() {
                         </div>
                         <div className="text-purple-400 text-sm">bash</div>
                     </div>
-                    <div className="mb-2 text-left flex items-center">
+                    <div className="mb-2 text-left flex flex-col tablet:flex-row  items-left">
                         <span className="text-purple-400 whitespace-nowrap">user@houseofideas:~$&nbsp;</span>
                         <TypewriterEffect className='text-purple-400' words={sentence}/>
                     </div>
@@ -72,8 +72,8 @@ export default function Hero() {
                         and innovation in the field of science and economics.
                     </p>
                     <p className="mt-2 text-left">
-                        <span className="text-purple-400">user@houseofideas:~$</span> <span
-                        className="animate-pulse">█</span>
+                        <span className="text-purple-400">user@houseofideas:~$</span><motion.span
+                      className='animate-pulse'>█</motion.span>
                     </p>
                 </motion.div>
             </div>
