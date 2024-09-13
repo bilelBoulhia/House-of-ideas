@@ -2,8 +2,25 @@
 
 import { motion } from "framer-motion"
 import { BackgroundBeams } from "@/components/ui/BackgroundBeams"
+import {TypewriterEffect} from "@/components/ui/TyperWriter";
 
 export default function Hero() {
+
+    const sentence = [
+        {
+            text: "cat",
+        },
+        {
+            text: "welcome",
+        },
+        {
+            text: "message.txt",
+        }
+
+    ];
+
+
+
     return (
         <div>
             <BackgroundBeams className='max-h-screen'/>
@@ -43,9 +60,10 @@ export default function Hero() {
                         </div>
                         <div className="text-purple-400 text-sm">bash</div>
                     </div>
-                    <p className="mb-2 text-left">
-                        <span className="text-purple-400">user@houseofideas:~$</span> cat welcome_message.txt
-                    </p>
+                    <div className="mb-2 text-left flex items-center">
+                        <span className="text-purple-400 whitespace-nowrap">user@houseofideas:~$&nbsp;</span>
+                        <TypewriterEffect className='text-purple-400' words={sentence}/>
+                    </div>
                     <p className="whitespace-pre-line text-left">
                         Welcome to the official website of House of Ideas,
                         where passion meets discovery. As a leading
