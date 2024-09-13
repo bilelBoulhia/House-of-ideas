@@ -4,7 +4,7 @@ import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {ExcompoIcon} from "@/components/ui/Icons";
+import {ExcompoIcon, Testicon} from "@/components/ui/Icons";
 import Linkcomp from "@/components/ui/link";
 
 interface Item {
@@ -85,7 +85,7 @@ export default function Navbar() {
             </nav>
             <nav className="z-50 relative">
                 <div className='flex-row   items-center p-1 justify-center hidden slighty-large-phone:flex '>
-                    <ExcompoIcon className='size-14'/>
+                    <ExcompoIcon className='size-14' />
 
                     {links.map((link, index) => (
                         <Linkcomp href={'/'} key={index}>{link.label}</Linkcomp>

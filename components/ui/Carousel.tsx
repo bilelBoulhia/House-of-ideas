@@ -1,10 +1,10 @@
 'use client'
 
-import React, { ComponentPropsWithRef, HTMLAttributes, useCallback, useEffect, useState } from 'react'
+import React, {ComponentPropsWithRef, HTMLAttributes, useCallback, useEffect, useRef, useState} from 'react'
 import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { cn } from "@/lib/utils"
-
+import {motion, useInView, useTransform, useViewportScroll} from "framer-motion";
 type UseDotButtonType = {
     selectedIndex: number
     scrollSnaps: number[]
@@ -20,14 +20,20 @@ interface PropType extends HTMLAttributes<HTMLDivElement> {
 const EmblaCarousel: React.FC<PropType> = ({ options, children, className, ...props }) => {
     const [emblaRef, emblaApi] = useEmblaCarousel(options)
     const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi)
-
-    return (
+        return (
         <section className={cn("max-w-full mx-auto m-5 ", className)} {...props}>
-            <div className="relative" ref={emblaRef}>
-                <div className="flex touch-pan-y ">
+            <motion.div
+                initial={{opacity:0,x:200}}
+                whileInView={{ opacity: 1, x: 0,transition: { duration: 0.5 } }}
+
+                className="relative" ref={emblaRef}>
+                <motion.div
+
+
+                    className="flex touch-pan-y ">
                     {children}
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
             <div className="flex justify-center gap-2 mt-4">
                 {scrollSnaps.map((_, index) => (
                     <DotButton
