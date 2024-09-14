@@ -86,7 +86,7 @@ export default function Navbar() {
 
                                 transition={{
                                     duration: 0.2,
-                                    delay: isOpen ? staggerList(index, { startDelay: 0.5 }) : 0,
+                                    delay: isOpen ? index * 0.1 + 0.5 : 0,
 
                             }}
 
