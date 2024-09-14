@@ -40,6 +40,7 @@ export default function Navbar() {
 
     const staggerList  = stagger(0.1, { startDelay: 0.25 });
 
+    // @ts-ignore
     return (
 
         <>
@@ -74,7 +75,7 @@ export default function Navbar() {
                     <ExcompoIcon className='p-4 size-20'/>
                     <ul className="flex-grow z-5000 py-2">
                         {links.map((item,index) => (
-// @ts-ignore
+
 
                             <motion.li
                                 animate={{
