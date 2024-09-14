@@ -1,14 +1,15 @@
 'use client'
-
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import React, {ComponentPropsWithRef, HTMLAttributes, useCallback, useEffect, useRef, useState} from 'react'
 import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { cn } from "@/lib/utils"
 import {motion, useInView, useTransform, useViewportScroll} from "framer-motion";
-type UseDotButtonType = {
-    selectedIndex: number
-    scrollSnaps: number[]
-    onDotButtonClick: (index: number) => void
+type UseArrowButtonsType = {
+    canScrollPrev: boolean
+    canScrollNext: boolean
+    onPrevButtonClick: () => void
+    onNextButtonClick: () => void
 }
 
 interface PropType extends HTMLAttributes<HTMLDivElement> {
@@ -19,83 +20,97 @@ interface PropType extends HTMLAttributes<HTMLDivElement> {
 
 const EmblaCarousel: React.FC<PropType> = ({ options, children, className, ...props }) => {
     const [emblaRef, emblaApi] = useEmblaCarousel(options)
-    const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi)
+    const { canScrollPrev, canScrollNext, onPrevButtonClick, onNextButtonClick } = useArrowButtons(emblaApi)
         return (
-        <section className={cn("max-w-full mx-auto m-5 ", className)} {...props}>
-            <motion.div
-                initial={{opacity:0,x:200}}
-                whileInView={{ opacity: 1, x: 0,transition: { duration: 0.5 } }}
-
-                className="relative" ref={emblaRef}>
+            <section className={cn("max-w-full mx-auto m-5 ", className)} {...props}>
                 <motion.div
+                    initial={{opacity: 0, x: 200}}
+                    whileInView={{opacity: 1, x: 0, transition: {duration: 0.5}}}
+
+                    className="relative" ref={emblaRef}>
+                    <motion.div className="flex touch-pan-y ">
+                        {children}
+                    </motion.div>
+                    <div className="absolute inset-0 flex justify-between items-center">
 
 
-                    className="flex touch-pan-y ">
-                    {children}
+                                <ArrowButton
+                                    onClick={onPrevButtonClick}
+                                    disabled={!canScrollPrev}
+                                    className="left-0"
+                                >
+                                    <ChevronLeft className="w-6 h-6"/>
+                                </ArrowButton>
+                                <ArrowButton
+                                    onClick={onNextButtonClick}
+                                    disabled={!canScrollNext}
+                                    className="right-0"
+                                >
+                                    <ChevronRight className="w-6 h-6"/>
+                                </ArrowButton>
+
+
+                    </div>
                 </motion.div>
-            </motion.div>
-            <div className="flex justify-center gap-2 mt-4">
-                {scrollSnaps.map((_, index) => (
-                    <DotButton
-                        key={index}
-                        onClick={() => onDotButtonClick(index)}
-                        className={cn(
-                            "w-2 h-2 rounded-full transition-colors",
-                            index === selectedIndex ? "bg-purple-300" : "bg-gray-300"
-                        )}
-                    />
-                ))}
-            </div>
-        </section>
-    )
+
+
+            </section>
+        )
 }
 
-const useDotButton = (
+const useArrowButtons = (
     emblaApi: EmblaCarouselType | undefined
-): UseDotButtonType => {
-    const [selectedIndex, setSelectedIndex] = useState(0)
-    const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+): UseArrowButtonsType => {
+    const [canScrollPrev, setCanScrollPrev] = useState(false)
+    const [canScrollNext, setCanScrollNext] = useState(false)
 
-    const onDotButtonClick = useCallback(
-        (index: number) => {
-            if (!emblaApi) return
-            emblaApi.scrollTo(index)
-        },
-        [emblaApi]
-    )
+    const onPrevButtonClick = useCallback(() => {
+        if (!emblaApi) return
+        emblaApi.scrollPrev()
+    }, [emblaApi])
 
-    const onInit = useCallback((emblaApi: EmblaCarouselType) => {
-        setScrollSnaps(emblaApi.scrollSnapList())
-    }, [])
+    const onNextButtonClick = useCallback(() => {
+        if (!emblaApi) return
+        emblaApi.scrollNext()
+    }, [emblaApi])
 
     const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-        setSelectedIndex(emblaApi.selectedScrollSnap())
+        setCanScrollPrev(emblaApi.canScrollPrev())
+        setCanScrollNext(emblaApi.canScrollNext())
     }, [])
 
     useEffect(() => {
         if (!emblaApi) return
 
-        onInit(emblaApi)
         onSelect(emblaApi)
-        emblaApi.on('reInit', onInit).on('reInit', onSelect).on('select', onSelect)
-    }, [emblaApi, onInit, onSelect])
+        emblaApi.on('reInit', onSelect)
+        emblaApi.on('select', onSelect)
+    }, [emblaApi, onSelect])
 
     return {
-        selectedIndex,
-        scrollSnaps,
-        onDotButtonClick
+        canScrollPrev,
+        canScrollNext,
+        onPrevButtonClick,
+        onNextButtonClick
     }
 }
 
-type DotButtonProps = ComponentPropsWithRef<'button'>
+type ArrowButtonProps = ComponentPropsWithRef<'button'>
 
-const DotButton: React.FC<DotButtonProps> = ({ className, ...props }) => {
+const ArrowButton: React.FC<ArrowButtonProps> = ({ className, children, ...props }) => {
     return (
         <button
             type="button"
-            className={cn("focus:outline-none", className)}
+            className={cn(
+                "focus:outline-none rounded-full p-2 shadow-md",
+                "disabled:opacity-50 disabled:cursor-not-allowed",
+                "hover:bg-neutral-800 hover:bg-opacity-70  transition-colors",
+                className
+            )}
             {...props}
-        />
+        >
+            {children}
+        </button>
     )
 }
 

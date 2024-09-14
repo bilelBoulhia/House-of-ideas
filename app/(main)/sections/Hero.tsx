@@ -23,7 +23,7 @@ export default function Hero() {
 
     return (
         <div>
-           {/*<BackgroundBeams className='max-h-screen'/>*/}
+           <BackgroundBeams className='max-h-screen'/>
             <div className='flex overflow-hidden flex-col gap-6 h-full w-full p-4'>
                 <motion.div
                     initial={{opacity: 0, y: -20}}

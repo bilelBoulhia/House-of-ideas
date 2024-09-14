@@ -7,8 +7,6 @@ import {cn} from "@/lib/utils";
 export const BackgroundBeams = React.memo(
     ({ className }: { className?: string }) => {
         const paths = [
-            "M-366 -205C-366 -205 -298 200 166 327C630 454 698 859 698 859",
-            "M-233 -357C-233 -357 -165 48 299 175C763 302 831 707 831 707",
             "M-219 -373C-219 -373 -151 32 313 159C777 286 845 691 845 691",
         ];
         return (
