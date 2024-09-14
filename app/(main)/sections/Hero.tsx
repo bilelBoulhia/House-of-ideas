@@ -3,6 +3,8 @@
 import { motion } from "framer-motion"
 import { BackgroundBeams } from "@/components/ui/BackgroundBeams"
 import {TypewriterEffect} from "@/components/ui/TyperWriter";
+import {Meteors} from "@/components/ui/Meteor-background";
+import {FlipLink} from "@/components/ui/FlipLink";
 
 export default function Hero() {
 
@@ -32,7 +34,7 @@ export default function Hero() {
 
                 >
                     <h2 className="mt-[6rem] slighty-large-phone:mt-[0rem]  iphone5:text-4xl medium-phone:text-5xl slighty-large-phone:text-5xl large-phone:text-7xl tablet:text-7xl md:text-8xl text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
-                        Welcome to<br/>
+                        <FlipLink>Welcome to</FlipLink><br/>
                         <div style={{zIndex: -1}}
                              className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
                             <div
@@ -45,7 +47,7 @@ export default function Hero() {
                 <motion.div
                     initial={{opacity: 0, y: 20}}
                     animate={{opacity: 1, y: 0}}
-                    transition={{duration: 0.8, delay: 0.5, ease: "easeOut"}}
+                    transition={{duration: 0.8, ease: "easeOut"}}
                     className="text-center  font-mono text-purple-300 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mt-6 bg-gradient-to-b from-gray-900 to-black p-6 rounded-lg shadow-[0_0_15px_rgba(128,0,128,0.1)] border border-purple-900"
                     style={{
                         boxShadow: 'inset 0 1px 3px 0 rgba(128,0,128,0.1), 0 0 15px rgba(128,0,128,0.1)',
@@ -64,7 +66,7 @@ export default function Hero() {
                         <span className="text-purple-400 whitespace-nowrap">user@houseofideas:~$&nbsp;</span>
                         <TypewriterEffect className='text-purple-400' words={sentence}/>
                     </div>
-                    <p className="whitespace-pre-line text-left">
+                    <p className="whitespace-pre-line text-left ">
                         Welcome to the official website of House of Ideas,
                         where passion meets discovery. As a leading
                         scientific club at Economic University, we are

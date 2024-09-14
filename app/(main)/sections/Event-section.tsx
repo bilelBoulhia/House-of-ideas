@@ -3,6 +3,7 @@
 import Carousel from "@/components/ui/Carousel"
 import bg1 from '@/app/assets/bg1.jpg'
 import Image from "next/image"
+import {Meteors} from "@/components/ui/Meteor-background";
 
 const arr = [bg1, bg1, bg1, bg1]
 
@@ -10,6 +11,7 @@ export default function Event() {
     return (
 
             <Carousel>
+
                 {arr.map((card, index) => (
                     <Image
                         src={card}
