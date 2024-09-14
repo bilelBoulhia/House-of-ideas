@@ -5,7 +5,7 @@ export const FlipLink = ({ children  }:{children:string}) => {
     const DURATION = 0.25;
     const STAGGER = 0.025;
     return (
-        <motion.h1
+        <motion.a
             initial="initial"
             whileHover="hovered"
             whileTap="hovered"
@@ -61,6 +61,6 @@ export const FlipLink = ({ children  }:{children:string}) => {
                     </motion.span>
                 ))}
             </div>
-        </motion.h1>
+        </motion.a>
     );
 };
