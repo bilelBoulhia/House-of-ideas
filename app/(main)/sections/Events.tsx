@@ -1,9 +1,9 @@
 'use client'
 
 import Carousel from "@/components/ui/Carousel"
-import bg1 from '@/app/assets/bg3.png'
-import bg2 from '@/app/assets/bg2.png'
-import bg3 from '@/app/assets/bg1.png'
+import bg1 from '@/app/assets/events images/bg3.png'
+import bg2 from '@/app/assets/events images/bg2.png'
+import bg3 from '../../assets/events images/bg1.png'
 import Image from "next/image"
 
 import {FlipText} from "@/components/ui/FlipText";
@@ -25,18 +25,15 @@ export default function Event() {
 
         <div className="flex-1 flex w-full items-center  overflow-hidden flex-col gap-2">
 
-            <motion.h2
-
-                initial={{opacity: 0, x: 0}}
-                whileInView={{opacity: 1, x: -60}}
+            <motion.h2 initial={{opacity: 0, x: 0}}
+                whileInView={{opacity: 1, x: -100}}
                 transition={{duration: 0.5, ease: "easeInOut"}}
 
-                className=" iphone5:text-2xl  medium-phone:text-3xl  large-phone:text-4xl uppercase  font-semibold text-center text-black dark:text-white font-sans tracking-tight">
-                <FlipText>events </FlipText>
+                className=" iphone5:text-xl  medium-phone:text-3xl  large-phone:text-4xl uppercase  font-semibold text-center text-black dark:text-white font-sans tracking-tight">
+                <FlipText>events</FlipText>
 
 
-                <motion.span
-                    className='bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-600 via-violet-500 to-pink-900 absolute left-full'
+                <motion.span className='bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-600 via-violet-500 to-pink-900 absolute left-full'
                     initial={{opacity:0,x: '-100%'}}
                     whileInView={{opacity:1,x: 0}}
                     transition={{
@@ -51,7 +48,7 @@ export default function Event() {
 
             </motion.h2>
 
-            <Carousel>
+            <Carousel useArrows={true}>
                 {arr.map((card, index) => (
 
 

@@ -16,19 +16,21 @@ interface PropType extends HTMLAttributes<HTMLDivElement> {
     options?: EmblaOptionsType
     children: React.ReactNode[]
     className?: string
+    useArrows ?:boolean
 }
 
-const EmblaCarousel: React.FC<PropType> = ({ options, children, className, ...props }) => {
+const EmblaCarousel: React.FC<PropType> = ({ options, children, className ,useArrows = false, ...props }) => {
     const [emblaRef, emblaApi] = useEmblaCarousel(options)
     const { canScrollPrev, canScrollNext, onPrevButtonClick, onNextButtonClick } = useArrowButtons(emblaApi)
         return (
-            <section className={cn("max-w-full mx-auto m-5 ", className)} {...props}>
+            <section className={cn("max-w-full mx-auto m-5  ", className)} {...props}>
                 <motion.div
 
                     className="relative" ref={emblaRef}>
                     <motion.div className="flex touch-pan-y ">
                         {children}
                     </motion.div>
+                    { useArrows &&(
                     <div className="absolute inset-0 flex justify-between items-center">
 
 
@@ -49,6 +51,7 @@ const EmblaCarousel: React.FC<PropType> = ({ options, children, className, ...pr
 
 
                     </div>
+                    )}
                 </motion.div>
 
 

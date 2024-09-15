@@ -1,10 +1,10 @@
-import {motion, useScroll} from "framer-motion";
+import {motion} from "framer-motion";
 import React from "react";
 
 export const FlipText = ({ children  }:{children:string}) => {
     const DURATION = 0.25;
     const STAGGER = 0.025;
-    const { scrollYProgress } = useScroll();
+
     return (
         <motion.span
             initial="initial"
@@ -14,7 +14,7 @@ export const FlipText = ({ children  }:{children:string}) => {
                 lineHeight: 0.75,
             }}
         >
-            <div className="relative ">
+            <div className="relative">
                 {children.split("").map((l, i) => (
                     <motion.span
                         key={i}

@@ -89,12 +89,18 @@ export default function Navbar() {
             </nav>
             <nav className="relative">
                 <div className=' flex-row items-center p-1  justify-center hidden slighty-large-phone:flex'>
-                    <ExcompoIcon className='size-14' />
+
+
+                    <ExcompoIcon className='size-14'/>
+
                     {links.map((link, index) => (
-                        <Linkcomp href={link.href} key={index}>{link.label}</Linkcomp>
+                            <Linkcomp href={link.href} key={index}>{link.label}</Linkcomp>
                     ))}
-                </div>
+
+
+
+                    </div>
             </nav>
         </>
-    )
+)
 }
