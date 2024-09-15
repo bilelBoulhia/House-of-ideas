@@ -2,7 +2,7 @@ import {motion, useScroll} from "framer-motion";
 import React from "react";
 
 export const FlipText = ({ children  }:{children:string}) => {
-    const DURATION = 0.35;
+    const DURATION = 0.25;
     const STAGGER = 0.025;
     const { scrollYProgress } = useScroll();
     return (
@@ -14,7 +14,7 @@ export const FlipText = ({ children  }:{children:string}) => {
                 lineHeight: 0.75,
             }}
         >
-            <div className="relative mb-1 ">
+            <div className="relative ">
                 {children.split("").map((l, i) => (
                     <motion.span
                         key={i}
@@ -45,7 +45,7 @@ export const FlipText = ({ children  }:{children:string}) => {
                                 ease: "easeInOut",
                                 delay: STAGGER * i,
                             }}
-                            className="inline-block "
+                            className="inline-block"
                         >
                             {l}
                         </motion.span>

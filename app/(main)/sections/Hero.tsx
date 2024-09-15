@@ -27,12 +27,7 @@ export default function Hero() {
         <div >
            <BackgroundBeams className='max-h-screen'/>
             <div className='flex overflow-hidden flex-col gap-6 h-full w-full p-4'>
-                <motion.div
-                    initial={{opacity: 0, y: -20}}
-                    animate={{opacity: 1, y: 0}}
-                    transition={{duration: 0.8, ease: "easeOut"}}
-
-                >
+                <motion.div>
                     <h2 className=" sticky mt-[5rem] iphone5:text-4xl medium-phone:text-5xl  large-phone:text-6xl  font-bold text-center text-black dark:text-white font-sans tracking-tight">
                         <FlipText>Welcome</FlipText> <FlipText>to</FlipText> <br/>
                         <div
@@ -45,9 +40,7 @@ export default function Hero() {
                     </h2>
                 </motion.div>
                 <motion.div
-                    initial={{opacity: 0, y: 20}}
-                    animate={{opacity: 1, y: 0}}
-                    transition={{duration: 0.8, ease: "easeOut"}}
+
                     className="text-center  font-mono text-purple-300 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mt-6 bg-gradient-to-b from-gray-900 to-black p-6 rounded-lg shadow-[0_0_15px_rgba(128,0,128,0.1)] border border-purple-900"
                     style={{
                         boxShadow: 'inset 0 1px 3px 0 rgba(128,0,128,0.1), 0 0 15px rgba(128,0,128,0.1)',
