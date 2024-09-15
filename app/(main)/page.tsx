@@ -1,6 +1,6 @@
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import Hero from "@/app/(main)/sections/Hero";
-import Event from "@/app/(main)/sections/Event-section";
+import Event from "@/app/(main)/sections/Events";
 
 
 export default async function Index() {

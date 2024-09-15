@@ -24,8 +24,6 @@ const EmblaCarousel: React.FC<PropType> = ({ options, children, className, ...pr
         return (
             <section className={cn("max-w-full mx-auto m-5 ", className)} {...props}>
                 <motion.div
-                    initial={{opacity: 0, x: 200}}
-                    whileInView={{opacity: 1, x: 0, transition: {duration: 0.5}}}
 
                     className="relative" ref={emblaRef}>
                     <motion.div className="flex touch-pan-y ">

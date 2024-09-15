@@ -30,12 +30,12 @@ export default function RootLayout({
 
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
           <Header/>
-          <main className="min-h-screen flex flex-col items-center">
+          <main className="min-h-screen flex flex-col z-0 items-center">
             {children}
           </main>
         </ThemeProvider>

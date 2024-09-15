@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { BackgroundBeams } from "@/components/ui/BackgroundBeams"
 import {TypewriterEffect} from "@/components/ui/TyperWriter";
 import {Meteors} from "@/components/ui/Meteor-background";
-import {FlipLink} from "@/components/ui/FlipLink";
+import {FlipText} from "@/components/ui/FlipText";
 
 export default function Hero() {
 
@@ -24,7 +24,7 @@ export default function Hero() {
 
 
     return (
-        <div>
+        <div >
            <BackgroundBeams className='max-h-screen'/>
             <div className='flex overflow-hidden flex-col gap-6 h-full w-full p-4'>
                 <motion.div
@@ -33,13 +33,13 @@ export default function Hero() {
                     transition={{duration: 0.8, ease: "easeOut"}}
 
                 >
-                    <h2 className="mt-[6rem] slighty-large-phone:mt-[0rem]  iphone5:text-4xl medium-phone:text-5xl slighty-large-phone:text-5xl large-phone:text-7xl tablet:text-7xl md:text-8xl text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
-                        <FlipLink>Welcome to</FlipLink><br/>
-                        <div style={{zIndex: -1}}
+                    <h2 className=" sticky mt-[5rem] iphone5:text-4xl medium-phone:text-5xl  large-phone:text-6xl  font-bold text-center text-black dark:text-white font-sans tracking-tight">
+                        <FlipText>Welcome</FlipText> <FlipText>to</FlipText> <br/>
+                        <div
                              className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
                             <div
                                 className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
-                                <span>House of Ideas</span>
+                                <span>house of Ideas</span>
                             </div>
                         </div>
                     </h2>
