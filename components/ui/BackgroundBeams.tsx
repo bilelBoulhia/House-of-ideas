@@ -6,9 +6,6 @@ import {cn} from "@/lib/utils";
 
 export const BackgroundBeams = React.memo(
     ({ className }: { className?: string }) => {
-        const paths = [
-            "M-219 -373C-219 -373 -151 32 313 159C777 286 845 691 845 691",
-        ];
         return (
             <div
                 className={cn("absolute  h-full w-full inset-0  [mask-size:40px] [mask-repeat:no-repeat] flex items-center justify-center",

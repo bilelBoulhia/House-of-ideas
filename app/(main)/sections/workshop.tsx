@@ -1,17 +1,20 @@
 'use client'
 import {motion} from "framer-motion";
-import {FlipText} from "@/components/ui/FlipText";
-import Carousel from "@/components/ui/Carousel";
-import {Button} from "@/components/ui/button";
-
 import c1 from '@/app/assets/workshop images/image (1).png'
-import c2 from '@/app/assets/workshop images/image (2).png'
-import c3 from '@/app/assets/workshop images/image (3).png'
-import Image, {StaticImageData} from "next/image";
 
-import {Badge} from "@/components/ui/badge";
-import {rotate} from "next/dist/server/lib/squoosh/impl";
+import  {StaticImageData} from "next/image";
+
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
+import {
+    Card,
+    CardBadge, CardBottomBody,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardImage, CardName,
+    CardTitle,
+    CardTrigger, CardUpperBody
+} from "@/components/ui/Card";
 interface CourseData {
     title: string
     description: string
@@ -76,15 +79,15 @@ export default function Workshop() {
                     >
                         Excompo
                     </motion.h2>
-                    <div style={{zIndex: -1}}
-                         className="absolute top-0 left-0 h-11 w-[41vw] bg-[#f4f5f5]   dark:bg-[#000305]  "></div>
+                    <div style={{zIndex: -20}}
+                         className="absolute top-0 left-0 h-11 w-[41vw] bg-[#f1f9f9]   dark:bg-[#000305]  "></div>
 
                 </div>
 
 
                 <div className='flex-row flex items-start w-full   justify-start'>
                     <motion.span
-                        style={{zIndex: -3}}
+                        style={{zIndex: -21}}
                         viewport={{once: true}}
                         initial={{opacity: 1, x: -210}}
                         whileInView={{opacity: 1, x: 5}}
@@ -99,30 +102,73 @@ export default function Workshop() {
             <div
                 className='mt-10 grid md:grid-cols-2 laptop:grid-cols-2 gap-8'>
                 {courses.map((course, index) => (
-                    <motion.div
 
+                   <Card
+                       key={index}
+                       initial={{rotate: index % 2 === 0 ? -5 : 5}}
+                       viewport={{once: true}}
+                       whileInView={{rotate: 0,}}
+                       transition={{delay: 0.7}}
+                       className='bg-[#F5F7F8] dark:bg-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
+                   >
+                    <CardContent>
+
+                     <CardUpperBody>
+                         <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>WEB dev</CardTitle>
+                         <CardDescription className='text-violet-400 dark:text-violet-200'
+                         >
+                             Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.
+                         </CardDescription>
+                     </CardUpperBody>
+
+
+
+                        <CardBottomBody>
+                          <CardImage alt='s' src={c1}/>
+                          <CardName className='dark:text-white'>steve mcfin</CardName>
+                        <CardFooter>
+                                <CardTrigger className='bg-violet-500 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</CardTrigger>
+                                <CardBadge>Free</CardBadge>
+                            </CardFooter>
+                        </CardBottomBody>
+
+
+                    </CardContent>
+                   </Card>
+
+                ))}
+            </div>
+        </div>
+    )
+}
+
+
+/*
+*  <motion.div
                         initial={{rotate: index % 2 === 0 ? -5 : 5}}
                         viewport={{once: true}}
                         whileInView={{rotate: 0,}}
                         transition={{delay: 0.7}}
-                        className=" w-80 h-80  rounded-2xl p-4 overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20"
+
+
+                        className=" w-80 h-80  rounded-2xl p-4 overflow-hidden bg-[#F5F7F8] dark:bg-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700 relative z-20"
                     >
 
                         <div className="relative z-10 p-6 h-full flex flex-col justify-between">
                             <div>
-                                <h2 className="text-2xl font-bold mb-2 text-white tracking-wide">Web Dev</h2>
-                                <p className="text-violet-200 mb-4 line-clamp-3">Master the latest React features and
+                                <h2 className="text-2xl font-bold mb-2 dark:text-white tracking-wide">Web Dev</h2>
+                                <p className="text-violet-400 dark:text-violet-200 mb-4 line-clamp-3">Master the latest React features and
                                     patterns for building scalable web applications.</p>
                             </div>
 
                             <div className="mt-4 transition-opacity duration-300 ease-in-out opacity-100">
                                 <div className="flex items-center mb-4">
                                     <Image src={c1} alt="Tutor" className="w-12 h-12 rounded-full mr-4"/>
-                                    <span className="text-white font-semibold">sebstian chris</span>
+                                    <span className="dark:text-white font-semibold">{"with"} sebstian nam</span>
                                 </div>
                                 <div className="flex justify-between items-center">
                                     <Button
-                                        className="bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded">
+                                        className="bg-violet-500 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded">
                                         Subscribe
                                     </Button>
 
@@ -134,8 +180,4 @@ export default function Workshop() {
                         </div>
 
                     </motion.div>
-                ))}
-            </div>
-        </div>
-    )
-}
+* */
