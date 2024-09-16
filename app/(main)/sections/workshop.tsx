@@ -116,20 +116,20 @@ export default function Workshop() {
                      <CardUpperBody>
                          <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>WEB dev</CardTitle>
                          <CardDescription className='text-violet-400 dark:text-violet-200'
-                         >
-                             Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.
+                         >Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.
                          </CardDescription>
                      </CardUpperBody>
 
 
-
                         <CardBottomBody>
-                          <CardImage alt='s' src={c1}/>
-                          <CardName className='dark:text-white'>steve mcfin</CardName>
+                            <div className="flex items-center mb-4">
+                                <CardImage alt='s' src={c1}/>
+                                <CardName className='dark:text-white'>steve mcfin</CardName>
+                            </div>
                         <CardFooter>
                                 <CardTrigger className='bg-violet-500 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</CardTrigger>
-                                <CardBadge>Free</CardBadge>
-                            </CardFooter>
+                                    <CardBadge>Free</CardBadge>
+                                </CardFooter>
                         </CardBottomBody>
 
 
