@@ -24,9 +24,7 @@ const EmblaCarousel: React.FC<PropType> = ({ options, children, className ,useAr
     const { canScrollPrev, canScrollNext, onPrevButtonClick, onNextButtonClick } = useArrowButtons(emblaApi)
         return (
             <section className={cn("max-w-full mx-auto m-5  ", className)} {...props}>
-                <motion.div
-
-                    className="relative" ref={emblaRef}>
+                <motion.div className="relative" ref={emblaRef}>
                     <motion.div className="flex touch-pan-y ">
                         {children}
                     </motion.div>

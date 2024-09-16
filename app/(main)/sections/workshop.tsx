@@ -3,105 +3,139 @@ import {motion} from "framer-motion";
 import {FlipText} from "@/components/ui/FlipText";
 import Carousel from "@/components/ui/Carousel";
 import {Button} from "@/components/ui/button";
-import MovieCard from "@/components/ui/movie-card";
+
 import c1 from '@/app/assets/workshop images/image (1).png'
 import c2 from '@/app/assets/workshop images/image (2).png'
 import c3 from '@/app/assets/workshop images/image (3).png'
 import Image, {StaticImageData} from "next/image";
+
+import {Badge} from "@/components/ui/badge";
+import {rotate} from "next/dist/server/lib/squoosh/impl";
+import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 interface CourseData {
-    role: string
-    name: string
-    picture: StaticImageData
-    details: string
+    title: string
+    description: string
+    picture?: StaticImageData
+    tutor: string
+
 }
-const data: CourseData[] = [
-    {
-        role: 'project management',
-        name: 'Maya Ait Aissi',
-        picture: c1,
-        details: 'Et blandit non sit ac egestas risus non.',
-    },
 
-]
 
-/*
-*    {
-        role: 'Public Speaking',
-        name: 'Toufik KOURTAA',
-        picture: c2,
-        details: 'Et blandit non sit ac egestas risus non.',
-    },
-    {
-        role: 'MARKETING DIGITAL',
-        name: 'Youcef Boukhalfa',
-        picture: c3,
-        details: 'Et blandit non sit ac egestas risus non.',
-    },*/
+
+
+
+
+
+
+
+
 export default function Workshop() {
+
+    const courses :CourseData[] = [
+        {
+            title: "Web Development Mastery",
+            description: "Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.",
+            tutor: "John Doe"
+        },
+        {
+            title: "Web Development Mastery",
+            description: "Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.",
+            tutor: "John Doe"
+        },
+        {
+            title: "Web Development Mastery",
+            description: "Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.",
+            tutor: "John Doe"
+        },
+        {
+            title: "Web Development Mastery",
+            description: "Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.",
+            tutor: "John Doe"
+        }
+
+    ]
+
+
     return (
 
-        <div className="flex-1 flex w-full items-center  overflow-hidden flex-col gap-2">
+        <div className="relative min-h-screen flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
-            <div className="relative w-full overflow-hidden">
-                <motion.h2
-                    initial={{opacity: 0, x: 0}}
-                    whileInView={{opacity: 1, x: -120}}
-                    transition={{duration: 0.5, ease: "easeInOut"}}
-                    className="iphone5:text-xl medium-phone:text-3xl large-phone:text-4xl uppercase font-semibold text-center text-black dark:text-white font-sans tracking-tight"
-                >
-                    <FlipText>Our</FlipText>
-                    <motion.span
-                        className='bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-600 via-violet-500 to-pink-900 absolute whitespace-nowrap'
-                        initial={{opacity: 0, x: '100%'}}
+            <BackgroundBeams/>
+            <div className=" flex flex-row  items-center text-center justify-center">
+
+
+                <div className='flex-row flex items-end bg-[#f4f5f5]  dark:bg-[#00060c]  w-full justify-end'>
+
+                    <motion.h2
+                        initial={{opacity: 1, x: 100}}
                         whileInView={{opacity: 1, x: 0}}
-                        transition={{
-                            type: 'spring',
-                            stiffness: 100,
-                            damping: 15,
-                            delay: 0.5
-                        }}
+                        viewport={{once: true}}
+                        transition={{duration: 0.5, delay: 0.4, ease: "easeInOut"}}
+                        className=" iphone5:text-xl z-12  medium-phone:text-3xl  large-phone:text-4xl uppercase  font-semibold text-center text-black dark:text-white font-sans tracking-tight"
+
                     >
-                        Workshop
+                        Excompo
+                    </motion.h2>
+                    <div style={{zIndex: -1}}
+                         className="absolute top-0 left-0 h-11 w-[41vw] bg-[#f4f5f5]   dark:bg-[#000305]  "></div>
+
+                </div>
+
+
+                <div className='flex-row flex items-start w-full   justify-start'>
+                    <motion.span
+                        style={{zIndex: -3}}
+                        viewport={{once: true}}
+                        initial={{opacity: 1, x: -210}}
+                        whileInView={{opacity: 1, x: 5}}
+                        transition={{type: 'spring', stiffness: 100, damping: 15, delay: 0.6}}
+                        className='iphone5:text-xl   medium-phone:text-3xl  large-phone:text-4xl uppercase  font-bold text-center  bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 font-sans tracking-tight'
+
+                    >Workshop
                     </motion.span>
-                </motion.h2>
+                </div>
             </div>
 
-            <Carousel useArrows={false}>
-                {data.map((course, index) => (
-                    <div key={index} className="bg-neutral-800 rounded-lg overflow-hidden shadow-lg">
-                        <div className="bg-purple-200 p-4">
-                            <div
-                                className="bg-purple-500 text-white text-xs font-semibold px-2 py-1 rounded inline-block mb-2">
-                                {course.role.toUpperCase()}
-                            </div>
-                            <h2 className="text-2xl font-semibold text-gray-800">
-                                with Mrs <span className="text-purple-600">{course.name}</span>
-                            </h2>
-                        </div>
-                        <div className="p-4">
-                            <div className="w-full h-48 bg-gray-300 rounded-md mb-4">
+            <div
+                className='mt-10 grid md:grid-cols-2 laptop:grid-cols-2 gap-8'>
+                {courses.map((course, index) => (
+                    <motion.div
 
-                                <Image
-                                    src={course.picture}
-                                    alt={course.name}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-                            <h3 className="text-xl font-bold text-purple-600 mb-2">{course.role.toUpperCase()}</h3>
-                            <p className="text-gray-600">{course.details}</p>
-                        </div>
-                        <div className="p-4 flex justify-between">
-                            <Button variant="default" className="w-1/2 mr-2">
-                                Free
-                            </Button>
-                            <Button variant="default" className="w-1/2 mr-2">
-                                Inscrier Now
-                            </Button>
-                        </div>
-                    </div>
+                        initial={{rotate: index % 2 === 0 ? -5 : 5}}
+                        viewport={{once: true}}
+                        whileInView={{rotate: 0,}}
+                        transition={{delay: 0.7}}
+                        className=" w-80 h-80  rounded-2xl p-4 overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20"
+                    >
 
+                        <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                            <div>
+                                <h2 className="text-2xl font-bold mb-2 text-white tracking-wide">Web Dev</h2>
+                                <p className="text-violet-200 mb-4 line-clamp-3">Master the latest React features and
+                                    patterns for building scalable web applications.</p>
+                            </div>
+
+                            <div className="mt-4 transition-opacity duration-300 ease-in-out opacity-100">
+                                <div className="flex items-center mb-4">
+                                    <Image src={c1} alt="Tutor" className="w-12 h-12 rounded-full mr-4"/>
+                                    <span className="text-white font-semibold">sebstian chris</span>
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <Button
+                                        className="bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded">
+                                        Subscribe
+                                    </Button>
+
+                                    <Badge variant='secondary' className='px-2 py-1 '>Free</Badge>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </motion.div>
                 ))}
-            </Carousel>
+            </div>
         </div>
     )
 }

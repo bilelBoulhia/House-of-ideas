@@ -14,7 +14,7 @@ export const FlipText = ({ children  }:{children:string}) => {
                 lineHeight: 0.75,
             }}
         >
-            <div className="relative">
+            <div className="relative mb-1">
                 {children.split("").map((l, i) => (
                     <motion.span
                         key={i}

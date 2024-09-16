@@ -1,6 +1,6 @@
 'use client'
 
-import {motion, useTransform, useViewportScroll} from "framer-motion"
+import {motion} from "framer-motion"
 import { BackgroundBeams } from "@/components/ui/BackgroundBeams"
 import {TypewriterEffect} from "@/components/ui/TyperWriter";
 
@@ -14,7 +14,7 @@ export default function Hero() {
 
     return (
         <div >
-           {/*<BackgroundBeams className='max-h-screen'/>*/}
+           <BackgroundBeams className='min-h-screen'/>
             <div className='min-h-screen flex overflow-hidden flex-col gap-6 h-full w-full p-4'>
                 <motion.div>
                     <h2 className=" sticky mt-[5rem] iphone5:text-4xl medium-phone:text-5xl  large-phone:text-6xl  md:text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
