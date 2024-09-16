@@ -68,11 +68,12 @@ export default function Departament() {
             </div>
 
 
-            <div className="absolute inset-0 flex items-center justify-center">
-                <div
-                    className={'w-[12.5rem] h-[250px] [transform-style:preserve-3d] hover:animate-autoRunPaused animate-autoRun'}
+            <div className=' w-full h-full'>
 
-                >
+
+            <div className="absolute  inset-0 flex items-center justify-center">
+                <div
+                    className={'h-24 w-24  rounded-full [transform-style:preserve-3d] hover:animate-autoRunPaused animate-autoRun'}>
                     {images.map((src, index) => (
                         <div
                             key={index}
@@ -82,20 +83,23 @@ export default function Departament() {
                                 '--quantity': images.length,
                             } as React.CSSProperties}
                         >
-                            <Image
-                                src={src}
-                                alt={`Carousel image ${index + 1}`}
-                                layout="fill"
-                                objectFit="cover"
-                            />
+                          <div className='h-24 w-24 bg-white rounded-full' />
                         </div>
                     ))}
                 </div>
             </div>
-
+        </div>
         </div>
     )
 }
 
 
 
+/*
+*   <Image
+                                src={src}
+                                alt={`Carousel image ${index + 1}`}
+                                layout="fill"
+                                objectFit="cover"
+                            />
+* */

@@ -98,10 +98,10 @@ const config = {
         },
         "autoRun": {
           from: {
-            transform: "perspective(1000px) rotateX(-0deg) rotateY(0deg)",
+            transform: "perspective(1000px)  rotateY(0deg)",
           },
           to: {
-            transform: "perspective(1000px) rotateX(-0deg) rotateY(360deg)",
+            transform: "perspective(1000px)  rotateY(360deg)",
           },
       },
       },
