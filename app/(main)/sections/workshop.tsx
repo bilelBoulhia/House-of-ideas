@@ -63,7 +63,7 @@ export default function Workshop() {
 
         <div className="relative min-h-screen flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
-            <BackgroundBeams/>
+            {/*<BackgroundBeams/>*/}
             <div className=" flex flex-row  items-center text-center justify-center">
 
 
