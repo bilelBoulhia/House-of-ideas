@@ -88,7 +88,7 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        "accordion-down": {
+       "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
@@ -96,12 +96,23 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "autoRun": {
+          from: {
+            transform: "perspective(1000px) rotateX(-0deg) rotateY(0deg)",
+          },
+          to: {
+            transform: "perspective(1000px) rotateX(-0deg) rotateY(360deg)",
+          },
+      },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "autoRun": "autoRun 20s linear infinite",
+        "autoRunPaused": "autoRun 20s linear infinite paused",
       },
     },
+
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

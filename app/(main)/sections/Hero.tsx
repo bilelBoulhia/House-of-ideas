@@ -14,7 +14,7 @@ export default function Hero() {
 
     return (
         <div >
-           {/*<BackgroundBeams className='min-h-screen'/>*/}
+
             <div className='min-h-screen flex overflow-hidden flex-col gap-6 h-full w-full p-4'>
                 <motion.div>
                     <h2 className=" sticky mt-[5rem] iphone5:text-4xl medium-phone:text-5xl  large-phone:text-6xl  md:text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight">

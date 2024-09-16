@@ -63,7 +63,7 @@ export default function Workshop() {
 
         <div className="relative min-h-screen flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
-            {/*<BackgroundBeams/>*/}
+
             <div className=" flex flex-row  items-center text-center justify-center">
 
 
@@ -143,41 +143,3 @@ export default function Workshop() {
 }
 
 
-/*
-*  <motion.div
-                        initial={{rotate: index % 2 === 0 ? -5 : 5}}
-                        viewport={{once: true}}
-                        whileInView={{rotate: 0,}}
-                        transition={{delay: 0.7}}
-
-
-                        className=" w-80 h-80  rounded-2xl p-4 overflow-hidden bg-[#F5F7F8] dark:bg-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700 relative z-20"
-                    >
-
-                        <div className="relative z-10 p-6 h-full flex flex-col justify-between">
-                            <div>
-                                <h2 className="text-2xl font-bold mb-2 dark:text-white tracking-wide">Web Dev</h2>
-                                <p className="text-violet-400 dark:text-violet-200 mb-4 line-clamp-3">Master the latest React features and
-                                    patterns for building scalable web applications.</p>
-                            </div>
-
-                            <div className="mt-4 transition-opacity duration-300 ease-in-out opacity-100">
-                                <div className="flex items-center mb-4">
-                                    <Image src={c1} alt="Tutor" className="w-12 h-12 rounded-full mr-4"/>
-                                    <span className="dark:text-white font-semibold">{"with"} sebstian nam</span>
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <Button
-                                        className="bg-violet-500 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded">
-                                        Subscribe
-                                    </Button>
-
-                                    <Badge variant='secondary' className='px-2 py-1 '>Free</Badge>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </motion.div>
-* */
