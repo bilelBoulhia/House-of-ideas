@@ -1,9 +1,19 @@
 'use client'
 
-
+import img1 from '@/app/assets/diplomas images/image (2).png'
+import img2 from '@/app/assets/diplomas images/image (3).png'
+import img3 from '@/app/assets/diplomas images/image (4).png'
 
 import { motion } from "framer-motion"
 import {InfiniteMovingCards} from "@/components/ui/infinite-carousel";
+
+import {useState} from "react";
+
+import {CardStack, imgtype} from "@/components/ui/card-stack";
+import {AnimatedHeading} from "@/components/ui/Section-Heading";
+
+
+const images :imgtype[] = [{id:1, img:img2}, {id:2,img:img1} , {id:3,img:img3}]
 
 const testimonials = [
     {
@@ -37,60 +47,29 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+
+    const sentence= ["our","testimonials"]
     return (
 
         <div className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
-            <div className=" flex flex-row  items-center text-center justify-center">
 
-
-                <div className='flex-row flex items-end bg-[#f4f5f5] dark:bg-[#00060c]  w-full justify-end'>
-
-                    <motion.h2
-                        initial={{opacity: 1, x: 100}}
-                        whileInView={{opacity: 1, x: 0}}
-                        viewport={{once: true}}
-                        transition={{duration: 0.5, delay: 0.4, ease: "easeInOut"}}
-                        className=" iphone5:text-2xl z-12  medium-phone:text-3xl  large-phone:text-4xl uppercase  font-bold text-center text-black dark:text-white font-sans tracking-tight"
-
-                    >
-                        Our
-                    </motion.h2>
-                    <div style={{zIndex: -1}}
-                         className="absolute top-0 left-0 h-11 w-[41vw] bg-blend-darken  bg-[#f4f5f5] dark:bg-[#00060c]  "></div>
-
-                </div>
-
-
-                <div className='flex-row flex items-start w-full   justify-start'>
-                    <motion.span
-                        style={{zIndex: -3}}
-                        viewport={{once: true}}
-                        initial={{opacity: 1, x: -200}}
-                        whileInView={{opacity: 1, x: 5}}
-                        transition={{type: 'spring', stiffness: 100, damping: 15, delay: 0.6}}
-                        className='iphone5:text-2xl   medium-phone:text-3xl  large-phone:text-4xl uppercase  font-bold text-center  bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 font-sans tracking-tight'
-
-                    >Testimonials
-                    </motion.span>
-                </div>
-
-
-            </div>
-
-            <div className=" mt-12 rounded-md flex flex-col antialiased  dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+            <AnimatedHeading sentence={sentence} className='bg-[#f7f9f9] dark:bg-[#000206]'/>
+            <div
+                className=" mt-12 rounded-md flex flex-col antialiased  dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards
                     items={testimonials}
                     direction="right"
                     speed="slow"
                 />
             </div>
+            <div className='m-12'>
+                  <CardStack items={images}/>
+            </div>
+
+
 
         </div>
     )
 }
 
-/*
-*
-*
-* */
