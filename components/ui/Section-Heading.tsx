@@ -29,7 +29,7 @@ export const AnimatedHeading = ({sentence,className}:AnimatedHeading)=>{
 
                 <div className={cn("absolute inset-0 h-full",className)}
                     style={{
-                        zIndex: -20,
+                        zIndex: -1,
                         left: '-100vw',
                         right: '0',
                     }}
@@ -40,7 +40,7 @@ export const AnimatedHeading = ({sentence,className}:AnimatedHeading)=>{
 
             <div className='flex-row flex items-start w-full   justify-start'>
                 <motion.span
-                    style={{zIndex: -21}}
+                    style={{zIndex: -2}}
                     viewport={{once: true}}
                     initial={{opacity: 1, x: -285}}
                     whileInView={{opacity: 1, x: 5}}
