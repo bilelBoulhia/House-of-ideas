@@ -6,7 +6,7 @@ import bg2 from '@/app/assets/events images/bg2.png'
 import bg3 from '../../assets/events images/bg1.png'
 
 import { motion } from "framer-motion"
-import {AnimatedHeading} from "@/components/ui/Section-Heading";
+
 
 const arr = [ bg1, bg2, bg3]
 
