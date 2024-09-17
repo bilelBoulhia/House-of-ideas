@@ -50,7 +50,7 @@ export default function Event() {
                     <motion.span
                         style={{zIndex: -3}}
                         viewport={{once: true}}
-                        initial={{opacity: 1, x: -200}}
+                        initial={{opacity: 1, x: -280}}
                         whileInView={{opacity: 1, x: 5}}
                         transition={{type: 'spring', stiffness: 100, damping: 15, delay: 0.6}}
                         className='iphone5:text-2xl   medium-phone:text-3xl  large-phone:text-4xl uppercase  font-bold text-center  bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 font-sans tracking-tight'
