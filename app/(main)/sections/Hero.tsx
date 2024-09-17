@@ -5,6 +5,15 @@ import { BackgroundBeams } from "@/components/ui/BackgroundBeams"
 import {TypewriterEffect} from "@/components/ui/TyperWriter";
 
 import {FlipText} from "@/components/ui/FlipText";
+import {Button} from "@/components/ui/button";
+import {ArrowRight} from "lucide-react";
+import {useEffect, useState} from "react";
+
+
+
+
+
+
 
 export default function Hero() {
 
@@ -13,11 +22,11 @@ export default function Hero() {
 
 
     return (
-        <div >
+        <div>
 
-            <div className='min-h-screen flex overflow-hidden flex-col gap-6 h-full w-full p-4'>
+            <div className='min-h-screen flex overflow-hidden flex-col gap-1 h-full w-full p-4'>
                 <motion.div>
-                    <h2 className=" sticky mt-[5rem] iphone5:text-4xl medium-phone:text-5xl  large-phone:text-6xl  md:text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
+                    <h2 className=" sticky mt-[3rem] iphone5:text-4xl medium-phone:text-5xl  large-phone:text-6xl  md:text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
                         <FlipText>Welcome</FlipText> <FlipText>to</FlipText> <br/>
                         <div
                              className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
@@ -28,13 +37,8 @@ export default function Hero() {
                         </div>
                     </h2>
                 </motion.div>
-                <motion.div
-
-
-                    className="text-center  font-mono text-purple-300 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mt-6 bg-gradient-to-b from-gray-900 to-black p-6 rounded-lg shadow-[0_0_15px_rgba(128,0,128,0.1)] border border-purple-900"
-                    style={{
-
-                        boxShadow: 'inset 0 1px 3px 0 rgba(128,0,128,0.1), 0 0 15px rgba(128,0,128,0.1)',
+                <motion.div className="text-center  font-mono text-purple-300 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mt-6 bg-gradient-to-b from-gray-900 to-black p-6 rounded-lg shadow-[0_0_15px_rgba(128,0,128,0.1)] border border-purple-900"
+                    style={{boxShadow: 'inset 0 1px 3px 0 rgba(128,0,128,0.1), 0 0 15px rgba(128,0,128,0.1)',
                         backgroundImage: 'repeating-linear-gradient(0deg, rgba(64,0,64,0.15), rgba(64,0,64,0.15) 1px, transparent 1px, transparent 2px)'
                     }}
                 >
@@ -62,6 +66,32 @@ export default function Hero() {
                       className='animate-pulse'>█</motion.span>
                     </p>
                 </motion.div>
+                <div className='flex md:gap-12 gap-5  mt-2 flex-col md:flex-row justify-center items-center'>
+                    <Button className='bg-gradient-to-r from-purple-600 to-purple-800' size='md' variant='cto'>
+                        <motion.span
+                            initial={{y: 40}}
+
+                            animate={{y: 0}}
+                            transition={{duration: 0.45, ease: "easeInOut", delay: 0.25}}
+                            className="mr-2 ">check out latest Workshops
+                        </motion.span>
+                        <ArrowRight className="w-5 h-5 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>
+
+
+                    </Button>
+                    <Button
+                        className='bg-gradient-to-r from-blue-700 to-blue-900 rounded-full overflow-hidden shadow-[0_4px_9px_-4px_rgba(59,130,246,0.5)] dark:shadow-[0_4px_9px_-4px_rgba(30,64,175,0.5)]'
+                        size='md' variant='cto'>
+                        <motion.span
+
+                            initial={{y:40}}
+                            animate={{y: 0}}
+                            transition={{duration:0.45,ease:"easeInOut",delay:0.25}}
+                            className="mr-2">check out our current events</motion.span>
+                        <ArrowRight className="w-5 h-5 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>
+
+                    </Button>
+                </div>
             </div>
         </div>
     )

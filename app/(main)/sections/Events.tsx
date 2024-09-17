@@ -33,7 +33,7 @@ export default function Event() {
                         whileInView={{opacity: 1, x: 0}}
                         viewport={{once: true}}
                         transition={{duration: 0.5, delay: 0.4, ease: "easeInOut"}}
-                        className=" iphone5:text-xl z-12  medium-phone:text-3xl  large-phone:text-4xl uppercase  font-semibold text-center text-black dark:text-white font-sans tracking-tight"
+                        className=" iphone5:text-2xl z-12  medium-phone:text-3xl  large-phone:text-4xl uppercase  font-bold text-center text-black dark:text-white font-sans tracking-tight"
 
                     >
                         Events
@@ -50,7 +50,7 @@ export default function Event() {
                     initial={{opacity: 1, x: -200}}
                     whileInView={{opacity: 1, x: 5}}
                     transition={{type: 'spring', stiffness: 100, damping: 15, delay: 0.6}}
-                    className='iphone5:text-xl   medium-phone:text-3xl  large-phone:text-4xl uppercase  font-bold text-center  bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 font-sans tracking-tight'
+                    className='iphone5:text-2xl   medium-phone:text-3xl  large-phone:text-4xl uppercase  font-bold text-center  bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 font-sans tracking-tight'
 
                 >Excompo
                 </motion.span>

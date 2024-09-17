@@ -103,13 +103,20 @@ const config = {
           to: {
             transform: "perspective(1000px)  rotateY(360deg)",
           },
+
       },
+         scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "autoRun": "autoRun 20s linear infinite",
+        "autoRun": "autoRun 40s linear infinite",
         "autoRunPaused": "autoRun 20s linear infinite paused",
+         scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
     },
 

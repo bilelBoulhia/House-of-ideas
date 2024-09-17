@@ -1,20 +1,37 @@
 'use client'
-import {motion} from "framer-motion";
-import Image from "next/image";
-import img1 from "@/app/assets/images/dragon_1.jpg";
-import img2 from "@/app/assets/images/dragon_2.jpg";
-import img3 from "@/app/assets/images/dragon_3.jpg";
-import img4 from "@/app/assets/images/dragon_4.jpg";
-import img5 from "@/app/assets/images/dragon_5.jpg";
-import img6 from "@/app/assets/images/dragon_6.jpg";
-import img7 from "@/app/assets/images/dragon_7.jpg";
-import img8 from "@/app/assets/images/dragon_8.jpg";
-import {useState} from "react";
+import {AnimatePresence, motion} from "framer-motion";
+import React, {useEffect, useState} from "react";
+import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 
 
 
+type departmentsType ={
+    name:string
+    description:string[]
+}
 
 
+const departments : departmentsType[] = [
+    {
+        name: 'IT Department',
+        description: [
+            'Cutting-edge technology ',
+            'Hands-on  experience',
+            'Focus on cybersecurity',
+            'Industry-aligned curriculum'
+        ]
+    },
+    {
+        name: 'Marketing Department',
+        description: [
+            'Strategic brand management',
+            'Digital marketing expertise',
+            'Consumer behavior analysis',
+            'Integrated marketing '
+        ]
+    },
+
+]
 
 
 
@@ -25,14 +42,22 @@ import {useState} from "react";
 
 export default function Departament() {
 
-    const images=[img1,img2,img3,img4,img5,img6,img7,img8]
+    const [currentDept, setCurrentDept] = useState(0)
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentDept((prev) => (prev + 1) % departments.length)
+        }, 5000) // Change department every 5 seconds
+
+        return () => clearInterval(timer)
+    }, [])
 
     return (
 
-        <div className="relative min-h-screen flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
+        <div className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
 
-            <div className=" flex flex-row  items-center text-center justify-center">
+            <div className="flex flex-row items-center text-center justify-center">
 
 
                 <div className='flex-row flex items-end bg-[#f4f5f5]  dark:bg-[#000305]  w-full justify-end'>
@@ -45,10 +70,10 @@ export default function Departament() {
                         className=" iphone5:text-xl z-12  medium-phone:text-3xl  large-phone:text-4xl uppercase  font-semibold text-center text-black dark:text-white font-sans tracking-tight"
 
                     >
-                        Excompo
+                        OUR
                     </motion.h2>
                     <div style={{zIndex: -20}}
-                         className="absolute top-0 left-0 h-11 w-[41vw] bg-[#f1f9f9]   dark:bg-[#000305]  "></div>
+                         className="absolute top-0 left-0 h-11 w-[30vw] bg-[#f1f9f9]  dark:bg-[#000305]  "></div>
 
                 </div>
 
@@ -68,38 +93,59 @@ export default function Departament() {
             </div>
 
 
-            <div className=' w-full h-full'>
+            <div className="flex flex-col md:flex-row">
 
-
-            <div className="absolute  inset-0 flex items-center justify-center">
-                <div
-                    className={'h-24 w-24  rounded-full [transform-style:preserve-3d] hover:animate-autoRunPaused animate-autoRun'}>
-                    {images.map((src, index) => (
-                        <div
-                            key={index}
-                            className="absolute inset-0 [transform:rotateY(calc((var(--position)-1)*(360/var(--quantity))*1deg))_translateZ(300px)]"
-                            style={{
-                                '--position': index + 1,
-                                '--quantity': images.length,
-                            } as React.CSSProperties}
+                <div className="relative  md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
+                    <div className='absolute inset-0 bg-[#000305] h-1/4'></div>  <AnimatePresence mode="wait">
+                    <motion.h2
+                        key={departments[currentDept].name}
+                        initial={{y: 150}}
+                        animate={{y: 0}}
+                        exit={{y: -190}}
+                        transition={{duration: 0.6, ease: "easeInOut"}}
+                        className="iphone5:text-5xl medium-phone:text-6xl font-bold text-white text-center relative z-10"
+                        style={{
+                            zIndex:-1,
+                            textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+                            WebkitTextStroke: '2px rgba(255,255,255,0.1)',
+                        }}
+                    >
+                        {departments[currentDept].name}
+                    </motion.h2>
+                </AnimatePresence>
+                </div>
+                <div className="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"/>
+                <div className="relative md:w-1/2 p-12 flex items-center justify-center overflow-hidden">
+                    <AnimatePresence mode="wait">
+                        <motion.ul
+                            style={{zIndex:-1}}
+                            key={currentDept}
+                            className="space-y-4 w-full  max-w-md relative z-10"
                         >
-                          <div className='h-24 w-24 bg-white rounded-full' />
-                        </div>
-                    ))}
+                            {departments[currentDept].description.map((item, index) => (
+                                <motion.li
+                                    key={`${currentDept}-${index}`}
+                                    initial={{x: 250, opacity: 0}}
+                                    animate={{x: 0, opacity: 1}}
+                                    exit={{x: -450, opacity: 0}}
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: index * 0.05,
+                                        ease: "easeOut"
+                                    }}
+                                    className="bg-white  backdrop-blur-sm rounded-lg p-4 shadow-md"
+                                >
+                                    <span className="medium-phone:text-lg text-gray-800">{item}</span>
+                                </motion.li>
+                            ))}
+                        </motion.ul>
+                    </AnimatePresence>
                 </div>
             </div>
-        </div>
+
+
         </div>
     )
 }
 
 
-
-/*
-*   <Image
-                                src={src}
-                                alt={`Carousel image ${index + 1}`}
-                                layout="fill"
-                                objectFit="cover"
-                            />
-* */
