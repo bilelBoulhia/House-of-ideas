@@ -24,9 +24,7 @@ export default function Event() {
 
         <div className="relative flex  items-center  overflow-hidden flex-col gap-2">
 
-           <AnimatedHeading sentence={["our","events"]} className='bg-[#f9f9f7] dark:bg-[#000309]' />
-
-
+           <AnimatedHeading sentence={["our","events"]} className='bg-[#f9f9f7] dark:bg-[#000811]' />
             <Carousel useArrows={true}>
                 {arr.map((card, index) => (
                     <motion.img

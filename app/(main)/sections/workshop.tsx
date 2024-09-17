@@ -65,7 +65,7 @@ export default function Workshop() {
         <div className="relative min-h-screen flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
 
-            <AnimatedHeading sentence={["our","workshop"]} className='bg-[#f7f4f9] dark:bg-[#000206]'/>
+            <AnimatedHeading sentence={["our","workshop"]} className='bg-[#f7f4f9] dark:bg-[#00070e]'/>
 
             <div
                 className='mt-10 grid md:grid-cols-2 laptop:grid-cols-2 gap-8'>
