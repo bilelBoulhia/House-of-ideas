@@ -25,9 +25,9 @@ export default function Stepper({ pages, onComplete }: StepperProps) {
   }
 
   return (
-    <div className="w-full  mx-auto shadow-md rounded-lg overflow-hidden">
+    <div className="w-full  overflow-hidden">
 
-      <div >
+      <div>
         {pages[currentStep]}
       </div>
       <div className="p-1 flex justify-between">

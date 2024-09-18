@@ -7,14 +7,12 @@ export default function useScrollAnimations(scrollYProgress: MotionValue<number>
   const [windowWidth, setWindowWidth] = useState(0)
 
   useEffect(() => {
-    // Set initial window width
-    setWindowWidth(window.innerWidth)
 
-    // Update window width on resize
+    setWindowWidth(window.innerWidth)
     const handleResize = () => setWindowWidth(window.innerWidth)
     window.addEventListener('resize', handleResize)
 
-    // Cleanup
+
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
@@ -30,10 +28,11 @@ export default function useScrollAnimations(scrollYProgress: MotionValue<number>
     scrollYProgress,
     [0, 0.1],
     [
-      'hsl(var(--background-start) / 0)',
-      'hsl(var(--background-end) / 1)'
-    ]
+    'hsl(var(--navbar-background-start) / 0)',
+    'hsl(var(--navbar-background-end) / 1)'
+  ]
   )
+
 
   return { width, borderRadius, backgroundColor }
 }

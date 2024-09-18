@@ -10,7 +10,7 @@ import { motion } from "framer-motion"
 
 const arr = [ bg1, bg2, bg3]
 
-const shadowVariants = {
+export const shadowVariants = {
     hidden: {
         boxShadow: "0px 0px rgba(107, 33, 168, 0), 0px 0px rgba(107, 33, 168, 0)"
     },

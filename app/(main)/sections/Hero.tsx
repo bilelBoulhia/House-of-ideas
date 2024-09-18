@@ -47,13 +47,13 @@ export default function Hero() {
                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                         </div>
-                        <div className="text-purple-400 text-sm">bash</div>
+                        <div className="text-purple-600  dark:text-purple-400 text-sm">bash</div>
                     </div>
                     <div className="mb-2 text-left flex flex-col tablet:flex-row  items-left">
-                        <span className="text-purple-400 whitespace-nowrap">user@houseofideas:~$&nbsp;</span>
-                        <TypewriterEffect className='text-purple-400' words={sentence}/>
+                        <span className="text-purple-600  dark:text-purple-400 whitespace-nowrap">user@houseofideas:~$&nbsp;</span>
+                        <TypewriterEffect className='text-purple-600  dark:text-purple-400' words={sentence}/>
                     </div>
-                    <p className="whitespace-pre-line text-left ">
+                    <p className="whitespace-pre-line text-purple-400 dark:text-purple-300 text-left ">
                         Welcome to the official website of House of Ideas,
                         where passion meets discovery. As a leading
                         scientific club at Economic University, we are
@@ -61,7 +61,7 @@ export default function Hero() {
                         and innovation in the field of science and economics.
                     </p>
                     <p className="mt-2 text-left">
-                        <span className="text-purple-400">user@houseofideas:~$</span><motion.span
+                        <span className="text-purple-600  dark:text-purple-400">user@houseofideas:~$</span><motion.span
                       className='animate-pulse'>█</motion.span>
                     </p>
                 </motion.div>

@@ -20,7 +20,7 @@ import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
 import React from "react";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
-interface CourseData {
+export  interface CourseData {
     title: string
     description: string
     picture?: StaticImageData

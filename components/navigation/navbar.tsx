@@ -36,7 +36,7 @@ function AnimatedBg({ width, borderRadius, backgroundColor }: ReturnType<typeof 
                   x: '-50%',
                   zIndex: -1,
               }}
-              className='absolute   shadow-sm inset-0'
+              className='absolute    inset-0'
           />
 
   )
@@ -51,7 +51,9 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const navRef = useRef<HTMLDivElement>(null)
     const toggleMenu = () => setIsOpen(!isOpen)
-    const animations = useScrollAnimations(scrollYProgress,430,0.4)
+    const animations = useScrollAnimations(scrollYProgress,430,0.2)
+
+
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -59,6 +61,7 @@ export default function Navbar() {
                 setIsOpen(false)
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside)
         return () => {
         document.removeEventListener("mousedown", handleClickOutside)
@@ -116,21 +119,16 @@ export default function Navbar() {
                     </ul>
                 </div>
             </nav>
-            <nav className="relative">
+            <nav className="relative m-[2px]">
                 <div className='relative flex-row items-center p-1  justify-center hidden slighty-large-phone:flex'>
 
                     <AnimatedBg {...animations} />
-
                     <ExcompoIcon className='size-14'/>
-
                     {links.map((link, index) => (
                             <Linkcomp href={link.href} key={index}>{link.label}</Linkcomp>
                     ))}
                     <ThemeSwitcher/>
-
-
-
-                    </div>
+                 </div>
             </nav>
         </>
 )

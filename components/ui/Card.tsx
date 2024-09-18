@@ -7,6 +7,7 @@ import {motion, MotionProps} from "framer-motion";
 import c1 from "@/app/assets/workshop images/image (1).png";
 import Image, {StaticImageData} from "next/image";
 import {Badge} from "@/components/ui/badge";
+import {shadowVariants} from "@/app/(main)/sections/Events";
 
 
 
@@ -26,23 +27,32 @@ interface CardProps extends MotionProps {
 }
 export const Card: React.FC<CardProps> = ({ children, className, ...props }) => {
     return (
+
         <motion.div
-            className={cn(
-                "w-70 h-70 rounded-2xl m-7 p-4 overflow-hidden group-hover:border-slate-700 relative ",
+              initial="hidden"
+              viewport={{once:true}}
+              whileInView="visible"
+              variants={shadowVariants}
+            className={cn("rounded-2xl  m-7 p-4 overflow-hidden group-hover:border-slate-700 relative ",
                 className
             )}
             {...props}
         >
+
+
             {children}
+
         </motion.div>
+
+
     );
 };
 
-export const CardContent = ({children,className}: {children: React.ReactNode[], className?: string}) => {
+export const CardContent = ({children, className}: { children: React.ReactNode[], className?: string }) => {
 
-    return(
-        <div className={cn("relative  p-2 h-full flex flex-col justify-center",className)}>
-            {children}
+    return (
+        <div className={cn("relative min-h-[15rem]  p-2 h-full flex flex-col justify-center", className)}>
+        {children}
         </div>
     )
 
@@ -54,12 +64,12 @@ export const CardTitle=({children,className}:{children:string,className?:string}
                 zIndex: -2,
             }}
 
-            initial={{x:-160}}
+            initial={{x:-260}}
             viewport={{once:true}}
             whileInView={{x:1}}
             transition={{type: 'spring', stiffness: 100, damping: 15, delay: 0.6}}
 
-            className={cn("mb-2",className)}
+            className={cn("mb-2 line-clamp-1",className)}
         >{children}
         </motion.h2>
     )
