@@ -1,17 +1,15 @@
 'use client'
-import {AnimatePresence, motion} from "framer-motion";
-import c1 from '@/app/assets/workshop images/image (1).png'
+
 
 import Image, {StaticImageData} from "next/image";
 
-import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
+
 import {
     Card,
     CardBadge, CardBottomBody,
     CardContent,
     CardDescription,
     CardFooter,
-    CardImage, CardName,
     CardTitle,
     CardUpperBody
 } from "@/components/ui/Card";
@@ -84,10 +82,7 @@ export default function Workshop() {
 
                     <Card
                         key={index}
-                        initial={{rotate: index % 2 === 0 ? -5 : 5}}
-                        viewport={{once: true}}
-                        whileInView={{rotate: 0,}}
-                        transition={{delay: 0.7}}
+
                         className='bg-[#F5F7F8] dark:bg-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
                     >
                         <CardContent>
@@ -135,3 +130,10 @@ export default function Workshop() {
 }
 
 
+/*
+*    initial={{rotate: index % 2 === 0 ? -5 : 5}}
+                        viewport={{once: true}}
+                        whileInView={{rotate: 0,}}
+                        transition={{delay: 0.7}}
+*
+* */
