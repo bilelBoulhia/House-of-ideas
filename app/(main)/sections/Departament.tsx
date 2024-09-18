@@ -71,7 +71,7 @@ export default function Departament() {
 
             <div className="flex flex-col md:flex-row">
 
-                <div className="relative   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
+            <div className="relative   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
                     <div className='absolute inset-0  bg-[#f9f9f7] dark:bg-[#000309] h-1/4'></div>  <AnimatePresence mode="wait">
                     <motion.h2
                         key={departments[c].name}

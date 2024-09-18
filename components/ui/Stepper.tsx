@@ -30,7 +30,7 @@ export default function Stepper({ pages, onComplete }: StepperProps) {
       <div >
         {pages[currentStep]}
       </div>
-      <div className="p-2 flex justify-between">
+      <div className="p-1 flex justify-between">
         <Button
           variant="outline"
           onClick={goToPreviousStep}
