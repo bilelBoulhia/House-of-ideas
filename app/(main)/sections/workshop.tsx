@@ -103,7 +103,7 @@ export default function Workshop() {
 
                              <Modal>
                                   <ModalTrigger asChild>
-                                          <Button className='bg-violet-500 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</Button>
+                                          <Button className='bg-violet-950 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</Button>
                                   </ModalTrigger>
                                   <ModalBody>
 

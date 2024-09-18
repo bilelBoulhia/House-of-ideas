@@ -24,25 +24,27 @@ const links: Item[] = [
 
 function AnimatedBg({ width, borderRadius, backgroundColor }: ReturnType<typeof useScrollAnimations>) {
   return (
-    <motion.div
-      style={{
-        width,
-        borderRadius,
-        backgroundColor,
-        left: '50%',
-        x: '-50%',
-        zIndex: -1,
-      }}
-     className='absolute inset-0'
-    />
+
+          <motion.div
+              style={{
+                  width,
+                  borderRadius,
+                  backgroundColor,
+                  left: '50%',
+                  x: '-50%',
+                  zIndex: -1,
+              }}
+              className='absolute   shadow-sm inset-0'
+          />
+
   )
 }
 
 export default function Navbar() {
     const ref = useRef(null)
-    const { scrollYProgress } = useScroll({
-      target: ref,
-       offset: ["start start", "end start"]
+    const {scrollYProgress} = useScroll({
+        target: ref,
+        offset: ["start start", "end start"]
     })
     const [isOpen, setIsOpen] = useState(false)
     const navRef = useRef<HTMLDivElement>(null)
