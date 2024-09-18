@@ -8,10 +8,13 @@ export  default  function useScrollAnimations(scrollYProgress: MotionValue<numbe
   )
   const borderRadius = useTransform(scrollYProgress, [0,0.3], [1, 18])
 
-  const backgroundColor = useTransform(
+ const backgroundColor = useTransform(
     scrollYProgress,
     [0, 0.1],
-    ['rgba(0, 10, 20, 0)', 'rgba(0, 10, 20, 1)']
+    [
+      'hsl(var(--background-start) / 0)',
+      'hsl(var(--background-end) / 1)'
+    ]
   )
 
   return { width, borderRadius, backgroundColor }

@@ -6,6 +6,7 @@ import { ExcompoIcon } from "@/components/ui/Icons"
 import Linkcomp from "@/components/ui/link"
 import {motion, useScroll} from "framer-motion"
 import useScrollAnimations from "@/lib/hooks/useScrollAnimations";
+import {ThemeSwitcher} from "@/components/theme-switcher";
 
 
 interface Item {
@@ -30,6 +31,7 @@ function AnimatedBg({ width, borderRadius, backgroundColor }: ReturnType<typeof 
                   width,
                   borderRadius,
                   backgroundColor,
+
                   left: '50%',
                   x: '-50%',
                   zIndex: -1,
@@ -49,7 +51,7 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const navRef = useRef<HTMLDivElement>(null)
     const toggleMenu = () => setIsOpen(!isOpen)
-    const animations = useScrollAnimations(scrollYProgress,410,0.4)
+    const animations = useScrollAnimations(scrollYProgress,430,0.4)
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -104,7 +106,7 @@ export default function Navbar() {
                             >
                                 <a
                                     href={item.href}
-                                    className="block font-bold px-4 py-2 text-sm hover:bg-neutral-800/20 hover:text-accent-foreground transition-colors"
+                                    className="block  font-bold px-4 py-2 text-sm hover:bg-neutral-800/20 hover:text-accent-foreground transition-colors"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {item.label}
@@ -124,6 +126,7 @@ export default function Navbar() {
                     {links.map((link, index) => (
                             <Linkcomp href={link.href} key={index}>{link.label}</Linkcomp>
                     ))}
+                    <ThemeSwitcher/>
 
 
 

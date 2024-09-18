@@ -83,7 +83,7 @@ export default function Workshop() {
                     <Card
                         key={index}
                         transition={{delay: 0.7,ease:'easeInOut'}}
-                        className='bg-[#F5F7F8] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
+                        className='   dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
                     >
                         <CardContent>
 
@@ -91,7 +91,7 @@ export default function Workshop() {
                                 <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
                                    WEB dev
                                 </CardTitle>
-                                <CardDescription className='text-violet-400 dark:text-violet-200'
+                                <CardDescription className='text-neutral-800 dark:text-neutral-200'
                                 >Master the art of web development with our comprehensive course covering HTML, CSS,
                                  JavaScript, and modern frameworks, and a strong grasp on the best practices involving design, implementation
                                 </CardDescription>
