@@ -49,15 +49,28 @@ export const CardContent = ({children,className}: {children: React.ReactNode[], 
 }
 export const CardTitle=({children,className}:{children:string,className?:string}) => {
     return (
-        <h2 className={cn("mb-2",className)}
+        <motion.h2
+            style={{
+                zIndex: -2,
+            }}
+
+            initial={{x:-160}}
+            viewport={{once:true}}
+            whileInView={{x:1}}
+            transition={{type: 'spring', stiffness: 100, damping: 15, delay: 0.6}}
+
+            className={cn("mb-2",className)}
         >{children}
-        </h2>
+        </motion.h2>
     )
 }
 
 export const CardDescription=({children,className}:{children:string,className?:string}) => {
     return (
-        <p className={cn("mb-4 line-clamp-3",className)}>
+        <p
+
+
+            className={cn("mb-4  line-clamp-3",className)}>
             {children}
         </p>
     )
