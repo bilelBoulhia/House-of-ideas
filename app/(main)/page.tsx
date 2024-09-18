@@ -1,3 +1,4 @@
+'use client'
 import Hero from "@/app/(main)/sections/Hero";
 import Event from "@/app/(main)/sections/Events";
 import Workshop from "@/app/(main)/sections/workshop";

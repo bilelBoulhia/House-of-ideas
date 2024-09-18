@@ -1,4 +1,3 @@
-'use client'
 import {MotionValue, useTransform} from "framer-motion";
 
 export  default  function useScrollAnimations(scrollYProgress: MotionValue<number>,minW:number,duration:number) {
