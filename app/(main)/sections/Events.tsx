@@ -38,10 +38,10 @@ export default function Event() {
                         className=" iphone5:text-2xl z-12  medium-phone:text-3xl  large-phone:text-4xl uppercase  font-bold text-center text-black dark:text-white font-sans tracking-tight"
 
                     >
-                        our
+                        Latest
                     </motion.h2>
                     <div style={{zIndex: -1}}
-                         className="absolute top-0 left-0 h-11 w-[41vw] bg-[#f9f9f7] dark:bg-[#000811]  "></div>
+                         className="absolute top-0 left-0 h-11 w-[41vw] bg-[#f9f9f7] dark:bg-[#000811]  "/>
 
                 </div>
 

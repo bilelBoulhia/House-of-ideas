@@ -4,10 +4,10 @@ import img1 from '@/app/assets/diplomas images/image (2).png'
 import img2 from '@/app/assets/diplomas images/image (3).png'
 import img3 from '@/app/assets/diplomas images/image (4).png'
 
-import { motion } from "framer-motion"
+
 import {InfiniteMovingCards} from "@/components/ui/infinite-carousel";
 
-import {useState} from "react";
+
 
 import {CardStack, imgtype} from "@/components/ui/card-stack";
 import {AnimatedHeading} from "@/components/ui/Section-Heading";

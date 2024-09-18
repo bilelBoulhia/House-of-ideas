@@ -13,9 +13,13 @@ import {
     CardFooter,
     CardImage, CardName,
     CardTitle,
-    CardTrigger, CardUpperBody
+    CardUpperBody
 } from "@/components/ui/Card";
 import {AnimatedHeading} from "@/components/ui/Section-Heading";
+import {Modal, ModalBody, ModalContent, ModalTrigger} from "@/components/ui/Modal";
+import {SubscribeForm} from "@/components/forms/subscribe form";
+import {Button} from "@/components/ui/button";
+import Stepper from "@/components/ui/Stepper";
 interface CourseData {
     title: string
     description: string
@@ -26,7 +30,19 @@ interface CourseData {
 
 
 
-
+  const pages = [
+    <div key="1" className="space-y-2">
+     <SubscribeForm/>
+    </div>,
+    <div key="2" className="space-y-2">
+      <h2 className="text-2xl font-bold">Personal Information</h2>
+      <p>Please fill out your personal information in this step.</p>
+    </div>,
+    <div key="3" className="space-y-2">
+      <h2 className="text-2xl font-bold">Review</h2>
+      <p>Review your information before submitting.</p>
+    </div>
+  ]
 
 
 
@@ -65,7 +81,7 @@ export default function Workshop() {
         <div className="relative min-h-screen flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
 
-            <AnimatedHeading sentence={["our","workshop"]} className='bg-[#f7f4f9] dark:bg-[#00070e]'/>
+            <AnimatedHeading sentence={["Latest","workshops"]} className='bg-[#f7f4f9] dark:bg-[#00070e]'/>
 
             <div
                 className='mt-10 grid md:grid-cols-2 laptop:grid-cols-2 gap-8'>
@@ -95,8 +111,22 @@ export default function Workshop() {
                                 <CardName className='dark:text-white'>steve mcfin</CardName>
                             </div>
                         <CardFooter>
-                                <CardTrigger className='bg-violet-500 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</CardTrigger>
-                                    <CardBadge>Free</CardBadge>
+
+                             <Modal>
+                                  <ModalTrigger asChild>
+                                          <Button className='bg-violet-500 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</Button>
+                                  </ModalTrigger>
+                                  <ModalBody>
+
+                                      <ModalContent>
+                                          <div >
+                                              <Stepper pages={pages} />
+                                          </div>
+                                      </ModalContent>
+                                  </ModalBody>
+                             </Modal>
+
+                            <CardBadge>Free</CardBadge>
                                 </CardFooter>
                         </CardBottomBody>
 

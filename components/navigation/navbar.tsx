@@ -4,7 +4,9 @@ import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ExcompoIcon } from "@/components/ui/Icons"
 import Linkcomp from "@/components/ui/link"
-import { motion } from "framer-motion"
+import {motion, useScroll} from "framer-motion"
+import useScrollAnimations from "@/lib/hooks/useScrollAnimations";
+
 
 interface Item {
     label: string
@@ -18,10 +20,34 @@ const links: Item[] = [
     { label: "Contact", href: "/Workshop" },
 ]
 
+
+
+function AnimatedBg({ width, borderRadius, backgroundColor }: ReturnType<typeof useScrollAnimations>) {
+  return (
+    <motion.div
+      style={{
+        width,
+        borderRadius,
+        backgroundColor,
+        left: '50%',
+        x: '-50%',
+        zIndex: -1,
+      }}
+     className='absolute inset-0'
+    />
+  )
+}
+
 export default function Navbar() {
+    const ref = useRef(null)
+    const { scrollYProgress } = useScroll({
+      target: ref,
+       offset: ["start start", "end start"]
+    })
     const [isOpen, setIsOpen] = useState(false)
     const navRef = useRef<HTMLDivElement>(null)
     const toggleMenu = () => setIsOpen(!isOpen)
+    const animations = useScrollAnimations(scrollYProgress,410,0.4)
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -29,12 +55,11 @@ export default function Navbar() {
                 setIsOpen(false)
             }
         }
-
         document.addEventListener("mousedown", handleClickOutside)
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside)
+        document.removeEventListener("mousedown", handleClickOutside)
         }
-    }, [])
+     }, [])
 
     return (
         <>
@@ -88,8 +113,9 @@ export default function Navbar() {
                 </div>
             </nav>
             <nav className="relative">
-                <div className=' flex-row items-center p-1  justify-center hidden slighty-large-phone:flex'>
+                <div className='relative flex-row items-center p-1  justify-center hidden slighty-large-phone:flex'>
 
+                    <AnimatedBg {...animations} />
 
                     <ExcompoIcon className='size-14'/>
 

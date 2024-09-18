@@ -19,26 +19,7 @@ import {Badge} from "@/components/ui/badge";
 
 
 
-export const CardTrigger = ({
-                                 children,
-                                 className,
 
-                             }: {
-    children: ReactNode;
-    className?: string;
-
-}) => {
-
-
-    return (
-        <Button
-            className={cn(className)}
-
-        >
-            {children}
-        </Button>
-    );
-};
 interface CardProps extends MotionProps {
     children: React.ReactNode;
     className?: string;
@@ -47,7 +28,7 @@ export const Card: React.FC<CardProps> = ({ children, className, ...props }) => 
     return (
         <motion.div
             className={cn(
-                "w-80 h-80 rounded-2xl p-4 overflow-hidden group-hover:border-slate-700 relative z-20",
+                "w-80 h-80 rounded-2xl p-4 overflow-hidden group-hover:border-slate-700 relative ",
                 className
             )}
             {...props}
@@ -60,7 +41,7 @@ export const Card: React.FC<CardProps> = ({ children, className, ...props }) => 
 export const CardContent = ({children,className}: {children: React.ReactNode[], className?: string}) => {
 
     return(
-        <div className={cn("relative z-10 p-6 h-full flex flex-col justify-between",className)}>
+        <div className={cn("relative  p-6 h-full flex flex-col justify-between",className)}>
             {children}
         </div>
     )

@@ -67,28 +67,27 @@ export default function Hero() {
                     </p>
                 </motion.div>
                 <div className='flex md:gap-12 gap-5  mt-2 flex-col md:flex-row justify-center items-center'>
-                    <Button className='bg-gradient-to-r from-purple-600 to-purple-800' size='md' variant='cto'>
+                    <Button className='bg-gradient-to-r from-purple-600 to-purple-800 min-w-[20rem]' size='md' variant='cto'>
                         <motion.span
                             initial={{y: 40}}
 
                             animate={{y: 0}}
-                            transition={{duration: 0.45, ease: "easeInOut", delay: 0.25}}
-                            className="mr-2 ">check out latest Workshops
+                            transition={{duration: 0.45, ease: "easeInOut",}}
+                            className="mr-2">check out  all   Workshops
                         </motion.span>
-                        <ArrowRight className="w-5 h-5 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>
+                        <ArrowRight className="w-5 h-5  transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>
 
 
                     </Button>
-                    <Button
-                        className='bg-gradient-to-r from-blue-700 to-blue-900 rounded-full overflow-hidden shadow-[0_4px_9px_-4px_rgba(59,130,246,0.5)] dark:shadow-[0_4px_9px_-4px_rgba(30,64,175,0.5)]'
+                    <Button className='bg-gradient-to-r min-w-[20rem] from-blue-700 to-blue-900 rounded-full overflow-hidden shadow-[0_4px_9px_-4px_rgba(59,130,246,0.5)] dark:shadow-[0_4px_9px_-4px_rgba(30,64,175,0.5)]'
                         size='md' variant='cto'>
                         <motion.span
 
                             initial={{y:40}}
                             animate={{y: 0}}
-                            transition={{duration:0.45,ease:"easeInOut",delay:0.25}}
-                            className="mr-2">check out our current events</motion.span>
-                        <ArrowRight className="w-5 h-5 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>
+                            transition={{duration:0.45,ease:"easeInOut"}}
+                            className="mr-2">check out all our events</motion.span>
+                        <ArrowRight className=" w-5 h-5 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>
 
                     </Button>
                 </div>

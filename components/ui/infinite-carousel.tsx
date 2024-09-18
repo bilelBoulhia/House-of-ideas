@@ -85,7 +85,7 @@ export const InfiniteMovingCards = ({
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
-        {items.map((item, idx) => (
+        {items.map((item) => (
           <li
             className="w-[250px] max-w-full relative rounded-2xl border border-b-[1px] flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
             style={{
@@ -107,7 +107,7 @@ export const InfiniteMovingCards = ({
                   <span className=" text-sm leading-[1.6] dark:text-gray-400 text-gray-800 font-normal">
                     {item.name}
                   </span>
-                  <span className=" text-sm leading-[1.6] dark:text-gray-400 dark:text-gray-900 font-normal">
+                  <span className=" text-sm leading-[1.6] dark:text-gray-400 text-gray-900 font-normal">
                     {item.title}
                   </span>
                 </span>
