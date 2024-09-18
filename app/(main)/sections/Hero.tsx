@@ -1,13 +1,12 @@
 'use client'
 
 import {motion} from "framer-motion"
-import { BackgroundBeams } from "@/components/ui/BackgroundBeams"
 import {TypewriterEffect} from "@/components/ui/TyperWriter";
 
 import {FlipText} from "@/components/ui/FlipText";
 import {Button} from "@/components/ui/button";
 import {ArrowRight} from "lucide-react";
-import {useEffect, useState} from "react";
+
 
 
 
