@@ -1,6 +1,5 @@
 'use client'
 import bg1 from '@/app/assets/events images/bg3.png'
-import React, {useEffect, useState} from "react";
 import {shadowVariants} from "@/app/(main)/sections/Events";
 import {useMediaQuery} from 'usehooks-ts'
 import { motion } from "framer-motion";
@@ -13,19 +12,16 @@ import {Tag} from "@/components/ui/Tag";
 export default function Index() {
 
     const isDesktop = useMediaQuery("(min-width: 1024px)")
-    const [hasMounted, setHasMounted] = useState(false)
     const animationVariants = {
         hidden: {x: isDesktop ? "-100%" : 0,y: isDesktop ? 0 : '-100%'},
         visible: {x: 0,y:0},
     }
-    useEffect(() => {
-        setHasMounted(true)
-    }, [])
+
 
 
 
     return(
-        <div className='flex flex-col mt-[5rem] p-2 justify-center text-center gap-2'>
+        <div className='flex flex-col mt-[5rem] m-2 justify-center overflow-hidden text-center gap-2'>
 
 
             <div className='flex flex-col  lg:flex-row  justify-center  gap-3'>
@@ -114,7 +110,7 @@ export default function Index() {
                                     </a>
 
                                 </div>
-                                ))}
+                            ))}
                         </div>
                     </div>
                 </section>
@@ -122,5 +118,5 @@ export default function Index() {
 
             </div>
         </div>
-)
+    )
 }

@@ -66,7 +66,7 @@ export default function Hero() {
                     </p>
                 </motion.div>
                 <div className='flex md:gap-12 gap-5  mt-2 flex-col md:flex-row justify-center items-center'>
-                    <Button className='bg-gradient-to-r  from-blue-700 to-blue-900' size='md' variant='cto'>
+                    <Button className='bg-gradient-to-r  from-purple-700 to-purple-900' size='md' variant='cto'>
                         <motion.span
                             initial={{y: 40}}
 
@@ -75,6 +75,19 @@ export default function Hero() {
                             className="mr-2">check out  all   Workshops
                         </motion.span>
                         <ArrowRight className="w-5 h-5  transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>
+
+
+                    </Button>
+                    <Button className='bg-gradient-to-r  from-blue-700 to-blue-900' size='md' variant='cto'>
+                        <motion.span
+                            initial={{y: 40}}
+
+                            animate={{y: 0}}
+                            transition={{duration: 0.45, ease: "easeInOut",}}
+                            className="mr-2">check out all Workshops
+                        </motion.span>
+                        <ArrowRight
+                            className="w-5 h-5  transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>
 
 
                     </Button>

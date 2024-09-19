@@ -22,7 +22,17 @@ const ThemeSwitcher = () => {
   }, []);
 
   if (!mounted) {
-    return null;
+    return(
+
+        <Button variant="ghost" size={"sm"}>
+          <Laptop
+              key="system"
+              size={16}
+              className={"text-muted-foreground"}
+          />
+        </Button>
+
+    );
   }
 
   const ICON_SIZE = 16;

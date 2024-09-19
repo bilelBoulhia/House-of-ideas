@@ -51,7 +51,7 @@ export default function Testimonials() {
     const sentence= ["our","testimonials"]
     return (
 
-        <div className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
+        <div id='Reviews' className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
 
             <AnimatedHeading  sentence={sentence} className='bg-[#f7f9f9] dark:bg-[#000206]'/>

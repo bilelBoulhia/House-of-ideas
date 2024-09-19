@@ -2,12 +2,13 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ExcompoIcon } from "@/components/ui/Icons"
+import { NewHiIcon} from "@/components/ui/Icons"
 import Linkcomp from "@/components/ui/link"
 import {motion, useScroll} from "framer-motion"
 import useScrollAnimations from "@/lib/hooks/useScrollAnimations";
 import {ThemeSwitcher} from "@/components/theme-switcher";
-
+import AnimatedNavBarBg from "@/components/navigation/ui/animated-navbar-background";
+import {useRouter} from 'next/navigation'
 
 interface Item {
     label: string
@@ -16,38 +17,18 @@ interface Item {
 
 const links: Item[] = [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Reviews", href: "/Reviews" },
-    { label: "Contact", href: "/Workshop" },
+    { label: "Events", href: "/#Events" },
+    { label: "Reviews", href: "/#Reviews" },
+    { label: "Contact", href: "/#ContactUs" },
 ]
-
-
-
-function AnimatedBg({ width, borderRadius, backgroundColor }: ReturnType<typeof useScrollAnimations>) {
-  return (
-
-          <motion.div
-              style={{
-                  width,
-                  borderRadius,
-                  backgroundColor,
-
-                  left: '50%',
-                  x: '-50%',
-                  zIndex: -1,
-              }}
-              className='absolute    inset-0'
-          />
-
-  )
-}
-
 export default function Navbar() {
+    const router = useRouter()
     const ref = useRef(null)
     const {scrollYProgress} = useScroll({
         target: ref,
         offset: ["start start", "end start"]
     })
+
     const [isOpen, setIsOpen] = useState(false)
     const navRef = useRef<HTMLDivElement>(null)
     const toggleMenu = () => setIsOpen(!isOpen)
@@ -92,7 +73,7 @@ export default function Navbar() {
                 }`}
             >
                 <div className="flex flex-col h-full">
-                    <ExcompoIcon className='p-4 size-20'/>
+                    <NewHiIcon className='size-20 p-4'/>
                     <ul className="flex-grow py-2">
                         {links.map((item, index) => (
                             <motion.li
@@ -122,10 +103,10 @@ export default function Navbar() {
             <nav className="relative m-[2px]">
                 <div className='relative flex-row items-center p-1  justify-center hidden slighty-large-phone:flex'>
 
-                    <AnimatedBg {...animations} />
-                    <ExcompoIcon className='size-14'/>
-                    {links.map((link, index) => (
-                            <Linkcomp href={link.href} key={index}>{link.label}</Linkcomp>
+                    <AnimatedNavBarBg {...animations} />
+                    <NewHiIcon className='size-[4rem]'/>
+                    {links.map((section, index) => (
+                            <Button  variant='link' onClick={() => router.push(section.href)} key={index}>{section.label}</Button>
                     ))}
                     <ThemeSwitcher/>
                  </div>
