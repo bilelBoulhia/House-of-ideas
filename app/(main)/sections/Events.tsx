@@ -1,11 +1,10 @@
-'use client'
-
 import Carousel from "@/components/ui/Carousel"
 import bg1 from '@/app/assets/events images/bg3.png'
 import bg2 from '@/app/assets/events images/bg2.png'
 import bg3 from '../../assets/events images/bg1.png'
 
 import { motion } from "framer-motion"
+import {AnimatedHeading} from "@/components/ui/Section-Heading";
 
 
 const arr = [ bg1, bg2, bg3]
@@ -27,7 +26,31 @@ export default function Event() {
 
             <div className=" flex flex-row  items-center text-center justify-center">
 
+                <AnimatedHeading  sentence={["our","Events"]} className='bg-[#f9f9f7] dark:bg-[#000811]'/>
 
+            </div>
+
+
+
+            <Carousel useArrows={true}>
+                {arr.map((card, index) => (
+                    <motion.img
+                        key={index}
+                        src={card.src}
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={shadowVariants}
+
+                        className="rounded-xl max-h-[70vh] object-cover mr-5 flex[0_0_100%] min-w-full"
+                    />
+                ))}
+            </Carousel>
+        </div>
+    )
+}
+
+/*
+*
                 <div className='flex-row flex items-end   w-full justify-end'>
 
                     <motion.h2
@@ -58,28 +81,5 @@ export default function Event() {
                     >Events
                     </motion.span>
                 </div>
-            </div>
-
-
-
-            <Carousel useArrows={true}>
-                {arr.map((card, index) => (
-                    <motion.img
-                        key={index}
-                        src={card.src}
-                        initial="hidden"
-                        whileInView="visible"
-                        variants={shadowVariants}
-
-                        className="rounded-xl max-h-[70vh] object-cover mr-5 flex[0_0_100%] min-w-full"
-                    />
-                ))}
-            </Carousel>
-        </div>
-    )
-}
-
-/*
-*
 *
 * */

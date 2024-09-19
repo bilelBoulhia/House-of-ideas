@@ -66,7 +66,7 @@ export default function Departament() {
 
         <div className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
-            <AnimatedHeading sentence={["our","Departements"]} className='bg-[#f9f9f7] dark:bg-[#000309]'/>
+            <AnimatedHeading size='xl' sentence={["our","Departements"]} className='bg-[#f9f9f7] dark:bg-[#000309]'/>
 
 
             <div className="flex flex-col md:flex-row">

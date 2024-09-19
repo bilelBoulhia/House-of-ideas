@@ -54,7 +54,7 @@ export default function Testimonials() {
         <div className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
 
-            <AnimatedHeading sentence={sentence} className='bg-[#f7f9f9] dark:bg-[#000206]'/>
+            <AnimatedHeading  sentence={sentence} className='bg-[#f7f9f9] dark:bg-[#000206]'/>
             <div
                 className=" mt-12 rounded-md flex flex-col antialiased  dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards

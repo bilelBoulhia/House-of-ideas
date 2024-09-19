@@ -16,6 +16,7 @@ import React from "react";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
 import {SubscribeForm} from "@/components/fragmenets/forms/subscribe form";
 import {shadowVariants} from "@/app/(main)/sections/Events";
+import {AnimatedHeading} from "@/components/ui/Section-Heading";
 
 const courses: CourseData[] = [
         {
@@ -82,7 +83,10 @@ const courses: CourseData[] = [
   ]
 export default function Index() {
     return(
-        <div className='flex flex-col mt-16 overflow-hidden gap-2'>
+        <div className='flex flex-col mt-[8rem] overflow-hidden gap-2'>
+
+
+            <AnimatedHeading sentence={["explore","more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] blur-[3px]'/>
 
             <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
  {courses.map((course, index) => (
@@ -112,7 +116,7 @@ export default function Index() {
 
                          <Modal>
                              <ModalTrigger asChild>
-                                 <Button className='bg-violet-950 rounded-xl hover:bg-violet-600 dark:text-white font-bold py-2 px-4'>subscribe</Button>
+                                 <Button className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
                              </ModalTrigger>
                              <ModalBody>
 
