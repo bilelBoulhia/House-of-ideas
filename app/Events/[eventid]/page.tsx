@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import {Calendar, Clock, Location, NewHiIcon, Sponsorlogo} from "@/components/ui/Icons";
 import {Tag} from "@/components/ui/Tag";
 import g1 from '@/assets/guest images/president.png'
-import React, {useState} from "react";
 import LinesBackground from "@/components/ui/LinesBackground";
 
 const occupations = ['Desginer','Hr manger','ceo of ssda']
@@ -14,7 +13,7 @@ const occupations = ['Desginer','Hr manger','ceo of ssda']
 export default function Index() {
 
     const isDesktop = useMediaQuery("(min-width: 1024px)")
-    const [isHovered, setIsHovered] = useState(false)
+
     const animationVariants = {
         hidden: {x: isDesktop ? "-100%" : 0,y: isDesktop ? 0 : '-100%'},
         visible: {x: 0,y:0},
@@ -45,16 +44,15 @@ export default function Index() {
                     viewport={{once: true}}
                     variants={animationVariants}
                     transition={{duration: 0.8, ease: 'easeInOut'}}
-                    className=" z-1">
-
+                    className="pt-4 pl-4 lg:pl-0 z-1">
 
                     <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
+                        <h1 className="text-4xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
                             E-Commerce Innovation Expo 2024: Shaping the Future of Online Retail
                         </h1>
 
                         <section className="text-left">
-                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tighter mb-2 sm:mb-3 md:mb-4 ">
+                            <h2 className="text-3xl font-bold tracking-tighter  mb-6 ">
                                 About the Event
                             </h2>
                             <p className="text-sm sm:text-base md:text-lg  mb-4 sm:mb-5 md:mb-6 leading-relaxed">
@@ -71,25 +69,24 @@ export default function Index() {
                 <section className="mb-12 text-left">
                     <h2 className="text-3xl font-bold tracking-tighter  mb-6 ">Event Details</h2>
                     <div className="grid gap-8 md:grid-cols-2">
-                        <Tag className='dark:bg-cyan-800 bg-yellow-200 '>
+                        <Tag className='dark:bg-cyan-800 bg-[#A0DEFF] '>
                             <Calendar className="w-8 h-8 text-purple-400"/>
                             <div>
                                 <p className="text-sm ">Date</p>
                                 <p className="text-lg font-medium">September 12-14, 2024</p>
                             </div>
                         </Tag>
-                        <Tag className='dark:bg-violet-600 bg-violet-200'>
+                        <Tag className='dark:bg-[#7469B6] bg-[#91DDCF] '>
                             <Location className="w-8 h-8 text-blue-400"/>
                             <div>
-                                <p className="text-sm text-gray-400">Location</p>
-                                <p className="text-lg font-medium">Tech Central Convention Center, Silicon
-                                    Valley</p>
+                                <p className="text-sm ">Location</p>
+                                <p className="text-lg font-medium">Tech Central Convention Center</p>
                             </div>
                         </Tag>
-                        <Tag className='dark:bg-pink-600 bg-pink-300'>
+                        <Tag className='dark:bg-[#F05A7E] bg-[#FFD0D0] '>
                             <Clock className="w-8 h-8 text-blue-400"/>
                             <div>
-                                <p className="text-sm text-gray-400">Time</p>
+                                <p className="text-sm">Time</p>
                                 <p className="text-lg font-medium">9:00 AM - 6:00 PM daily</p>
                             </div>
                         </Tag>
