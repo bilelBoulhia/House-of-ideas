@@ -33,8 +33,8 @@ export default function LinesBackground() {
                     x2={x2}
                     y2={y2}
                     stroke="currentColor"
-                    strokeWidth="0.2"
-                    strokeOpacity="0.2"
+                    strokeWidth="0.1"
+                    strokeOpacity="0.1"
                 >
                     <animate
                         attributeName="strokeOpacity"

@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import {Calendar, Clock, Location, NewHiIcon, Sponsorlogo} from "@/components/ui/Icons";
 import {Tag} from "@/components/ui/Tag";
 import g1 from '@/assets/guest images/president.png'
-import {useState} from "react";
+import React, {useState} from "react";
+import LinesBackground from "@/components/ui/LinesBackground";
 
 const occupations = ['Desginer','Hr manger','ceo of ssda']
 
@@ -23,9 +24,9 @@ export default function Index() {
 
 
     return(
-        <div className='flex flex-col mt-[5rem] m-2 justify-center overflow-hidden text-center gap-2'>
+        <div className='flex flex-col mt-[5rem] m-2 justify-center  text-center gap-2'>
 
-
+            <LinesBackground/>
             <div className='flex flex-col  lg:flex-row  justify-center  gap-3'>
                 <motion.div>
                     <motion.img
@@ -48,15 +49,15 @@ export default function Index() {
 
 
                     <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 mb-4 sm:mb-6 md:mb-8">
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
                             E-Commerce Innovation Expo 2024: Shaping the Future of Online Retail
                         </h1>
 
                         <section className="text-left">
-                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tighter mb-2 sm:mb-3 md:mb-4 text-gray-200">
+                            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tighter mb-2 sm:mb-3 md:mb-4 ">
                                 About the Event
                             </h2>
-                            <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-5 md:mb-6 leading-relaxed">
+                            <p className="text-sm sm:text-base md:text-lg  mb-4 sm:mb-5 md:mb-6 leading-relaxed">
                                 Join us for the premier event in the e-commerce industry! The E-Commerce Innovation Expo
                                 2024 brings together industry leaders, innovators, and decision-makers to explore the
                                 latest trends, technologies, and strategies shaping the future of online retail.
@@ -68,16 +69,16 @@ export default function Index() {
             </div>
             <div className='p-6 mt-6'>
                 <section className="mb-12 text-left">
-                    <h2 className="text-3xl font-bold tracking-tighter  mb-6 text-gray-200">Event Details</h2>
+                    <h2 className="text-3xl font-bold tracking-tighter  mb-6 ">Event Details</h2>
                     <div className="grid gap-8 md:grid-cols-2">
-                        <Tag className='bg-[#000811]'>
+                        <Tag className='dark:bg-cyan-800 bg-yellow-200 '>
                             <Calendar className="w-8 h-8 text-purple-400"/>
                             <div>
-                                <p className="text-sm text-gray-400">Date</p>
+                                <p className="text-sm ">Date</p>
                                 <p className="text-lg font-medium">September 12-14, 2024</p>
                             </div>
                         </Tag>
-                        <Tag className='bg-[#000811]'>
+                        <Tag className='dark:bg-violet-600 bg-violet-200'>
                             <Location className="w-8 h-8 text-blue-400"/>
                             <div>
                                 <p className="text-sm text-gray-400">Location</p>
@@ -85,7 +86,7 @@ export default function Index() {
                                     Valley</p>
                             </div>
                         </Tag>
-                        <Tag className='bg-[#000811]'>
+                        <Tag className='dark:bg-pink-600 bg-pink-300'>
                             <Clock className="w-8 h-8 text-blue-400"/>
                             <div>
                                 <p className="text-sm text-gray-400">Time</p>
@@ -105,19 +106,18 @@ export default function Index() {
                                 <div key={i} className="flex items-center justify-center p-4  rounded-lg ">
 
 
-                                    <div
-                                        className="group relative w-64 h-80 overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
+                                    <div className="group relative min-h-[14rem] min-w-[10rem] slighty-large-phone:w-64 slighty-large-phone:h-80 overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
                                         <img
                                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                                             src={g1.src}
                                             alt="Profile background"
                                         />
                                         <div
-                                            className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80"/>
+                                            className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80"/>
 
                                         <div
                                             className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
-                                            <h1 className="text-white font-bold font-sans text-2xl mb-2 tracking-tight">
+                                            <h1 className="text-white font-bold font-sans text-xl  md:text-2xl mb-2 tracking-tight">
                                                 Iman Riham
                                             </h1>
                                             <div
@@ -134,7 +134,7 @@ export default function Index() {
                                             </div>
                                         </div>
 
-                                        <div className="absolute top-4 right-4 backdrop-blur-sm rounded-full p-2 opacity-0 transform -translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                                        <div className="absolute top-4 right-4  rounded-full p-2 opacity-0 transform -translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
                                           <NewHiIcon className='h-6 w-6 '/>
                                         </div>
                                     </div>
