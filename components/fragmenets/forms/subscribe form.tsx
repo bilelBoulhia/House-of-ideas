@@ -17,44 +17,65 @@ export const SubscribeForm = () => {
           <div className="sm:col-span-1">
             <Label htmlFor="first-name">First name</Label>
             <Input
-              id="first-name"
-              name="first-name"
-              type="text"
-              autoComplete="given-name"
-              className="mt-2"
+                id="first-name"
+                name="first-name"
+                type="text"
+                autoComplete="given-name"
+                className="mt-2"
             />
           </div>
 
           <div className="sm:col-span-2">
             <Label htmlFor="last-name">Last name</Label>
             <Input
-              id="last-name"
-              name="last-name"
-              type="text"
-              autoComplete="family-name"
-              className="mt-2"
+                id="last-name"
+                name="last-name"
+                type="text"
+                autoComplete="family-name"
+                className="mt-2"
             />
           </div>
 
           <div className="sm:col-span-3">
             <Label htmlFor="email">Email address</Label>
             <Input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              className="mt-2"
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                className="mt-2"
+            />
+          </div>
+          <div className="sm:col-span-1">
+            <Label htmlFor="email">University</Label>
+            <Input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                className="mt-2"
+            />
+          </div>
+
+          <div className="sm:col-span-2">
+            <Label htmlFor="email">Field</Label>
+            <Input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                className="mt-2"
             />
           </div>
 
           <div className="sm:col-span-3">
             <Label htmlFor="phone">Phone number</Label>
             <Input
-              id="phone"
-              name="phone"
-              type="tel"
-              autoComplete="tel"
-              className="mt-2"
+                id="phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                className="mt-2"
             />
           </div>
 

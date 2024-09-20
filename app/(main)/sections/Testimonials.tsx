@@ -1,8 +1,8 @@
 'use client'
 
-import img1 from '@/app/assets/diplomas images/image (2).png'
-import img2 from '@/app/assets/diplomas images/image (3).png'
-import img3 from '@/app/assets/diplomas images/image (4).png'
+import img1 from '@/assets/diplomas images/image (2).png'
+import img2 from '@/assets/diplomas images/image (3).png'
+import img3 from '@/assets/diplomas images/image (4).png'
 
 
 import {InfiniteMovingCards} from "@/components/ui/infinite-carousel";
@@ -10,7 +10,7 @@ import {InfiniteMovingCards} from "@/components/ui/infinite-carousel";
 
 
 import {CardStack, imgtype} from "@/components/ui/card-stack";
-import {AnimatedHeading} from "@/components/ui/Section-Heading";
+import {AnimatedHeading} from "@/components/ui/Animated-heading";
 
 
 const images :imgtype[] = [{id:1, img:img2}, {id:2,img:img1} , {id:3,img:img3}]

@@ -16,7 +16,7 @@ import React from "react";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
 import {SubscribeForm} from "@/components/fragmenets/forms/subscribe form";
 
-import {AnimatedHeading} from "@/components/ui/Section-Heading";
+import {AnimatedHeading} from "@/components/ui/Animated-heading";
 
 const courses: CourseData[] = [
         {
@@ -83,7 +83,7 @@ const courses: CourseData[] = [
   ]
 export default function Index() {
     return(
-        <div className='flex flex-col mt-[8rem] overflow-hidden gap-2'>
+        <div className='flex flex-col mt-[8rem] items-center justify-center overflow-hidden gap-2'>
 
 
             <AnimatedHeading sentence={["explore","more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] blur-[3px]'/>

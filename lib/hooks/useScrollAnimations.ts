@@ -22,7 +22,7 @@ export default function useScrollAnimations(scrollYProgress: MotionValue<number>
     Math.max(minW, (latest / 100) * windowWidth)
   )
 
-  const borderRadius = useTransform(scrollYProgress, [0, 0.3], [1, 26])
+  const borderRadius = useTransform(scrollYProgress, [0, 0.3], [1, 8])
 
   const backgroundColor = useTransform(
     scrollYProgress,

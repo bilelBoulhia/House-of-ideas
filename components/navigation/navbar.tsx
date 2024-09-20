@@ -51,15 +51,20 @@ export default function Navbar() {
 
     return (
         <>
-            <Button
-                variant="link"
-                size="icon"
-                className={`block slighty-large-phone:hidden fixed top-4 left-4 ${isOpen ? "hidden" : "block"}`}
-                onClick={toggleMenu}
-                aria-label="Toggle menu"
-            >
-                <Menu className="h-6 w-6"/>
-            </Button>
+
+                <Button
+                    variant="link"
+                    size="icon"
+                    className={`block slighty-large-phone:hidden fixed top-4 left-4 ${isOpen ? "hidden" : "block"}`}
+                    onClick={toggleMenu}
+                    aria-label="Toggle menu"
+                >
+                    <Menu className="h-6 w-6"/>
+                </Button>
+
+
+
+
             <div
                 className={`z-40 block slighty-large-phone:hidden fixed inset-0 backdrop-blur-sm transition-opacity duration-300 ${
                     isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -75,6 +80,7 @@ export default function Navbar() {
                 <div className="flex flex-col h-full">
                     <NewHiIcon className='size-20 p-4'/>
                     <ul className="flex-grow py-2">
+                        <ThemeSwitcher/>
                         {links.map((item, index) => (
                             <motion.li
                                 animate={{
@@ -97,6 +103,8 @@ export default function Navbar() {
                                 </a>
                             </motion.li>
                         ))}
+
+
                     </ul>
                 </div>
             </nav>
@@ -104,7 +112,7 @@ export default function Navbar() {
                 <div className='relative flex-row items-center p-1  justify-center hidden slighty-large-phone:flex'>
 
                     <AnimatedNavBarBg {...animations} />
-                    <NewHiIcon className='size-[4rem]'/>
+                    <NewHiIcon className='size-[3rem]'/>
                     {links.map((section, index) => (
                             <Button  variant='link' onClick={() => router.push(section.href)} key={index}>{section.label}</Button>
                     ))}

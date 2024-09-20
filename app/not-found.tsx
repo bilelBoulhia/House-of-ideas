@@ -25,14 +25,14 @@ export default function NotFound() {
     }, [router])
 
     return (
-        <div className="min-h-screen w-full  flex flex-col items-center justify-center text-white p-4">
+        <div className="min-h-screen w-full   flex flex-col items-center justify-center  p-4">
             <motion.div
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 className="text-center"
             >
-                <h1 className="text-6xl font-bold mb-4">404</h1>
+                <h1 className="text-6xl  font-bold mb-4">404</h1>
                 <h2 className="text-3xl font-semibold mb-6">Oops! Page Not Found</h2>
             </motion.div>
 

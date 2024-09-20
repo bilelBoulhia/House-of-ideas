@@ -6,7 +6,7 @@ import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
-import "@/app/style/globals.css";
+import "@/style/globals.css";
 import Header from "@/app/sections/Header";
 import Footer from "@/app/sections/Footer";
 

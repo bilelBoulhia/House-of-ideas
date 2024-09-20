@@ -1,17 +1,19 @@
 'use client'
-import bg1 from '@/app/assets/events images/bg3.png'
+import bg1 from '@/assets/events images/bg3.png'
 import {shadowVariants} from "@/app/(main)/sections/Events";
 import {useMediaQuery} from 'usehooks-ts'
 import { motion } from "framer-motion";
-import {Calendar, Clock, Location, Sponsorlogo} from "@/components/ui/Icons";
+import {Calendar, Clock, Location, NewHiIcon, Sponsorlogo} from "@/components/ui/Icons";
 import {Tag} from "@/components/ui/Tag";
+import g1 from '@/assets/guest images/president.png'
+import {useState} from "react";
 
-
-
+const occupations = ['Desginer','Hr manger','ceo of ssda']
 
 export default function Index() {
 
     const isDesktop = useMediaQuery("(min-width: 1024px)")
+    const [isHovered, setIsHovered] = useState(false)
     const animationVariants = {
         hidden: {x: isDesktop ? "-100%" : 0,y: isDesktop ? 0 : '-100%'},
         visible: {x: 0,y:0},
@@ -93,7 +95,58 @@ export default function Index() {
                     </div>
                 </section>
 
-                <section className="w-full py-12 md:py-24 lg:py-32">
+                <section id='sponsors' className="w-full py-12 md:py-24 lg:py-32">
+                    <div className="container px-4 md:px-6">
+                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Guests</h2>
+                        </div>
+                        <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
+                            {[...Array(3)].map((_, i) => (
+                                <div key={i} className="flex items-center justify-center p-4  rounded-lg ">
+
+
+                                    <div
+                                        className="group relative w-64 h-80 overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
+                                        <img
+                                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                            src={g1.src}
+                                            alt="Profile background"
+                                        />
+                                        <div
+                                            className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80"/>
+
+                                        <div
+                                            className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+                                            <h1 className="text-white font-bold font-sans text-2xl mb-2 tracking-tight">
+                                                Iman Riham
+                                            </h1>
+                                            <div
+                                                className="space-y-1 overflow-hidden max-h-0 transition-all duration-300 group-hover:max-h-24">
+                                                {occupations.map((oc, i) => (
+                                                    <p
+                                                        key={i}
+                                                        className="text-gray-300 text-sm font-medium truncate transform translate-y-4 transition-transform duration-300 delay-100 group-hover:translate-y-0"
+                                                        style={{transitionDelay: `${i * 50}ms`}}
+                                                    >
+                                                        {oc}
+                                                    </p>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="absolute top-4 right-4 backdrop-blur-sm rounded-full p-2 opacity-0 transform -translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                                          <NewHiIcon className='h-6 w-6 '/>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section id='sponsors' className="w-full py-12 md:py-24 lg:py-32">
                     <div className="container px-4 md:px-6">
                         <div className="flex flex-col items-center justify-center space-y-4 text-center">
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>
@@ -101,7 +154,7 @@ export default function Index() {
                         <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
                             {[...Array(6)].map((_, i) => (
                                 <div key={i}
-                                     className="flex items-center justify-center p-4  rounded-lg shadow-md">
+                                     className="flex items-center justify-center p-4  ">
 
                                     <a className="flex items-center justify-center text-gray-400 hover:text-gray-200"
                                        href="https://www.agiledrop.com/laravel?utm_source=filament" target="_blank"

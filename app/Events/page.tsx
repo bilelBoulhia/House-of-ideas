@@ -1,9 +1,9 @@
 'use client';
 import React from "react";
 import {motion} from "framer-motion";
-import bg1 from "@/app/assets/events images/bg3.png";
+import bg1 from "@/assets/events images/bg2.png";
 import {shadowVariants} from "@/app/(main)/sections/Events";
-import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
+import LinesBackground from "@/components/ui/LinesBackground";
 
 
 
@@ -11,14 +11,10 @@ export default function Index() {
     return (
         <div className='flex flex-col mt-[4rem] items-center justify-center p-5 gap-2'>
 
-            <BackgroundBeams/>
+            <LinesBackground/>
             <div className='grid  md:grid-cols-2 grid-cols-1 gap-12'>
 
-
-
-
-
-                    {[...Array(6)].map((_, i) => (
+                {[...Array(6)].map((_, i) => (
                         <div key={i} >
 
                             <motion.div
@@ -31,8 +27,8 @@ export default function Index() {
                                 <div className="max-w-3xl hover:cursor-default mx-auto pl-2 overflow-hidden">
 
                                 <motion.h1
-                                    whileHover={{scale: 1.02}}
-                                    className="text-2xl  md:text-3xl font-extrabold text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 ">
+                                    whileHover={{x: 4}}
+                                    className="text-2xl p-1  md:text-3xl font-extrabold text-left tracking-tight bg-clip-text text-transparent bg-black  dark:bg-white ">
                                  HI Family Event
                                 </motion.h1>
 

@@ -1,6 +1,6 @@
 import {motion} from "framer-motion";
 import Image from "next/image";
-import c1 from "@/app/assets/workshop images/image (1).png";
+import c1 from "@/assets/workshop images/image (1).png";
 import React from "react";
 
 export const WorkshopDetails = ()=>{

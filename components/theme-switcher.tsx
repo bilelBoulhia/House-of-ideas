@@ -11,8 +11,9 @@ import {
 import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import {cn} from "@/lib/utils";
 
-const ThemeSwitcher = () => {
+const ThemeSwitcher = ({className}:{className?:string}) => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -22,13 +23,14 @@ const ThemeSwitcher = () => {
   }, []);
 
   if (!mounted) {
+
     return(
 
-        <Button variant="ghost" size={"sm"}>
+        <Button className={cn({className})} variant="ghost" size={"sm"}>
           <Laptop
               key="system"
               size={16}
-              className={"text-muted-foreground"}
+              className={" dark:text-muted-foreground"}
           />
         </Button>
 

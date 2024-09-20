@@ -2,7 +2,7 @@
 import {AnimatePresence, motion} from "framer-motion";
 import React, {useEffect, useState} from "react";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
-import {AnimatedHeading} from "@/components/ui/Section-Heading";
+import {AnimatedHeading} from "@/components/ui/Animated-heading";
 
 
 

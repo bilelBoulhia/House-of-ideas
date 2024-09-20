@@ -13,7 +13,7 @@ import {
     CardTitle,
     CardUpperBody
 } from "@/components/ui/Card";
-import {AnimatedHeading} from "@/components/ui/Section-Heading";
+import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {Modal, ModalBody, ModalContent, ModalTrigger} from "@/components/ui/Modal";
 import {SubscribeForm} from "@/components/fragmenets/forms/subscribe form";
 import {Button} from "@/components/ui/button";
@@ -74,7 +74,7 @@ export default function Workshop() {
         <div className="relative min-h-screen flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
 
-            <AnimatedHeading sentence={["Latest", "workshops"]} className='bg-[#f7f4f9] dark:bg-[#00070e]'/>
+            <AnimatedHeading sentence={["Latest", "Workshops"]} className='bg-[#f7f4f9] dark:bg-[#00070e]'/>
 
             <div
                 className='mt-10 grid sm:grid-cols-2 laptop:grid-cols-2 gap-8'>
