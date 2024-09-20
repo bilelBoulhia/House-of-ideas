@@ -7,7 +7,7 @@ import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import Testimonials from "@/app/(main)/sections/Testimonials";
 
 
-export default async function Index() {
+export default function Index() {
   return (
 
       <div className="flex-1 flex w-full items-center  overflow-hidden flex-col gap-6">
