@@ -1,5 +1,5 @@
 
-import {createClient } from "@/lib/supabase/client";
+import {createClient } from "@/utils/supabase/client";
 
 const supabaseClient = createClient();
 export async function fetch<T>(
