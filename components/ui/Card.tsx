@@ -1,10 +1,9 @@
-'use client'
+
 import React, {createContext, ReactNode, useContext, useState} from "react";
 import {cn} from "@/lib/utils";
-import {Slot} from "@radix-ui/react-slot";
-import {Button} from "@/components/ui/button";
+
 import {motion, MotionProps} from "framer-motion";
-import c1 from "@/app/assets/workshop images/image (1).png";
+
 import Image, {StaticImageData} from "next/image";
 import {Badge} from "@/components/ui/badge";
 import {shadowVariants} from "@/app/(main)/sections/Events";
@@ -64,10 +63,10 @@ export const CardTitle=({children,className}:{children:string,className?:string}
                 zIndex: -2,
             }}
 
-            initial={{x:-260}}
+            initial={{x:'-100%'}}
             viewport={{once:true}}
             whileInView={{x:1}}
-            transition={{type: 'spring', stiffness: 100, damping: 15, delay: 0.6}}
+            transition={{type: 'spring', stiffness: 100, damping: 15, delay: 0.2}}
 
             className={cn("mb-2 line-clamp-1",className)}
         >{children}

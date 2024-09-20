@@ -3,12 +3,12 @@ import React, { useState, useEffect, useRef } from "react"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { NewHiIcon} from "@/components/ui/Icons"
-import Linkcomp from "@/components/ui/link"
+
 import {motion, useScroll} from "framer-motion"
 import useScrollAnimations from "@/lib/hooks/useScrollAnimations";
 import {ThemeSwitcher} from "@/components/theme-switcher";
 import AnimatedNavBarBg from "@/components/navigation/ui/animated-navbar-background";
-import {useRouter} from 'next/navigation'
+import {useRouter,usePathname} from 'next/navigation'
 
 interface Item {
     label: string

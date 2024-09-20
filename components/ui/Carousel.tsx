@@ -1,10 +1,10 @@
-'use client'
+
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import React, {ComponentPropsWithRef, HTMLAttributes, useCallback, useEffect, useRef, useState} from 'react'
 import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { cn } from "@/lib/utils"
-import {motion, useInView, useTransform, useViewportScroll} from "framer-motion";
+import {motion} from "framer-motion";
 type UseArrowButtonsType = {
     canScrollPrev: boolean
     canScrollNext: boolean
@@ -23,36 +23,30 @@ const EmblaCarousel: React.FC<PropType> = ({ options, children, className ,useAr
     const [emblaRef, emblaApi] = useEmblaCarousel(options)
     const { canScrollPrev, canScrollNext, onPrevButtonClick, onNextButtonClick } = useArrowButtons(emblaApi)
         return (
-            <section className={cn("max-w-full mx-auto m-5  ", className)} {...props}>
-                <motion.div className="relative" ref={emblaRef}>
-                    <motion.div className="flex touch-pan-y ">
+            <section className={cn("max-w-full mx-auto m-5 relative", className)} {...props}>
+                <motion.div  ref={emblaRef}>
+                    <motion.div className="flex touch-pan-y">
                         {children}
                     </motion.div>
-                    { useArrows &&(
-                    <div className="absolute inset-0 flex justify-between items-center">
-
-
-                                <ArrowButton
-                                    onClick={onPrevButtonClick}
-                                    disabled={!canScrollPrev}
-                                    className="left-0"
-                                >
-                                    <ChevronLeft className="w-6 h-6"/>
-                                </ArrowButton>
-                                <ArrowButton
-                                    onClick={onNextButtonClick}
-                                    disabled={!canScrollNext}
-                                    className="right-0"
-                                >
-                                    <ChevronRight className="w-6 h-6"/>
-                                </ArrowButton>
-
-
-                    </div>
-                    )}
                 </motion.div>
-
-
+                {useArrows && (
+                    <>
+                        <ArrowButton
+                            onClick={onPrevButtonClick}
+                            disabled={!canScrollPrev}
+                            className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10"
+                        >
+                            <ChevronLeft className="w-6 h-6"/>
+                        </ArrowButton>
+                        <ArrowButton
+                            onClick={onNextButtonClick}
+                            disabled={!canScrollNext}
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10"
+                        >
+                            <ChevronRight className="w-6 h-6"/>
+                        </ArrowButton>
+                    </>
+                )}
             </section>
         )
 }
