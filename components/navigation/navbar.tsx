@@ -9,6 +9,7 @@ import useScrollAnimations from "@/lib/hooks/useScrollAnimations";
 import {ThemeSwitcher} from "@/components/theme-switcher";
 import AnimatedNavBarBg from "@/components/navigation/ui/animated-navbar-background";
 import {useRouter,usePathname} from 'next/navigation'
+import {CloseIcon} from "@/components/ui/Icons";
 
 interface Item {
     label: string
@@ -73,11 +74,11 @@ export default function Navbar() {
 
             <nav
                 ref={navRef}
-                className={`block slighty-large-phone:hidden  z-50 fixed top-0 left-0 bottom-0 w-64 shadow-lg transform transition-transform duration-300 ease-in-out ${
+                className={`block slighty-large-phone:hidden bg-white  dark:bg-black z-50 fixed top-0 left-0 bottom-0 w-64 shadow-lg transform transition-transform duration-300 ease-in-out ${
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >
-                <Button variant='ghost' className='absolute  inset-0 w-1 top-4 left-[90%]' onClick={toggleMenu}>X</Button>
+                <Button variant='ghost' className='absolute  inset-0 w-1 top-4 left-[90%]' onClick={toggleMenu}><CloseIcon/></Button>
                 <div className="flex flex-col h-full">
                     <NewHiIcon className='size-20 p-4'/>
 
