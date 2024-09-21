@@ -2,9 +2,10 @@
 import React from "react";
 import {motion} from "framer-motion";
 import bg1 from "@/assets/events images/bg2.png";
-import {shadowVariants} from "@/app/(main)/sections/Events";
-import LinesBackground from "@/components/ui/LinesBackground";
+
+
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
+import {shadowVariants} from "@/utils/types";
 
 
 

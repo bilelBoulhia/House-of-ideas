@@ -1,10 +1,10 @@
 
 import { motion } from "framer-motion"
 import { InfiniteMovingCards } from "@/components/ui/infinite-carousel"
-import { cn } from "@/lib/utils"
+import { cn } from "@/app/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority"
 
-type AnimatedHeading = {
+export type AnimatedHeading = {
   sentence: string[]
   className?: string
   size?: VariantProps<typeof Variants>["size"]

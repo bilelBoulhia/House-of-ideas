@@ -6,7 +6,7 @@ import {
     useSpring,
     useTransform,
 } from "framer-motion";
-import {cn} from "@/lib/utils";
+import {cn} from "@/app/lib/utils";
 
 interface props extends HTMLAttributes<HTMLDivElement> {
     className?: string,

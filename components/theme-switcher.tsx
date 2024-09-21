@@ -11,7 +11,7 @@ import {
 import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@/app/lib/utils";
 
 const ThemeSwitcher = ({className}:{className?:string}) => {
   const [mounted, setMounted] = useState(false);

@@ -1,5 +1,5 @@
 'use client'
-import {CourseData} from "@/app/(main)/sections/workshop";
+
 import {
     Card, CardBadge,
     CardBottomBody,
@@ -19,6 +19,7 @@ import {SubscribeForm} from "@/components/fragmenets/forms/subscribe form";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import LinesBackground from "@/components/ui/LinesBackground";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
+import { CourseData } from "@/utils/types";
 
 const courses: CourseData[] = [
         {

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import {cn} from "@/lib/utils";
+import {cn} from "@/app/lib/utils";
 
 //absolute  h-full w-full inset-0  [mask-size:40px] [mask-repeat:no-repeat]
 export const BackgroundBeams = React.memo(

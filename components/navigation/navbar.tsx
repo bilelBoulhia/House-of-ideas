@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { NewHiIcon} from "@/components/ui/Icons"
 
 import {motion, useScroll} from "framer-motion"
-import useScrollAnimations from "@/lib/hooks/useScrollAnimations";
+import useScrollAnimations from "@/app/lib/hooks/useScrollAnimations";
 import {ThemeSwitcher} from "@/components/theme-switcher";
 import AnimatedNavBarBg from "@/components/navigation/ui/animated-navbar-background";
 import {useRouter,usePathname} from 'next/navigation'

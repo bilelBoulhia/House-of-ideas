@@ -20,13 +20,8 @@ import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
 import React from "react";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
-export  interface CourseData {
-    title: string
-    description: string
-    picture?: StaticImageData
-    tutor: string
+import {CourseData} from "@/utils/types";
 
-}
 
 
 
@@ -71,7 +66,7 @@ export default function Workshop() {
 
     return (
 
-        <div className="relative min-h-screen flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
+        <div className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
 
             <AnimatedHeading sentence={["Latest", "Workshops"]} className='bg-[#f7f4f9] dark:bg-[#00070e]'/>

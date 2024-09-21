@@ -1,7 +1,7 @@
 
-import {createClient } from "@/utils/supabase/client";
+import {createClient} from "@/app/lib/supabase/server";
 
-const supabaseClient = createClient();
+
 export async function fetch<T>(
     table: string,
     json: boolean = false,
@@ -10,6 +10,7 @@ export async function fetch<T>(
 
 ): Promise<T[]> {
 
+    const supabaseClient = createClient();
 
     let query =  supabaseClient.from(table).select(columns.join(', '));
     const { data } = SecondaryQuery ? await  SecondaryQuery(query) : await query;
@@ -24,6 +25,7 @@ export async function proc(
     SecondaryQuery?:(query:any) => any ,
 ){
 
+    const supabaseClient = createClient();
     let query =  supabaseClient.rpc(fn)
     return  SecondaryQuery ? await  SecondaryQuery(query) : await query;
 

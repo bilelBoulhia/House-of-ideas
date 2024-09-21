@@ -23,7 +23,7 @@ export default function Hero() {
     return (
         <div>
 
-            <div className='min-h-screen flex overflow-hidden flex-col gap-1 h-full w-full p-4'>
+            <div className='flex min-h-[calc(100vh-30rem)] justify-evenly  overflow-hidden  flex-col gap-1  w-full p-4'>
                 <motion.div>
                     <h2 className=" sticky mt-[3rem] iphone5:text-[2.6rem] medium-phone:text-5xl  large-phone:text-7xl  md:text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
                         <FlipText>Welcome</FlipText> <FlipText>to</FlipText> <br/>
@@ -65,7 +65,7 @@ export default function Hero() {
                       className='animate-pulse'>█</motion.span>
                     </p>
                 </motion.div>
-                <div className='flex md:gap-12 gap-5  mt-2 flex-col md:flex-row justify-center items-center'>
+                <div className='flex md:gap-12 gap-5  mt-2 flex-col sm:flex-row justify-center items-center'>
                     <Button className='bg-gradient-to-r  from-purple-700 to-purple-900' onClick={()=>router.push('/Workshops')} size='md' variant='cto'>
                         <span className="mr-2 min-w-[13rem]">
 

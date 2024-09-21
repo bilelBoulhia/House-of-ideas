@@ -1,10 +1,10 @@
-
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import React, {ComponentPropsWithRef, HTMLAttributes, useCallback, useEffect, useRef, useState} from 'react'
-import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
+import {ChevronLeft, ChevronRight} from 'lucide-react'
+import React, {ComponentPropsWithRef, HTMLAttributes, useCallback, useEffect, useState} from 'react'
+import {EmblaOptionsType, EmblaCarouselType} from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
-import { cn } from "@/lib/utils"
-import {motion} from "framer-motion";
+import {cn} from "@/app/lib/utils"
+
+
 type UseArrowButtonsType = {
     canScrollPrev: boolean
     canScrollNext: boolean
@@ -14,41 +14,59 @@ type UseArrowButtonsType = {
 
 interface PropType extends HTMLAttributes<HTMLDivElement> {
     options?: EmblaOptionsType
-    children: React.ReactNode[]
+    children: React.ReactNode
     className?: string
-    useArrows ?:boolean
+    useArrows?: boolean
+    slideClassName?: string
 }
 
-const EmblaCarousel: React.FC<PropType> = ({ options, children, className ,useArrows = false, ...props }) => {
-    const [emblaRef, emblaApi] = useEmblaCarousel(options)
-    const { canScrollPrev, canScrollNext, onPrevButtonClick, onNextButtonClick } = useArrowButtons(emblaApi)
-        return (
-            <section className={cn("max-w-full mx-auto m-5 relative", className)} {...props}>
-                <motion.div  ref={emblaRef}>
-                    <motion.div className="flex touch-pan-y">
-                        {children}
-                    </motion.div>
-                </motion.div>
-                {useArrows && (
-                    <>
-                        <ArrowButton
-                            onClick={onPrevButtonClick}
-                            disabled={!canScrollPrev}
-                            className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10"
-                        >
-                            <ChevronLeft className="w-6 h-6"/>
-                        </ArrowButton>
-                        <ArrowButton
-                            onClick={onNextButtonClick}
-                            disabled={!canScrollNext}
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10"
-                        >
-                            <ChevronRight className="w-6 h-6"/>
-                        </ArrowButton>
-                    </>
-                )}
-            </section>
-        )
+const EmblaCarousel: React.FC<PropType> = ({
+                                               options,
+                                               children,
+                                               className,
+                                               slideClassName,
+                                               useArrows = false,
+                                               ...props
+                                           }) => {
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        ...options,
+        align: 'center',
+        containScroll: 'trimSnaps',
+    })
+
+    const {canScrollPrev, canScrollNext, onPrevButtonClick, onNextButtonClick} = useArrowButtons(emblaApi)
+
+    return (
+        <section className={cn("w-full mx-auto mt-5 max-h-[70rem] relative ", className)} {...props}>
+            <div className="overflow-hidden max-h-[70rem] " ref={emblaRef}>
+                <div className="flex max-h-[70rem] ">
+                    {React.Children.map(children, (child, index) => (
+                        <div key={index} className={cn("max-h-[70rem] min-w-0 ", slideClassName)}>
+                            {child}
+                        </div>
+                    ))}
+                </div>
+            </div>
+            {useArrows && (
+                <>
+                    <ArrowButton
+                        onClick={onPrevButtonClick}
+                        disabled={!canScrollPrev}
+                        className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10"
+                    >
+                        <ChevronLeft className="w-6 h-6"/>
+                    </ArrowButton>
+                    <ArrowButton
+                        onClick={onNextButtonClick}
+                        disabled={!canScrollNext}
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10"
+                    >
+                        <ChevronRight className="w-6 h-6"/>
+                    </ArrowButton>
+                </>
+            )}
+        </section>
+    )
 }
 
 const useArrowButtons = (

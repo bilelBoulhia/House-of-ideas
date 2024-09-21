@@ -1,6 +1,6 @@
 'use client'
 import bg1 from '@/assets/events images/bg3.png'
-import {shadowVariants} from "@/app/(main)/sections/Events";
+
 import {useMediaQuery} from 'usehooks-ts'
 import { motion } from "framer-motion";
 import {Calendar, Clock, Location, NewHiIcon, Sponsorlogo} from "@/components/ui/Icons";
@@ -8,6 +8,7 @@ import {Tag} from "@/components/ui/Tag";
 import g1 from '@/assets/guest images/president.png'
 import LinesBackground from "@/components/ui/LinesBackground";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
+import {shadowVariants} from "@/utils/types";
 
 const occupations = ['Desginer','Hr manger','ceo of ssda']
 

@@ -1,12 +1,13 @@
 
 import React, {createContext, ReactNode, useContext, useState} from "react";
-import {cn} from "@/lib/utils";
+import {cn} from "@/app/lib/utils";
 
 import {motion, MotionProps} from "framer-motion";
 
 import Image, {StaticImageData} from "next/image";
 import {Badge} from "@/components/ui/badge";
-import {shadowVariants} from "@/app/(main)/sections/Events";
+import {shadowVariants} from "@/utils/types";
+
 
 
 
