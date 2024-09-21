@@ -76,7 +76,7 @@ const courses: CourseData[] = [
     ]
    const pages = [
       <div key="1" className="space-y-2">
-          <WorkshopDetails/>
+          {/*<WorkshopDetails/>*/}
       </div>
       ,
       <div key="2" className="space-y-2">

@@ -23,7 +23,7 @@ import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmene
 import {Tables} from "@/utils/DatabaseTypes";
 
 
-const pages= (selectedworkshop : Tables<'workshops'> | null) => [
+export const pages= (selectedworkshop : Tables<'workshops'> | null) => [
     <div key="1" className="space-y-2">
         <WorkshopDetails data={selectedworkshop}/>
     </div>
