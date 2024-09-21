@@ -1,7 +1,7 @@
 'use client'
 
 
-import Image, {StaticImageData} from "next/image";
+
 
 
 import {
@@ -18,50 +18,29 @@ import {Modal, ModalBody, ModalContent, ModalTrigger} from "@/components/ui/Moda
 import {SubscribeForm} from "@/components/fragmenets/forms/subscribe form";
 import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
-import React from "react";
+import React, {useState} from "react";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
-import {CourseData} from "@/utils/types";
+import {Tables} from "@/utils/DatabaseTypes";
+
+
+const pages= (selectedworkshop : Tables<'workshops'> | null) => [
+    <div key="1" className="space-y-2">
+        <WorkshopDetails data={selectedworkshop}/>
+    </div>
+    ,
+    <div key="2" className="space-y-2">
+        <SubscribeForm/>
+    </div>,
+
+]
 
 
 
+export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
 
-  const pages = [
-      <div key="1" className="space-y-2">
-          <WorkshopDetails/>
-      </div>
-      ,
-      <div key="2" className="space-y-2">
-          <SubscribeForm/>
-      </div>,
-
-  ]
+    const [selectedworkshop,setSelectedworkshop] = useState<Tables<'workshops'> | null>(null);
 
 
-export default function Workshop() {
-
-    const courses: CourseData[] = [
-        {
-            title: "Web Development Mastery",
-            description: "Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.",
-            tutor: "John Doe"
-        },
-        {
-            title: "Marketing",
-            description: "Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.",
-            tutor: "John Doe"
-        },
-        {
-            title: "Web Development Mastery",
-            description: "Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.",
-            tutor: "John Doe"
-        },
-        {
-            title: "Web Development Mastery",
-            description: "Master the art of web development with our comprehensive course covering HTML, CSS, JavaScript, and modern frameworks.",
-            tutor: "John Doe"
-        }
-
-    ]
 
 
     return (
@@ -73,7 +52,7 @@ export default function Workshop() {
 
             <div
                 className='mt-10 grid sm:grid-cols-2 laptop:grid-cols-2 gap-8'>
-                {courses.map((course, index) => (
+                {data.map((workshop, index) => (
 
                     <Card
                         key={index}
@@ -84,11 +63,11 @@ export default function Workshop() {
 
                             <CardUpperBody>
                                 <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
-                                   WEB dev
+                                    {workshop.workshopname}
                                 </CardTitle>
                                 <CardDescription className='text-neutral-800 dark:text-neutral-200'
-                                >Master the art of web development with our comprehensive course covering HTML, CSS,
-                                 JavaScript, and modern frameworks, and a strong grasp on the best practices involving design, implementation
+                                >
+                                    {workshop.workshopdescription}
                                 </CardDescription>
                             </CardUpperBody>
 
@@ -98,13 +77,13 @@ export default function Workshop() {
 
                              <Modal>
                                   <ModalTrigger asChild>
-                                          <Button className='bg-violet-950 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</Button>
+                                          <Button onClick={()=>setSelectedworkshop(workshop)} className='bg-violet-950 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</Button>
                                   </ModalTrigger>
                                   <ModalBody>
 
                                       <ModalContent>
                                           <div >
-                                              <Stepper pages={pages} />
+                                              <Stepper pages={pages(selectedworkshop)} />
                                           </div>
                                       </ModalContent>
                                   </ModalBody>
@@ -124,11 +103,3 @@ export default function Workshop() {
     )
 }
 
-
-/*
-*    initial={{rotate: index % 2 === 0 ? -5 : 5}}
-                        viewport={{once: true}}
-                        whileInView={{rotate: 0,}}
-                        transition={{delay: 0.7}}
-*
-* */

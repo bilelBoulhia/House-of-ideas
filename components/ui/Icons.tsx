@@ -1,11 +1,10 @@
 import {SVGProps} from "react";
 import {cn} from "@/app/lib/utils";
 import { motion } from "framer-motion";
+import { IconProps } from "@/utils/types";
 
 
-interface IconProps  {
-    className?: string;
-}
+
 const icon = {
     hidden: {
         pathLength: 0,
@@ -134,7 +133,7 @@ const CloseIcon = ({className, ...props}: IconProps) => {
 }
 
 
-const NewHiIcon = ({className, ...props}: IconProps) => {
+const NewHiIcon = ({className,animate = true, ...props}: IconProps) => {
 
     return (
         <motion.svg viewBox="0 0 141 195" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -166,8 +165,8 @@ const NewHiIcon = ({className, ...props}: IconProps) => {
                     fill="#FFD524"/>
                 <motion.path
                     variants={icon}
-                    initial="hidden"
-                    animate="visible"
+                    initial={animate  ? "visible" : "hidden"}
+                    whileInView="visible"
                     transition={{
                         default: {duration: 2, ease: "easeInOut"},
                         fill: { duration: 2, ease: [1, 0, 0.8, 1]}
@@ -176,8 +175,8 @@ const NewHiIcon = ({className, ...props}: IconProps) => {
                     />
                 <motion.path
                     variants={icon}
-                    initial="hidden"
-                    animate="visible"
+                    initial={animate ?  "visible": "hidden"}
+                    whileInView="visible"
                     transition={{
                         default: {duration: 2, ease: "easeInOut"},
                         fill: {duration: 2, ease: [1, 0, 0.8, 1]}
@@ -186,8 +185,8 @@ const NewHiIcon = ({className, ...props}: IconProps) => {
                     />
                 <motion.path
                     variants={icon}
-                    initial="hidden"
-                    animate="visible"
+                    initial={animate ?  "visible" : "hidden" }
+                    whileInView="visible"
                     transition={{
                         default: {duration: 2, ease: "easeInOut"},
                         fill: {duration: 2, ease: [1, 0, 0.8, 1]}
@@ -195,8 +194,9 @@ const NewHiIcon = ({className, ...props}: IconProps) => {
                     d="M71.595 166.644C75.795 169.044 79.995 171.544 84.295 174.044C84.595 173.244 84.995 172.544 85.295 171.844C85.695 170.544 86.595 169.744 87.795 169.144C91.895 167.344 95.895 165.344 99.995 163.544C100.495 163.344 100.595 163.044 100.695 162.544C100.895 157.444 101.195 152.344 101.495 147.244C101.595 144.844 101.795 142.544 101.895 140.144C101.895 139.644 101.895 139.044 101.895 138.544C100.695 138.744 99.795 139.244 99.095 140.144C97.595 141.944 97.095 144.144 96.695 146.344C95.995 150.144 95.395 153.944 94.695 157.744C94.695 158.044 94.395 158.344 94.095 158.444C92.495 159.244 90.895 160.044 89.295 160.744C87.195 161.644 85.295 162.944 83.595 164.444C83.295 164.744 82.895 164.944 82.495 165.144C83.295 164.044 84.095 163.044 84.795 161.944C85.495 160.944 86.295 160.244 87.395 159.644C89.195 158.744 90.895 157.744 92.595 156.844C92.795 156.744 93.095 156.544 93.195 156.244C93.495 154.644 93.795 153.044 94.095 151.244C92.895 151.544 91.795 151.844 90.695 152.144C86.795 153.244 82.895 154.244 79.095 155.344C78.895 155.444 78.595 155.544 78.395 155.744C76.095 159.444 73.795 163.044 71.595 166.644Z"
                    />
                 <motion.path
-                    initial="hidden"
-                    animate="visible"
+
+                    initial={animate ? "visible" : "hidden"}
+                    whileInView="visible"
                     transition={{
                         default: {duration: 2, ease: "easeInOut"},
                         fill: {duration: 2, ease: [1, 0, 0.8, 1]}

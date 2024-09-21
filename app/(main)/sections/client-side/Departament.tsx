@@ -1,7 +1,6 @@
 'use client'
 import {AnimatePresence, motion} from "framer-motion";
 import React, {useEffect, useState} from "react";
-import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 
 
@@ -40,6 +39,51 @@ const departments : departmentsType[] = [
             'Integrated marketing '
         ]
     },
+    {
+        name: 'Design Department',
+        description: [
+            'Strategic brand management',
+            'Digital marketing expertise',
+            'Consumer behavior analysis ',
+            'Integrated marketing '
+        ]
+    },
+    {
+        name: 'Design Department',
+        description: [
+            'Strategic brand management',
+            'Digital marketing expertise',
+            'Consumer behavior analysis ',
+            'Integrated marketing '
+        ]
+    },
+    {
+        name: 'Design Department',
+        description: [
+            'Strategic brand management',
+            'Digital marketing expertise',
+            'Consumer behavior analysis ',
+            'Integrated marketing '
+        ]
+    },
+    {
+        name: 'Design Department',
+        description: [
+            'Strategic brand management',
+            'Digital marketing expertise',
+            'Consumer behavior analysis ',
+            'Integrated marketing '
+        ]
+    },
+    {
+        name: 'Design Department',
+        description: [
+            'Strategic brand management',
+            'Digital marketing expertise',
+            'Consumer behavior analysis ',
+            'Integrated marketing '
+        ]
+    },
 
 ]
 
@@ -66,7 +110,7 @@ export default function Departament() {
 
         <div id="#about" className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
-            <AnimatedHeading size='xl' sentence={["our","Departements"]} className='bg-[#f9f9f7] dark:bg-[#000309]'/>
+            <AnimatedHeading size='default' sentence={["our","Departements"]} className='bg-[#f9f9f7] dark:bg-[#000309]'/>
 
 
             <div className="flex flex-col md:flex-row">

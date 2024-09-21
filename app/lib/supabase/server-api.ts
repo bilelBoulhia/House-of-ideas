@@ -17,7 +17,7 @@ export async function fetch<T>(
 
 
 
-    return json ? JSON.parse(JSON.stringify(data)) : (data as T[]);
+    return json ? JSON.parse(JSON.stringify(data)) : (data as T[] | T);
 }
 
 export async function proc(

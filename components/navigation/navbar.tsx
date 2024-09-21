@@ -89,7 +89,7 @@ export default function Navbar() {
                     <CloseIcon className="h-6 w-6"/>
                 </Button>
                 <div className="flex flex-col h-full">
-                    <NewHiIcon className='size-20 p-4'/>
+                    <NewHiIcon animate={isOpen} className='size-20 p-4'/>
 
                     <ul className="flex-grow py-2">
                         <ThemeSwitcher/>

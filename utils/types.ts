@@ -1,4 +1,5 @@
 import {StaticImageData} from "next/image";
+import React from "react";
 
 export const shadowVariants = {
     hidden: {
@@ -18,3 +19,13 @@ export interface CourseData {
 
 }
 
+export interface IconProps {
+    className?: string;
+    animate?: boolean ;
+}
+
+
+export  interface Loadingprops {
+    className?: string;
+    children?: React.ReactNode;
+}
