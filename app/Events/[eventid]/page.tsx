@@ -27,25 +27,26 @@ export default function Index() {
         <div className='flex flex-col mt-[5rem] m-2 justify-center  text-center gap-2'>
 
             <BackgroundBeams />
-            <div className='flex flex-col  lg:flex-row  justify-center  gap-3'>
-                <motion.div>
+            <div className='flex flex-col lg:flex-row  overflow-hidden justify-center  gap-3'>
+                <motion.div className='m-3'>
                     <motion.img
                         src={bg1.src}
                         variants={shadowVariants}
                         initial="hidden"
                         whileInView="visible"
-                        className="rounded-xl min-w-full z-3 max-h-[70vh] object-cover  flex[0_0_100%] "/>
+                        className="rounded-xl  min-w-full z-3 max-h-[70vh] object-cover  flex[0_0_100%] "/>
 
                 </motion.div>
 
                 <motion.div
+
 
                     initial='hidden'
                     whileInView='visible'
                     viewport={{once: true}}
                     variants={animationVariants}
                     transition={{duration: 0.8, ease: 'easeInOut'}}
-                    className="pt-4 pl-4 lg:pl-0 z-1">
+                    className="pt-0 lg:pt-[3rem] pl-4 z-[-2] lg:pl-0 z-1">
 
                     <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
                         <h1 className="text-4xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
