@@ -77,8 +77,10 @@ export default function Navbar() {
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >
+                <Button variant='ghost' className='absolute  inset-0 w-1 top-4 left-[90%]' onClick={toggleMenu}>X</Button>
                 <div className="flex flex-col h-full">
                     <NewHiIcon className='size-20 p-4'/>
+
                     <ul className="flex-grow py-2">
                         <ThemeSwitcher/>
                         {links.map((item, index) => (
@@ -96,7 +98,7 @@ export default function Navbar() {
                             >
                                 <a
                                     href={item.href}
-                                    className="block  font-bold px-4 py-2 text-sm hover:bg-neutral-800/20 hover:text-accent-foreground transition-colors"
+                                    className="block  font-bold px-4 py-2 text-3xl hover:bg-neutral-800/20 hover:text-accent-foreground transition-colors"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {item.label}

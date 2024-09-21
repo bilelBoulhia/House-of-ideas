@@ -26,7 +26,7 @@ export default function Index() {
     return(
         <div className='flex flex-col mt-[5rem] m-2 justify-center  text-center gap-2'>
 
-            <BackgroundBeams/>
+            <BackgroundBeams />
             <div className='flex flex-col  lg:flex-row  justify-center  gap-3'>
                 <motion.div>
                     <motion.img
@@ -39,7 +39,7 @@ export default function Index() {
                 </motion.div>
 
                 <motion.div
-                    style={{zIndex: -1}}
+
                     initial='hidden'
                     whileInView='visible'
                     viewport={{once: true}}
@@ -66,7 +66,7 @@ export default function Index() {
                 </motion.div>
 
             </div>
-            
+
             <div className='p-6 mt-6'>
                 <section className="mb-12 text-left">
                     <h2 className="text-3xl font-bold tracking-tighter  mb-6 ">Event Details</h2>
