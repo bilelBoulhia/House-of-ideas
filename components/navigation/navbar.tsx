@@ -78,7 +78,16 @@ export default function Navbar() {
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >
-                <Button variant='ghost' className='absolute  inset-0 w-1 top-4 left-[90%]' onClick={toggleMenu}><CloseIcon/></Button>
+
+                <Button
+                    variant="link"
+                    size="icon"
+                    className="absolute top-4 right-0"
+                    onClick={toggleMenu}
+                    aria-label="Close menu"
+                >
+                    <CloseIcon className="h-6 w-6"/>
+                </Button>
                 <div className="flex flex-col h-full">
                     <NewHiIcon className='size-20 p-4'/>
 
