@@ -57,7 +57,7 @@ export default   function Event() {
                 {events.map((event, index) => (
                     <motion.div
                         key={index}
-                        className="w-full  aspect-[16/9] extra-large-tablet:aspect-[9/4]  rounded-xl overflow-hidden"
+                        className="w-full  aspect-[20/15] extra-large-tablet:aspect-[8/3]  rounded-xl overflow-hidden"
                         initial="hidden"
                         whileHover={{scale: 1.01}}
                         transition={{duration: 0.25}}
