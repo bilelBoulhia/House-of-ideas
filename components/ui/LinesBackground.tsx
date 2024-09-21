@@ -34,7 +34,7 @@ export default function LinesBackground() {
                     y2={y2}
                     stroke="currentColor"
                     strokeWidth="0.1"
-                    strokeOpacity="0.1"
+                    strokeOpacity="1"
                 >
                     <animate
                         attributeName="strokeOpacity"
@@ -50,7 +50,7 @@ export default function LinesBackground() {
     }
 
     return (
-        <div className="fixed inset-0 z-[-1]">
+        <div className="fixed inset-0 z-[-10]">
             <svg
                 className="w-full h-full text-primary"
                 width={dimensions.width}

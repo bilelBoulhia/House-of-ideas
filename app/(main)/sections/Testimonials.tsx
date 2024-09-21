@@ -34,7 +34,7 @@ const testimonials = [
         title: "A Dream Within a Dream",
     },
     {
-        quote: "im gay",
+        quote: "All that we see or seem is but a dream within a dream.",
        name: "Jane Austen",
         title: "Pride and Prejudice",
     },

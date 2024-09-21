@@ -7,6 +7,7 @@ import {Calendar, Clock, Location, NewHiIcon, Sponsorlogo} from "@/components/ui
 import {Tag} from "@/components/ui/Tag";
 import g1 from '@/assets/guest images/president.png'
 import LinesBackground from "@/components/ui/LinesBackground";
+import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 
 const occupations = ['Desginer','Hr manger','ceo of ssda']
 
@@ -25,7 +26,7 @@ export default function Index() {
     return(
         <div className='flex flex-col mt-[5rem] m-2 justify-center  text-center gap-2'>
 
-            <LinesBackground/>
+            <BackgroundBeams/>
             <div className='flex flex-col  lg:flex-row  justify-center  gap-3'>
                 <motion.div>
                     <motion.img
@@ -65,6 +66,7 @@ export default function Index() {
                 </motion.div>
 
             </div>
+            
             <div className='p-6 mt-6'>
                 <section className="mb-12 text-left">
                     <h2 className="text-3xl font-bold tracking-tighter  mb-6 ">Event Details</h2>
@@ -144,6 +146,7 @@ export default function Index() {
                 </section>
 
                 <section id='sponsors' className="w-full py-12 md:py-24 lg:py-32">
+
                     <div className="container px-4 md:px-6">
                         <div className="flex flex-col items-center justify-center space-y-4 text-center">
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>

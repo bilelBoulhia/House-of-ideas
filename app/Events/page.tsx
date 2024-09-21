@@ -4,6 +4,7 @@ import {motion} from "framer-motion";
 import bg1 from "@/assets/events images/bg2.png";
 import {shadowVariants} from "@/app/(main)/sections/Events";
 import LinesBackground from "@/components/ui/LinesBackground";
+import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 
 
 
@@ -11,7 +12,7 @@ export default function Index() {
     return (
         <div className='flex flex-col mt-[4rem] items-center justify-center p-5 gap-2'>
 
-            <LinesBackground/>
+            <BackgroundBeams/>
             <div className='grid  md:grid-cols-2 grid-cols-1 gap-12'>
 
                 {[...Array(6)].map((_, i) => (
