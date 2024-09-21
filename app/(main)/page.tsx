@@ -22,7 +22,7 @@ export default function Index() {
           <BackgroundBeams />
           <Hero/>
           <EventSection/>
-          <WorkshopSection/>
+          {/*<WorkshopSection/>*/}
           <Departament/>
           <Testimonials/>
       </div>
