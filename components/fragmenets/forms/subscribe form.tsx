@@ -1,8 +1,7 @@
 'use client'
 
-import {useState, useRef, useCallback} from 'react'
+import {useState, useRef} from 'react'
 import {useForm} from 'react-hook-form'
-
 // @ts-ignore
 import ReCAPTCHA from "react-google-recaptcha"
 import {Input} from "@/components/ui/input"
@@ -17,77 +16,49 @@ type FormData = {
     university: string
     field: string
     phone: string
+    recaptcha: string
 }
 
-export default function SubscribeForm() {
+export const SubscribeForm = () => {
     const [toastMessage, setToastMessage] = useState('')
     const [toastType, setToastType] = useState<'success' | 'error'>('success')
-    const {register, handleSubmit, formState: {errors}} = useForm<FormData>()
+    const {register, handleSubmit, formState: {errors}, setValue} = useForm<FormData>()
     const recaptchaRef = useRef<ReCAPTCHA>(null)
 
-    const onSubmit = useCallback(async (data: FormData) => {
-        if (!recaptchaRef.current) {
-            setToastMessage('reCAPTCHA not loaded')
+    const onSubmit = async (data: FormData) => {
+        if (!data.recaptcha) {
+            setToastMessage('Please complete the CAPTCHA')
             setToastType('error')
             return
         }
 
         try {
-            const recaptchaResponse = await recaptchaRef.current.executeAsync()
-            if (!recaptchaResponse) {
-                setToastMessage('Please complete the reCAPTCHA')
-                setToastType('error')
-                return
-            }
 
-            const response = await fetch("/api/validateRecaptcha", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({recaptchaResponse}),
-            })
-
-            if (response.ok) {
-                // reCAPTCHA validation passed
-                const formResponse = await fetch("/api/email", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
-                })
-
-                if (formResponse.ok) {
-                    setToastMessage(`Thank you for subscribing, ${data.firstName}! We'll be in touch soon.`)
-                    setToastType('success')
-                } else {
-                    throw new Error('Form submission failed')
-                }
-            } else {
-                // reCAPTCHA validation failed
-                setToastMessage('reCAPTCHA validation failed. Please try again.')
-                setToastType('error')
-            }
+            console.log(data)
+            setToastMessage('Thank you for subscribing! We\'ll be in touch soon.')
+            setToastType('success')
         } catch (error) {
             setToastMessage('An error occurred. Please try again.')
             setToastType('error')
-        } finally {
-            recaptchaRef.current?.reset()
         }
-    }, [])
+    }
+
+    const handleRecaptchaChange = (value: string | null) => {
+        setValue('recaptcha', value || '')
+    }
 
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+
                 <div className="border-b border-gray-900/10 pb-12 text-left">
                     <h2 className="text-2xl font-semibold leading-7">Personal Information</h2>
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">
                         This information will only appear to Mods. Please ensure it's correct so we can contact you.
                     </p>
 
-                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-6">
-                        <div className="sm:col-span-3">
+                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-5 ">
+                        <div className="sm:col-span-1">
                             <Label htmlFor="first-name">First name</Label>
                             <Input
                                 id="first-name"
@@ -98,7 +69,7 @@ export default function SubscribeForm() {
                                 <p className="text-red-500 text-sm mt-1">{errors.firstName.message}</p>}
                         </div>
 
-                        <div className="sm:col-span-3">
+                        <div className="sm:col-span-2">
                             <Label htmlFor="last-name">Last name</Label>
                             <Input
                                 id="last-name"
@@ -108,7 +79,29 @@ export default function SubscribeForm() {
                             {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName.message}</p>}
                         </div>
 
-                        <div className="sm:col-span-4">
+
+                        <div className="sm:col-span-1">
+                            <Label htmlFor="university">University</Label>
+                            <Input
+                                id="university"
+                                {...register("university", {required: "University is required"})}
+                                className="mt-2"
+                            />
+                            {errors.university &&
+                                <p className="text-red-500 text-sm mt-1">{errors.university.message}</p>}
+                        </div>
+
+                        <div className="sm:col-span-2">
+                            <Label htmlFor="field">Field</Label>
+                            <Input
+                                id="field"
+                                {...register("field", {required: "Field is required"})}
+                                className="mt-2"
+                            />
+                            {errors.field && <p className="text-red-500 text-sm mt-1">{errors.field.message}</p>}
+                        </div>
+
+                        <div className="sm:col-span-3">
                             <Label htmlFor="email">Email address</Label>
                             <Input
                                 id="email"
@@ -123,27 +116,6 @@ export default function SubscribeForm() {
                                 className="mt-2"
                             />
                             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
-                        </div>
-
-                        <div className="sm:col-span-3">
-                            <Label htmlFor="university">University</Label>
-                            <Input
-                                id="university"
-                                {...register("university", {required: "University is required"})}
-                                className="mt-2"
-                            />
-                            {errors.university &&
-                                <p className="text-red-500 text-sm mt-1">{errors.university.message}</p>}
-                        </div>
-
-                        <div className="sm:col-span-3">
-                            <Label htmlFor="field">Field</Label>
-                            <Input
-                                id="field"
-                                {...register("field", {required: "Field is required"})}
-                                className="mt-2"
-                            />
-                            {errors.field && <p className="text-red-500 text-sm mt-1">{errors.field.message}</p>}
                         </div>
 
                         <div className="sm:col-span-3">
@@ -166,9 +138,13 @@ export default function SubscribeForm() {
                         <div className="sm:col-span-full">
                             <ReCAPTCHA
                                 ref={recaptchaRef}
-                                size="invisible"
-                                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+                                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+
+                                data-callback='onSubmit'
+                                onChange={handleRecaptchaChange}
                             />
+                            {errors.recaptcha &&
+                                <p className="text-red-500 text-sm mt-1">{errors.recaptcha.message}</p>}
                         </div>
 
                         <div className="sm:col-span-full">

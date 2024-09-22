@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/Card";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {Modal, ModalBody, ModalContent, ModalTrigger} from "@/components/ui/Modal";
-import SubscribeForm from "@/components/fragmenets/forms/subscribe form";
+import {SubscribeForm}from "@/components/fragmenets/forms/subscribe form";
 import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
 import React, {useState} from "react";
