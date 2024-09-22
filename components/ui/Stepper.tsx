@@ -4,20 +4,21 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface StepperProps {
   pages: React.ReactNode[]
-  onComplete?: () => void
+  onComplete?: any
   onSubmit?: () => void
+  finishSentnce: string
+
 }
 
-export default function Stepper({ pages, onComplete,onSubmit }: StepperProps) {
+export default function Stepper({ pages, onComplete, finishSentnce }: StepperProps) {
   const [currentStep, setCurrentStep] = useState(0)
 
   const goToNextStep = () => {
     if (currentStep < pages.length - 1) {
       setCurrentStep(currentStep + 1)
-    } else if (onSubmit) {
-      onSubmit()
     } else if (onComplete) {
       onComplete()
+      console.log(onComplete())
     }
   }
 
@@ -44,7 +45,7 @@ export default function Stepper({ pages, onComplete,onSubmit }: StepperProps) {
         <Button
           onClick={goToNextStep}
         >
-          {currentStep === pages.length - 1 ? 'Finish' : 'Next'} <ChevronRight className="ml-2 h-4 w-4" />
+          {currentStep === pages.length - 1 ? finishSentnce :  'Next'} <ChevronRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
     </div>

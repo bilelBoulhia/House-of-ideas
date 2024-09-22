@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/Card";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {Modal, ModalBody, ModalContent, ModalTrigger} from "@/components/ui/Modal";
-import {SubscribeForm}from "@/components/fragmenets/forms/subscribe form";
+import SubscribeForm from "@/components/fragmenets/forms/subscribe form";
 import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
 import React, {useState} from "react";
@@ -23,15 +23,16 @@ import {Tables} from "@/utils/DatabaseTypes";
 
 export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
     const [selectedworkshop,setSelectedworkshop] = useState<Tables<'workshops'> | null>(null);
-
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const [formData, setFormData] = useState<Tables<'applicants'> | null>(null);
-
-    const handleFormSubmit = (data: Tables<'applicants'>) => {
+    const handleFormSubmit = (data: Tables<'applicants'>)   => {
         setFormData(data);
-        // Here you can handle the form submission, e.g., send data to server
-        console.log("Form submitted:", data);
+        setIsModalOpen(false);
+        console.log("Form submitted:", formData);
+
    
     };
+
 
 
      const pages = (selectedworkshop: Tables<'workshops'> | null) => [
@@ -40,10 +41,13 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
         </div>
         ,
         <div key="2" className="space-y-2">
-            <SubscribeForm onSubmit={handleFormSubmit}/>
+            <SubscribeForm workshopId={data[0].workshopid} onSubmit={handleFormSubmit}/>
         </div>,
 
     ]
+
+
+
     
     return (
 
@@ -77,13 +81,16 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
 
                              <Modal>
                                   <ModalTrigger asChild>
-                                          <Button onClick={()=>setSelectedworkshop(workshop)} className='bg-violet-950 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</Button>
+                                          <Button
+                                              onClick={() => {
+                                                  setSelectedworkshop(workshop)
+                                              }} className='bg-violet-950 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</Button>
                                   </ModalTrigger>
                                   <ModalBody>
 
                                       <ModalContent>
                                           <div>
-                                              <Stepper  pages={pages(selectedworkshop)} />
+                                              <Stepper finishSentnce='subscribe' onComplete={handleFormSubmit} pages={pages(selectedworkshop)} />
                                           </div>
                                       </ModalContent>
                                   </ModalBody>

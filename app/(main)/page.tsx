@@ -3,10 +3,10 @@ import Hero from "@/app/(main)/sections/client-side/Hero";
 import Departament from "@/app/(main)/sections/client-side/Departament";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 
-import EventSection from "@/app/(main)/sections/server-side/Events";
+import EventSection from "@/app/(main)/sections/server-actions/Events";
 
-import WorkshopSection from "@/app/(main)/sections/server-side/workshop";
-import TestimonialSection from "@/app/(main)/sections/server-side/Testimonials";
+import WorkshopSection from "@/app/(main)/sections/server-actions/workshop";
+import TestimonialSection from "@/app/(main)/sections/server-actions/Testimonials";
 
 
 

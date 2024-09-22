@@ -20,7 +20,8 @@ import {fetch} from "@/app/lib/supabase/client-api";
 
 import Skeleton from "@/components/ui/Skeleton";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
-import {SubscribeForm} from "@/components/fragmenets/forms/subscribe form";
+import SubscribeForm from "@/components/fragmenets/forms/subscribe form";
+import {notFound} from "next/navigation";
 
 
 function PageSkeleton() {
@@ -40,7 +41,10 @@ function PageSkeleton() {
 
 
 function PageContent({data}: { data: Tables<'workshops'>[] }) {
+    if (data.length === 0) {
+        notFound();
 
+    }
     const [formData, setFormData] = useState<Tables<'applicants'> | null>(null);
     const handleFormSubmit = (data: Tables<'applicants'>) => {
         setFormData(data);
@@ -98,7 +102,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
                                             <ModalContent>
                                                 <div>
-                                                    <Stepper pages={pages(workshop)}/>
+                                                    <Stepper finishSentnce='subscribe' pages={pages(workshop)}/>
                                                 </div>
                                             </ModalContent>
                                         </ModalBody>

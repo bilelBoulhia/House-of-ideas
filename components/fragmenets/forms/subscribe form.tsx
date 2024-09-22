@@ -11,20 +11,30 @@ import {Tables} from "@/utils/DatabaseTypes";
 
 
 
-interface SubscribeFormProps {
-    onSubmit: (data: Tables<'applicants'>) => void;
-}
 
-export const SubscribeForm: React.FC<SubscribeFormProps> = ({onSubmit}) => {
+export default  function SubscribeForm({
+     onSubmit,
+     workshopId                }: {
+     onSubmit: (formData: Tables<'applicants'>) => void
+     workshopId?: number
+}) {
     const [toastMessage, setToastMessage] = useState('')
     const [toastType, setToastType] = useState<'success' | 'error'>('success')
     const {register, handleSubmit, formState: {errors}, setValue} = useForm<Tables<'applicants'>>()
+    const handleFormSubmit = (data: Tables<'applicants'>) => {
+
+        const formDataWithWorkshop = {
+            ...data,
+            workshopId: workshopId
+        }
+        onSubmit(formDataWithWorkshop)
+    }
 
 
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-8">
 
                 <div className="border-b border-gray-900/10 pb-12 text-left">
                     <h2 className="text-2xl font-semibold leading-7">Personal Information</h2>
@@ -122,11 +132,7 @@ export const SubscribeForm: React.FC<SubscribeFormProps> = ({onSubmit}) => {
                         {/*        <p className="text-red-500 text-sm mt-1">{errors.recaptcha.message}</p>}*/}
                         {/*</div>*/}
 
-                        <div className="sm:col-span-full">
-                            <div className="flex items-center space-x-2">
-                                <Button type="submit">Submit</Button>
-                            </div>
-                        </div>
+                   
                     </div>
                 </div>
             </form>

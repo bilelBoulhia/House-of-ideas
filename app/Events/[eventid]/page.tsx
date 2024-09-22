@@ -10,6 +10,7 @@ import {Tables} from "@/utils/DatabaseTypes";
 import Skeleton from "@/components/ui/Skeleton";
 import React, {Suspense, useEffect, useState} from "react";
 import {fetch} from "@/app/lib/supabase/client-api";
+import {notFound} from "next/navigation";
 
 
 
@@ -83,6 +84,10 @@ function PageSkeleton() {
 
 const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Tables<'sponsors'>[]] }) => {
 
+    if (data[0].length=== 0) {
+        notFound();
+
+    }
 
 
 
@@ -235,26 +240,33 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
 
 export default function Index({params}: { params: { eventid: number } }) {
 
+
+
+
+
     const [eventdata, seteventdata] = useState<Tables<'events'>[]>([]);
     const [guestdata, setguestdata] = useState<Tables<'guests'>[]>([]);
     const [sponsordata, setsponsorsdata] = useState<Tables<'sponsors'>[]>([]);
 
-    console.warn(params.eventid);
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
 
         const getdata = async () => {
+            setIsLoading(true);
             try {
-                setIsLoading(true);
                 const EventData: Tables<'events'>[] = await fetch("events", false, ['*'],(query) => query.limit(1).eq('eventid', params.eventid));
+
                 const GuestsData: Tables<'guests'>[] = await fetch("guests", false, ['*'],query => query.eq('guestid',EventData[0].guest));
                 const SponsorsData: Tables<'sponsors'>[] = await fetch("sponsors", false, ['*'], query => query.eq('sponsorid', EventData[0].sponsor));
+
+
                 seteventdata(EventData);
                 setguestdata(GuestsData);
                 setsponsorsdata(SponsorsData);
 
             } catch (error) {
                 console.error(error);
+                notFound();
             } finally {
                 setIsLoading(false);
             }
