@@ -65,6 +65,7 @@ export const ModalTrigger = ({
 export const ModalBody = ({
                               children,
                               className,
+
                           }: {
     children: ReactNode;
     className?: string;

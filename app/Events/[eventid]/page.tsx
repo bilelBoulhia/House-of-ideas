@@ -103,7 +103,7 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                         variants={shadowVariants}
                         initial="hidden"
                         whileInView="visible"
-                        className="rounded-xl  min-w-full z-3 max-h-[70vh] object-cover  flex[0_0_100%] "/>
+                        className="rounded-xl  min-w-full z-3 min-h-[25vh] object-cover  flex[0_0_100%] "/>
 
                 </motion.div>
 
@@ -112,12 +112,12 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                     className="pt-0 lg:pt-[3rem] pl-4  z-[-2] lg:pl-0 z-1">
 
                     <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
-                        <h1 className="text-3xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
+                        <h1 className="text-3xl medium-phone:text-4xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
                             {data[0][0].eventname}
                         </h1>
 
                         <section className="text-left">
-                            <h2 className="text-3xl font-bold tracking-tighter  mb-6 ">
+                            <h2 className="text-2xl medium-phone:text-3xl font-bold tracking-tighter  mb-6 ">
                                 About the Event
                             </h2>
 
@@ -132,7 +132,7 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
 
             <div className='p-6 mt-6'>
                 <section className="mb-12 text-left">
-                    <h2 className="text-3xl font-bold tracking-tighter  mb-6 ">Event Details</h2>
+                    <h2 className="text-2xl medium-phone:text-3xl  font-bold tracking-tighter  mb-6 ">Event Details</h2>
                     <div className="grid gap-8 md:grid-cols-2">
                         <Tag className='dark:bg-cyan-800 bg-[#A0DEFF] '>
                             <Calendar className="w-8 h-8 text-purple-400"/>

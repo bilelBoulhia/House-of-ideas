@@ -28,7 +28,6 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
     const handleFormSubmit = (data: Tables<'applicants'>)   => {
         setFormData(data);
         setIsModalOpen(false);
-        console.log("Form submitted:", formData);
 
    
     };
@@ -84,7 +83,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                                           <Button
                                               onClick={() => {
                                                   setSelectedworkshop(workshop)
-                                              }} className='bg-violet-950 hover:bg-violet-600 dark:text-white font-bold py-2 px-4 rounded'>subscribe</Button>
+                                              }} className='bg-violet-500  hover:bg-violet-600  dark:text-white font-bold py-2 px-4 rounded-xl'>subscribe</Button>
                                   </ModalTrigger>
                                   <ModalBody>
 

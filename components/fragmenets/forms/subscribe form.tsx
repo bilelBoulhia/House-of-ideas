@@ -1,35 +1,38 @@
 'use client'
 
-import React, {useState} from 'react'
+import React, {forwardRef, useImperativeHandle, useState} from 'react'
 import {useForm} from 'react-hook-form'
 
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
-import {Button} from "@/components/ui/button"
+
 import {Toast} from '@/components/ui/toast'
 import {Tables} from "@/utils/DatabaseTypes";
+import {setErrorMap} from "zod";
 
+export interface SubscribeFormRef {
+    submitForm: () => void;
+}
 
-
-
-export default  function SubscribeForm({
-     onSubmit,
-     workshopId                }: {
-     onSubmit: (formData: Tables<'applicants'>) => void
-     workshopId?: number
-}) {
+export const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: number, onSubmit: (formData: Tables<'applicants'>) => void }, ref) => {
     const [toastMessage, setToastMessage] = useState('')
     const [toastType, setToastType] = useState<'success' | 'error'>('success')
     const {register, handleSubmit, formState: {errors}, setValue} = useForm<Tables<'applicants'>>()
-    const handleFormSubmit = (data: Tables<'applicants'>) => {
 
+
+    const handleFormSubmit = (data: Tables<'applicants'>) => {
         const formDataWithWorkshop = {
             ...data,
-            workshopId: workshopId
-        }
-        onSubmit(formDataWithWorkshop)
-    }
+            workshopId: workshopid
+        };
+        onSubmit(formDataWithWorkshop);
+    };
 
+    useImperativeHandle(ref, () => ({
+        submitForm: () => {
+            handleSubmit(handleFormSubmit)();
+        }
+    }));
 
 
     return (
@@ -117,7 +120,8 @@ export default  function SubscribeForm({
                                 })}
                                 className="mt-2"
                             />
-                            {errors.phonenumber && <p className="text-red-500 text-sm mt-1">{errors.phonenumber.message}</p>}
+                            {errors.phonenumber &&
+                                <p className="text-red-500 text-sm mt-1">{errors.phonenumber.message}</p>}
                         </div>
 
                         {/*<div className="sm:col-span-full">*/}
@@ -132,11 +136,12 @@ export default  function SubscribeForm({
                         {/*        <p className="text-red-500 text-sm mt-1">{errors.recaptcha.message}</p>}*/}
                         {/*</div>*/}
 
-                   
+
                     </div>
                 </div>
             </form>
             {toastMessage && <Toast message={toastMessage} type={toastType}/>}
         </>
     )
-}
+
+})

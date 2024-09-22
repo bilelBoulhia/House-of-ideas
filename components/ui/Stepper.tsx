@@ -2,23 +2,21 @@ import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
-interface StepperProps {
-  pages: React.ReactNode[]
-  onComplete?: any
-  onSubmit?: () => void
-  finishSentnce: string
 
+interface StepperProps {
+  pages: React.ReactNode[];
+  finishSentnce: string;
+  onFinish: () => void;
 }
 
-export default function Stepper({ pages, onComplete, finishSentnce }: StepperProps) {
+export default function Stepper({ pages, finishSentnce, onFinish }: StepperProps) {
   const [currentStep, setCurrentStep] = useState(0)
 
   const goToNextStep = () => {
     if (currentStep < pages.length - 1) {
       setCurrentStep(currentStep + 1)
-    } else if (onComplete) {
-      onComplete()
-      console.log(onComplete())
+    } else {
+      onFinish();
     }
   }
 
@@ -28,13 +26,17 @@ export default function Stepper({ pages, onComplete, finishSentnce }: StepperPro
     }
   }
 
+
+
+
+
   return (
     <div className="w-full  overflow-hidden">
 
       <div>
         {pages[currentStep]}
       </div>
-      <div className="p-1 flex justify-between">
+      <div className="p-1 flex flex-col gap-3 medium-phone:flex-row justify-between">
         <Button
           variant="outline"
           onClick={goToPreviousStep}
@@ -42,9 +44,7 @@ export default function Stepper({ pages, onComplete, finishSentnce }: StepperPro
         >
           <ChevronLeft className="mr-2 h-4 w-4" /> Previous
         </Button>
-        <Button
-          onClick={goToNextStep}
-        >
+        <Button onClick={() => goToNextStep()}>
           {currentStep === pages.length - 1 ? finishSentnce :  'Next'} <ChevronRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
