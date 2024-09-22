@@ -18,21 +18,24 @@ import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import {Tables} from "@/utils/DatabaseTypes";
 import {fetch} from "@/app/lib/supabase/client-api";
 import {pages} from "@/app/(main)/sections/client-side/workshop";
+import Skeleton from "@/components/ui/Skeleton";
 
 
 function PageSkeleton() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen w-full p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-4 w-full ">
-                {[...Array(6)].map((_, i) => (
-                    <div key={i} >
-                        <CardSkeleton/>
-                    </div>
-                ))}
-            </div>
+        <Skeleton className='grid grid-cols-1 animate-pulse sm:grid-cols-2 lg:grid-cols-3  gap-4'>
+            {[...Array(6)].map((_, i) => (
+                <div key={i}>
+                    <CardSkeleton/>
+                </div>
+            ))}
+        </Skeleton>
         </div>
     )
 }
+
+
 
 function PageContent({data}: { data: Tables<'workshops'>[] }) {
     return (
@@ -117,8 +120,6 @@ export default function Index() {
     return (
 
         <div className='flex flex-col mt-[8rem] items-center justify-center overflow-hidden gap-2'>
-
-
             <Suspense fallback={<PageSkeleton/>}>
             {isLoading ?
                 <PageSkeleton/>

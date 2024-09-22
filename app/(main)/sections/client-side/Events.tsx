@@ -3,11 +3,9 @@ import Carousel from "@/components/ui/Carousel"
 
 import { motion } from "framer-motion"
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
-import {useState} from "react";
 import {shadowVariants} from "@/utils/types";
 import {Tables} from '@/utils/DatabaseTypes'
-
-
+import {useRouter} from "next/navigation";
 
 
 
@@ -15,6 +13,10 @@ import {Tables} from '@/utils/DatabaseTypes'
 
 export default function Event({data}: {data: Tables<'events'>[]}) {
 
+    const router = useRouter();
+    const handleRouterClick = (eventid: number) => {
+        router.push(`/Events/${eventid}`);
+    };
 
 
     return (
@@ -22,13 +24,9 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
         <div id='Events' className=" relative w-full flex   items-center  flex-col gap-2">
 
             <div className=" flex flex-row  items-center text-center justify-center">
-
                 <AnimatedHeading  sentence={["our","Events"]} className='bg-[#f9f9f7] dark:bg-[#000811]'/>
-
-
-
-
             </div>
+
 
 
             <Carousel
@@ -39,6 +37,7 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
                 {data.map((event, index) => (
                     <motion.div
                         key={index}
+                        onClick={() => handleRouterClick(data[0].eventid)}
                         className="w-full  aspect-[20/15] extra-large-tablet:aspect-[8/3]  rounded-xl overflow-hidden"
                         initial="hidden"
                         whileHover={{scale: 1.01}}
@@ -49,7 +48,7 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
                         <img
                             src={event.eventpic}
                             className="rounded-xl relative h-full w-full object-cover"
-
+                            alt='Eventsimae'
                         />
                     </motion.div>
                 ))}

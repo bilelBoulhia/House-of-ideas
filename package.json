@@ -17,7 +17,7 @@
     "clsx": "^2.1.1",
     "embla-carousel": "^8.2.1",
     "embla-carousel-react": "^8.2.1",
-    "framer-motion": "^11.5.4",
+    "framer-motion": "^11.5.6",
     "geist": "^1.2.1",
     "lucide-react": "^0.436.0",
     "next": "latest",
@@ -26,6 +26,8 @@
     "prettier": "^3.3.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-google-recaptcha": "^3.1.0",
+    "react-hook-form": "^7.53.0",
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {

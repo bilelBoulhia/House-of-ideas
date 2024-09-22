@@ -2,19 +2,13 @@ import Hero from "@/app/(main)/sections/client-side/Hero";
 
 import Departament from "@/app/(main)/sections/client-side/Departament";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
-import Testimonials from "@/app/(main)/sections/client-side/Testimonials";
+
 import EventSection from "@/app/(main)/sections/server-side/Events";
 
 import WorkshopSection from "@/app/(main)/sections/server-side/workshop";
 import TestimonialSection from "@/app/(main)/sections/server-side/Testimonials";
 
-/*
-create policy "public can read notes"
-on public.notes
-for select to anon
-using (true);
-*
-* */
+
 
 export default function Index() {
   return (

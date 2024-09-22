@@ -1,37 +1,100 @@
 'use client'
-import bg1 from '@/assets/events images/bg3.png'
 
-import {useMediaQuery} from 'usehooks-ts'
 import { motion } from "framer-motion";
-import {Calendar, Clock, Location, NewHiIcon, Sponsorlogo} from "@/components/ui/Icons";
+import {Calendar, Clock, Location, NewHiIcon} from "@/components/ui/Icons";
 import {Tag} from "@/components/ui/Tag";
-import g1 from '@/assets/guest images/president.png'
-import LinesBackground from "@/components/ui/LinesBackground";
+
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import {shadowVariants} from "@/utils/types";
-
-const occupations = ['Desginer','Hr manger','ceo of ssda']
-
-export default function Index() {
-
-    const isDesktop = useMediaQuery("(min-width: 1024px)")
-
-    const animationVariants = {
-        hidden: {x: isDesktop ? "-100%" : 0,y: isDesktop ? 0 : '-100%'},
-        visible: {x: 0,y:0},
-    }
+import {Tables} from "@/utils/DatabaseTypes";
+import Skeleton from "@/components/ui/Skeleton";
+import React, {Suspense, useEffect, useState} from "react";
+import {fetch} from "@/app/lib/supabase/client-api";
 
 
 
 
-    return(
-        <div className='flex flex-col mt-[5rem] m-2 justify-center  text-center gap-2'>
 
-            <BackgroundBeams />
+
+function PageSkeleton() {
+    return (
+
+        <Skeleton repeat={1} className="flex min-w-[90vw] animate-pulse flex-col p-4  m-2 justify-center text-center gap-2">
+
+            <div className="flex flex-col mt-[5rem] lg:flex-row  justify-center gap-3">
+
+                <div className="m-3 h-[50vh] rounded-xl  lg:h-[70vh] w-full lg:w-1/2 bg-white/10 backdrop-blur-sm "/>
+
+
+                <div className="pt-0 lg:pt-[3rem] pl-4 lg:pl-0 w-full lg:w-1/2">
+                    <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
+                        <div className="h-6 sm:h-8 w-3/4 bg-white/10 backdrop-blur-sm rounded mb-4"/>
+                        <div className="h-4 sm:h-6 w-full bg-white/10 backdrop-blur-sm rounded mb-2"/>
+
+                        <div className="h-3 sm:h-4 w-3/4 bg-white/10 backdrop-blur-sm rounded"/>
+                    </div>
+                </div>
+            </div>
+
+            <div className="p-6 mt-6">
+
+                <div className="mb-12 text-left">
+                    <div className="h-6 sm:h-8 w-1/3 bg-white/10 backdrop-blur-sm rounded mb-6"/>
+                    <div className="grid gap-4 sm:gap-8 md:grid-cols-2">
+                        <div className="h-20 sm:h-24 bg-white/10 backdrop-blur-sm rounded"/>
+
+                    </div>
+                </div>
+
+
+                <div className="w-full py-8 md:py-16 lg:py-24">
+                    <div className="container px-4 md:px-6">
+                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                            <div className="h-8 sm:h-10 w-2/3 sm:w-1/3 bg-white/10 backdrop-blur-sm rounded"/>
+                        </div>
+                        <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-4 sm:gap-8 py-8 sm:py-12 px-4">
+                            <div className="h-64 w-48 sm:h-80 sm:w-64 bg-white/10 backdrop-blur-sm rounded-2xl"/>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className="w-full py-8 md:py-16 lg:py-24">
+                    <div className="container px-4 md:px-6">
+                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                            <div className="h-8 sm:h-10 w-2/3 sm:w-1/3 bg-white/10 backdrop-blur-sm rounded"/>
+                        </div>
+                        <div
+                            className="max-w-7xl mx-auto flex flex-wrap justify-around gap-4 sm:gap-8 py-8 sm:py-12 px-4">
+
+                                <div  className="h-12 w-24 sm:h-16 sm:w-32 bg-white/10 backdrop-blur-sm rounded"/>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </Skeleton>
+
+    )
+}
+
+
+const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Tables<'sponsors'>[]] }) => {
+
+
+
+
+
+    return (
+        <div className='flex flex-col mt-[5rem] m-2 justify-center   text-center gap-2'>
+
+            <BackgroundBeams/>
             <div className='flex flex-col lg:flex-row  overflow-hidden justify-center  gap-3'>
                 <motion.div className='m-3'>
                     <motion.img
-                        src={bg1.src}
+                        src={data[0][0].eventpic}
                         variants={shadowVariants}
                         initial="hidden"
                         whileInView="visible"
@@ -39,33 +102,26 @@ export default function Index() {
 
                 </motion.div>
 
-                <motion.div
+                <div
 
-
-                    initial='hidden'
-                    whileInView='visible'
-                    viewport={{once: true}}
-                    variants={animationVariants}
-                    transition={{duration: 0.8, ease: 'easeInOut'}}
-                    className="pt-0 lg:pt-[3rem] pl-4 z-[-2] lg:pl-0 z-1">
+                    className="pt-0 lg:pt-[3rem] pl-4  z-[-2] lg:pl-0 z-1">
 
                     <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
-                        <h1 className="text-4xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
-                            E-Commerce Innovation Expo 2024: Shaping the Future of Online Retail
+                        <h1 className="text-3xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
+                            {data[0][0].eventname}
                         </h1>
 
                         <section className="text-left">
                             <h2 className="text-3xl font-bold tracking-tighter  mb-6 ">
                                 About the Event
                             </h2>
+
                             <p className="text-sm sm:text-base md:text-lg  mb-4 sm:mb-5 md:mb-6 leading-relaxed">
-                                Join us for the premier event in the e-commerce industry! The E-Commerce Innovation Expo
-                                2024 brings together industry leaders, innovators, and decision-makers to explore the
-                                latest trends, technologies, and strategies shaping the future of online retail.
+                                {data[0][0].eventdescription}
                             </p>
                         </section>
                     </div>
-                </motion.div>
+                </div>
 
             </div>
 
@@ -77,21 +133,21 @@ export default function Index() {
                             <Calendar className="w-8 h-8 text-purple-400"/>
                             <div>
                                 <p className="text-sm ">Date</p>
-                                <p className="text-lg font-medium">September 12-14, 2024</p>
+                                <p className="text-lg font-medium">{data[0][0].eventdate}</p>
                             </div>
                         </Tag>
                         <Tag className='dark:bg-[#7469B6] bg-[#91DDCF] '>
                             <Location className="w-8 h-8 text-blue-400"/>
                             <div>
                                 <p className="text-sm ">Location</p>
-                                <p className="text-lg font-medium">Tech Central Convention Center</p>
+                                <p className="text-lg font-medium">{data[0][0].eventlocation}</p>
                             </div>
                         </Tag>
                         <Tag className='dark:bg-[#F05A7E] bg-[#FFD0D0] '>
                             <Clock className="w-8 h-8 text-blue-400"/>
                             <div>
                                 <p className="text-sm">Time</p>
-                                <p className="text-lg font-medium">9:00 AM - 6:00 PM daily</p>
+                                <p className="text-lg font-medium">{data[0][0].eventstarthour.slice(0, 5)} - {data[0][0].eventendhour.slice(0, 5)}</p>
                             </div>
                         </Tag>
                     </div>
@@ -103,15 +159,16 @@ export default function Index() {
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Guests</h2>
                         </div>
                         <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
-                            {[...Array(3)].map((_, i) => (
+                            {data[1].map((_, i) => (
                                 <div key={i} className="flex items-center justify-center p-4  rounded-lg ">
 
 
                                     <div className="group relative min-h-[14rem] min-w-[10rem] slighty-large-phone:w-64 slighty-large-phone:h-80 overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
                                         <img
                                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                            src={g1.src}
+                                            src={data[1][0].guestpic}
                                             alt="Profile background"
+
                                         />
                                         <div
                                             className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80"/>
@@ -119,11 +176,11 @@ export default function Index() {
                                         <div
                                             className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
                                             <h1 className="text-white font-bold font-sans text-xl  md:text-2xl mb-2 tracking-tight">
-                                                Iman Riham
+                                                {data[1][0].guestname}
                                             </h1>
                                             <div
                                                 className="space-y-1 overflow-hidden max-h-0 transition-all duration-300 group-hover:max-h-24">
-                                                {occupations.map((oc, i) => (
+                                                {data[1][0].guestoccupation.map((oc, i) => (
                                                     <p
                                                         key={i}
                                                         className="text-gray-300 text-sm font-medium truncate transform translate-y-4 transition-transform duration-300 delay-100 group-hover:translate-y-0"
@@ -154,14 +211,14 @@ export default function Index() {
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>
                         </div>
                         <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
-                            {[...Array(6)].map((_, i) => (
+                            {data[2].map((_, i) => (
                                 <div key={i}
-                                     className="flex items-center justify-center p-4  ">
+                                     className="flex items-center  justify-center p-4  ">
 
                                     <a className="flex items-center justify-center text-gray-400 hover:text-gray-200"
                                        href="https://www.agiledrop.com/laravel?utm_source=filament" target="_blank"
                                        title="Agiledrop">
-                                        <Sponsorlogo/>
+                                        <img className='h-20 p-1 w-40 rounded-xl bg-gray-100' src={data[2][0].sponsorpic} alt='img'/>
                                     </a>
 
                                 </div>
@@ -172,6 +229,55 @@ export default function Index() {
 
 
             </div>
+        </div>
+    )
+}
+
+export default function Index({params}: { params: { eventid: number } }) {
+
+    const [eventdata, seteventdata] = useState<Tables<'events'>[]>([]);
+    const [guestdata, setguestdata] = useState<Tables<'guests'>[]>([]);
+    const [sponsordata, setsponsorsdata] = useState<Tables<'sponsors'>[]>([]);
+
+    console.warn(params.eventid);
+    const [isLoading, setIsLoading] = useState(true)
+    useEffect(() => {
+
+        const getdata = async () => {
+            try {
+                setIsLoading(true);
+                const EventData: Tables<'events'>[] = await fetch("events", false, ['*'],(query) => query.limit(1).eq('eventid', params.eventid));
+                const GuestsData: Tables<'guests'>[] = await fetch("guests", false, ['*'],query => query.eq('guestid',EventData[0].guest));
+                const SponsorsData: Tables<'sponsors'>[] = await fetch("sponsors", false, ['*'], query => query.eq('sponsorid', EventData[0].sponsor));
+                seteventdata(EventData);
+                setguestdata(GuestsData);
+                setsponsorsdata(SponsorsData);
+
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        getdata().catch(r => console.error(r));
+    }, []);
+
+
+    return (
+        <div>
+
+            <Suspense fallback={<PageSkeleton/>}>
+
+                {isLoading ?
+
+                    <PageSkeleton/>
+                    :
+                    <PageContent data={[eventdata, guestdata, sponsordata]}/>
+
+                }
+            </Suspense>
+
+
         </div>
     )
 }

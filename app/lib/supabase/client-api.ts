@@ -27,6 +27,22 @@ export async function fetch<T>(
     }
 }
 
+export async function insert<T>(
+    table: string,
+    data: Partial<T> | Partial<T>[],
+
+) {
+    try {
+        let query = supabaseClient
+            .from(table)
+            .insert(data);
+    } catch (error) {
+        console.error('Error inserting data:', error);
+        throw error;
+    }
+}
+
+
 export async function proc(
     fn :string,
     SecondaryQuery?:(query:any) => any ,

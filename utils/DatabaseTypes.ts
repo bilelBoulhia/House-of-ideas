@@ -15,6 +15,8 @@ export type Database = {
                     email: string
                     isactive: boolean
                     nom: string
+                    university: string
+                    field:string
                     phonenumber: string
                     prenom: string
                     workshop: number
@@ -146,15 +148,15 @@ export type Database = {
             sponsors: {
                 Row: {
                     sponsorid: number
-                    sponsorpic: string | null
+                    sponsorpic: string
                 }
                 Insert: {
                     sponsorid?: number
-                    sponsorpic?: string | null
+                    sponsorpic?: string
                 }
                 Update: {
                     sponsorid?: number
-                    sponsorpic?: string | null
+                    sponsorpic?: string
                 }
                 Relationships: []
             }
