@@ -17,8 +17,10 @@ import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import {Tables} from "@/utils/DatabaseTypes";
 import {fetch} from "@/app/lib/supabase/client-api";
-import {pages} from "@/app/(main)/sections/client-side/workshop";
+
 import Skeleton from "@/components/ui/Skeleton";
+import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
+import {SubscribeForm} from "@/components/fragmenets/forms/subscribe form";
 
 
 function PageSkeleton() {
@@ -38,6 +40,27 @@ function PageSkeleton() {
 
 
 function PageContent({data}: { data: Tables<'workshops'>[] }) {
+
+    const [formData, setFormData] = useState<Tables<'applicants'> | null>(null);
+    const handleFormSubmit = (data: Tables<'applicants'>) => {
+        setFormData(data);
+
+        console.log("Form submitted:", data);
+
+    };
+
+    const pages = (selectedworkshop: Tables<'workshops'> | null) => [
+        <div key="1" className="space-y-2">
+            <WorkshopDetails data={selectedworkshop}/>
+        </div>
+        ,
+        <div key="2" className="space-y-2">
+            <SubscribeForm onSubmit={handleFormSubmit}/>
+        </div>,
+
+    ]
+
+
     return (
 
 <>

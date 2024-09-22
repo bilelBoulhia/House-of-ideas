@@ -1,51 +1,26 @@
 'use client'
 
-import {useState, useRef} from 'react'
+import React, {useState} from 'react'
 import {useForm} from 'react-hook-form'
-// @ts-ignore
-import ReCAPTCHA from "react-google-recaptcha"
+
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
 import {Button} from "@/components/ui/button"
 import {Toast} from '@/components/ui/toast'
+import {Tables} from "@/utils/DatabaseTypes";
 
-type FormData = {
-    firstName: string
-    lastName: string
-    email: string
-    university: string
-    field: string
-    phone: string
-    recaptcha: string
+
+
+interface SubscribeFormProps {
+    onSubmit: (data: Tables<'applicants'>) => void;
 }
 
-export const SubscribeForm = () => {
+export const SubscribeForm: React.FC<SubscribeFormProps> = ({onSubmit}) => {
     const [toastMessage, setToastMessage] = useState('')
     const [toastType, setToastType] = useState<'success' | 'error'>('success')
-    const {register, handleSubmit, formState: {errors}, setValue} = useForm<FormData>()
-    const recaptchaRef = useRef<ReCAPTCHA>(null)
+    const {register, handleSubmit, formState: {errors}, setValue} = useForm<Tables<'applicants'>>()
 
-    const onSubmit = async (data: FormData) => {
-        if (!data.recaptcha) {
-            setToastMessage('Please complete the CAPTCHA')
-            setToastType('error')
-            return
-        }
 
-        try {
-
-            console.log(data)
-            setToastMessage('Thank you for subscribing! We\'ll be in touch soon.')
-            setToastType('success')
-        } catch (error) {
-            setToastMessage('An error occurred. Please try again.')
-            setToastType('error')
-        }
-    }
-
-    const handleRecaptchaChange = (value: string | null) => {
-        setValue('recaptcha', value || '')
-    }
 
     return (
         <>
@@ -62,21 +37,21 @@ export const SubscribeForm = () => {
                             <Label htmlFor="first-name">First name</Label>
                             <Input
                                 id="first-name"
-                                {...register("firstName", {required: "First name is required"})}
+                                {...register("nom", {required: "First name is required"})}
                                 className="mt-2"
                             />
-                            {errors.firstName &&
-                                <p className="text-red-500 text-sm mt-1">{errors.firstName.message}</p>}
+                            {errors.nom &&
+                                <p className="text-red-500 text-sm mt-1">{errors.nom.message}</p>}
                         </div>
 
                         <div className="sm:col-span-2">
                             <Label htmlFor="last-name">Last name</Label>
                             <Input
                                 id="last-name"
-                                {...register("lastName", {required: "Last name is required"})}
+                                {...register("prenom", {required: "Last name is required"})}
                                 className="mt-2"
                             />
-                            {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName.message}</p>}
+                            {errors.prenom && <p className="text-red-500 text-sm mt-1">{errors.prenom.message}</p>}
                         </div>
 
 
@@ -123,7 +98,7 @@ export const SubscribeForm = () => {
                             <Input
                                 id="phone"
                                 type="tel"
-                                {...register("phone", {
+                                {...register("phonenumber", {
                                     required: "Phone number is required",
                                     pattern: {
                                         value: /^[0-9]{10}$/,
@@ -132,20 +107,20 @@ export const SubscribeForm = () => {
                                 })}
                                 className="mt-2"
                             />
-                            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
+                            {errors.phonenumber && <p className="text-red-500 text-sm mt-1">{errors.phonenumber.message}</p>}
                         </div>
 
-                        <div className="sm:col-span-full">
-                            <ReCAPTCHA
-                                ref={recaptchaRef}
-                                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                        {/*<div className="sm:col-span-full">*/}
+                        {/*    <ReCAPTCHA*/}
+                        {/*        ref={recaptchaRef}*/}
+                        {/*        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}*/}
 
-                                data-callback='onSubmit'
-                                onChange={handleRecaptchaChange}
-                            />
-                            {errors.recaptcha &&
-                                <p className="text-red-500 text-sm mt-1">{errors.recaptcha.message}</p>}
-                        </div>
+                        {/*        data-callback='onSubmit'*/}
+                        {/*        onChange={handleRecaptchaChange}*/}
+                        {/*    />*/}
+                        {/*    {errors.recaptcha &&*/}
+                        {/*        <p className="text-red-500 text-sm mt-1">{errors.recaptcha.message}</p>}*/}
+                        {/*</div>*/}
 
                         <div className="sm:col-span-full">
                             <div className="flex items-center space-x-2">

@@ -18,21 +18,33 @@ import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmene
 import {Tables} from "@/utils/DatabaseTypes";
 
 
-export const pages= (selectedworkshop : Tables<'workshops'> | null) => [
-    <div key="1" className="space-y-2">
-        <WorkshopDetails data={selectedworkshop}/>
-    </div>
-    ,
-    <div key="2" className="space-y-2">
-        <SubscribeForm/>
-    </div>,
-
-]
 
 
 
 export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
     const [selectedworkshop,setSelectedworkshop] = useState<Tables<'workshops'> | null>(null);
+
+    const [formData, setFormData] = useState<Tables<'applicants'> | null>(null);
+
+    const handleFormSubmit = (data: Tables<'applicants'>) => {
+        setFormData(data);
+        // Here you can handle the form submission, e.g., send data to server
+        console.log("Form submitted:", data);
+   
+    };
+
+
+     const pages = (selectedworkshop: Tables<'workshops'> | null) => [
+        <div key="1" className="space-y-2">
+            <WorkshopDetails data={selectedworkshop}/>
+        </div>
+        ,
+        <div key="2" className="space-y-2">
+            <SubscribeForm onSubmit={handleFormSubmit}/>
+        </div>,
+
+    ]
+    
     return (
 
         <div className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
@@ -70,8 +82,8 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                                   <ModalBody>
 
                                       <ModalContent>
-                                          <div >
-                                              <Stepper pages={pages(selectedworkshop)} />
+                                          <div>
+                                              <Stepper  pages={pages(selectedworkshop)} />
                                           </div>
                                       </ModalContent>
                                   </ModalBody>

@@ -5,14 +5,17 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 interface StepperProps {
   pages: React.ReactNode[]
   onComplete?: () => void
+  onSubmit?: () => void
 }
 
-export default function Stepper({ pages, onComplete }: StepperProps) {
+export default function Stepper({ pages, onComplete,onSubmit }: StepperProps) {
   const [currentStep, setCurrentStep] = useState(0)
 
   const goToNextStep = () => {
     if (currentStep < pages.length - 1) {
       setCurrentStep(currentStep + 1)
+    } else if (onSubmit) {
+      onSubmit()
     } else if (onComplete) {
       onComplete()
     }
