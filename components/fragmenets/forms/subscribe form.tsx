@@ -1,7 +1,8 @@
 'use client'
 
-import {useState, useRef} from 'react'
+import {useState, useRef, useCallback} from 'react'
 import {useForm} from 'react-hook-form'
+
 // @ts-ignore
 import ReCAPTCHA from "react-google-recaptcha"
 import {Input} from "@/components/ui/input"
@@ -16,36 +17,65 @@ type FormData = {
     university: string
     field: string
     phone: string
-    recaptcha: string
 }
 
-export const SubscribeForm = () => {
+export default function SubscribeForm() {
     const [toastMessage, setToastMessage] = useState('')
     const [toastType, setToastType] = useState<'success' | 'error'>('success')
-    const {register, handleSubmit, formState: {errors}, setValue} = useForm<FormData>()
+    const {register, handleSubmit, formState: {errors}} = useForm<FormData>()
     const recaptchaRef = useRef<ReCAPTCHA>(null)
 
-    const onSubmit = async (data: FormData) => {
-        if (!data.recaptcha) {
-            setToastMessage('Please complete the CAPTCHA')
+    const onSubmit = useCallback(async (data: FormData) => {
+        if (!recaptchaRef.current) {
+            setToastMessage('reCAPTCHA not loaded')
             setToastType('error')
             return
         }
 
         try {
-            // Here you would typically send the data to your backend
-            console.log(data)
-            setToastMessage('Thank you for subscribing! We\'ll be in touch soon.')
-            setToastType('success')
+            const recaptchaResponse = await recaptchaRef.current.executeAsync()
+            if (!recaptchaResponse) {
+                setToastMessage('Please complete the reCAPTCHA')
+                setToastType('error')
+                return
+            }
+
+            const response = await fetch("/api/validateRecaptcha", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({recaptchaResponse}),
+            })
+
+            if (response.ok) {
+                // reCAPTCHA validation passed
+                const formResponse = await fetch("/api/email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
+
+                if (formResponse.ok) {
+                    setToastMessage(`Thank you for subscribing, ${data.firstName}! We'll be in touch soon.`)
+                    setToastType('success')
+                } else {
+                    throw new Error('Form submission failed')
+                }
+            } else {
+                // reCAPTCHA validation failed
+                setToastMessage('reCAPTCHA validation failed. Please try again.')
+                setToastType('error')
+            }
         } catch (error) {
             setToastMessage('An error occurred. Please try again.')
             setToastType('error')
+        } finally {
+            recaptchaRef.current?.reset()
         }
-    }
-
-    const handleRecaptchaChange = (value: string | null) => {
-        setValue('recaptcha', value || '')
-    }
+    }, [])
 
     return (
         <>
@@ -56,8 +86,8 @@ export const SubscribeForm = () => {
                         This information will only appear to Mods. Please ensure it's correct so we can contact you.
                     </p>
 
-                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-5 ">
-                        <div className="sm:col-span-1">
+                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-6">
+                        <div className="sm:col-span-3">
                             <Label htmlFor="first-name">First name</Label>
                             <Input
                                 id="first-name"
@@ -68,7 +98,7 @@ export const SubscribeForm = () => {
                                 <p className="text-red-500 text-sm mt-1">{errors.firstName.message}</p>}
                         </div>
 
-                        <div className="sm:col-span-2">
+                        <div className="sm:col-span-3">
                             <Label htmlFor="last-name">Last name</Label>
                             <Input
                                 id="last-name"
@@ -78,7 +108,7 @@ export const SubscribeForm = () => {
                             {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName.message}</p>}
                         </div>
 
-                        <div className="sm:col-span-3">
+                        <div className="sm:col-span-4">
                             <Label htmlFor="email">Email address</Label>
                             <Input
                                 id="email"
@@ -95,7 +125,7 @@ export const SubscribeForm = () => {
                             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
                         </div>
 
-                        <div className="sm:col-span-1">
+                        <div className="sm:col-span-3">
                             <Label htmlFor="university">University</Label>
                             <Input
                                 id="university"
@@ -106,7 +136,7 @@ export const SubscribeForm = () => {
                                 <p className="text-red-500 text-sm mt-1">{errors.university.message}</p>}
                         </div>
 
-                        <div className="sm:col-span-2">
+                        <div className="sm:col-span-3">
                             <Label htmlFor="field">Field</Label>
                             <Input
                                 id="field"
@@ -136,13 +166,9 @@ export const SubscribeForm = () => {
                         <div className="sm:col-span-full">
                             <ReCAPTCHA
                                 ref={recaptchaRef}
-                                sitekey="6LesmEsqAAAAAJZSd18iwgmBC2Y1KIz94nm_fdKz"
-
-                                data-callback='onSubmit'
-                                onChange={handleRecaptchaChange}
+                                size="invisible"
+                                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
                             />
-                            {errors.recaptcha &&
-                                <p className="text-red-500 text-sm mt-1">{errors.recaptcha.message}</p>}
                         </div>
 
                         <div className="sm:col-span-full">
