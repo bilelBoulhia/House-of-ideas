@@ -2,6 +2,7 @@
 
 import { cn } from "@/app/lib/utils";
 import React, { useEffect, useState } from "react";
+import {Tables} from "@/utils/DatabaseTypes";
 
 export const InfiniteMovingCards = ({
   items,
@@ -10,11 +11,7 @@ export const InfiniteMovingCards = ({
   pauseOnHover = true,
   className,
 }: {
-  items: {
-    quote: string;
-    name: string;
-    title: string;
-  }[];
+  items: Tables<'reviews'>[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
   pauseOnHover?: boolean;
@@ -73,26 +70,26 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20  max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20  max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
         className
       )}
     >
       <ul
         ref={scrollerRef}
         className={cn(
-          " flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
+          " flex min-w-full  shrink-0 gap-4 py-4 w-max flex-nowrap",
           start && "animate-scroll ",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
         {items.map((item) => (
           <li
-            className="w-[250px] max-w-full relative rounded-2xl border border-b-[1px] flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
+            className="w-[250px]  min-h-[15rem] max-w-full relative rounded-2xl border border-b-[1px] flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
             style={{
               background:
                 "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
             }}
-            key={item.name}
+            key={item.reviewid}
           >
             <blockquote>
               <div
@@ -100,16 +97,16 @@ export const InfiniteMovingCards = ({
                 className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
               <span className=" relative z-20 text-sm leading-[1.6] text-gray-700 dark:text-gray-100 font-normal">
-                {item.quote}
+                {item.review}
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center">
                 <span className="flex flex-col gap-1">
                   <span className=" text-sm leading-[1.6] dark:text-gray-400 text-gray-800 font-normal">
-                    {item.name}
+                    {item.reviewer}
                   </span>
-                  <span className=" text-sm leading-[1.6] dark:text-gray-400 text-gray-900 font-normal">
-                    {item.title}
-                  </span>
+                  {/*<span className=" text-sm leading-[1.6] dark:text-gray-400 text-gray-900 font-normal">*/}
+                  {/*  {item.}*/}
+                  {/*</span>*/}
                 </span>
               </div>
             </blockquote>

@@ -1,9 +1,4 @@
 'use client'
-
-
-
-
-
 import {
     Card,
     CardBadge, CardBottomBody,
@@ -37,17 +32,10 @@ export const pages= (selectedworkshop : Tables<'workshops'> | null) => [
 
 
 export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
-
     const [selectedworkshop,setSelectedworkshop] = useState<Tables<'workshops'> | null>(null);
-
-
-
-
     return (
 
         <div className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
-
-
             <AnimatedHeading sentence={["Latest", "Workshops"]} className='bg-[#f7f4f9] dark:bg-[#00070e]'/>
 
             <div

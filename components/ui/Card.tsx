@@ -122,3 +122,15 @@ export const CardBadge=({children,className}:{children:string,className?:string}
         <Badge variant='secondary' className={cn('px-2 py-1 ',className)}>{children}</Badge>
     )
 }
+export const CardSkeleton = () => {
+    return (
+        <div className=" w-[320px] lg:w-[500px] mx-auto">
+            <div className="rounded-2xl m-7 p-4 overflow-hidden relative bg-white/30">
+                <div className="relative min-h-[15rem] p-2 h-full flex flex-col justify-center"/>
+
+
+
+            </div>
+        </div>
+    );
+};

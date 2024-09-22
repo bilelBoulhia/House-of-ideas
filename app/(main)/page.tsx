@@ -6,6 +6,7 @@ import Testimonials from "@/app/(main)/sections/client-side/Testimonials";
 import EventSection from "@/app/(main)/sections/server-side/Events";
 
 import WorkshopSection from "@/app/(main)/sections/server-side/workshop";
+import TestimonialSection from "@/app/(main)/sections/server-side/Testimonials";
 
 /*
 create policy "public can read notes"
@@ -24,7 +25,7 @@ export default function Index() {
           <EventSection/>
           <WorkshopSection/>
           <Departament/>
-          <Testimonials/>
+          <TestimonialSection/>
       </div>
 
   );
