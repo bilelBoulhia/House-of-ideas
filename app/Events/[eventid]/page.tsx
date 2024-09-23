@@ -11,6 +11,7 @@ import Skeleton from "@/components/ui/Skeleton";
 import React, {Suspense, useEffect, useState} from "react";
 import {fetch} from "@/app/lib/supabase/client-api";
 import {notFound} from "next/navigation";
+import {Loading} from "@/app/Loading";
 
 
 
@@ -89,85 +90,96 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
 
     }
     return (
-        <div className='flex flex-col mt-[5rem] m-2 justify-center   text-center gap-2'>
 
-            <BackgroundBeams/>
-            <div className='flex flex-col lg:flex-row  overflow-hidden justify-center  gap-3'>
-                <motion.div className='m-3'>
-                    <motion.img
-                        src={data[0][0].eventpic}
-                        variants={shadowVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        className="rounded-xl  min-w-full z-3 min-h-[25vh] object-cover  flex[0_0_100%] "/>
+        <>
 
-                </motion.div>
+            <div className='flex flex-col mt-[5rem] m-2 justify-center   text-center gap-2'>
+                <BackgroundBeams/>
 
-                <div
+                {data[0].map((event, i) => (
 
-                    className="pt-0 lg:pt-[3rem] pl-4  z-[-2] lg:pl-0 z-1">
+                    <div className='flex flex-col lg:flex-row  overflow-hidden justify-center  gap-3'>
+                        <motion.div className='m-3'>
+                            <motion.img
+                                src={event.eventpic}
+                                variants={shadowVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                className="rounded-xl  min-w-full z-3 min-h-[25vh] object-cover  flex[0_0_100%] "/>
 
-                    <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
-                        <h1 className="text-3xl medium-phone:text-4xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
-                            {data[0][0].eventname}
-                        </h1>
+                        </motion.div>
 
-                        <section className="text-left">
-                            <h2 className="text-2xl medium-phone:text-3xl font-bold tracking-tighter  mb-6 ">
-                                About the Event
-                            </h2>
+                        <div
 
-                            <p className="text-sm sm:text-base md:text-lg  mb-4 sm:mb-5 md:mb-6 leading-relaxed">
-                                {data[0][0].eventdescription}
-                            </p>
-                        </section>
+                            className="pt-0 lg:pt-[3rem] pl-4  z-[-2] lg:pl-0 z-1">
+
+                            <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
+                                <h1 className="text-3xl medium-phone:text-4xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
+                                    {event.eventname}
+                                </h1>
+
+                                <section className="text-left">
+                                    <h2 className="text-2xl medium-phone:text-3xl font-bold tracking-tighter  mb-6 ">
+                                        About the Event
+                                    </h2>
+
+                                    <p className="text-sm sm:text-base md:text-lg  mb-4 sm:mb-5 md:mb-6 leading-relaxed">
+                                        {event.eventdescription}
+                                    </p>
+                                </section>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
 
-            </div>
+                ))}
+                <div className='p-6 mt-6'>
 
-            <div className='p-6 mt-6'>
-                <section className="mb-12 text-left">
-                    <h2 className="text-2xl medium-phone:text-3xl  font-bold tracking-tighter  mb-6 ">Event Details</h2>
-                    <div className="grid gap-8 md:grid-cols-2">
-                        <Tag className='dark:bg-cyan-800 bg-[#A0DEFF] '>
-                            <Calendar className="w-8 h-8 text-purple-400"/>
-                            <div>
-                                <p className="text-sm ">Date</p>
-                                <p className="text-lg font-medium">{data[0][0].eventdate}</p>
-                            </div>
-                        </Tag>
-                        <Tag className='dark:bg-[#7469B6] bg-[#91DDCF] '>
-                            <Location className="w-8 h-8 text-blue-400"/>
-                            <div>
-                                <p className="text-sm ">Location</p>
-                                <p className="text-lg font-medium">{data[0][0].eventlocation}</p>
-                            </div>
-                        </Tag>
-                        <Tag className='dark:bg-[#F05A7E] bg-[#FFD0D0] '>
-                            <Clock className="w-8 h-8 text-blue-400"/>
-                            <div>
-                                <p className="text-sm">Time</p>
-                                <p className="text-lg font-medium">{data[0][0].eventstarthour?.slice(0, 5)} - {data[0][0].eventendhour.slice(0, 5)}</p>
+                    {data[0].map((event, i) => (
+                    <section className="mb-12 text-left">
+                        <h2 className="text-2xl medium-phone:text-3xl  font-bold tracking-tighter  mb-6 ">Event
+                            Details</h2>
+                        <div className="grid gap-8 md:grid-cols-2">
+                            <Tag className='dark:bg-cyan-800 bg-[#A0DEFF] '>
+                                <Calendar className="w-8 h-8 text-purple-400"/>
+                                <div>
+                                    <p className="text-sm ">Date</p>
+                                    <p className="text-lg font-medium">{event.eventdate}</p>
+                                </div>
+                            </Tag>
+                            <Tag className='dark:bg-[#7469B6] bg-[#91DDCF] '>
+                                <Location className="w-8 h-8 text-blue-400"/>
+                                <div>
+                                    <p className="text-sm ">Location</p>
+                                    <p className="text-lg font-medium">{event.eventlocation}</p>
+                                </div>
+                            </Tag>
+                            <Tag className='dark:bg-[#F05A7E] bg-[#FFD0D0] '>
+                                <Clock className="w-8 h-8 text-blue-400"/>
+                                <div>
+                                    <p className="text-sm">Time</p>
+                                    <p className="text-lg font-medium">{event.eventstarthour?.slice(0, 5)} - {event.eventendhour.slice(0, 5)}</p>
                             </div>
                         </Tag>
                     </div>
                 </section>
+                    ))}
 
-                <section id='sponsors' className="w-full py-12 md:py-24 lg:py-32">
+
+                <section  className="w-full py-12 md:py-24 lg:py-32">
                     <div className="container px-4 md:px-6">
                         <div className="flex flex-col items-center justify-center space-y-4 text-center">
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Guests</h2>
                         </div>
                         <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
-                            {data[1].map((_, i) => (
+                            {data[1].map((guest, i) => (
                                 <div key={i} className="flex items-center justify-center p-4  rounded-lg ">
 
 
                                     <div className="group relative min-h-[14rem] min-w-[10rem] slighty-large-phone:w-64 slighty-large-phone:h-80 overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
                                         <img
                                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                            src={data[1][0].guestpic}
+                                            src={guest.guestpic}
                                             alt="Profile background"
 
                                         />
@@ -177,11 +189,11 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                                         <div
                                             className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
                                             <h1 className="text-white font-bold font-sans text-xl  md:text-2xl mb-2 tracking-tight">
-                                                {data[1][0].guestname}
+                                                {guest.guestname}
                                             </h1>
                                             <div
                                                 className="space-y-1 overflow-hidden max-h-0 transition-all duration-300 group-hover:max-h-24">
-                                                {data[1][0].guestoccupation.map((oc, i) => (
+                                                {guest.guestoccupation.map((oc, i) => (
                                                     <p
                                                         key={i}
                                                         className="text-gray-300 text-sm font-medium truncate transform translate-y-4 transition-transform duration-300 delay-100 group-hover:translate-y-0"
@@ -212,14 +224,14 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>
                         </div>
                         <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
-                            {data[2].map((_, i) => (
+                            {data[2].map((sponsor, i) => (
                                 <div key={i}
                                      className="flex items-center  justify-center p-4  ">
 
                                     <a className="flex items-center justify-center text-gray-400 hover:text-gray-200"
                                        href="https://www.agiledrop.com/laravel?utm_source=filament" target="_blank"
                                        title="Agiledrop">
-                                        <img className='h-20 p-1 w-40 rounded-xl bg-gray-100' src={data[2][0].sponsorpic} alt='img'/>
+                                        <img className='h-20 p-1 w-40 rounded-xl bg-gray-100' src={sponsor.sponsorpic} alt='img'/>
                                     </a>
 
                                 </div>
@@ -231,6 +243,7 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
 
             </div>
         </div>
+        </>
     )
 }
 
@@ -274,11 +287,11 @@ export default function Index({params}: { params: { eventid: number } }) {
     return (
         <div>
 
-            <Suspense fallback={<PageSkeleton/>}>
+            <Suspense fallback={<Loading/>}>
 
                 {isLoading ?
 
-                    <PageSkeleton/>
+                    <Loading/>
                     :
                     <PageContent data={[eventdata, guestdata, sponsordata]}/>
 

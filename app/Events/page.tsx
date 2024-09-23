@@ -11,29 +11,9 @@ import Skeleton from "@/components/ui/Skeleton";
 import {Tables} from "@/utils/DatabaseTypes";
 import {fetch} from "@/app/lib/supabase/client-api";
 import {useRouter} from "next/navigation";
-function PageSkeleton() {
-    return (
+import {Loading} from "@/app/Loading";
+import {Loader} from "lucide-react";
 
-            <Skeleton className=' grid-cols-1   w-full '>
-                {[...Array(6)].map((_, i) => (
-                    <div key={i} className="min-w-[92vw] mb-[7rem]  min-h-[calc(90vh] mx-auto">
-                        {' '}
-                        <div className="space-y-4">
-
-                            <div className="h-8 md:h-10 w-1/2 bg-gray-200 rounded-md dark:bg-gray-700  animate-pulse"/>
-
-
-                            <div
-                                className="w-full aspect-[20/15] extra-large-tablet:aspect-[8/3] rounded-xl overflow-hidden">
-                                <div className="w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse"/>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </Skeleton>
-
-    )
-}
 
 const PageContent = ({data}: { data: Tables<'events'>[] }) => {
 
@@ -126,10 +106,10 @@ export default function Index() {
     return (
         <div className='flex flex-col mt-[4rem] items-center justify-center p-5 gap-2'>
 
-            <Suspense fallback={<PageSkeleton/>}>
+            <Suspense fallback={<Loading/>}>
                 {isLoading ?
 
-                    <PageSkeleton/>
+                    <Loader/>
                     :
                     <PageContent data={data}/>
                 }

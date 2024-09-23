@@ -37,7 +37,7 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
                 {data.map((event, index) => (
                     <motion.div
                         key={index}
-                        onClick={() => handleRouterClick(data[0].eventid)}
+                        onClick={() => handleRouterClick(event.eventid)}
                         className="w-full  aspect-[20/15] extra-large-tablet:aspect-[8/3]  rounded-xl overflow-hidden"
                         initial="hidden"
                         whileHover={{scale: 1.01}}
