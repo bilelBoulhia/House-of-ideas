@@ -13,14 +13,18 @@ export interface SubscribeFormRef {
     submitForm: () => void;
 }
 
-export  const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: number, onSubmit: (formData: Tables<'applicants'>) => void }, ref) => {
-     const {register, handleSubmit, formState: {errors}} = useForm<Tables<'applicants'>>()
+// TODO: make the form abstract instead of duplication
+export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
+    eventid: number,
+    onSubmit: (formData: Tables<'eventapplicants'>) => void
+}, ref) => {
+    const {register, handleSubmit, formState: {errors}} = useForm<Tables<'eventapplicants'>>()
 
 
-    const handleFormSubmit = (data: Tables<'applicants'>) => {
+    const handleFormSubmit = (data: Tables<'eventapplicants'>) => {
         const formDataWithWorkshop = {
             ...data,
-            workshopid: workshopid
+            eventid: eventid
         };
         onSubmit(formDataWithWorkshop);
     };
@@ -92,10 +96,10 @@ export  const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: n
                                 id="email"
                                 type="email"
                                 {...register("email", {
-                                    required: "Email is required",
+                                    required: "email is required",
                                     pattern: {
-                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                        message: "Invalid email address"
+                                        value: /\S+@\S+\.\S+/,
+                                        message: "Please enter a valid email address"
                                     }
                                 })}
                                 className="mt-2"
@@ -122,16 +126,29 @@ export  const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: n
                         </div>
 
                         <div className="sm:col-span-3">
-                            <Label htmlFor="whyjoin">Why do you want to join this workshop</Label>
+                            <Label htmlFor="whyjoinus">Why do you want to join this workshop</Label>
                             <textarea
-                                id="whyjoin"
-                                {...register("email", {
-                                    required: "this question is required",
+                                id="whyjoinus"
+                                {...register("whyjoinus", {
+                                    required: "the question is required",
 
                                 })}
                                 className="mt-2 flex h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
                             />
-                            {errors.whyjoin && <p className="text-red-500 text-sm mt-1">{errors.whyjoin.message}</p>}
+                            {errors.whyjoinus &&
+                                <p className="text-red-500 text-sm mt-1">{errors.whyjoinus.message}</p>}
+                        </div>
+                        <div className="sm:col-span-3">
+                            <Label htmlFor="howdiduhearaboutus">How did you hear about us</Label>
+                            <textarea
+                                id="howdiduhearaboutus"
+                                {...register("howdiduhearaboutus", {
+                                    required: "the question is required",
+                                })}
+                                className="mt-2 flex h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
+                            />
+                            {errors.howdiduhearaboutus &&
+                                <p className="text-red-500 text-sm mt-1">{errors.howdiduhearaboutus.message}</p>}
                         </div>
 
 

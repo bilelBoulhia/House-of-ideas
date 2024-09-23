@@ -104,9 +104,7 @@ export const InfiniteMovingCards = ({
                   <span className=" text-sm leading-[1.6] dark:text-gray-400 text-gray-800 font-normal">
                     {item.reviewer}
                   </span>
-                  {/*<span className=" text-sm leading-[1.6] dark:text-gray-400 text-gray-900 font-normal">*/}
-                  {/*  {item.}*/}
-                  {/*</span>*/}
+
                 </span>
               </div>
             </blockquote>

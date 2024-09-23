@@ -15,21 +15,25 @@ export type Database = {
                     email: string
                     field: string
                     isactive: boolean
+                    isconfirmed: boolean
                     nom: string
                     phonenumber: string
                     prenom: string
                     university: string
+                    whyjoin: string
                     workshopid: number
                 }
                 Insert: {
                     applicantid?: number
                     email: string
                     field: string
-                    isactive: boolean
+                    isactive?: boolean
+                    isconfirmed?: boolean
                     nom: string
                     phonenumber: string
                     prenom: string
                     university: string
+                    whyjoin?: string | null
                     workshopid: number
                 }
                 Update: {
@@ -37,10 +41,12 @@ export type Database = {
                     email?: string
                     field?: string
                     isactive?: boolean
+                    isconfirmed?: boolean
                     nom?: string
                     phonenumber?: string
                     prenom?: string
                     university?: string
+                    whyjoin?: string | null
                     workshopid?: number
                 }
                 Relationships: [
@@ -50,6 +56,59 @@ export type Database = {
                         isOneToOne: false
                         referencedRelation: "workshops"
                         referencedColumns: ["workshopid"]
+                    },
+                ]
+            }
+            eventapplicants: {
+                Row: {
+                    email: string
+                    eventapplicantid: number
+                    eventid: number
+                    field: string
+                    howdiduhearaboutus: string
+                    isactive: boolean
+                    isconfirmed: boolean
+                    nom: string
+                    phonenumber: string
+                    prenom: string
+                    university: string
+                    whyjoinus: string
+                }
+                Insert: {
+                    email: string
+                    eventapplicantid?: number
+                    eventid: number
+                    field: string
+                    howdiduhearaboutus: string
+                    isactive?: boolean
+                    isconfirmed?: boolean
+                    nom: string
+                    phonenumber: string
+                    prenom: string
+                    university: string
+                    whyjoinus: string
+                }
+                Update: {
+                    email?: string
+                    eventapplicantid?: number
+                    eventid?: number
+                    field?: string
+                    howdiduhearaboutus?: string
+                    isactive?: boolean
+                    isconfirmed?: boolean
+                    nom?: string
+                    phonenumber?: string
+                    prenom?: string
+                    university?: string
+                    whyjoinus?: string
+                }
+                Relationships: [
+                    {
+                        foreignKeyName: "eventapplicants_eventid_fkey"
+                        columns: ["eventid"]
+                        isOneToOne: false
+                        referencedRelation: "events"
+                        referencedColumns: ["eventid"]
                     },
                 ]
             }

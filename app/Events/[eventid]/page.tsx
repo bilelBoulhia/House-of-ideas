@@ -7,80 +7,23 @@ import {Tag} from "@/components/ui/Tag";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import {shadowVariants} from "@/utils/types";
 import {Tables} from "@/utils/DatabaseTypes";
-import Skeleton from "@/components/ui/Skeleton";
-import React, {Suspense, useEffect, useState} from "react";
-import {fetch} from "@/app/lib/supabase/client-api";
+
+import React, {Suspense, useEffect, useRef, useState} from "react";
+import {fetch, insert} from "@/app/lib/supabase/client-api";
 import {notFound} from "next/navigation";
 import {Loading} from "@/app/Loading";
+import { Button } from "@/components/ui/button";
+import {EventSubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/event subscribe form";
+import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger} from "@/components/ui/Modal";
+
+import Toast from "@/components/ui/toast";
+import Stepper from "@/components/ui/Stepper";
 
 
 
 
 
 
-function PageSkeleton() {
-    return (
-
-        <Skeleton repeat={1} className="flex min-w-[90vw] animate-pulse flex-col p-4  m-2 justify-center text-center gap-2">
-
-            <div className="flex flex-col mt-[5rem] lg:flex-row  justify-center gap-3">
-
-                <div className="m-3 h-[50vh] rounded-xl  lg:h-[70vh] w-full lg:w-1/2 bg-white/10 backdrop-blur-sm "/>
-
-
-                <div className="pt-0 lg:pt-[3rem] pl-4 lg:pl-0 w-full lg:w-1/2">
-                    <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
-                        <div className="h-6 sm:h-8 w-3/4 bg-white/10 backdrop-blur-sm rounded mb-4"/>
-                        <div className="h-4 sm:h-6 w-full bg-white/10 backdrop-blur-sm rounded mb-2"/>
-
-                        <div className="h-3 sm:h-4 w-3/4 bg-white/10 backdrop-blur-sm rounded"/>
-                    </div>
-                </div>
-            </div>
-
-            <div className="p-6 mt-6">
-
-                <div className="mb-12 text-left">
-                    <div className="h-6 sm:h-8 w-1/3 bg-white/10 backdrop-blur-sm rounded mb-6"/>
-                    <div className="grid gap-4 sm:gap-8 md:grid-cols-2">
-                        <div className="h-20 sm:h-24 bg-white/10 backdrop-blur-sm rounded"/>
-
-                    </div>
-                </div>
-
-
-                <div className="w-full py-8 md:py-16 lg:py-24">
-                    <div className="container px-4 md:px-6">
-                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                            <div className="h-8 sm:h-10 w-2/3 sm:w-1/3 bg-white/10 backdrop-blur-sm rounded"/>
-                        </div>
-                        <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-4 sm:gap-8 py-8 sm:py-12 px-4">
-                            <div className="h-64 w-48 sm:h-80 sm:w-64 bg-white/10 backdrop-blur-sm rounded-2xl"/>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className="w-full py-8 md:py-16 lg:py-24">
-                    <div className="container px-4 md:px-6">
-                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                            <div className="h-8 sm:h-10 w-2/3 sm:w-1/3 bg-white/10 backdrop-blur-sm rounded"/>
-                        </div>
-                        <div
-                            className="max-w-7xl mx-auto flex flex-wrap justify-around gap-4 sm:gap-8 py-8 sm:py-12 px-4">
-
-                                <div  className="h-12 w-24 sm:h-16 sm:w-32 bg-white/10 backdrop-blur-sm rounded"/>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </Skeleton>
-
-    )
-}
 
 
 const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Tables<'sponsors'>[]] }) => {
@@ -89,14 +32,53 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
         notFound();
 
     }
+    const formRef = useRef<SubscribeFormRef>(null);
+    const modalRef = useRef<ModalBodyRef>(null);
+    const [showToast, setShowToast] = useState(false);
+    const handleFormSubmit = (data: Tables<'eventapplicants'>) => {
+        const insertdata = async (data: Tables<'eventapplicants'>) => {
+            try {
+                const issuccess = await insert<Tables<'eventapplicants'>>('eventapplicants', data).catch(r => console.error(r));
+                if (issuccess) {
+                    modalRef.current?.closeModal();
+                    setShowToast(true);
+
+                }
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        insertdata(data).catch(r => console.error(r));
+    };
+    const handleCloseToast = () => {
+        setShowToast(false);
+    };
+    const pages = (selectedworkshop: Tables<'events'> | null) => [
+        <div key="2" className="space-y-2">
+            <EventSubscribeForm
+                ref={formRef}
+                eventid={selectedworkshop?.eventid || 0}
+                onSubmit={handleFormSubmit}
+            />
+        </div>,
+
+    ]
+
+    const handleStepperFinish = () => {
+        formRef.current?.submitForm();
+    };
+
+
     return (
 
         <>
 
-            <div className='flex flex-col mt-[5rem] m-2 justify-center   text-center gap-2'>
+            <div className='flex flex-col mt-[5rem] m-2 justify-center    gap-2'>
                 <BackgroundBeams/>
 
-                {data[0].map((event, i) => (
+                {data[0].map((event) => (
 
                     <div className='flex flex-col lg:flex-row  overflow-hidden justify-center  gap-3'>
                         <motion.div className='m-3'>
@@ -109,9 +91,7 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
 
                         </motion.div>
 
-                        <div
-
-                            className="pt-0 lg:pt-[3rem] pl-4  z-[-2] lg:pl-0 z-1">
+                        <div className="pt-0 lg:pt-[3rem] pl-4  z-[-2] lg:pl-0 z-1">
 
                             <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
                                 <h1 className="text-3xl medium-phone:text-4xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
@@ -119,11 +99,11 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                                 </h1>
 
                                 <section className="text-left">
-                                    <h2 className="text-2xl medium-phone:text-3xl font-bold tracking-tighter  mb-6 ">
+                                    <h2 className="text-2xl text-left medium-phone:text-3xl font-bold tracking-tighter  mb-6 ">
                                         About the Event
                                     </h2>
 
-                                    <p className="text-sm sm:text-base md:text-lg  mb-4 sm:mb-5 md:mb-6 leading-relaxed">
+                                    <p className="text-md  md:text-xl  lg:text-2xl  mb-4 sm:mb-5 md:mb-6 leading-relaxed">
                                         {event.eventdescription}
                                     </p>
                                 </section>
@@ -133,9 +113,37 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                     </div>
 
                 ))}
+
+                <div className='relative  p-6 mt-2'>
+
+                    <Modal>
+                        <ModalTrigger asChild>
+                            <Button
+                                className='bg-violet-500 text-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)] rounded-xl hover:bg-violet-600 dark:text-white  py-8  px-10'>
+                                subscribe to the event</Button>
+                        </ModalTrigger>
+                        <ModalBody ref={modalRef}>
+
+                            <ModalContent>
+                                <div>
+                                    <Stepper
+                                        finishSentnce='subscribe'
+                                        pages={pages(data[0][0])}
+                                        onFinish={handleStepperFinish}
+                                    />
+
+                                </div>
+                            </ModalContent>
+                        </ModalBody>
+                    </Modal>
+
+                </div>
+
+
+
                 <div className='p-6 mt-6'>
 
-                    {data[0].map((event, i) => (
+                    {data[0].map((event) => (
                     <section className="mb-12 text-left">
                         <h2 className="text-2xl medium-phone:text-3xl  font-bold tracking-tighter  mb-6 ">Event
                             Details</h2>
@@ -228,9 +236,7 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                                 <div key={i}
                                      className="flex items-center  justify-center p-4  ">
 
-                                    <a className="flex items-center justify-center text-gray-400 hover:text-gray-200"
-                                       href="https://www.agiledrop.com/laravel?utm_source=filament" target="_blank"
-                                       title="Agiledrop">
+                                    <a>
                                         <img className='h-20 p-1 w-40 rounded-xl bg-gray-100' src={sponsor.sponsorpic} alt='img'/>
                                     </a>
 
@@ -243,6 +249,12 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
 
             </div>
         </div>
+
+            <Toast
+                show={showToast}
+                message="thank you well contact you soon"
+                onClose={handleCloseToast}
+            />
         </>
     )
 }

@@ -17,7 +17,6 @@ import {Loader} from "lucide-react";
 
 const PageContent = ({data}: { data: Tables<'events'>[] }) => {
 
-
     const router = useRouter();
     const handleRouterClick = (eventid: number) => {
         router.push(`/Events/${eventid}`);
@@ -108,7 +107,6 @@ export default function Index() {
 
             <Suspense fallback={<Loading/>}>
                 {isLoading ?
-
                     <Loader/>
                     :
                     <PageContent data={data}/>
