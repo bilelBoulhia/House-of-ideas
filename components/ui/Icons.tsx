@@ -135,6 +135,8 @@ const CloseIcon = ({className, ...props}: IconProps) => {
 
 const NewHiIcon = ({className,animate = true, ...props}: IconProps) => {
 
+
+
     return (
         <motion.svg viewBox="0 0 141 195" fill="none" xmlns="http://www.w3.org/2000/svg"
                     className={cn(' overflow-visible  stroke-violet-900 dark:stroke-purple-600 stroke-[1px] ',className)} {...props}>

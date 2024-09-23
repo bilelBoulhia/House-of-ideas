@@ -126,7 +126,7 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
                         </div>
 
                         <div className="sm:col-span-3">
-                            <Label htmlFor="whyjoinus">Why do you want to join this workshop</Label>
+                            <Label htmlFor="whyjoinus">Why do you want to join this event</Label>
                             <textarea
                                 id="whyjoinus"
                                 {...register("whyjoinus", {
