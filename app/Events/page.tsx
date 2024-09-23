@@ -110,7 +110,6 @@ export default function Index() {
                 setIsLoading(true);
                 const WorkshopData: Tables<'events'>[] = await fetch("events", false, ['eventname,eventpic,eventid']);
                 setdata(WorkshopData);
-                console.table(WorkshopData);
             } catch (error) {
                 console.error(error);
             } finally {

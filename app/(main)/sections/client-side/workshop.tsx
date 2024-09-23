@@ -9,38 +9,60 @@ import {
     CardUpperBody
 } from "@/components/ui/Card";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
-import {Modal, ModalBody, ModalContent, ModalTrigger} from "@/components/ui/Modal";
-import SubscribeForm from "@/components/fragmenets/forms/subscribe form";
+import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger} from "@/components/ui/Modal";
+import {SubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/subscribe form";
 import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
 import {Tables} from "@/utils/DatabaseTypes";
+import {insert} from "@/app/lib/supabase/client-api";
+import Toast from "@/components/ui/toast";
 
 
 
 
 
 export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
-    const [selectedworkshop,setSelectedworkshop] = useState<Tables<'workshops'> | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const [formData, setFormData] = useState<Tables<'applicants'> | null>(null);
-    const handleFormSubmit = (data: Tables<'applicants'>)   => {
-        setFormData(data);
-        setIsModalOpen(false);
 
-   
+
+    const formRef = useRef<SubscribeFormRef>(null);
+    const modalRef = useRef<ModalBodyRef>(null);
+    const [showToast, setShowToast] = useState(false);
+    const handleFormSubmit = (data: Tables<'applicants'>) => {
+        const insertdata = async (data: Tables<'applicants'>) => {
+            try {
+                const issuccess = await insert<Tables<'applicants'>>('applicants', data).catch(r => console.error(r));
+                if (issuccess) {
+                    modalRef.current?.closeModal();
+                    setShowToast(true);
+
+                }
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        insertdata(data).catch(r => console.error(r));
     };
-
-
-
-     const pages = (selectedworkshop: Tables<'workshops'> | null) => [
+    const handleCloseToast = () => {
+        setShowToast(false);
+    };
+    const handleStepperFinish = () => {
+        formRef.current?.submitForm();
+    };
+    const pages = (selectedworkshop: Tables<'workshops'> | null) => [
         <div key="1" className="space-y-2">
             <WorkshopDetails data={selectedworkshop}/>
         </div>
         ,
         <div key="2" className="space-y-2">
-            <SubscribeForm workshopId={data[0].workshopid} onSubmit={handleFormSubmit}/>
+            <SubscribeForm
+                ref={formRef}
+                workshopid={selectedworkshop?.workshopid || 0}
+                onSubmit={handleFormSubmit}
+            />
         </div>,
 
     ]
@@ -79,32 +101,40 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                                 <CardFooter>
 
                              <Modal>
-                                  <ModalTrigger asChild>
-                                          <Button
-                                              onClick={() => {
-                                                  setSelectedworkshop(workshop)
-                                              }} className='bg-violet-500  hover:bg-violet-600  dark:text-white font-bold py-2 px-4 rounded-xl'>subscribe</Button>
-                                  </ModalTrigger>
+                                 <ModalTrigger asChild>
+                                     <Button
+                                         className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
+                                 </ModalTrigger>
                                   <ModalBody>
 
                                       <ModalContent>
                                           <div>
-                                              <Stepper finishSentnce='subscribe' onComplete={handleFormSubmit} pages={pages(selectedworkshop)} />
+                                              <Stepper
+                                                  finishSentnce='subscribe'
+                                                  pages={pages(workshop)}
+                                                  onFinish={handleStepperFinish}
+                                              />
+
                                           </div>
                                       </ModalContent>
                                   </ModalBody>
                              </Modal>
 
-                            <CardBadge>Free</CardBadge>
+                                    <CardBadge>Free</CardBadge>
                                 </CardFooter>
-                        </CardBottomBody>
+                            </CardBottomBody>
 
 
-                    </CardContent>
-                   </Card>
+                        </CardContent>
+                    </Card>
 
                 ))}
             </div>
+            <Toast
+                show={showToast}
+                message="thank you well contact you soon"
+                onClose={handleCloseToast}
+            />
         </div>
     )
 }

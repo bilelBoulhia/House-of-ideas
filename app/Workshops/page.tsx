@@ -9,7 +9,7 @@ import {
     CardTitle,
     CardUpperBody
 } from "@/components/ui/Card";
-import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger, useModal} from "@/components/ui/Modal";
+import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger} from "@/components/ui/Modal";
 import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
 import React, {Suspense, useEffect, useRef, useState} from "react";
@@ -17,12 +17,11 @@ import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import {Tables} from "@/utils/DatabaseTypes";
 import {fetch, insert} from "@/app/lib/supabase/client-api";
-
 import Skeleton from "@/components/ui/Skeleton";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
 import {SubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/subscribe form";
 import {notFound} from "next/navigation";
-import {createClient} from "@/app/lib/supabase/client";
+
 import Toast from "@/components/ui/toast";
 
 
@@ -51,7 +50,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
     const formRef = useRef<SubscribeFormRef>(null);
     const modalRef = useRef<ModalBodyRef>(null);
-    const [showToast, setShowToast] = useState(true);
+    const [showToast, setShowToast] = useState(false);
     const handleFormSubmit = (data: Tables<'applicants'>) => {
         const insertdata = async (data: Tables<'applicants'>) => {
             try {

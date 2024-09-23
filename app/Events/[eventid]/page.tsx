@@ -88,10 +88,6 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
         notFound();
 
     }
-
-
-
-
     return (
         <div className='flex flex-col mt-[5rem] m-2 justify-center   text-center gap-2'>
 
@@ -152,7 +148,7 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                             <Clock className="w-8 h-8 text-blue-400"/>
                             <div>
                                 <p className="text-sm">Time</p>
-                                <p className="text-lg font-medium">{data[0][0].eventstarthour.slice(0, 5)} - {data[0][0].eventendhour.slice(0, 5)}</p>
+                                <p className="text-lg font-medium">{data[0][0].eventstarthour?.slice(0, 5)} - {data[0][0].eventendhour.slice(0, 5)}</p>
                             </div>
                         </Tag>
                     </div>
