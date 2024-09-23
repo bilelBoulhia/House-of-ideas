@@ -13,36 +13,40 @@ export type Database = {
                 Row: {
                     applicantid: number
                     email: string
+                    field: string
                     isactive: boolean
                     nom: string
-                    university: string
-                    field:string
                     phonenumber: string
                     prenom: string
-                    workshop: number
+                    university: string
+                    workshopid: number
                 }
                 Insert: {
                     applicantid?: number
                     email: string
+                    field: string
                     isactive: boolean
                     nom: string
                     phonenumber: string
                     prenom: string
-                    workshop: number
+                    university: string
+                    workshopid: number
                 }
                 Update: {
                     applicantid?: number
                     email?: string
+                    field?: string
                     isactive?: boolean
                     nom?: string
                     phonenumber?: string
                     prenom?: string
-                    workshop?: number
+                    university?: string
+                    workshopid?: number
                 }
                 Relationships: [
                     {
-                        foreignKeyName: "applicants_workshop_fkey"
-                        columns: ["workshop"]
+                        foreignKeyName: "applicants_workshopid_fkey"
+                        columns: ["workshopid"]
                         isOneToOne: false
                         referencedRelation: "workshops"
                         referencedColumns: ["workshopid"]
@@ -58,7 +62,7 @@ export type Database = {
                     eventlocation: string
                     eventname: string
                     eventpic: string
-                    eventstarthour: string
+                    eventstarthour: string | null
                     guest: number | null
                     sponsor: number | null
                 }
@@ -70,7 +74,7 @@ export type Database = {
                     eventlocation: string
                     eventname: string
                     eventpic: string
-                    eventstarthour: string
+                    eventstarthour?: string | null
                     guest?: number | null
                     sponsor?: number | null
                 }
@@ -82,7 +86,7 @@ export type Database = {
                     eventlocation?: string
                     eventname?: string
                     eventpic?: string
-                    eventstarthour?: string
+                    eventstarthour?: string | null
                     guest?: number | null
                     sponsor?: number | null
                 }
@@ -152,7 +156,7 @@ export type Database = {
                 }
                 Insert: {
                     sponsorid?: number
-                    sponsorpic?: string
+                    sponsorpic: string
                 }
                 Update: {
                     sponsorid?: number

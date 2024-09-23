@@ -6,24 +6,21 @@ import {useForm} from 'react-hook-form'
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
 
-import {Toast} from '@/components/ui/toast'
 import {Tables} from "@/utils/DatabaseTypes";
-import {setErrorMap} from "zod";
+
 
 export interface SubscribeFormRef {
     submitForm: () => void;
 }
 
-export const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: number, onSubmit: (formData: Tables<'applicants'>) => void }, ref) => {
-    const [toastMessage, setToastMessage] = useState('')
-    const [toastType, setToastType] = useState<'success' | 'error'>('success')
-    const {register, handleSubmit, formState: {errors}, setValue} = useForm<Tables<'applicants'>>()
+export  const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: number, onSubmit: (formData: Tables<'applicants'>) => void }, ref) => {
+     const {register, handleSubmit, formState: {errors}, setValue} = useForm<Tables<'applicants'>>()
 
 
     const handleFormSubmit = (data: Tables<'applicants'>) => {
         const formDataWithWorkshop = {
             ...data,
-            workshopId: workshopid
+            workshopid: workshopid
         };
         onSubmit(formDataWithWorkshop);
     };
@@ -140,7 +137,7 @@ export const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: nu
                     </div>
                 </div>
             </form>
-            {toastMessage && <Toast message={toastMessage} type={toastType}/>}
+
         </>
     )
 

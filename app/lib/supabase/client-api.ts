@@ -29,19 +29,19 @@ export async function fetch<T>(
 
 export async function insert<T>(
     table: string,
-    data: Partial<T> | Partial<T>[],
-
-) {
+    data: Partial<T> | Partial<T>[] | null
+): Promise<boolean> {
     try {
-        let query = supabaseClient
+        const {error} = await supabaseClient
             .from(table)
             .insert(data);
+
+        return !error; // Returns true if there's no error, false otherwise
     } catch (error) {
         console.error('Error inserting data:', error);
-        throw error;
+        return false; // Returns false if an exception is caught
     }
 }
-
 
 export async function proc(
     fn :string,

@@ -7,7 +7,7 @@ import React, {
     useContext,
     useEffect,
     useRef,
-    useState,
+    useState, forwardRef, useImperativeHandle,
 } from "react";
 
 import {Slot} from "@radix-ui/react-slot";
@@ -17,6 +17,9 @@ interface ModalContextType {
     setOpen: (open: boolean) => void;
 }
 
+export interface ModalBodyRef {
+    closeModal: () => void;
+}
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
@@ -41,11 +44,8 @@ export function Modal({ children }: { children: ReactNode }) {
     return <ModalProvider>{children}</ModalProvider>;
 }
 
-export const ModalTrigger = ({
-                                 children,
-                                 className,
-    asChild
-                             }: {
+export const ModalTrigger = ({children, className, asChild
+}:{
     children: ReactNode;
     className?: string;
     asChild:boolean;
@@ -62,14 +62,10 @@ export const ModalTrigger = ({
     );
 };
 
-export const ModalBody = ({
-                              children,
-                              className,
-
-                          }: {
+export const ModalBody = forwardRef<ModalBodyRef, {
     children: ReactNode;
     className?: string;
-}) => {
+}>(({children, className}, ref) => {
     const { open } = useModal();
 
     useEffect(() => {
@@ -80,9 +76,13 @@ export const ModalBody = ({
         }
     }, [open]);
 
+
     const modalRef = useRef(null);
     const { setOpen } = useModal();
     useOutsideClick(modalRef, () => setOpen(false));
+    useImperativeHandle(ref, () => ({
+        closeModal: () => setOpen(false)
+    }));
 
     return (
         <AnimatePresence>
@@ -138,8 +138,8 @@ export const ModalBody = ({
                 </motion.div>
             )}
         </AnimatePresence>
-    );
-};
+
+    )})
 
 export const ModalContent = ({
                                  children,
@@ -227,7 +227,7 @@ export const useOutsideClick = (
 ) => {
     useEffect(() => {
         const listener = (event: any) => {
-            // DO NOTHING if the element being clicked is the target element or their children
+
             if (!ref.current || ref.current.contains(event.target)) {
                 return;
             }

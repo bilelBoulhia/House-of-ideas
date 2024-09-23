@@ -9,19 +9,21 @@ import {
     CardTitle,
     CardUpperBody
 } from "@/components/ui/Card";
-import {Modal, ModalBody, ModalContent, ModalTrigger} from "@/components/ui/Modal";
+import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger, useModal} from "@/components/ui/Modal";
 import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
 import React, {Suspense, useEffect, useRef, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import {Tables} from "@/utils/DatabaseTypes";
-import {fetch} from "@/app/lib/supabase/client-api";
+import {fetch, insert} from "@/app/lib/supabase/client-api";
 
 import Skeleton from "@/components/ui/Skeleton";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
 import {SubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/subscribe form";
 import {notFound} from "next/navigation";
+import {createClient} from "@/app/lib/supabase/client";
+import Toast from "@/components/ui/toast";
 
 
 function PageSkeleton() {
@@ -46,14 +48,30 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
         notFound();
 
     }
-    const [formData, setFormData] = useState<Tables<'applicants'> | null>(null);
+
     const formRef = useRef<SubscribeFormRef>(null);
-    const handleFormSubmit = (data: Tables<'applicants'> ) => {
-        setFormData(data);
+    const modalRef = useRef<ModalBodyRef>(null);
+    const [showToast, setShowToast] = useState(true);
+    const handleFormSubmit = (data: Tables<'applicants'>) => {
+        const insertdata = async (data: Tables<'applicants'>) => {
+            try {
+                const issuccess = await insert<Tables<'applicants'>>('applicants', data).catch(r => console.error(r));
+                if (issuccess) {
+                    modalRef.current?.closeModal();
+                    setShowToast(true);
 
+                }
 
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        insertdata(data).catch(r => console.error(r));
     };
-
+    const handleCloseToast = () => {
+        setShowToast(false);
+    };
     const pages = (selectedworkshop: Tables<'workshops'> | null) => [
         <div key="1" className="space-y-2">
             <WorkshopDetails data={selectedworkshop}/>
@@ -72,6 +90,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
     const handleStepperFinish = () => {
         formRef.current?.submitForm();
     };
+
     return (
 
 <>
@@ -107,7 +126,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
                                     <ModalTrigger asChild>
                                         <Button className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
                                     </ModalTrigger>
-                                    <ModalBody>
+                                    <ModalBody ref={modalRef}>
 
                                         <ModalContent>
                                             <div>
@@ -132,7 +151,15 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
                 </Card>
 
 
+
+
             ))}
+
+            <Toast
+                show={showToast}
+                message="thank you well contact you soon"
+                onClose={handleCloseToast}
+            />
 
         </div>
 

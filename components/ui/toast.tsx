@@ -1,44 +1,62 @@
+"use client"
+
 import {useState, useEffect} from 'react'
+import {motion, AnimatePresence} from 'framer-motion'
 import {X} from 'lucide-react'
-import {cn} from "@/app/lib/utils"
 
 interface ToastProps {
+    show: boolean
     message: string
-    type?: 'success' | 'error'
-    duration?: number
+    onClose: () => void
 }
 
-export const Toast = ({message, type = 'success', duration = 3000}: ToastProps) => {
-    const [isVisible, setIsVisible] = useState(true)
+export default function Toast({show, message, onClose}: ToastProps) {
+    const [isVisible, setIsVisible] = useState(false)
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsVisible(false)
-        }, duration)
-
-        return () => clearTimeout(timer)
-    }, [duration])
-
-    if (!isVisible) return null
+        if (show) {
+            setIsVisible(true)
+            const timer = setTimeout(() => {
+                setIsVisible(false)
+                onClose()
+            }, 5000)
+            return () => clearTimeout(timer)
+        }
+    }, [show, onClose])
 
     return (
-        <div
-            className={cn(
-                "fixed bottom-4 right-4 z-50 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow",
-                type === 'success' && "bg-green-100",
-                type === 'error' && "bg-red-100"
+        <AnimatePresence>
+            {isVisible && (
+                <motion.div
+                    initial={{opacity: 0, y: 50, scale: 0.3}}
+                    animate={{opacity: 1, y: 0, scale: 1}}
+                    exit={{opacity: 0, y: 20, scale: 0.5}}
+                    transition={{type: "spring", stiffness: 500, damping: 30}}
+                    className="fixed inset-x-0 bottom-0 mx-auto mb-4 w-full max-w-sm"
+                    style={{zIndex: 50}}
+                >
+                    <div className="bg-gradient-to-r m-2 from-purple-600 to-violet-600 rounded-lg shadow-lg overflow-hidden">
+                        <div className="p-4 flex items-center justify-between">
+                            <p className="text-white font-medium">{message}</p>
+                            <button
+                                onClick={() => {
+                                    setIsVisible(false)
+                                    onClose()
+                                }}
+                                className="text-white hover:text-gray-200 transition-colors"
+                            >
+                                <X size={20}/>
+                            </button>
+                        </div>
+                        <motion.div
+                            initial={{width: "100%"}}
+                            animate={{width: "0%"}}
+                            transition={{duration: 5, ease: "linear"}}
+                            className="h-1 bg-white"
+                        />
+                    </div>
+                </motion.div>
             )}
-            role="alert"
-        >
-            <div className="text-sm font-normal">{message}</div>
-            <button
-                type="button"
-                className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8"
-                onClick={() => setIsVisible(false)}
-                aria-label="Close"
-            >
-                <X className="w-5 h-5"/>
-            </button>
-        </div>
+        </AnimatePresence>
     )
 }
