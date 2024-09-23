@@ -5,7 +5,7 @@ import {
     CardBottomBody,
     CardContent,
     CardDescription,
-    CardFooter, CardSkeleton,
+    CardFooter,
     CardTitle,
     CardUpperBody
 } from "@/components/ui/Card";
@@ -17,27 +17,16 @@ import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import {Tables} from "@/utils/DatabaseTypes";
 import {fetch, insert} from "@/app/lib/supabase/client-api";
-import Skeleton from "@/components/ui/Skeleton";
+
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
 import {SubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/subscribe form";
 import {notFound} from "next/navigation";
 
 import Toast from "@/components/ui/toast";
+import {Loading} from "@/app/Loading";
 
 
-function PageSkeleton() {
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen w-full p-4">
-        <Skeleton className='grid grid-cols-1 animate-pulse sm:grid-cols-2 lg:grid-cols-3  gap-4'>
-            {[...Array(6)].map((_, i) => (
-                <div key={i}>
-                    <CardSkeleton/>
-                </div>
-            ))}
-        </Skeleton>
-        </div>
-    )
-}
+
 
 
 
@@ -94,9 +83,8 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
 <>
 
-
-
-        <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
+    <AnimatedHeading sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] blur-[3px]'/>
+    <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
             {data.map((workshop, index) => (
 
                 <Card key={index}
@@ -187,10 +175,9 @@ export default function Index() {
     return (
 
         <div className='flex flex-col mt-[8rem] items-center justify-center overflow-hidden gap-2'>
-            <AnimatedHeading sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] blur-[3px]'/>
-            <Suspense fallback={<PageSkeleton/>}>
+            <Suspense fallback={<Loading/>}>
             {isLoading ?
-                <PageSkeleton/>
+                <Loading/>
                 :
                 <PageContent data={data}/>
             }
