@@ -2,7 +2,7 @@ import {motion} from "framer-motion";
 import React from "react";
 
 export const FlipText = ({ children  }:{children:string}) => {
-    const DURATION = 0.25;
+    const DURATION = 0.5;
     const STAGGER = 0.025;
 
     return (
