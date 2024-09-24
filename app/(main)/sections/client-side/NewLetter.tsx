@@ -99,7 +99,7 @@ export default function CoolNewsletter() {
             </div>
             <Toast
                 show={showToast}
-                message="thank you for your review"
+                message="thank you for subscribing"
                 onClose={() => setShowToast(false)}
             />
 
