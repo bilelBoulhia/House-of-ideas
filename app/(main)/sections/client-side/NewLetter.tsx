@@ -9,6 +9,8 @@ import {insert} from "@/app/lib/supabase/client-api";
 import Toast from "@/components/ui/toast";
 import {useForm} from "react-hook-form";
 import { SubmitHandler} from "react-hook-form"
+import { motion } from "framer-motion"
+import {shadowVariants} from "@/utils/types";
 export default function CoolNewsletter() {
     const [showToast, setShowToast] = useState(false)
     const {register,handleSubmit, formState: {errors}, reset
@@ -33,14 +35,24 @@ export default function CoolNewsletter() {
 
     return (
         <section className="relative overflow-hidden py-16  m-12 sm:py-24 w-full">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-800 via-violet-700 to-pink-600  transform -skew-y-6"></div>
-            <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="bg-white/10 backdrop-blur-lg rounded-lg shadow-xl overflow-hidden">
-                    <div className="px-6 py-12 sm:px-12 sm:py-16 lg:flex lg:items-center lg:p-20">
+            <motion.div
+                initial="hidden"
+                viewport={{once: true}}
+                whileInView="visible"
+                variants={shadowVariants}
+                className="absolute inset-0  bg-gradient-to-br from-purple-800 via-violet-700 to-pink-600  transform -skew-y-6"></motion.div>
+            <div className="relative mx-auto  max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="bg-white/10  backdrop-blur-lg rounded-lg shadow-xl overflow-hidden">
+                    <div className="px-6  py-12 sm:px-12 sm:py-16 lg:flex lg:items-center lg:p-20">
                         <div className="lg:w-0 lg:flex-1">
-                            <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                            <motion.h2
+                                initial={{x:'-104%'}}
+                                whileInView={{x:0}}
+                                viewport={{once: true}}
+                                transition={{duration: 0.5, delay: 0.4, ease: "easeInOut"}}
+                                className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                                 Get updates about upcoming events
-                            </h2>
+                            </motion.h2>
                             <p className="mt-4 max-w-3xl text-lg text-purple-100">
                                subscribe to our news letter so you can Get the lasatest
                                 updates about upcoming events and workshops
@@ -48,7 +60,8 @@ export default function CoolNewsletter() {
                         </div>
                         <div className="mt-12 sm:w-full sm:max-w-md lg:mt-0 lg:ml-8 lg:flex-1">
                             <form className="sm:flex" onSubmit={handleSubmit(onSubmit)}>
-                                <div className="min-w-0 flex-1">
+                                <div
+                                    className="min-w-0 flex-1">
                                     <label htmlFor="email" className="sr-only ">
                                         Email address
                                     </label>
@@ -56,7 +69,6 @@ export default function CoolNewsletter() {
                                         id="email"
                                         type="email"
                                         placeholder=" your email"
-
                                         {...register("email", {
                                             required: "email is required",
                                             pattern: {
