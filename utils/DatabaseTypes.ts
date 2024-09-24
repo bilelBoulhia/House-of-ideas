@@ -33,7 +33,7 @@ export type Database = {
                     phonenumber: string
                     prenom: string
                     university: string
-                    whyjoin?: string | null
+                    whyjoin: string
                     workshopid: number
                 }
                 Update: {
@@ -46,7 +46,7 @@ export type Database = {
                     phonenumber?: string
                     prenom?: string
                     university?: string
-                    whyjoin?: string | null
+                    whyjoin?: string
                     workshopid?: number
                 }
                 Relationships: [
@@ -187,6 +187,21 @@ export type Database = {
                 }
                 Relationships: []
             }
+            newsletter: {
+                Row: {
+                    email: string
+                    id: number
+                }
+                Insert: {
+                    email: string
+                    id?: number
+                }
+                Update: {
+                    email?: string
+                    id?: number
+                }
+                Relationships: []
+            }
             reviews: {
                 Row: {
                     isaccepted: boolean
@@ -195,7 +210,7 @@ export type Database = {
                     reviewid: number
                 }
                 Insert: {
-                    isaccepted: boolean
+                    isaccepted?: boolean
                     review: string
                     reviewer: string
                     reviewid?: number

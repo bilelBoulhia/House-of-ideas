@@ -1,22 +1,34 @@
 "use client"
 
-import {useState} from "react"
+import React, { useState} from "react"
 import {Mail} from "lucide-react"
 import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
-
+import {Tables} from "@/utils/DatabaseTypes";
+import {insert} from "@/app/lib/supabase/client-api";
+import Toast from "@/components/ui/toast";
+import {useForm} from "react-hook-form";
+import { SubmitHandler} from "react-hook-form"
 export default function CoolNewsletter() {
-    const [email, setEmail] = useState("")
-    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [showToast, setShowToast] = useState(false)
+    const {register,handleSubmit, formState: {errors}, reset
+    } = useForm<Tables<'newsletter'>>()
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setIsSubmitting(true)
+    const onSubmit: SubmitHandler<Tables<'newsletter'>> = (data) => {
 
-        await new Promise(resolve => setTimeout(resolve, 2000))
-        setIsSubmitting(false)
-        setEmail("")
-        alert("Thank you for subscribing!")
+        const insertdata = async (data: Tables<'newsletter'>) => {
+            try {
+                const issuccess = await insert<Tables<'newsletter'>>('newsletter', data).catch(r => console.error(r));
+                if (issuccess) {
+                    setShowToast(true);
+                    reset()
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        insertdata(data).catch(r => console.error(r));
+
     }
 
     return (
@@ -35,7 +47,7 @@ export default function CoolNewsletter() {
                             </p>
                         </div>
                         <div className="mt-12 sm:w-full sm:max-w-md lg:mt-0 lg:ml-8 lg:flex-1">
-                            <form className="sm:flex" onSubmit={handleSubmit}>
+                            <form className="sm:flex" onSubmit={handleSubmit(onSubmit)}>
                                 <div className="min-w-0 flex-1">
                                     <label htmlFor="email" className="sr-only ">
                                         Email address
@@ -44,20 +56,28 @@ export default function CoolNewsletter() {
                                         id="email"
                                         type="email"
                                         placeholder=" your email"
-                                        required
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
+
+                                        {...register("email", {
+                                            required: "email is required",
+                                            pattern: {
+                                                value: /\S+@\S+\.\S+/,
+                                                message: "Please enter a valid email address"
+                                            }
+                                        })}
                                         className="placeholder:text-white bg-white/20 text-white placeholder-white border-purple-300 focus:ring-purple-500 focus:border-purple-500"
                                     />
+
+                                    {errors.email && <p className="text-red-500 text-sm mt-1 self-start">{errors.email.message}</p>}
                                 </div>
                                 <div className="mt-3 sm:mt-0 sm:ml-3">
                                     <Button
-                                        type="submit"
-                                        disabled={isSubmitting}
+                                        type='submit'
+
                                         className="w-full flex items-center justify-center bg-violet-500 hover:bg-violet-600 text-white transition-all duration-300 ease-in-out transform hover:scale-105"
                                     >
                                         <Mail className="mr-2 h-4 w-4"/>
-                                        {isSubmitting ? "Subscribing..." : "Subscribe"}
+
+                                        Subscribe
                                     </Button>
                                 </div>
                             </form>
@@ -65,6 +85,12 @@ export default function CoolNewsletter() {
                     </div>
                 </div>
             </div>
+            <Toast
+                show={showToast}
+                message="thank you for your review"
+                onClose={() => setShowToast(false)}
+            />
+
         </section>
     )
 }
