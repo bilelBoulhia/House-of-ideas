@@ -21,7 +21,7 @@ export default function CoolNewsletter() {
 
     return (
         <section className="relative overflow-hidden py-16  m-12 sm:py-24 w-full">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-950 via-violet-900 to-pink-600  transform -skew-y-6"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-800 via-violet-700 to-pink-600  transform -skew-y-6"></div>
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="bg-white/10 backdrop-blur-lg rounded-lg shadow-xl overflow-hidden">
                     <div className="px-6 py-12 sm:px-12 sm:py-16 lg:flex lg:items-center lg:p-20">
