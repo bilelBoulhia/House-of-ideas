@@ -1,12 +1,15 @@
 'use client'
 
-import React, {forwardRef, useImperativeHandle} from 'react'
-import {useForm} from 'react-hook-form'
+import React, {forwardRef, useImperativeHandle, useRef, useState} from 'react'
+import { useForm} from 'react-hook-form'
 
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
 
 import {Tables} from "@/utils/DatabaseTypes";
+import {Checkbox} from "@/components/ui/checkbox";
+import {insert} from "@/app/lib/supabase/client-api";
+import {CheckedState} from "@radix-ui/react-checkbox";
 
 
 export interface SubscribeFormRef {
@@ -19,9 +22,31 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
     onSubmit: (formData: Tables<'eventapplicants'>) => void
 }, ref) => {
     const {register, handleSubmit, formState: {errors}} = useForm<Tables<'eventapplicants'>>()
-
+    const [termsAccepted, setTermsAccepted] = useState(false);
 
     const handleFormSubmit = (data: Tables<'eventapplicants'>) => {
+
+
+        // @ts-ignore
+        const newsdata : Tables<'newsletter'> ={
+
+            email : data.email
+
+        }
+        if(termsAccepted){
+            const insertdata = async (newsdata: Tables<'newsletter'>) => {
+                try {
+                    await insert<Tables<'newsletter'>>('newsletter', newsdata).catch(r => console.error(r));
+
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            insertdata(newsdata).catch(r => console.error(r));
+
+        }
+
+
         const formDataWithWorkshop = {
             ...data,
             eventid: eventid
@@ -29,11 +54,16 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
         onSubmit(formDataWithWorkshop);
     };
 
+
+
     useImperativeHandle(ref, () => ({
         submitForm: () => {
             handleSubmit(handleFormSubmit)();
         }
     }));
+
+
+
 
 
     return (
@@ -151,6 +181,22 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
                                 <p className="text-red-500 text-sm mt-1">{errors.howdiduhearaboutus.message}</p>}
                         </div>
 
+
+                        <div className="sm:col-span-3">
+                            <div className="flex items-center">
+                                <Checkbox
+
+                                    checked={termsAccepted}
+                                    onCheckedChange={(checked: CheckedState) => {
+                                        if (typeof checked === "boolean") {
+                                            setTermsAccepted(checked);
+                                        }
+                                    }}
+                                    className="mr-2"
+                                />
+                                <span className="text-sm">Subscribe to our newsletter</span>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

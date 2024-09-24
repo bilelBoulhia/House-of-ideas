@@ -85,11 +85,12 @@ export default function CoolNewsletter() {
                                     <Button
                                         type='submit'
 
-                                        className="w-full flex items-center justify-center bg-violet-500 hover:bg-violet-600 text-white transition-all duration-300 ease-in-out transform hover:scale-105"
+                                        className="w-full flex items-center justify-center  bg-violet-500  group hover:bg-violet-600 text-white transition-all duration-300 ease-in-out transform scale-105"
                                     >
-                                        <Mail className="mr-2 h-4 w-4"/>
 
-                                        Subscribe
+                                        <Mail className="mr-2  transition-transform transform group-hover:scale-110   h-5 w-5"/>
+
+                                        subscribe
                                     </Button>
                                 </div>
                             </form>
