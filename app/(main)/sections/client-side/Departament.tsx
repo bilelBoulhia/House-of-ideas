@@ -110,13 +110,13 @@ export default function Departament() {
 
         <div id="#about" className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
-            <AnimatedHeading size='default' sentence={["our","Departements"]} className='bg-[#f9f9f7] dark:bg-[#000309]'/>
+            <AnimatedHeading size='default' sentence={["our","Departements"]} className='bg-[#f5f9f3] dark:bg-[#00050a]'/>
 
 
             <div className="flex flex-col md:flex-row">
 
             <div className="relative   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
-                    <div className='absolute inset-0  bg-[#f9f9f7] dark:bg-[#000309] h-1/4'></div>  <AnimatePresence mode="wait">
+                    <div className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>  <AnimatePresence mode="wait">
                     <motion.h2
                         key={departments[c].name}
                         initial={{y: 150}}

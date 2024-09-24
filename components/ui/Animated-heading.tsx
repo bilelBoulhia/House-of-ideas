@@ -15,11 +15,11 @@ const Variants = cva("flex flex-row items-center text-center justify-center", {
   variants: {
     color:{
       default: "bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500",
-      white:""
+
     },
 
     size: {
-      default: "iphone5:text-2xl z-12 medium-phone:text-4xl large-phone:text-5xl",
+      default: "iphone5:text-3xl z-12 medium-phone:text-4xl large-phone:text-5xl",
       xl: "text-3xl sm:text-5xl",
     },
   },

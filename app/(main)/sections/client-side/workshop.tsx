@@ -73,7 +73,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
     return (
 
         <div className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
-            <AnimatedHeading sentence={["Latest", "Workshops"]} className='bg-[#f7f4f9] dark:bg-[#00070e]'/>
+            <AnimatedHeading sentence={["Latest", "Workshops"]} className='bg-[#f5f7f3] dark:bg-[#00070e]'/>
 
             <div
                 className='mt-10 grid sm:grid-cols-2 laptop:grid-cols-2 gap-8'>

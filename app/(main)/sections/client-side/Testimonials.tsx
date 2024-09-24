@@ -17,6 +17,7 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {ArrowRight} from "lucide-react";
 import {ReviewForm} from "@/components/fragmenets/forms/review form";
+import NewLetter from "@/app/(main)/sections/client-side/NewLetter";
 
 
 const images :imgtype[] = [{id:1, img:img2}, {id:2,img:img1} , {id:3,img:img3}]
@@ -31,7 +32,7 @@ export default function Testimonials({data}:{data:Tables<'reviews'>[]}) {
         <div id='Reviews' className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
 
-            <AnimatedHeading sentence={sentence} className='bg-[#f7f9f9] dark:bg-[#000206]'/>
+            <AnimatedHeading sentence={sentence} className='bg-[#f6faf4] dark:bg-[#000408]'/>
             <div
                 className=" mt-12  rounded-md flex flex-col antialiased  dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards
@@ -40,9 +41,11 @@ export default function Testimonials({data}:{data:Tables<'reviews'>[]}) {
                     speed="slow"
                 />
             </div>
+
             <ReviewForm/>
+
             <div>
-                <h2 className="text-2xl text-center font-bold tracking-tighter sm:text-3xl">Enjoy with us</h2>
+
                 <div className='m-12'>
                     <CardStack items={images}/>
                 </div>

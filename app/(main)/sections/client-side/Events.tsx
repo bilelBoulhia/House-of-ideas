@@ -24,7 +24,7 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
         <div id='Events' className=" relative w-full flex   items-center  flex-col gap-2">
 
             <div className=" flex flex-row  items-center text-center justify-center">
-                <AnimatedHeading  sentence={["our","Events"]} className='bg-[#f9f9f7] dark:bg-[#000811]'/>
+                <AnimatedHeading  sentence={["our","Events"]} className='bg-[#f4f5f3] dark:bg-[#000812]'/>
             </div>
 
 

@@ -7,6 +7,8 @@ import EventSection from "@/app/(main)/sections/server-actions/Events";
 
 import WorkshopSection from "@/app/(main)/sections/server-actions/workshop";
 import TestimonialSection from "@/app/(main)/sections/server-actions/Testimonials";
+import NewLetter from "@/app/(main)/sections/client-side/NewLetter";
+import React from "react";
 
 
 
@@ -18,8 +20,12 @@ export default function Index() {
           <Hero/>
           <EventSection/>
           <WorkshopSection/>
+
           <Departament/>
+          <NewLetter/>
           <TestimonialSection/>
+
+
       </div>
 
   );

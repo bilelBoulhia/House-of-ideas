@@ -41,13 +41,13 @@ export const ReviewForm = () => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}
-                  className="flex flex-col  justify-center items-center w-2/3  lg:w-1/2 gap-5 m-9 relative">
+                  className="flex flex-col  justify-center items-center w-full p-4  md:w-1/2 gap-5 m-9 relative">
                 <h2 className="text-2xl  font-bold  tracking-tighter sm:text-3xl">Review us</h2>
                 <div className="relative  w-full">
                     <Input
                         type="text"
                         placeholder="your name"
-                        className="w-full dark:border-white/40 shadow-sm placeholder:text-muted-foreground focus:border-black border-2 dark:focus:border-white  text-lg py-6"
+                        className="w-full border-slate-700 shadow-sm placeholder:text-muted-foreground focus:border-black border-[1px] dark:focus:border-white  text-lg py-6"
                         {...register("reviewer", {
                             required: "name is required",
                             pattern: {
@@ -66,7 +66,7 @@ export const ReviewForm = () => {
                 <div className="relative w-full">
           <textarea
               placeholder="Review"
-              className="flex  min-h-[150px] w-full rounded-md   bg-transparent px-3 py-2  border-2 dark:border-white/40 text-lg shadow-sm placeholder:text-muted-foreground"
+              className="flex  min-h-[150px] w-full rounded-md   bg-transparent px-3 py-2  border-[1px] border-slate-700 text-lg shadow-sm placeholder:text-muted-foreground"
               {...register("review", {
                   required: "Review is required",
                   minLength: {
