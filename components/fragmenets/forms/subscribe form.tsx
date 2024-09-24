@@ -1,12 +1,15 @@
 'use client'
 
-import React, {forwardRef, useImperativeHandle} from 'react'
+import React, {forwardRef, useImperativeHandle, useState} from 'react'
 import {useForm} from 'react-hook-form'
 
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
 
 import {Tables} from "@/utils/DatabaseTypes";
+import {Checkbox} from "@/components/ui/checkbox";
+import {CheckedState} from "@radix-ui/react-checkbox";
+import {insert} from "@/app/lib/supabase/client-api";
 
 
 export interface SubscribeFormRef {
@@ -15,9 +18,30 @@ export interface SubscribeFormRef {
 
 export  const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: number, onSubmit: (formData: Tables<'applicants'>) => void }, ref) => {
      const {register, handleSubmit, formState: {errors}} = useForm<Tables<'applicants'>>()
-
+    const [termsAccepted, setTermsAccepted] = useState(false);
 
     const handleFormSubmit = (data: Tables<'applicants'>) => {
+
+        // @ts-ignore
+        const newsdata: Tables<'newsletter'> = {
+
+            email: data.email
+
+        }
+        if (termsAccepted) {
+            const insertdata = async (newsdata: Tables<'newsletter'>) => {
+                try {
+                    await insert<Tables<'newsletter'>>('newsletter', newsdata).catch(r => console.error(r));
+
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            insertdata(newsdata).catch(r => console.error(r));
+
+        }
+
+
         const formDataWithWorkshop = {
             ...data,
             workshopid: workshopid
@@ -134,7 +158,21 @@ export  const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: n
                             {errors.whyjoin && <p className="text-red-500 text-sm mt-1">{errors.whyjoin.message}</p>}
                         </div>
 
+                        <div className="sm:col-span-3">
+                            <div className="flex items-center">
+                                <Checkbox
 
+                                    checked={termsAccepted}
+                                    onCheckedChange={(checked: CheckedState) => {
+                                        if (typeof checked === "boolean") {
+                                            setTermsAccepted(checked);
+                                        }
+                                    }}
+                                    className="mr-2"
+                                />
+                                <span className="text-sm">Subscribe to our newsletter</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
