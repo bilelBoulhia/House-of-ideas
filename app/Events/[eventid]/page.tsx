@@ -109,7 +109,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
 
                                     <div className='w-full flex-row items-start flex large-phone:flex-row mb-4 sm:mb-6 gap-4 justify-start '>
                                         <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter ">
-                                            About the Event
+                                            About 
                                         </h2>
                                         <InstagramLink href={event.instagramlink}/>
                                     </div>
