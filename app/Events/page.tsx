@@ -84,9 +84,9 @@ export default function Index() {
         const getdata = async () => {
             try {
                 setIsLoading(true);
-                const WorkshopData: Tables<'events'>[] = await fetch("events", false, ['eventname,eventpic,eventid']);
+                const EventData: Tables<'events'>[] = await fetch("events", false, ['eventname,eventpic,eventid'],(q)=>q.order('date', {ascending: false}));
 
-                setdata(WorkshopData);
+                setdata(EventData);
             } catch (error) {
                 console.error(error);
             } finally {
