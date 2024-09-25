@@ -32,7 +32,7 @@ export default function Testimonials({data}:{data:Tables<'reviews'>[]}) {
         <div id='Reviews' className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
 
-            <AnimatedHeading sentence={sentence} className='bg-[#f6faf4] dark:bg-[#000408]'/>
+            <AnimatedHeading sentence={sentence} className='bg-[#f6faf4] dark:bg-[#000306]'/>
             <div
                 className=" mt-12  rounded-md flex flex-col antialiased  dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards

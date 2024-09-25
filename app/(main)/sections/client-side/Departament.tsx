@@ -116,8 +116,14 @@ export default function Departament() {
             <div className="flex flex-col md:flex-row">
 
             <div className="relative   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
-                    <div className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>  <AnimatePresence mode="wait">
+                <div
+                    style={{zIndex:-3}}
+
+                    className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
+
+                <AnimatePresence mode="wait">
                     <motion.h2
+
                         key={departments[c].name}
                         initial={{y: 150}}
                         animate={{y: 0}}
@@ -125,7 +131,7 @@ export default function Departament() {
                         transition={{duration: 0.6, ease: "easeInOut"}}
                         className="iphone5:text-5xl  medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
                         style={{
-                            zIndex:-1,
+                            zIndex:-4,
                             textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
                             WebkitTextStroke: '2px rgba(255,255,255,0.1)',
                         }}
@@ -138,7 +144,7 @@ export default function Departament() {
                 <div className="relative md:w-1/2 p-12 flex items-center  justify-center overflow-hidden">
                     <AnimatePresence mode="wait">
                         <motion.ul
-                            style={{zIndex:-1}}
+
                             key={c}
                             //max-w-md
                             className="space-y-4 min-w-[310px]  max-w-[350px]  relative z-10"

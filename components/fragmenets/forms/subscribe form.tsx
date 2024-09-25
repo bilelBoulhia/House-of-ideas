@@ -149,7 +149,7 @@ export  const SubscribeForm = forwardRef(({onSubmit,workshopid}: { workshopid: n
                             <Label htmlFor="whyjoin">Why do you want to join this workshop</Label>
                             <textarea
                                 id="whyjoin"
-                                {...register("email", {
+                                {...register("whyjoin", {
                                     required: "this question is required",
 
                                 })}

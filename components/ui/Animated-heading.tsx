@@ -1,5 +1,5 @@
 
-import { motion } from "framer-motion"
+import {easeInOut, motion} from "framer-motion"
 import { InfiniteMovingCards } from "@/components/ui/infinite-carousel"
 import { cn } from "@/app/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -53,18 +53,28 @@ export const AnimatedHeading = ({ sentence, className,color, size }: AnimatedHea
         />
       </div>
 
-      <div className="flex-row flex items-start w-full justify-start">
+      {/*
+
+
+      */}
+      <motion.div
+          whileInView={{zIndex: 2}}
+          transition={{delay: 3}}
+          viewport={{once: true}}
+          style={{zIndex:-2}}
+
+          className="flex-row flex items-start  w-full justify-start">
         <motion.span
-          style={{ zIndex: -2 }}
+
           viewport={{ once: true }}
           initial={{ opacity: 1, x: '-100%' }}
           whileInView={{ opacity: 1, x: 5 }}
           transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.6 }}
-          className={cn("uppercase font-extrabold text-center  font-sans tracking-tight",Variants({color}))}
+          className={cn("uppercase  font-extrabold text-center  font-sans tracking-tight",Variants({color}))}
         >
           {sentence[1]}
         </motion.span>
-      </div>
+      </motion.div>
     </div>
   )
 }
