@@ -124,7 +124,7 @@ export default function Navbar() {
                 <div className='relative flex-row items-center p-1  justify-center hidden slighty-large-phone:flex'>
 
                     <AnimatedNavBarBg {...animations} />
-                    <NewHiIcon className='size-[3rem]'/>
+                    <NewHiIcon isAnimated={true} className='size-[3rem]'/>
                     {links.map((section, index) => (
                             <Button  variant='link' onClick={() => router.push(section.href)} key={index}>{section.label}</Button>
                     ))}

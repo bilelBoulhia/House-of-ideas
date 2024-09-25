@@ -5,7 +5,7 @@ import {Tables} from "@/utils/DatabaseTypes";
 
 
 export default async function EventSection() {
-    const data = await fetch("events", false, ["eventpic,eventid"]) as Tables<'events'>[];
+    const data = await fetch("events", false, ["eventpic,eventid"],(q)=>q.order('date', {ascending: false})) as Tables<'events'>[];
 
     return <Event data={data} />
 }

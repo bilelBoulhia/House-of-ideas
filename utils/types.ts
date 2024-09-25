@@ -13,21 +13,10 @@ export const shadowVariants = {
 
 
 
-export interface CourseData {
-    title: string
-    description: string
-    picture?: StaticImageData
-    tutor: string
-
-}
 
 export interface IconProps {
     className?: string;
     animate?: boolean ;
+    isAnimated?:boolean
 }
 
-
-export  interface Loadingprops {
-    className?: string;
-    children?: React.ReactNode;
-}
