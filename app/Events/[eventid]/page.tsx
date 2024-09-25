@@ -75,15 +75,15 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
 
     return (
 
-        <div>
+        <div >
 
-            <div className='flex flex-col mt-[5rem] m-2 justify-center    gap-2'>
+            <div className='flex flex-col mt-[5rem] m-2 justify-center  gap-2'>
                 <BackgroundBeams/>
 
                 {eventdata.map((event) => (
 
-                    <div className="flex flex-col lg:flex-row ">
-                        <div className="lg:w-1/2  flex  justify-center">
+                    <div className="flex flex-col z-10    lg:flex-row ">
+                        <div className="lg:w-1/2    flex  justify-center">
                             <motion.div
                                 variants={shadowVariants}
                                 initial="hidden"
@@ -132,7 +132,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                 ))}
 
 
-                <div className='p-6 mt-2'>
+                <div className='p-6 z-10   mt-2'>
                     <Modal>
                         <ModalTrigger asChild>
                             <Button
@@ -159,7 +159,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                 </div>
 
 
-                <div className='p-6 mt-6'>
+                <div className='p-6 z-10   mt-6'>
 
                     {eventdata.map((event) => (
                         <section className="mb-12 text-left">

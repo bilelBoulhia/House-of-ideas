@@ -32,10 +32,10 @@ export default function Toast({show, message, onClose}: ToastProps) {
                     animate={{opacity: 1, y: 0, scale: 1}}
                     exit={{opacity: 0, y: 20, scale: 0.5}}
                     transition={{type: "spring", stiffness: 500, damping: 30}}
-                    className="fixed inset-x-0 bottom-0 mx-auto mb-4 w-full max-w-sm"
+                    className="fixed inset-x-0   bottom-0 mx-auto mb-4 w-full max-w-sm"
                     style={{zIndex: 50}}
                 >
-                    <div className="bg-gradient-to-r m-2 from-purple-600 to-violet-600 rounded-lg shadow-lg overflow-hidden">
+                    <div className="bg-gradient-to-r m-2  from-purple-600 to-violet-600 rounded-lg shadow-lg overflow-hidden">
                         <div className="p-4 flex items-center justify-between">
                             <p className="text-white font-medium">{message}</p>
                             <button

@@ -78,7 +78,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
     return (
 
-<div className='w-full'>
+<div className='z-10 w-full'>
 
     <AnimatedHeading sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] blur-[3px]'/>
 
@@ -173,7 +173,9 @@ export default function Index() {
     }, []);
     return (
 
-        <div className='flex flex-col mt-[8rem] items-center justify-center overflow-hidden gap-2'>
+        <div
+            style={{zIndex:15}}
+            className='flex flex-col  mt-[8rem] items-center justify-center overflow-hidden gap-2'>
             <Suspense fallback={<Loading/>}>
                 {isLoading ?
                     <Loading/>
