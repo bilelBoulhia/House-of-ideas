@@ -2,17 +2,19 @@ import React, {Suspense, useEffect, useState} from "react"
 import {motion} from "framer-motion"
 import {Tables} from "@/utils/DatabaseTypes"
 import {fetch} from "@/app/lib/supabase/client-api"
+import {CalendarIcon, ClockIcon} from "lucide-react";
+import {Badge} from "@/components/ui/badge";
 
 function TutorSkeleton() {
     return (
         <div className="animate-pulse flex flex-col lg:flex-row w-full">
             <div className="lg:w-1/2 p-12 flex items-center justify-center">
-                <div className="h-12 bg-white/30 backdrop-blur-2xl rounded w-3/4"></div>
+                <div className="h-12 bg-white/30 backdrop-blur-2xl rounded w-3/4"/>
             </div>
-            <div className="w-px "></div>
+            <div className="w-px"/>
             <div className="lg:w-1/2 p-12 flex items-center justify-center">
                 <div className="h-64 w-64  bg-white/30 backdrop-blur-2xl bg-opacity-10
-                   animate-pulse rounded-xl"></div>
+                   animate-pulse rounded-xl"/>
             </div>
         </div>
     )
@@ -65,6 +67,26 @@ export function WorkshopDetails({data}: { data: Tables<'workshops'> | null }) {
                 <h2 className='text-xl max-w-xl tracking-tight font-medium p-3 text-center'>
                     {data?.workshopdescription}
                 </h2>
+                <div
+                    className="w-full max-w-sm p-4 space-y-4 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg shadow-sm">
+                    <div className="flex items-center space-x-3">
+                        <CalendarIcon className="w-6 h-6 text-primary"/>
+                        <h2 className="text-xl font-semibold text-foreground">{data?.date}</h2>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                        <ClockIcon className="w-6 h-6 text-primary"/>
+                        <div className="flex items-center ">
+
+                            <Badge variant="secondary" className="text-lg px-2 py-1">
+                                {data?.starthour?.slice(0, 5)}
+                            </Badge>
+                            <span className="text-lg font-medium">-</span>
+                            <Badge variant="secondary" className="text-lg px-2 py-1">{data?.endhour?.slice(0, 5)}
+                            </Badge>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div className='flex flex-row h-full w-full items-center justify-center'>
                 <Suspense fallback={<TutorSkeleton/>}>

@@ -31,7 +31,7 @@ const departments : departmentsType[] = [
         ]
     },
       {
-        name: 'Design Department',
+        name: 'Polictics Department',
         description: [
             'Strategic brand management',
             'Digital marketing expertise',
@@ -40,7 +40,7 @@ const departments : departmentsType[] = [
         ]
     },
     {
-        name: 'Design Department',
+        name: 'French Department',
         description: [
             'Strategic brand management',
             'Digital marketing expertise',
@@ -49,7 +49,7 @@ const departments : departmentsType[] = [
         ]
     },
     {
-        name: 'Design Department',
+        name: 'Italian Department',
         description: [
             'Strategic brand management',
             'Digital marketing expertise',
@@ -58,7 +58,7 @@ const departments : departmentsType[] = [
         ]
     },
     {
-        name: 'Design Department',
+        name: 'Idk Department',
         description: [
             'Strategic brand management',
             'Digital marketing expertise',
@@ -67,7 +67,7 @@ const departments : departmentsType[] = [
         ]
     },
     {
-        name: 'Design Department',
+        name: 'Bilel Department',
         description: [
             'Strategic brand management',
             'Digital marketing expertise',

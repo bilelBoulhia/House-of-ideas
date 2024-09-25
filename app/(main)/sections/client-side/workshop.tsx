@@ -18,12 +18,13 @@ import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmene
 import {Tables} from "@/utils/DatabaseTypes";
 import {insert} from "@/app/lib/supabase/client-api";
 import Toast from "@/components/ui/toast";
-
+import { motion } from "framer-motion";
 
 
 
 
 export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
+
 
 
     const formRef = useRef<SubscribeFormRef>(null);
@@ -75,60 +76,90 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
         <div className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
             <AnimatedHeading sentence={["Latest", "Workshops"]} className='bg-[#f5f7f3] dark:bg-[#00070e]'/>
 
-            <div
-                className='mt-10 grid sm:grid-cols-2 laptop:grid-cols-2 gap-8'>
-                {data.map((workshop, index) => (
+            {data == undefined || null ? (
+                <div
+                    className="flex flex-col m-4 min-h-[40rem] items-center justify-center  p-8 bg-gradient-to-br from-blue-950 to-black/80 rounded-3xl shadow-lg"
+                >
 
-                    <Card
-                        key={index}
-                        transition={{delay: 0.7,ease:'easeInOut'}}
-                        className='   dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
+                    <motion.h2
+                        className="text-3xl md:text-4xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600"
                     >
-                        <CardContent>
+                        Sorry, No Workshops at the Moment
+                    </motion.h2>
+                    <motion.div
 
-                            <CardUpperBody>
-                                <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
-                                    {workshop.workshopname}
-                                </CardTitle>
-                                <CardDescription className='text-neutral-800 dark:text-neutral-200'
-                                >
-                                    {workshop.workshopdescription}
-                                </CardDescription>
-                            </CardUpperBody>
+                        className=" p-6 rounded-2xl shadow-md  max-w-md w-full"
+                    >
+                        <p className="text-lg mb-4">
+                            We're working hard to bring you exciting new workshops
+                        </p>
+                        <div className="flex items-center justify-between text-sm ">
+                            <span>Next check: Soon</span>
+                            <span>Stay tuned!</span>
+                        </div>
+                    </motion.div>
 
-
-                            <CardBottomBody>
-                                <CardFooter>
-
-                             <Modal>
-                                 <ModalTrigger asChild>
-                                     <Button className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
-                                 </ModalTrigger>
-                                  <ModalBody>
-
-                                      <ModalContent>
-                                          <div>
-                                              <Stepper
-                                                  finishSentnce='subscribe'
-                                                  pages={pages(workshop)}
-                                                  onFinish={handleStepperFinish}
-                                              />
-
-                                          </div>
-                                      </ModalContent>
-                                  </ModalBody>
-                             </Modal>
-
-                                    <CardBadge>Free</CardBadge>
-                                </CardFooter>
-                            </CardBottomBody>
+                </div>
+            ) : (
 
 
-                        </CardContent>
-                    </Card>
+                <div className='mt-10 grid sm:grid-cols-2 laptop:grid-cols-2 gap-8'>
+                    {data.map((workshop, index) => (
 
-                ))}
-            </div>
+                        <Card
+                            key={index}
+                            transition={{delay: 0.7, ease: 'easeInOut'}}
+                            className='   dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
+                        >
+                            <CardContent>
+
+                                <CardUpperBody>
+                                    <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
+                                        {workshop.workshopname}
+                                    </CardTitle>
+                                    <CardDescription className='text-neutral-800 dark:text-neutral-200'
+                                    >
+                                        {workshop.workshopdescription}
+                                    </CardDescription>
+                                </CardUpperBody>
+
+
+                                <CardBottomBody>
+                                    <CardFooter>
+
+                                        <Modal>
+                                            <ModalTrigger asChild>
+                                                <Button
+                                                    className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
+                                            </ModalTrigger>
+                                            <ModalBody>
+
+                                                <ModalContent>
+                                                    <div>
+                                                        <Stepper
+                                            finishSentnce='subscribe'
+                                            pages={pages(workshop)}
+                                            onFinish={handleStepperFinish}
+                                        />
+
+                                    </div>
+                                </ModalContent>
+                            </ModalBody>
+                        </Modal>
+
+                        <CardBadge>Free</CardBadge>
+                    </CardFooter>
+                </CardBottomBody>
+
+
+            </CardContent>
+        </Card>
+
+    )
+)}
+</div>
+
+)}
             <Toast
                 show={showToast}
                 message="thank you well contact you soon"

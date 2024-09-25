@@ -6,7 +6,7 @@ import {motion} from "framer-motion";
 
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
 import {shadowVariants} from "@/utils/types";
-import Skeleton from "@/components/ui/Skeleton";
+
 
 import {Tables} from "@/utils/DatabaseTypes";
 import {fetch} from "@/app/lib/supabase/client-api";
@@ -24,8 +24,9 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
 
     return (
         <>
-            <div className='grid grid-cols-1 gap-12'>
 
+
+            <div className='grid grid-cols-1 gap-12'>
                 {data.map((event, i) => (
                     <div onClick={() => handleRouterClick(event.eventid)} key={i}>
 
@@ -49,20 +50,15 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
 
                     <motion.div
 
-                        className="w-full  aspect-[20/15] extra-large-tablet:aspect-[8/3]  rounded-xl overflow-hidden"
-                        initial={{x: -3}}
-                        whileInView={{x: 0}}
-                        viewport={{once: true}}
+                        className="w-full max-h-[50vh]  aspect-[20/15] extra-large-tablet:aspect-[8/3]  rounded-xl overflow-hidden"
+                        variants={shadowVariants}
+                        initial="hidden"
+                        whileInView="visible"
                         transition={{duration: 0.3, ease: 'easeInOut'}}
                     >
                         <motion.img
-
                             src={event.eventpic}
-                            variants={shadowVariants}
-                            initial="hidden"
-                            whileInView="visible"
                             whileHover={{scale: 1.02}}
-
                             className="rounded-xl relative h-full w-full object-cover"
 
                         />
@@ -72,6 +68,7 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
             ))}
 
         </div>
+
 
     </>
     )
@@ -88,6 +85,7 @@ export default function Index() {
             try {
                 setIsLoading(true);
                 const WorkshopData: Tables<'events'>[] = await fetch("events", false, ['eventname,eventpic,eventid']);
+
                 setdata(WorkshopData);
             } catch (error) {
                 console.error(error);
@@ -103,11 +101,11 @@ export default function Index() {
 
 
     return (
-        <div className='flex flex-col mt-[4rem] items-center justify-center p-5 gap-2'>
+        <div className='flex overflow-hidden flex-col mt-[4rem] items-center justify-center p-5 gap-2'>
 
             <Suspense fallback={<Loading/>}>
                 {isLoading ?
-                    <Loader/>
+                    <Loading/>
                     :
                     <PageContent data={data}/>
                 }

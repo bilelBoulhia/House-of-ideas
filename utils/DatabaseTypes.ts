@@ -7,6 +7,31 @@ export type Json =
     | Json[]
 
 export type Database = {
+    graphql_public: {
+        Tables: {
+            [_ in never]: never
+        }
+        Views: {
+            [_ in never]: never
+        }
+        Functions: {
+            graphql: {
+                Args: {
+                    operationName?: string
+                    query?: string
+                    variables?: Json
+                    extensions?: Json
+                }
+                Returns: Json
+            }
+        }
+        Enums: {
+            [_ in never]: never
+        }
+        CompositeTypes: {
+            [_ in never]: never
+        }
+    }
     public: {
         Tables: {
             applicants: {
@@ -114,40 +139,49 @@ export type Database = {
             }
             events: {
                 Row: {
-                    eventdate: string
+                    date: string
                     eventdescription: string
                     eventendhour: string
                     eventid: number
                     eventlocation: string
                     eventname: string
                     eventpic: string
-                    eventstarthour: string | null
+                    eventstarthour: string
                     guest: number | null
+                    instagramlink: string
+                    isavailable: boolean
                     sponsor: number | null
+                    visitorsnum: number | null
                 }
                 Insert: {
-                    eventdate: string
+                    date: string
                     eventdescription: string
                     eventendhour: string
                     eventid?: number
                     eventlocation: string
                     eventname: string
                     eventpic: string
-                    eventstarthour?: string | null
+                    eventstarthour: string
                     guest?: number | null
+                    instagramlink: string
+                    isavailable?: boolean
                     sponsor?: number | null
+                    visitorsnum?: number | null
                 }
                 Update: {
-                    eventdate?: string
+                    date?: string
                     eventdescription?: string
                     eventendhour?: string
                     eventid?: number
                     eventlocation?: string
                     eventname?: string
                     eventpic?: string
-                    eventstarthour?: string | null
+                    eventstarthour?: string
                     guest?: number | null
+                    instagramlink?: string
+                    isavailable?: boolean
                     sponsor?: number | null
+                    visitorsnum?: number | null
                 }
                 Relationships: [
                     {
@@ -261,21 +295,30 @@ export type Database = {
             }
             workshops: {
                 Row: {
+                    date: string
+                    endhour: string | null
                     isavailable: boolean
+                    starthour: string | null
                     tutor: number | null
                     workshopdescription: string
                     workshopid: number
                     workshopname: string
                 }
                 Insert: {
+                    date: string
+                    endhour?: string | null
                     isavailable: boolean
+                    starthour?: string | null
                     tutor?: number | null
                     workshopdescription: string
                     workshopid?: number
                     workshopname: string
                 }
                 Update: {
+                    date?: string
+                    endhour?: string | null
                     isavailable?: boolean
+                    starthour?: string | null
                     tutor?: number | null
                     workshopdescription?: string
                     workshopid?: number
@@ -296,7 +339,18 @@ export type Database = {
             [_ in never]: never
         }
         Functions: {
-            [_ in never]: never
+            update_event_availability: {
+                Args: Record<PropertyKey, never>
+                Returns: undefined
+            }
+            update_past_events: {
+                Args: Record<PropertyKey, never>
+                Returns: number
+            }
+            update_workshop_availability: {
+                Args: Record<PropertyKey, never>
+                Returns: undefined
+            }
         }
         Enums: {
             [_ in never]: never

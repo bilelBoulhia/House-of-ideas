@@ -18,6 +18,8 @@ import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger} from "@/comp
 
 import Toast from "@/components/ui/toast";
 import Stepper from "@/components/ui/Stepper";
+import InstagramLink from "@/components/instagram-link";
+import {PersonStanding} from "lucide-react";
 
 
 
@@ -26,11 +28,10 @@ import Stepper from "@/components/ui/Stepper";
 
 
 
-const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Tables<'sponsors'>[]] }) => {
+const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'events'>[], guestdata: Tables<'guests'>[], sponsordata:  Tables<'sponsors'>[] }) => {
 
-    if (data[0].length=== 0) {
+    if ( eventdata.length === 0 ) {
         notFound();
-
     }
     const formRef = useRef<SubscribeFormRef>(null);
     const modalRef = useRef<ModalBodyRef>(null);
@@ -65,62 +66,81 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
         </div>,
 
     ]
-
     const handleStepperFinish = () => {
         formRef.current?.submitForm();
     };
 
+    console.log(eventdata)
+
 
     return (
 
-        <>
+        <div>
 
             <div className='flex flex-col mt-[5rem] m-2 justify-center    gap-2'>
                 <BackgroundBeams/>
 
-                {data[0].map((event) => (
+                {eventdata.map((event) => (
 
-                    <div className='flex flex-col lg:flex-row  overflow-hidden justify-center  gap-3'>
-                        <motion.div className='m-3'>
-                            <motion.img
-                                src={event.eventpic}
+                    <div className="flex flex-col lg:flex-row ">
+                        <div className="lg:w-1/2  flex  justify-center">
+                            <motion.div
                                 variants={shadowVariants}
                                 initial="hidden"
                                 whileInView="visible"
-                                className="rounded-xl  min-w-full z-3 min-h-[25vh] object-cover  flex[0_0_100%] "/>
 
-                        </motion.div>
+                                className="w-full h-full  max-h-[400px] rounded-xl overflow-hidden">
+                                <img
+                                    src={event.eventpic}
+                                    alt='Event image'
+                                    className="w-full h-full object-cover"
+                                />
+                            </motion.div>
+                        </div>
 
-                        <div className="pt-0 lg:pt-[3rem] pl-4  z-[-2] lg:pl-0 z-1">
+                        <div className="lg:w-1/2 p-4 overflow-y-auto">
+                            <div className="max-w-2xl p-4 ">
 
-                            <div className="max-w-4xl mx-auto pl-2 overflow-hidden">
-                                <h1 className="text-3xl medium-phone:text-4xl font-black  text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6 md:mb-8">
+                                <h1 className="text-3xl sm:text-4xl font-black text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6">
                                     {event.eventname}
                                 </h1>
 
                                 <section className="text-left">
-                                    <h2 className="text-2xl text-left medium-phone:text-3xl font-bold tracking-tighter  mb-6 ">
-                                        About the Event
-                                    </h2>
 
-                                    <p className="text-md  md:text-xl  lg:text-2xl  mb-4 sm:mb-5 md:mb-6 leading-relaxed">
+                                    <div className='w-full flex-row items-start flex large-phone:flex-row mb-4 sm:mb-6 gap-4 justify-start '>
+                                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter ">
+                                            About the Event
+                                        </h2>
+                                        <InstagramLink href={event.instagramlink}/>
+                                    </div>
+
+
+                                    <p className="text-md sm:text-xl lg:text-2xl mb-4 sm:mb-6 leading-relaxed">
                                         {event.eventdescription}
                                     </p>
                                 </section>
+
                             </div>
                         </div>
+                        <pre>
+
+                   </pre>
 
                     </div>
 
+
                 ))}
 
-                <div className='relative  p-6 mt-2'>
 
+                <div className='p-6 mt-2'>
                     <Modal>
                         <ModalTrigger asChild>
                             <Button
-                                className='bg-violet-500 text-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)] rounded-xl hover:bg-violet-600 dark:text-white  py-8  px-10'>
-                                subscribe to the event</Button>
+                                disabled={!eventdata[0].isavailable}
+                                className='bg-violet-500 text-md medium-phone:text-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)] rounded-xl hover:bg-violet-600 dark:text-white  py-8  px-10'>
+                                {eventdata[0].isavailable ? 'Subscribe to the event' : 'the event has passed !'}
+
+                            </Button>
                         </ModalTrigger>
                         <ModalBody ref={modalRef}>
 
@@ -128,7 +148,7 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                                 <div>
                                     <Stepper
                                         finishSentnce='subscribe'
-                                        pages={pages(data[0][0])}
+                                        pages={pages(eventdata[0])}
                                         onFinish={handleStepperFinish}
                                     />
 
@@ -136,23 +156,24 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                             </ModalContent>
                         </ModalBody>
                     </Modal>
-
                 </div>
-
 
 
                 <div className='p-6 mt-6'>
 
-                    {data[0].map((event) => (
-                    <section className="mb-12 text-left">
+                    {eventdata.map((event) => (
+                        <section className="mb-12 text-left">
+
                         <h2 className="text-2xl medium-phone:text-3xl  font-bold tracking-tighter  mb-6 ">Event
                             Details</h2>
+
                         <div className="grid gap-8 md:grid-cols-2">
+
                             <Tag className='dark:bg-cyan-800 bg-[#A0DEFF] '>
                                 <Calendar className="w-8 h-8 text-purple-400"/>
                                 <div>
                                     <p className="text-sm ">Date</p>
-                                    <p className="text-lg font-medium">{event.eventdate}</p>
+                                    <p className="text-lg font-medium">{event.date}</p>
                                 </div>
                             </Tag>
                             <Tag className='dark:bg-[#7469B6] bg-[#91DDCF] '>
@@ -169,18 +190,43 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                                     <p className="text-lg font-medium">{event.eventstarthour?.slice(0, 5)} - {event.eventendhour.slice(0, 5)}</p>
                             </div>
                         </Tag>
+
                     </div>
                 </section>
                     ))}
 
 
+                    {eventdata.map((event) => (
+                        !event.isavailable && (
+                            <section className="mb-12 text-left" >
+                                <h2 className="text-2xl medium-phone:text-3xl font-bold tracking-tighter mb-6">
+                                    Event Overview
+                                </h2>
+
+                                <div className="grid gap-8 md:grid-cols-2">
+                                    <Tag className="dark:bg-slate-700 bg-[#A0DEFF]">
+                                        <PersonStanding className="w-8 h-8 text-purple-400"/>
+                                        <div>
+                                            <p className="text-sm">event attendees</p>
+                                            <p className="text-lg font-medium">
+                                                {event.visitorsnum === null ?  'no data' : event.visitorsnum }
+                                            </p>
+                                        </div>
+                                    </Tag>
+                                </div>
+                            </section>
+                        )
+                    ))}
+
+
+                    {guestdata.length > 0 && (
                 <section  className="w-full py-12 md:py-24 lg:py-32">
                     <div className="container px-4 md:px-6">
                         <div className="flex flex-col items-center justify-center space-y-4 text-center">
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Guests</h2>
                         </div>
                         <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
-                            {data[1].map((guest, i) => (
+                            {guestdata.map((guest, i) => (
                                 <div key={i} className="flex items-center justify-center p-4  rounded-lg ">
 
 
@@ -196,11 +242,11 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
 
                                         <div
                                             className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
-                                            <h1 className="text-white font-bold font-sans text-xl  md:text-2xl mb-2 tracking-tight">
+                                            <h1 className="text-white text-center font-bold font-sans text-xl  md:text-2xl mb-2 tracking-tight">
                                                 {guest.guestname}
                                             </h1>
                                             <div
-                                                className="space-y-1 overflow-hidden max-h-0 transition-all duration-300 group-hover:max-h-24">
+                                                className="space-y-1 text-center overflow-hidden max-h-0 transition-all duration-300 group-hover:max-h-24">
                                                 {guest.guestoccupation.map((oc, i) => (
                                                     <p
                                                         key={i}
@@ -225,6 +271,8 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                     </div>
                 </section>
 
+                    )}
+                    {sponsordata.length > 0 && (
                 <section id='sponsors' className="w-full py-12 md:py-24 lg:py-32">
 
                     <div className="container px-4 md:px-6">
@@ -232,7 +280,7 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>
                         </div>
                         <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
-                            {data[2].map((sponsor, i) => (
+                            {sponsordata.map((sponsor, i) => (
                                 <div key={i}
                                      className="flex items-center  justify-center p-4  ">
 
@@ -245,9 +293,13 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                         </div>
                     </div>
                 </section>
-
+                    )}
 
             </div>
+
+
+
+
         </div>
 
             <Toast
@@ -255,7 +307,7 @@ const PageContent = ({data}: { data: [Tables<'events'>[], Tables<'guests'>[], Ta
                 message="thank you well contact you soon"
                 onClose={handleCloseToast}
             />
-        </>
+        </div>
     )
 }
 
@@ -269,6 +321,8 @@ export default function Index({params}: { params: { eventid: number } }) {
     const [guestdata, setguestdata] = useState<Tables<'guests'>[]>([]);
     const [sponsordata, setsponsorsdata] = useState<Tables<'sponsors'>[]>([]);
 
+
+
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
 
@@ -276,14 +330,17 @@ export default function Index({params}: { params: { eventid: number } }) {
             setIsLoading(true);
             try {
                 const EventData: Tables<'events'>[] = await fetch("events", false, ['*'],(query) => query.limit(1).eq('eventid', params.eventid));
-
-                const GuestsData: Tables<'guests'>[] = await fetch("guests", false, ['*'],query => query.eq('guestid',EventData[0].guest));
-                const SponsorsData: Tables<'sponsors'>[] = await fetch("sponsors", false, ['*'], query => query.eq('sponsorid', EventData[0].sponsor));
-
-
                 seteventdata(EventData);
-                setguestdata(GuestsData);
-                setsponsorsdata(SponsorsData);
+
+                if(EventData[0].guest != null && EventData[0].guest != null) {
+
+                    const GuestsData: Tables<'guests'>[] = await fetch("guests", false, ['*'], query => query.eq('guestid', EventData[0].guest));
+                    const SponsorsData: Tables<'sponsors'>[] = await fetch("sponsors", false, ['*'], query => query.eq('sponsorid', EventData[0].sponsor));
+                    setguestdata(GuestsData);
+                    setsponsorsdata(SponsorsData);
+                }
+
+
 
             } catch (error) {
                 console.error(error);
@@ -297,15 +354,15 @@ export default function Index({params}: { params: { eventid: number } }) {
 
 
     return (
-        <div>
+        <div className='w-full'>
 
-            <Suspense fallback={<Loading/>}>
+            <Suspense  fallback={<Loading/>}>
 
                 {isLoading ?
 
                     <Loading/>
                     :
-                    <PageContent data={[eventdata, guestdata, sponsordata]}/>
+                    <PageContent eventdata={eventdata} sponsordata={sponsordata} guestdata={guestdata} />
 
                 }
             </Suspense>

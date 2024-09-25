@@ -5,7 +5,7 @@ export default function Footer() {
     return (
 
 
-        <footer id='ContactUs' className="border-gray-800 mt-4 border-t-[1px]">
+        <footer id='ContactUs' className="border-gray-800 mt-4  overflow-hidden border-t-[1px]">
             <div className="mx-auto w-full px-2 p-1 py-6 lg:py-8">
                 <div className="md:flex md:justify-between">
 
@@ -30,7 +30,7 @@ export default function Footer() {
                                        className="hover:underline ">Github</a>
                                 </li>
                                 <li>
-                                    <a  className="hover:underline">hoi.univalger3@gmail.com</a>
+                                    <a className="hover:underline ">hoi.univalger3@gmail.com</a>
                                 </li>
                             </ul>
                         </div>

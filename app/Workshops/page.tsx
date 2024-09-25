@@ -32,10 +32,7 @@ import {Loading} from "@/app/Loading";
 
 function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
-    if (data.length === 0) {
-        notFound();
 
-    }
 
     const formRef = useRef<SubscribeFormRef>(null);
     const modalRef = useRef<ModalBodyRef>(null);
@@ -81,76 +78,78 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
     return (
 
-<>
+<div className='w-full'>
 
     <AnimatedHeading sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] blur-[3px]'/>
-    <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
-            {data.map((workshop, index) => (
-
-                <Card key={index}
-                      className='relative group bg-[linear-gradient(to_top_left,#f0f0f0,#f6f6f6,#f0f0f0)] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
-
-                    <CardContent>
-
-                        <CardUpperBody>
-
-                            <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
-                                {workshop.workshopname}
-
-                            </CardTitle>
-
-                            <CardDescription className='text-neutral-800 dark:text-neutral-200'
-                            >
-                                {workshop.workshopdescription}
-                            </CardDescription>
-                        </CardUpperBody>
-
-
-                        <CardBottomBody>
-                        <CardFooter>
-
-                                <Modal>
-                                    <ModalTrigger asChild>
-                                        <Button className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
-                                    </ModalTrigger>
-                                    <ModalBody ref={modalRef}>
-
-                                        <ModalContent>
-                                            <div>
-                                                <Stepper
-                                                    finishSentnce='subscribe'
-                                                    pages={pages(workshop)}
-                                                    onFinish={handleStepperFinish}
-                                                />
-
-                                            </div>
-                                        </ModalContent>
-                                    </ModalBody>
-                                </Modal>
-
-                                <CardBadge>Free</CardBadge>
-                            </CardFooter>
-                        </CardBottomBody>
-
-
-                    </CardContent>
-
-                </Card>
 
 
 
+            <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
+                {data.map((workshop, index) => (
+                    <Card key={index}
+                          className='relative group bg-[linear-gradient(to_top_left,#f0f0f0,#f6f6f6,#f0f0f0)] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
 
-            ))}
+                        <CardContent>
 
-            <Toast
-                show={showToast}
-                message="thank you well contact you soon"
-                onClose={handleCloseToast}
-            />
+                            <CardUpperBody>
 
-        </div>
+                                <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
+                                    {workshop.workshopname}
 
-</>
+                                </CardTitle>
+
+                                <CardDescription className='text-neutral-800 dark:text-neutral-200'
+                                >
+                                    {workshop.workshopdescription}
+                                </CardDescription>
+                            </CardUpperBody>
+
+
+                            <CardBottomBody>
+                                <CardFooter>
+
+                                    <Modal>
+                                        <ModalTrigger asChild>
+                                            <Button
+                                                className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
+                                        </ModalTrigger>
+                                        <ModalBody ref={modalRef}>
+
+                                            <ModalContent>
+                                                <div>
+                                                    <Stepper
+                                                        finishSentnce='subscribe'
+                                                        pages={pages(workshop)}
+                                                        onFinish={handleStepperFinish}
+                                                    />
+
+                                                </div>
+                                            </ModalContent>
+                                        </ModalBody>
+                                    </Modal>
+
+                                    <CardBadge>Free</CardBadge>
+                                </CardFooter>
+                            </CardBottomBody>
+
+
+                        </CardContent>
+
+                    </Card>
+
+
+                ))}
+
+                <Toast
+                    show={showToast}
+                    message="thank you well contact you soon"
+                    onClose={handleCloseToast}
+                />
+
+            </div>
+
+
+</div>
     )
 }
 
@@ -170,17 +169,17 @@ export default function Index() {
                 setIsLoading(false);
             }
         };
-        getdata().catch(r=>console.error(r));
+        getdata().catch(r => console.error(r));
     }, []);
     return (
 
         <div className='flex flex-col mt-[8rem] items-center justify-center overflow-hidden gap-2'>
             <Suspense fallback={<Loading/>}>
-            {isLoading ?
-                <Loading/>
-                :
-                <PageContent data={data}/>
-            }
+                {isLoading ?
+                    <Loading/>
+                    :
+                    <PageContent data={data}/>
+                }
             </Suspense>
             <BackgroundBeams/>
         </div>
