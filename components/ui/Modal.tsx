@@ -41,7 +41,7 @@ export const useModal = () => {
 };
 
 export function Modal({ children }: { children: ReactNode }) {
-    return <ModalProvider>{children}</ModalProvider>;
+    return  <ModalProvider>{children}</ModalProvider>;
 }
 
 export const ModalTrigger = ({children, className, asChild
@@ -85,14 +85,16 @@ export const ModalBody = forwardRef<ModalBodyRef, {
     }));
 
     return (
-        <AnimatePresence>
+        <AnimatePresence >
             {open && (
                 <motion.div
+                    style={{zIndex: 23}}
                     initial={{
                         opacity: 0,
                     }}
                     animate={{
                         opacity: 1,
+
                         backdropFilter: "blur(10px)",
                     }}
                     exit={{
@@ -177,6 +179,7 @@ export const ModalFooter = ({
 const Overlay = ({ className }: { className?: string }) => {
     return (
         <motion.div
+            style={{zIndex: 23}}
             initial={{
                 opacity: 0,
             }}
@@ -188,7 +191,7 @@ const Overlay = ({ className }: { className?: string }) => {
                 opacity: 0,
                 backdropFilter: "blur(0px)",
             }}
-            className={`fixed inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className}`}
+            className={`fixed  inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className}`}
         ></motion.div>
     );
 };

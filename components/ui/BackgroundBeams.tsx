@@ -7,8 +7,7 @@ import {cn} from "@/app/lib/utils";
 export const BackgroundBeams = React.memo(
     ({ className }: { className?: string }) => {
         return (
-            <div
-                className={cn("fixed inset-0  [mask-size:40px] [mask-repeat:no-repeat] flex items-center justify-center",
+            <div className={cn("fixed inset-0  [mask-size:40px] [mask-repeat:no-repeat] flex items-center justify-center",
                     className
                 )}
 

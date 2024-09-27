@@ -17,6 +17,6 @@ export const shadowVariants = {
 export interface IconProps {
     className?: string;
     animate?: boolean ;
-    isAnimated?:boolean
+
 }
 

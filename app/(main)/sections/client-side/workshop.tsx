@@ -109,7 +109,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                         <Card
                             key={index}
                             transition={{delay: 0.7, ease: 'easeInOut'}}
-                            className='   dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
+                            className=' bg-[#fffef9]  dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
                         >
                             <CardContent>
 

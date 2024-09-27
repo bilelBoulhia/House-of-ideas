@@ -23,12 +23,11 @@ export default function Hero() {
     return (
         <div>
 
-            <div className='flex min-h-[calc(100vh-40rem)]  justify-evenly  overflow-hidden  flex-col gap-2 xl:gap-7  w-full p-4'>
+            <div className='flex min-h-[calc(100vh-40rem)]  justify-evenly  overflow-hidden  flex-col w-full '>
                 <motion.div>
-                    <h2 className=" sticky mt-[3rem] iphone5:text-[2.6rem] medium-phone:text-5xl  large-phone:text-7xl  md:text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
+                    <h2 className="mt-[3rem] iphone5:text-[2.6rem] medium-phone:text-5xl  large-phone:text-7xl   font-bold text-center text-black dark:text-white font-sans tracking-tight">
                         <FlipText>Welcome</FlipText> <FlipText>to</FlipText> <br/>
-                        <div
-                             className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
+                        <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
                             <div
                                 className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
                                 <span>house of Ideas</span>
@@ -37,12 +36,12 @@ export default function Hero() {
                     </h2>
                 </motion.div>
                 {/*op 0.1*/}
-                <motion.div className="text-center  font-mono text-purple-300 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mt-6 bg-gradient-to-b from-gray-900 to-black p-6 rounded-lg shadow-[0_0_15px_rgba(128,0,128,0.1)] border border-purple-900"
+                <motion.div className="text-center mx-2 font-mono text-purple-300 text-lg md:text-xl lg:text-2xl max-w-3xl  mt-4 bg-gradient-to-b from-gray-900 to-black p-6 rounded-lg shadow-[0_0_15px_rgba(128,0,128,0.1)] border border-purple-900"
                     style={{boxShadow: 'inset 0 1px 3px 0 rgba(128,0,128,0.2), 0 0 15px rgba(128,0,128,0.2)',
                         backgroundImage: 'repeating-linear-gradient(0deg, rgba(64,0,64,0.15), rgba(64,0,64,0.15) 1px, transparent 1px, transparent 2px)'
                     }}
                 >
-                    <div className="flex items-center justify-between mb-4 border-b border-purple-800 pb-2">
+                    <div className="flex  items-center justify-between mb-4 border-b border-purple-800 pb-2">
                         <div className="flex space-x-2">
                             <div className="w-3 h-3 rounded-full bg-red-500"></div>
                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -54,7 +53,7 @@ export default function Hero() {
                         <span className="text-purple-600  dark:text-purple-400 whitespace-nowrap">user@houseofideas:~$&nbsp;</span>
                         <TypewriterEffect className='text-purple-600  dark:text-purple-400' words={sentence}/>
                     </div>
-                    <p className="whitespace-pre-line text-purple-400 dark:text-purple-300 text-left ">
+                    <p className="whitespace-pre-line  text-purple-400 dark:text-purple-300 text-left ">
                         Welcome to the official website of House of Ideas,
                         where passion meets discovery. As a leading
                         scientific club at Economic University, we are
@@ -66,10 +65,9 @@ export default function Hero() {
                       className='animate-pulse'>█</motion.span>
                     </p>
                 </motion.div>
-                <div className='flex md:gap-12 gap-5  mt-2 flex-col sm:flex-row justify-center items-center'>
+                <div className='flex md:gap-12 gap-5  mt-3 flex-col sm:flex-row justify-center items-center'>
                     <Button className='bg-gradient-to-r  from-purple-700 to-purple-900' onClick={()=>router.push('/Workshops')} size='md' variant='cto'>
                         <span className="mr-2 min-w-[13rem]">
-
                             check out  all   Workshops
                         </span>
                         <ArrowRight className=" w-5 h-5  transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>

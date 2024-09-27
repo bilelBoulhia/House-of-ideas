@@ -89,7 +89,7 @@ export default function Navbar() {
                     <CloseIcon className="h-6 w-6"/>
                 </Button>
                 <div className="flex flex-col h-full">
-                    <NewHiIcon animate={isOpen} className='size-20 p-4'/>
+                    <NewHiIcon  className='size-20 p-4'/>
 
                     <ul className="flex-grow py-2">
                         <ThemeSwitcher/>
@@ -124,7 +124,7 @@ export default function Navbar() {
                 <div className='relative flex-row items-center p-1  justify-center hidden slighty-large-phone:flex'>
 
                     <AnimatedNavBarBg {...animations} />
-                    <NewHiIcon isAnimated={true} className='size-[3rem]'/>
+                    <NewHiIcon animate={isOpen} className='size-[3rem]'/>
                     {links.map((section, index) => (
                             <Button  variant='link' onClick={() => router.push(section.href)} key={index}>{section.label}</Button>
                     ))}

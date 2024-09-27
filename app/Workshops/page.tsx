@@ -87,7 +87,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
             <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
                 {data.map((workshop, index) => (
                     <Card key={index}
-                          className='relative group bg-[linear-gradient(to_top_left,#f0f0f0,#f6f6f6,#f0f0f0)] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
+                          className='relative group bg-[#fffef9] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
 
                         <CardContent>
 

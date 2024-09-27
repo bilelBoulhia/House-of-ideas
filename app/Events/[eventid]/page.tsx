@@ -159,7 +159,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                 </div>
 
 
-                <div className='p-6 z-10   mt-6'>
+                <div className='p-6 relative mt-6'>
 
                     {eventdata.map((event) => (
                         <section className="mb-12 text-left">
@@ -169,7 +169,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
 
                         <div className="grid gap-8 md:grid-cols-2">
 
-                            <Tag className='dark:bg-cyan-800 bg-[#A0DEFF] '>
+                            <Tag className='dark:bg-cyan-800 bg-blend-color-dodge  bg-[#A0DEFF] '>
                                 <Calendar className="w-8 h-8 text-purple-400"/>
                                 <div>
                                     <p className="text-sm ">Date</p>

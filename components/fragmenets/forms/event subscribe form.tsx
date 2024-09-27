@@ -68,7 +68,7 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
 
     return (
         <>
-            <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-8">
+            <form  onSubmit={handleSubmit(handleFormSubmit)} className="space-y-8">
 
                 <div className="border-b border-gray-900/10 pb-12 text-left">
                     <h2 className="text-2xl font-semibold leading-7">Personal Information</h2>
