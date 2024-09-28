@@ -1,5 +1,5 @@
 'use client'
-
+import useSWR from 'swr'
 import { motion } from "framer-motion";
 import {Calendar, Clock, Location, NewHiIcon} from "@/components/ui/Icons";
 import {Tag} from "@/components/ui/Tag";
@@ -89,7 +89,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                                 initial="hidden"
                                 whileInView="visible"
 
-                                className="w-full h-full  max-h-[400px] rounded-xl overflow-hidden">
+                                className="w-full h-full  aspect-[16/9] rounded-xl overflow-hidden">
                                 <img
                                     src={event.eventpic}
                                     alt='Event image'
@@ -310,19 +310,13 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
         </div>
     )
 }
-
+const swrFetcher = ([table, json, columns, secondaryQuery]: [string, boolean, string[], ((query: any) => any) | undefined]) =>
+    fetch(table, json, columns, secondaryQuery)
 export default function Index({params}: { params: { eventid: number } }) {
-
-
-
-
 
     const [eventdata, seteventdata] = useState<Tables<'events'>[]>([]);
     const [guestdata, setguestdata] = useState<Tables<'guests'>[]>([]);
     const [sponsordata, setsponsorsdata] = useState<Tables<'sponsors'>[]>([]);
-
-
-
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
 

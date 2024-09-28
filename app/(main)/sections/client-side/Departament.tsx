@@ -117,9 +117,7 @@ export default function Departament() {
 
             <div className="relative   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
                 <div
-                    style={{zIndex:-3}}
-
-                    className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
+                    style={{zIndex:-3}} className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
 
                 <AnimatePresence mode="wait">
                     <motion.h2
@@ -129,7 +127,7 @@ export default function Departament() {
                         animate={{y: 0}}
                         exit={{y: -190}}
                         transition={{duration: 0.6, ease: "easeInOut"}}
-                        className="iphone5:text-5xl  medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
+                        className="iphone5:text-5xl   medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
                         style={{
                             zIndex:-4,
                             textShadow: '2px 2px 4px rgba(0,0,0,0.3)',

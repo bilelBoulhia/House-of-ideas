@@ -23,13 +23,13 @@ export default function Hero() {
     return (
         <div>
 
-            <div className='flex min-h-[calc(100vh-40rem)]  justify-evenly  overflow-hidden  flex-col w-full '>
+            <div className='flex min-h-[calc(100vh-40rem)]  justify-evenly gap-6   overflow-hidden  flex-col w-full '>
                 <motion.div>
-                    <h2 className="mt-[3rem] iphone5:text-[2.6rem] medium-phone:text-5xl  large-phone:text-7xl   font-bold text-center text-black dark:text-white font-sans tracking-tight">
+                    <h2 className="mt-[4rem] iphone5:text-[2.6rem] medium-phone:text-5xl  large-phone:text-7xl    font-bold text-center text-black dark:text-white font-sans tracking-tight">
                         <FlipText>Welcome</FlipText> <FlipText>to</FlipText> <br/>
                         <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
                             <div
-                                className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
+                                className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-2">
                                 <span>house of Ideas</span>
                             </div>
                         </div>
@@ -65,7 +65,7 @@ export default function Hero() {
                       className='animate-pulse'>█</motion.span>
                     </p>
                 </motion.div>
-                <div className='flex md:gap-12 gap-5  mt-3 flex-col sm:flex-row justify-center items-center'>
+                <div className='flex md:gap-12 gap-5   flex-col sm:flex-row justify-center items-center'>
                     <Button className='bg-gradient-to-r  from-purple-700 to-purple-900' onClick={()=>router.push('/Workshops')} size='md' variant='cto'>
                         <span className="mr-2 min-w-[13rem]">
                             check out  all   Workshops

@@ -50,7 +50,7 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
 
                     <motion.div
 
-                        className="w-full max-h-[50vh]  aspect-[20/15] extra-large-tablet:aspect-[8/3]  rounded-xl overflow-hidden"
+                        className="w-full max-h-[50vh]  aspect-[16/9]   rounded-xl overflow-hidden"
                         variants={shadowVariants}
                         initial="hidden"
                         whileInView="visible"

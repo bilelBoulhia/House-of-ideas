@@ -15,7 +15,7 @@ import React from "react";
 export default function Index() {
   return (
 
-      <div className="flex-1 flex w-full items-center  overflow-hidden flex-col gap-6">
+      <div className="flex-1 flex w-full items-center  overflow-hidden flex-col gap-6 ">
           <BackgroundBeams />
           <Hero/>
           <EventSection/>

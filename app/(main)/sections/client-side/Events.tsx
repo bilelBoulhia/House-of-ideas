@@ -22,7 +22,7 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
 
     return (
 
-        <div id='Events' className=" relative w-full flex   items-center  flex-col gap-2">
+        <div id='Events' className=" relative w-full flex mt-6  large-phone:mt-[6rem] items-center  flex-col gap-2">
 
             <div className=" flex flex-row  items-center text-center justify-center">
                 <AnimatedHeading  sentence={["our","Events"]} className='bg-[#f4f5f3] dark:bg-[#000812]'/>
@@ -37,7 +37,7 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
                     <motion.h2
                         className="text-3xl md:text-4xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600"
                     >
-                        Sorry, No Workshops at the Moment
+                        Sorry, No Event at the Moment
                     </motion.h2>
                     <motion.div
 
@@ -55,31 +55,33 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
                 </div>
             ) : (
 
-            <Carousel
-                useArrows={true}
-                className="w-full"
-                slideClassName="p-5  flex-[0_0_100%]"
-            >
-                {data.map((event, index) => (
-                    <motion.div
-                        key={index}
-                        onClick={() => handleRouterClick(event.eventid)}
-                        className="w-full  aspect-[20/15] extra-large-tablet:aspect-[8/3]  rounded-xl overflow-hidden"
-                        initial="hidden"
-                        whileHover={{scale: 1.01}}
-                        transition={{duration: 0.25}}
-                        whileInView="visible"
-                        variants={shadowVariants}
-                    >
-                        <img
-                            src={event.eventpic}
-                            className="rounded-xl relative h-full w-full object-cover"
-                            alt='Eventsimae'
-                        />
-                    </motion.div>
-                ))}
-            </Carousel>
-                )}
+                <Carousel
+                    useArrows={true}
+                    className="w-full"
+                    slideClassName="p-5  flex-[0_0_100%] "
+                >
+                    {data.map((event, index) => (
+                        <motion.div
+                            key={index}
+
+                            onClick={() => handleRouterClick(event.eventid)}
+                            className="w-full rounded-xl aspect-[16/9]   lg:aspect-[21/9] h-auto overflow-hidden"
+                            initial="hidden"
+                            whileHover={{scale: 1.01}}
+                            transition={{duration: 0.25}}
+                            whileInView="visible"
+                            variants={shadowVariants}
+                        >
+                            <img
+                                    src={event.eventpic}
+                                    className="rounded-xl  relative h-full w-full object-cover"
+                                    alt='Eventsimae'
+                            />
+
+                        </motion.div>
+                    ))}
+                </Carousel>
+            )}
         </div>
     )
 }

@@ -37,11 +37,11 @@ const EmblaCarousel: React.FC<PropType> = ({
     const {canScrollPrev, canScrollNext, onPrevButtonClick, onNextButtonClick} = useArrowButtons(emblaApi)
 
     return (
-        <section className={cn("w-full mx-auto mt-5 max-h-[70rem] relative ", className)} {...props}>
-            <div className="overflow-hidden max-h-[70rem] " ref={emblaRef}>
-                <div className="flex max-h-[70rem] ">
+        <section className={cn("w-full mx-auto mt-5  relative ", className)} {...props}>
+            <div className="overflow-hidden  " ref={emblaRef}>
+                <div className="flex">
                     {React.Children.map(children, (child, index) => (
-                        <div key={index} className={cn("max-h-[70rem] min-w-0 ", slideClassName)}>
+                        <div key={index} className={cn(" min-w-0 relative  ", slideClassName)}>
                             {child}
                         </div>
                     ))}
@@ -52,14 +52,14 @@ const EmblaCarousel: React.FC<PropType> = ({
                     <ArrowButton
                         onClick={onPrevButtonClick}
                         disabled={!canScrollPrev}
-                        className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10"
+                        className="absolute  left-2 top-1/2 transform -translate-y-1/2 z-10"
                     >
-                        <ChevronLeft className="w-6 h-6"/>
+                        <ChevronLeft className="w-6  h-6"/>
                     </ArrowButton>
                     <ArrowButton
                         onClick={onNextButtonClick}
                         disabled={!canScrollNext}
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10"
+                        className="absolute right-2  top-1/2 transform -translate-y-1/2 z-10"
                     >
                         <ChevronRight className="w-6 h-6"/>
                     </ArrowButton>
