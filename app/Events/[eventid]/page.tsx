@@ -70,10 +70,9 @@ const PageContent = ({eventdata}: { eventdata: Events[]}) => {
     };
 
 
-    console.log(eventdata[0].guests[0])
 
 
-    // @ts-ignore
+
     return (
 
 
@@ -326,9 +325,6 @@ export default function Index({params}: { params: { eventid: number } }) {
             try {
                 const response = await proc('get_event_details', {p_eventid: params.eventid});
                 const EventData = response.data;
-
-
-                ;
                 seteventdata(EventData);
 
 
@@ -336,7 +332,7 @@ export default function Index({params}: { params: { eventid: number } }) {
 
             } catch (error) {
                 console.error(error);
-                notFound();
+
             } finally {
                 setIsLoading(false);
             }
