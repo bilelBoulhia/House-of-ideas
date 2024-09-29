@@ -332,7 +332,7 @@ export default function Index({params}: { params: { eventid: number } }) {
 
             } catch (error) {
                 console.error(error);
-
+                notFound();
             } finally {
                 setIsLoading(false);
             }

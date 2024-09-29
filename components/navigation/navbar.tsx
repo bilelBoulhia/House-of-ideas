@@ -53,15 +53,20 @@ export default function Navbar() {
     return (
         <>
 
+            <div className={`block slighty-large-phone:hidden ${isOpen ? "hidden" : "block"}`}>
                 <Button
                     variant="link"
                     size="icon"
-                    className={`block slighty-large-phone:hidden fixed top-4 left-4 ${isOpen ? "hidden" : "block"}`}
+                    className='block slighty-large-phone:hidden fixed top-4 left-4 '
                     onClick={toggleMenu}
                     aria-label="Toggle menu"
                 >
                     <Menu className="h-6 w-6"/>
                 </Button>
+
+                <NewHiIcon animate={isOpen} className='float-right  relative size-20 p-4  '/>
+            </div>
+
 
 
 
@@ -88,10 +93,10 @@ export default function Navbar() {
                 >
                     <CloseIcon className="h-6 w-6"/>
                 </Button>
-                <div className="flex flex-col h-full">
-                    <NewHiIcon  className='size-20 p-4'/>
+                <div className="flex flex-col  h-full">
 
-                    <ul className="flex-grow py-2">
+
+                    <ul className="flex-grow py-10">
                         <ThemeSwitcher/>
                         {links.map((item, index) => (
                             <motion.li
