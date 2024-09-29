@@ -85,7 +85,7 @@ const PageContent = ({eventdata}: { eventdata: Events[]}) => {
 
 
                     <div className="flex flex-col z-10    lg:flex-row ">
-                        <div className="lg:w-1/2    flex  justify-center">
+                        <div className="lg:w-1/2  flex  justify-center">
                             <motion.div
                                 variants={shadowVariants}
                                 initial="hidden"
@@ -100,8 +100,8 @@ const PageContent = ({eventdata}: { eventdata: Events[]}) => {
                             </motion.div>
                         </div>
 
-                        <div className="lg:w-1/2 p-4 overflow-y-auto">
-                            <div className="max-w-2xl p-4 ">
+                        <div className="lg:w-1/2 mt-4 lg:p-4 overflow-y-auto">
+                            <div className="max-w-2xl p-2 ">
 
                                 <h1 className="text-3xl sm:text-4xl font-black text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6">
                                     {eventdata[0].eventname}
@@ -134,12 +134,12 @@ const PageContent = ({eventdata}: { eventdata: Events[]}) => {
 
 
 
-                <div className='p-6 z-10   mt-2'>
+                <div className='p-4 z-10   mt-2'>
                     <Modal>
                         <ModalTrigger asChild>
                             <Button
                                 disabled={!eventdata[0].isavailable}
-                                className='bg-violet-500 text-md medium-phone:text-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)] rounded-xl hover:bg-violet-600 dark:text-white  py-8  px-10'>
+                                className='bg-violet-500  text-md medium-phone:text-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)] rounded-xl hover:bg-violet-600 dark:text-white  py-8  px-10'>
                                 {eventdata[0].isavailable ? 'Subscribe to the event' : 'the event has passed !'}
 
                             </Button>
@@ -161,7 +161,7 @@ const PageContent = ({eventdata}: { eventdata: Events[]}) => {
                 </div>
 
 
-                <div className='p-6 relative mt-6'>
+                <div className='p-2 relative mt-6'>
 
 
                         <section className="mb-12 text-left">
@@ -226,7 +226,7 @@ const PageContent = ({eventdata}: { eventdata: Events[]}) => {
                         <div className="flex flex-col items-center justify-center space-y-4 text-center">
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Guests</h2>
                         </div>
-                        <div className="max-w-4xl mx-auto flex flex-wrap justify-around gap-3 py-12 px-4">
+                        <div className="max-w-6xl mx-auto flex flex-wrap justify-around gap-3 py-12 px-4">
                             {eventdata[0].guests.map((guest, i) => (
                                 <div key={i} className="flex items-center justify-center p-4  rounded-lg ">
 
@@ -274,19 +274,19 @@ const PageContent = ({eventdata}: { eventdata: Events[]}) => {
 
                     )}
                     {eventdata[0].sponsor_pics != null && eventdata[0].sponsor_pics.length > 0 && (
-                        <section id='sponsors' className="w-full py-12 md:py-24 lg:py-12">
+                <section id='sponsors' className="w-full py-12 md:py-24 lg:py-12">
 
                     <div className="container px-4 md:px-6">
                         <div className="flex flex-col items-center justify-center space-y-4 text-center">
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>
                         </div>
-                        <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-2 py-12 px-4">
+                        <div className="max-w-2xl mx-auto flex flex-wrap justify-around gap-2 py-12 px-4">
                             {eventdata[0].sponsor_pics.map((sponsor, i) => (
                                 <div key={i}
                                      className="flex items-center  justify-center p-4  ">
 
                                     <a>
-                                        <img className='h-20 p-1 w-40 rounded-xl bg-gray-100' src={String(sponsor)}
+                                        <img className='h-[4.2rem] p-1 w-[4.7rem]  medium-phone:h-[5rem] medium-phone:w-[6rem] large-phone:w-[9rem] large-phone:h-[6rem] lg:w-[13rem]  lg:h-[7rem] rounded-xl bg-gray-100' src={String(sponsor)}
                                              alt='img'/>
                                     </a>
 

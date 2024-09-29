@@ -26,15 +26,13 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
         <>
 
 
-            <div className='grid  z-10 grid-cols-1 lg:grid-cols-2 gap-12'>
+            <div className='grid  z-10 grid-cols-1 lg:grid-cols-2 gap-10'>
                 {data.map((event, i) => (
                     <div onClick={() => handleRouterClick(event.eventid)} key={i}>
 
                         <motion.div
                             style={{zIndex: -4}}
 
-                            initial={{x: -3}}
-                            whileInView={{x: 0}}
                             transition={{duration: 0.3, ease: 'easeInOut'}}
                         className=" z-1 max-w-3xl">
                         <div className="max-w-3xl hover:cursor-default mx-auto pl-2 overflow-hidden">
@@ -101,7 +99,7 @@ export default function Index() {
 
 
     return (
-        <div className='flex overflow-hidden flex-col mt-[4rem] items-center justify-center p-5 gap-2'>
+        <div className='flex overflow-hidden flex-col mt-[4rem] items-center  p-5 gap-2'>
 
             <Suspense fallback={<Loading/>}>
                 {isLoading ?
