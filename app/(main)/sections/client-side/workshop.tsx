@@ -26,7 +26,6 @@ import { motion } from "framer-motion";
 export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
 
 
-
     const formRef = useRef<SubscribeFormRef>(null);
     const modalRef = useRef<ModalBodyRef>(null);
     const [showToast, setShowToast] = useState(false);

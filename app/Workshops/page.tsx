@@ -24,6 +24,7 @@ import {notFound} from "next/navigation";
 
 import Toast from "@/components/ui/toast";
 import {Loading} from "@/app/Loading";
+import useSWR from "swr";
 
 
 
@@ -153,24 +154,17 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
     )
 }
 
+const fetcher = async () => {
+    const fetcheddata: Tables<'workshops'>[] = await fetch("workshops", false, ['*']);
 
+    return fetcheddata as Tables<'workshops'>[] || [];
+
+}
 export default function Index() {
-    const [data, setdata] = useState<Tables<'workshops'>[]>([]);
-    const [isLoading, setIsLoading] = useState(true)
-    useEffect(() => {
-        const getdata = async () => {
-            try {
-                setIsLoading(true);
-                const WorkshopData: Tables<'workshops'>[] = await fetch("workshops", false, ['*']);
-                setdata(WorkshopData);
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        getdata().catch(r => console.error(r));
-    }, []);
+
+    const {data, isLoading} = useSWR<Tables<'workshops'>[]>(fetcher);
+
+
     return (
 
         <div
@@ -180,7 +174,7 @@ export default function Index() {
                 {isLoading ?
                     <Loading/>
                     :
-                    <PageContent data={data}/>
+                    <PageContent data={data || []}/>
                 }
             </Suspense>
             <BackgroundBeams/>

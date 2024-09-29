@@ -19,6 +19,7 @@ import Stepper from "@/components/ui/Stepper";
 import InstagramLink from "@/components/instagram-link";
 import {PersonStanding} from "lucide-react";
 import Toast from "@/components/ui/toast";
+import useSWR from "swr";
 
 
 
@@ -27,7 +28,7 @@ import Toast from "@/components/ui/toast";
 
 
 
-const PageContent = ({eventdata}: { eventdata: Events[]}) => {
+const PageContent = ({eventdata}: { eventdata: Events[] }) => {
 
 
 
@@ -313,51 +314,25 @@ const PageContent = ({eventdata}: { eventdata: Events[]}) => {
     )
 }
 
+const fetcher = async (key: string) => {
+    const [_, id] = key.split('|')
+    const fetchedData = await proc('get_event_details',
+        {p_eventid: id});
+
+    return fetchedData.data as Events[] | []
+}
 export default function Index({params}: { params: { eventid: number } }) {
-
-    const [eventdata, seteventdata] = useState<Events[]>([]);
-
-    const [isLoading, setIsLoading] = useState(true)
-    useEffect(() => {
-
-        const getdata = async () => {
-            setIsLoading(true);
-            try {
-                const response = await proc('get_event_details', {p_eventid: params.eventid});
-                const EventData = response.data;
-                seteventdata(EventData);
-
-
-
-
-            } catch (error) {
-                console.error(error);
-                notFound();
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        getdata().catch(r => console.error(r));
-    }, []);
-
-
-
+    const {data, error, isLoading} = useSWR<Events[]>(`events|${params.eventid}`, fetcher)
 
     return (
         <div className='w-full'>
-
-            <Suspense  fallback={<Loading/>}>
-
-                {isLoading ?
-
+            <Suspense fallback={<Loading/>}>
+                {isLoading ? (
                     <Loading/>
-                    :
-                    <PageContent eventdata={eventdata}  />
-
-                }
+                ) : (
+                    <PageContent eventdata={data || []}/>
+                )}
             </Suspense>
-
-
         </div>
     )
 }

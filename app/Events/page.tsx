@@ -13,6 +13,7 @@ import {fetch} from "@/app/lib/supabase/client-api";
 import {useRouter} from "next/navigation";
 import {Loading} from "@/app/Loading";
 import {Loader} from "lucide-react";
+import useSWR from "swr";
 
 
 const PageContent = ({data}: { data: Tables<'events'>[] }) => {
@@ -73,27 +74,16 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
 
 }
 
+const fetcher = async ()=>{
+    const fetcheddata: Tables<'events'>[] = await fetch("events", false, ['eventname,eventpic,eventid'], (q) => q.order('date', {ascending: false}));
+
+    return fetcheddata as Tables<'events'>[] || [];
+
+}
 
 export default function Index() {
 
-    const [data, setdata] = useState<Tables<'events'>[]>([]);
-    const [isLoading, setIsLoading] = useState(true)
-    useEffect(() => {
-        const getdata = async () => {
-            try {
-                setIsLoading(true);
-                const EventData: Tables<'events'>[] = await fetch("events", false, ['eventname,eventpic,eventid'],(q)=>q.order('date', {ascending: false}));
-
-                setdata(EventData);
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        getdata().catch(r => console.error(r));
-    }, []);
-
+    const {data,isLoading} = useSWR<Tables<'events'>[]>(fetcher);
 
 
 
@@ -105,7 +95,7 @@ export default function Index() {
                 {isLoading ?
                     <Loading/>
                     :
-                    <PageContent data={data}/>
+                    <PageContent data={data || []}/>
                 }
             </Suspense>
             <BackgroundBeams/>
