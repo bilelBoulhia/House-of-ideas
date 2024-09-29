@@ -5,12 +5,12 @@ import {Calendar, Clock, Location, NewHiIcon} from "@/components/ui/Icons";
 import {Tag} from "@/components/ui/Tag";
 
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
-import {Events, Guest, shadowVariants, Sponsor} from "@/utils/types";
+import {Events, shadowVariants} from "@/utils/types";
 import {Tables} from "@/utils/DatabaseTypes";
 
 import React, {Suspense, useEffect, useRef, useState} from "react";
 import { insert, proc} from "@/app/lib/supabase/client-api";
-import {notFound} from "next/navigation";
+
 import {Loading} from "@/app/Loading";
 import { Button } from "@/components/ui/button";
 import {EventSubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/event subscribe form";

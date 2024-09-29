@@ -5,22 +5,20 @@ const supabaseClient = createClient();
 
 export async function fetch<T>(
     table: string,
-    json: boolean = false,
+
     columns: string[] = ['*'],
     SecondaryQuery?: (query: any) => any
 ): Promise<T[]> {
     try {
         let query = supabaseClient.from(table).select(columns.join(', '));
 
-        const {data, error} = SecondaryQuery
-            ? await SecondaryQuery(query)
-            : await query;
+        const {data, error} = SecondaryQuery ? await SecondaryQuery(query) : await query;
 
         if (error) {
-            throw new Error(error.message);
+           new Error(error.message);
         }
 
-        return json ? JSON.parse(JSON.stringify(data)) : (data as T[]);
+        return data as T[];
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -39,7 +37,7 @@ export async function insert<T>(
         return !error; // Returns true if there's no error, false otherwise
     } catch (error) {
         console.error('Error inserting data:', error);
-        return false; // Returns false if an exception is caught
+        return false;
     }
 }
 

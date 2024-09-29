@@ -14,6 +14,7 @@ import React from "react";
 
 export default function Event({data}: {data: Tables<'events'>[]}) {
 
+    console.log(data)
     const router = useRouter();
     const handleRouterClick = (eventid: number) => {
         router.push(`/Events/${eventid}`);

@@ -6,19 +6,12 @@ import img3 from '@/assets/diplomas images/image (4).png'
 
 
 import {InfiniteMovingCards} from "@/components/ui/infinite-carousel";
-
-
-
 import {CardStack, imgtype} from "@/components/ui/card-stack";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {Tables} from "@/utils/DatabaseTypes";
 import React from "react";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import {ArrowRight} from "lucide-react";
-import {ReviewForm} from "@/components/fragmenets/forms/review form";
-import NewLetter from "@/app/(main)/sections/client-side/NewLetter";
 
+import {ReviewForm} from "@/components/fragmenets/forms/review form";
 
 const images :imgtype[] = [{id:1, img:img2}, {id:2,img:img1} , {id:3,img:img3}]
 

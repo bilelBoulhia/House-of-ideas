@@ -75,16 +75,17 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
 }
 
 const fetcher = async ()=>{
-    const fetcheddata: Tables<'events'>[] = await fetch("events", false, ['eventname,eventpic,eventid'], (q) => q.order('date', {ascending: false}));
+    const fetcheddata = await fetch("events", ['eventname,eventpic,eventid'], (q) => q.order('date', {ascending: false}));
 
-    return fetcheddata as Tables<'events'>[] || [];
+    return fetcheddata as Tables<'events'>[] || [] ;
 
 }
 
 export default function Index() {
 
-    const {data,isLoading} = useSWR<Tables<'events'>[]>(fetcher);
+    const {data,isLoading} = useSWR<Tables<'events'>[]>('/events',fetcher);
 
+    console.log(data)
 
 
 

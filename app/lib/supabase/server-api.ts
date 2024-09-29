@@ -4,7 +4,7 @@ import {createClient} from "@/app/lib/supabase/server";
 
 export async function fetch<T>(
     table: string,
-    json: boolean = false,
+
     columns:string[] = ['*'],
     SecondaryQuery?:(query:any) => any ,
 
@@ -17,7 +17,7 @@ export async function fetch<T>(
 
 
 
-    return json ? JSON.parse(JSON.stringify(data)) : (data as T[] | T);
+    return data as T[] ;
 }
 
 export async function proc(

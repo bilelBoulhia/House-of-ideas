@@ -154,15 +154,15 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
     )
 }
 
-const fetcher = async () => {
-    const fetcheddata: Tables<'workshops'>[] = await fetch("workshops", false, ['*']);
 
+const fetcher = async () => {
+    const fetcheddata = await fetch("workshops", ['*']);
     return fetcheddata as Tables<'workshops'>[] || [];
 
 }
 export default function Index() {
 
-    const {data, isLoading} = useSWR<Tables<'workshops'>[]>(fetcher);
+    const {data, isLoading} = useSWR<Tables<'workshops'>[]>('/workshops',fetcher);
 
 
     return (

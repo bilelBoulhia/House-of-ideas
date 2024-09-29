@@ -63,8 +63,7 @@ export default function Hero() {
                         and innovation in the field of science and economics.
                     </p>
                     <p className="mt-2 text-left">
-                        <span className="text-purple-600  dark:text-purple-400">user@houseofideas:~$</span><motion.span
-                      className='animate-pulse'>█</motion.span>
+                        <span className="text-purple-600  dark:text-purple-400">user@houseofideas:~$</span>
                     </p>
                 </motion.div>
                 <div className='flex md:gap-12 gap-5   flex-col sm:flex-row justify-center items-center'>

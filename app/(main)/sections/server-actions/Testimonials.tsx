@@ -5,7 +5,7 @@ import Testimonials from "@/app/(main)/sections/client-side/Testimonials";
 
 
 export default async function TestimonialSection() {
-    const data = await fetch("reviews", false, ["*"],q=>q.eq('isaccepted',true)) as Tables<'reviews'>[];
+    const data = await fetch("reviews", ["*"],q=>q.eq('isaccepted',true)) as Tables<'reviews'>[];
 
     return <Testimonials data={data}/>
 }

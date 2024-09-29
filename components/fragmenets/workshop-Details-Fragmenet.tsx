@@ -50,18 +50,18 @@ export function WorkshopDetails({data}: { data: Tables<'workshops'> | null }) {
             if (data?.tutor) {
                 try {
                     setIsLoading(true)
-                    const tutorData: Tables<'tutors'>[] = await fetch("tutors", false, [], (q) => q.eq('tutorid', data.tutor))
+                    const tutorData: Tables<'tutors'>[] = await fetch("tutors",  [], (q) => q.eq('tutorid', data.tutor))
                     setTutor(tutorData)
                 } finally {
                     setIsLoading(false)
                 }
             }
         }
-        getdata()
+        getdata().catch()
     },[])
 
     return (
-        <div className='flex flex-col h-full w-full items-center justify-center'>
+        <div className='flex flex-col cursor-default h-full w-full items-center justify-center'>
             <div className='flex flex-col h-full w-full items-center justify-center'>
                 <h2 className='text-4xl tracking-tight font-bold uppercase text-center'>{data?.workshopname}</h2>
                 <h2 className='text-xl max-w-xl tracking-tight font-medium p-3 text-center'>
@@ -71,17 +71,17 @@ export function WorkshopDetails({data}: { data: Tables<'workshops'> | null }) {
                     className="w-full max-w-sm p-4 space-y-4 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg shadow-sm">
                     <div className="flex items-center space-x-3">
                         <CalendarIcon className="w-6 h-6 text-primary"/>
-                        <h2 className="text-xl font-semibold text-foreground">{data?.date}</h2>
+                        <h2 className="text-xl font-semibold  text-foreground">{data?.date}</h2>
                     </div>
                     <div className="flex items-center space-x-3">
                         <ClockIcon className="w-6 h-6 text-primary"/>
                         <div className="flex items-center ">
 
-                            <Badge variant="secondary" className="text-lg px-2 py-1">
+                            <Badge variant="secondary" className="text-lg px-2 hover:bg-transparent  py-1">
                                 {data?.starthour?.slice(0, 5)}
                             </Badge>
                             <span className="text-lg font-medium">-</span>
-                            <Badge variant="secondary" className="text-lg px-2 py-1">{data?.endhour?.slice(0, 5)}
+                            <Badge variant="secondary" className="text-lg px-2 hover:bg-transparent  py-1">{data?.endhour?.slice(0, 5)}
                             </Badge>
                         </div>
                     </div>
