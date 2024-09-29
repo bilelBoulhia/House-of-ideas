@@ -52,7 +52,7 @@ export const ReviewForm = () => {
                     <Input
                         type="text"
                         placeholder="your name"
-                        className="w-full border-white shadow-sm placeholder:text-muted-foreground focus:border-black border-black/80 dark:border-white border-2 dark:focus:border-white  text-lg py-6"
+                        className="w-full border-white shadow-sm placeholder:text-muted-foreground   text-lg py-6"
                         {...register("reviewer", {
                             required: "name is required",
                             pattern: {

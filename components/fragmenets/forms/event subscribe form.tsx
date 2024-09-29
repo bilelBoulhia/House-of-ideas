@@ -95,7 +95,7 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
                                 {...register("prenom", {required: "Last name is required"})}
                                 className="mt-2"
                             />
-                            {errors.prenom && <p className="text-red-500 text-sm mt-1">{errors.prenom.message}</p>}
+                            {errors.prenom && <p className="text-red-500  text-sm mt-1">{errors.prenom.message}</p>}
                         </div>
 
 
