@@ -9,7 +9,7 @@ export const FlipText = ({ children  }:{children:string}) => {
         <motion.span
             initial="initial"
             whileInView="hovered"
-            className="relative  inline-block overflow-hidden whitespace-nowrap hover:cursor-default"
+            className="relative   inline-block overflow-hidden whitespace-nowrap hover:cursor-default"
             style={{
                 lineHeight: 0.75,
             }}

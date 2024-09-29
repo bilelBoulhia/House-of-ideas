@@ -12,6 +12,34 @@ export const shadowVariants = {
 }
 
 
+// Guest type
+export type Guest = {
+    name: string;
+    guestpic:string;
+    occupations: string[];
+};
+
+export type Sponsor = {
+    sponsorpic: string;
+};
+
+// Event type
+export type Events = {
+    eventid: number;
+    eventname: string;
+    eventdescription: string;
+    eventpic: string;
+    eventlocation: string;
+    date: string;
+    eventstarthour: string;
+    eventendhour: string;
+    isavailable: boolean;
+    instagramlink: string;
+    visitorsnum: number;
+    guests: Guest[];
+    sponsor_pics: Sponsor[];
+};
+
 
 
 export interface IconProps {

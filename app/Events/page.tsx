@@ -26,7 +26,7 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
         <>
 
 
-            <div className='grid  z-10 grid-cols-1 gap-12'>
+            <div className='grid  z-10 grid-cols-1 lg:grid-cols-2 gap-12'>
                 {data.map((event, i) => (
                     <div onClick={() => handleRouterClick(event.eventid)} key={i}>
 

@@ -1,25 +1,24 @@
 'use client'
-import useSWR from 'swr'
+
 import { motion } from "framer-motion";
 import {Calendar, Clock, Location, NewHiIcon} from "@/components/ui/Icons";
 import {Tag} from "@/components/ui/Tag";
 
 import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
-import {shadowVariants} from "@/utils/types";
+import {Events, Guest, shadowVariants, Sponsor} from "@/utils/types";
 import {Tables} from "@/utils/DatabaseTypes";
 
 import React, {Suspense, useEffect, useRef, useState} from "react";
-import {fetch, insert} from "@/app/lib/supabase/client-api";
+import { insert, proc} from "@/app/lib/supabase/client-api";
 import {notFound} from "next/navigation";
 import {Loading} from "@/app/Loading";
 import { Button } from "@/components/ui/button";
 import {EventSubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/event subscribe form";
 import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger} from "@/components/ui/Modal";
-
-import Toast from "@/components/ui/toast";
 import Stepper from "@/components/ui/Stepper";
 import InstagramLink from "@/components/instagram-link";
 import {PersonStanding} from "lucide-react";
+import Toast from "@/components/ui/toast";
 
 
 
@@ -28,11 +27,11 @@ import {PersonStanding} from "lucide-react";
 
 
 
-const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'events'>[], guestdata: Tables<'guests'>[], sponsordata:  Tables<'sponsors'>[] }) => {
+const PageContent = ({eventdata}: { eventdata: Events[]}) => {
 
-    if ( eventdata.length === 0 ) {
-        notFound();
-    }
+
+
+
     const formRef = useRef<SubscribeFormRef>(null);
     const modalRef = useRef<ModalBodyRef>(null);
     const [showToast, setShowToast] = useState(false);
@@ -56,11 +55,11 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
     const handleCloseToast = () => {
         setShowToast(false);
     };
-    const pages = (selectedworkshop: Tables<'events'> | null) => [
+    const pages = (selectedevent: Events[]) => [
         <div key="2" className="space-y-2">
             <EventSubscribeForm
                 ref={formRef}
-                eventid={selectedworkshop?.eventid || 0}
+                eventid={selectedevent[0].eventid || 0}
                 onSubmit={handleFormSubmit}
             />
         </div>,
@@ -70,17 +69,20 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
         formRef.current?.submitForm();
     };
 
-    console.log(eventdata)
+
+    console.log(eventdata[0].guests[0])
 
 
+    // @ts-ignore
     return (
+
 
         <div >
 
             <div className='flex flex-col mt-[5rem] m-2 justify-center  gap-2'>
                 <BackgroundBeams/>
 
-                {eventdata.map((event) => (
+
 
                     <div className="flex flex-col z-10    lg:flex-row ">
                         <div className="lg:w-1/2    flex  justify-center">
@@ -91,7 +93,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
 
                                 className="w-full h-full  aspect-[16/9] rounded-xl overflow-hidden">
                                 <img
-                                    src={event.eventpic}
+                                    src={eventdata[0].eventpic}
                                     alt='Event image'
                                     className="w-full h-full object-cover"
                                 />
@@ -102,21 +104,21 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                             <div className="max-w-2xl p-4 ">
 
                                 <h1 className="text-3xl sm:text-4xl font-black text-left tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-900 mb-4 sm:mb-6">
-                                    {event.eventname}
+                                    {eventdata[0].eventname}
                                 </h1>
 
                                 <section className="text-left">
 
                                     <div className='w-full flex-row items-start flex large-phone:flex-row mb-4 sm:mb-6 gap-4 justify-start '>
                                         <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter ">
-                                            About 
+                                            About
                                         </h2>
-                                        <InstagramLink href={event.instagramlink}/>
+                                        <InstagramLink href={eventdata[0].instagramlink || '/'}/>
                                     </div>
 
 
                                     <p className="text-md sm:text-xl lg:text-2xl mb-4 sm:mb-6 leading-relaxed">
-                                        {event.eventdescription}
+                                        {eventdata[0].eventdescription}
                                     </p>
                                 </section>
 
@@ -129,7 +131,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                     </div>
 
 
-                ))}
+
 
 
                 <div className='p-6 z-10   mt-2'>
@@ -148,7 +150,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                                 <div>
                                     <Stepper
                                         finishSentnce='subscribe'
-                                        pages={pages(eventdata[0])}
+                                        pages={pages(eventdata)}
                                         onFinish={handleStepperFinish}
                                     />
 
@@ -161,7 +163,7 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
 
                 <div className='p-6 relative mt-6'>
 
-                    {eventdata.map((event) => (
+
                         <section className="mb-12 text-left">
 
                         <h2 className="text-2xl medium-phone:text-3xl  font-bold tracking-tighter  mb-6 ">Event
@@ -173,33 +175,33 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                                 <Calendar className="w-8 h-8 text-purple-400"/>
                                 <div>
                                     <p className="text-sm ">Date</p>
-                                    <p className="text-lg font-medium">{event.date}</p>
+                                    <p className="text-lg font-medium">{eventdata[0].date}</p>
                                 </div>
                             </Tag>
                             <Tag className='dark:bg-[#7469B6] bg-[#91DDCF] '>
                                 <Location className="w-8 h-8 text-blue-400"/>
                                 <div>
                                     <p className="text-sm ">Location</p>
-                                    <p className="text-lg font-medium">{event.eventlocation}</p>
+                                    <p className="text-lg font-medium">{eventdata[0].eventlocation}</p>
                                 </div>
                             </Tag>
                             <Tag className='dark:bg-[#F05A7E] bg-[#FFD0D0] '>
                                 <Clock className="w-8 h-8 text-blue-400"/>
                                 <div>
-                                    <p className="text-sm">Time</p>
-                                    <p className="text-lg font-medium">{event.eventstarthour?.slice(0, 5)} - {event.eventendhour.slice(0, 5)}</p>
-                            </div>
-                        </Tag>
+                                    <p className="text-lg font-medium">
+                                        {eventdata[0].eventstarthour ? eventdata[0].eventstarthour.slice(0, 5) : 'N/A'} -
+                                        {eventdata[0].eventendhour ? eventdata[0].eventendhour.slice(0, 5) : 'N/A'}
+                                    </p>
+                                </div>
+                            </Tag>
 
-                    </div>
-                </section>
-                    ))}
+                        </div>
+                        </section>
 
 
-                    {eventdata.map((event) => (
-                        !event.isavailable && (
-                            <section className="mb-12 text-left" >
-                                <h2 className="text-2xl medium-phone:text-3xl font-bold tracking-tighter mb-6">
+                    {!eventdata[0].isavailable && (
+                        <section className="mb-12 text-left">
+                        <h2 className="text-2xl medium-phone:text-3xl font-bold tracking-tighter mb-6">
                                     Event Overview
                                 </h2>
 
@@ -209,24 +211,23 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                                         <div>
                                             <p className="text-sm">event attendees</p>
                                             <p className="text-lg font-medium">
-                                                {event.visitorsnum === null ?  'no data' : event.visitorsnum }
+                                                {eventdata[0].visitorsnum === null ?  'no data' : eventdata[0].visitorsnum }
                                             </p>
                                         </div>
                                     </Tag>
                                 </div>
                             </section>
-                        )
-                    ))}
+                    )}
 
 
-                    {guestdata.length > 0 && (
+                    {eventdata[0].guests != null && eventdata[0].guests.length > 0 && (
                 <section  className="w-full py-12 md:py-24 lg:py-32">
                     <div className="container px-4 md:px-6">
                         <div className="flex flex-col items-center justify-center space-y-4 text-center">
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Guests</h2>
                         </div>
-                        <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
-                            {guestdata.map((guest, i) => (
+                        <div className="max-w-4xl mx-auto flex flex-wrap justify-around gap-3 py-12 px-4">
+                            {eventdata[0].guests.map((guest, i) => (
                                 <div key={i} className="flex items-center justify-center p-4  rounded-lg ">
 
 
@@ -243,11 +244,11 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                                         <div
                                             className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
                                             <h1 className="text-white text-center font-bold font-sans text-xl  md:text-2xl mb-2 tracking-tight">
-                                                {guest.guestname}
+                                                {guest.name}
                                             </h1>
                                             <div
                                                 className="space-y-1 text-center overflow-hidden max-h-0 transition-all duration-300 group-hover:max-h-24">
-                                                {guest.guestoccupation.map((oc, i) => (
+                                                {guest.occupations.map((oc, i) => (
                                                     <p
                                                         key={i}
                                                         className="text-gray-300 text-sm font-medium truncate transform translate-y-4 transition-transform duration-300 delay-100 group-hover:translate-y-0"
@@ -272,20 +273,21 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                 </section>
 
                     )}
-                    {sponsordata.length > 0 && (
-                <section id='sponsors' className="w-full py-12 md:py-24 lg:py-32">
+                    {eventdata[0].sponsor_pics != null && eventdata[0].sponsor_pics.length > 0 && (
+                        <section id='sponsors' className="w-full py-12 md:py-24 lg:py-12">
 
                     <div className="container px-4 md:px-6">
                         <div className="flex flex-col items-center justify-center space-y-4 text-center">
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>
                         </div>
-                        <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 py-12 px-4">
-                            {sponsordata.map((sponsor, i) => (
+                        <div className="max-w-7xl mx-auto flex flex-wrap justify-around gap-2 py-12 px-4">
+                            {eventdata[0].sponsor_pics.map((sponsor, i) => (
                                 <div key={i}
                                      className="flex items-center  justify-center p-4  ">
 
                                     <a>
-                                        <img className='h-20 p-1 w-40 rounded-xl bg-gray-100' src={sponsor.sponsorpic} alt='img'/>
+                                        <img className='h-20 p-1 w-40 rounded-xl bg-gray-100' src={String(sponsor)}
+                                             alt='img'/>
                                     </a>
 
                                 </div>
@@ -308,31 +310,27 @@ const PageContent = ({eventdata,guestdata,sponsordata}: { eventdata: Tables<'eve
                 onClose={handleCloseToast}
             />
         </div>
+
     )
 }
-const swrFetcher = ([table, json, columns, secondaryQuery]: [string, boolean, string[], ((query: any) => any) | undefined]) =>
-    fetch(table, json, columns, secondaryQuery)
+
 export default function Index({params}: { params: { eventid: number } }) {
 
-    const [eventdata, seteventdata] = useState<Tables<'events'>[]>([]);
-    const [guestdata, setguestdata] = useState<Tables<'guests'>[]>([]);
-    const [sponsordata, setsponsorsdata] = useState<Tables<'sponsors'>[]>([]);
+    const [eventdata, seteventdata] = useState<Events[]>([]);
+
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
 
         const getdata = async () => {
             setIsLoading(true);
             try {
-                const EventData: Tables<'events'>[] = await fetch("events", false, ['*'],(query) => query.limit(1).eq('eventid', params.eventid));
+                const response = await proc('get_event_details', {p_eventid: params.eventid});
+                const EventData = response.data;
+
+
+                ;
                 seteventdata(EventData);
 
-                if(EventData[0].guest != null && EventData[0].guest != null) {
-
-                    const GuestsData: Tables<'guests'>[] = await fetch("guests", false, ['*'], query => query.eq('guestid', EventData[0].guest));
-                    const SponsorsData: Tables<'sponsors'>[] = await fetch("sponsors", false, ['*'], query => query.eq('sponsorid', EventData[0].sponsor));
-                    setguestdata(GuestsData);
-                    setsponsorsdata(SponsorsData);
-                }
 
 
 
@@ -347,6 +345,8 @@ export default function Index({params}: { params: { eventid: number } }) {
     }, []);
 
 
+
+
     return (
         <div className='w-full'>
 
@@ -356,7 +356,7 @@ export default function Index({params}: { params: { eventid: number } }) {
 
                     <Loading/>
                     :
-                    <PageContent eventdata={eventdata} sponsordata={sponsordata} guestdata={guestdata} />
+                    <PageContent eventdata={eventdata}  />
 
                 }
             </Suspense>

@@ -44,11 +44,13 @@ export async function insert<T>(
 }
 
 export async function proc(
-    fn :string,
-    SecondaryQuery?:(query:any) => any ,
-){
+    fn: string,
+    params?: Record<string, any>,
+    SecondaryQuery?: (query: any) => any,
+) {
 
-    let query =  supabaseClient.rpc(fn)
-    return  SecondaryQuery ? await  SecondaryQuery(query) : await query;
+    const supabaseClient = createClient();
+    let query = supabaseClient.rpc(fn, params)
+    return SecondaryQuery ? await SecondaryQuery(query) : await query;
 
 }
