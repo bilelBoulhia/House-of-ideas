@@ -76,7 +76,7 @@ export default function CoolNewsletter() {
                                                 message: "Please enter a valid email address"
                                             }
                                         })}
-                                        className="placeholder:text-white bg-white/20 text-white placeholder-white border-purple-300 focus:ring-purple-500 focus:border-purple-500"
+                                        className="placeholder:text-white bg-white/20 text-white placeholder-white border-0  focus-visible:ring-2  focus-visible:ring-purple-400 "
                                     />
 
                                     {errors.email && <p className="text-red-500 text-sm mt-1 self-start">{errors.email.message}</p>}

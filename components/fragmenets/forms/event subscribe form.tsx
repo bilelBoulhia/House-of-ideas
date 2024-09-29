@@ -76,7 +76,7 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
                         This information will only appear to Mods. Please ensure it's correct so we can contact you.
                     </p>
 
-                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-5 ">
+                    <div className="mt-10 grid grid-cols-1 p-[1px] gap-x-6 gap-y-5 ">
                         <div className="sm:col-span-1">
                             <Label htmlFor="first-name">First name</Label>
                             <Input
@@ -163,7 +163,7 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
                                     required: "the question is required",
 
                                 })}
-                                className="mt-2 flex h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
+                                className="mt-2 flex h-20 w-full focus-visible:border-white rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
                             />
                             {errors.whyjoinus &&
                                 <p className="text-red-500 text-sm mt-1">{errors.whyjoinus.message}</p>}
@@ -175,7 +175,7 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
                                 {...register("howdiduhearaboutus", {
                                     required: "the question is required",
                                 })}
-                                className="mt-2 flex h-20 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
+                                className="mt-2 flex h-20 w-full focus-visible:border-white rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
                             />
                             {errors.howdiduhearaboutus &&
                                 <p className="text-red-500 text-sm mt-1">{errors.howdiduhearaboutus.message}</p>}

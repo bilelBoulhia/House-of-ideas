@@ -52,7 +52,7 @@ export const ReviewForm = () => {
                     <Input
                         type="text"
                         placeholder="your name"
-                        className="w-full border-white shadow-sm placeholder:text-muted-foreground   text-lg py-6"
+                        className="w-full border-white shadow-sm placeholder:text-muted-foreground  border-2 border-black/80  dark:border-white  text-lg py-6"
                         {...register("reviewer", {
                             required: "name is required",
                             pattern: {
@@ -72,7 +72,7 @@ export const ReviewForm = () => {
                 <div className="relative w-full">
           <textarea
               placeholder="Review"
-              className="flex  min-h-[150px] w-full rounded-md   bg-transparent px-3 py-2  border-2 border-black/80  dark:border-white text-lg shadow-sm placeholder:text-muted-foreground"
+              className="flex  min-h-[150px] w-full rounded-md    shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring  bg-transparent px-3 py-2  border-2 border-black/80   dark:border-white text-lg  placeholder:text-muted-foreground"
               {...register("review", {
                   required: "Review is required",
                   minLength: {
