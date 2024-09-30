@@ -22,7 +22,7 @@ export default function Hero() {
     const router = useRouter()
 
     return (
-        <div>
+        <div id='Hero'>
 
             <div className='flex min-h-[calc(100vh-40rem)]  justify-evenly gap-6   overflow-hidden  flex-col w-full '>
                 <motion.div>
