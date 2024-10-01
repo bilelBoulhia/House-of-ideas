@@ -155,6 +155,34 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
                                 <p className="text-red-500 text-sm mt-1">{errors.phonenumber.message}</p>}
                         </div>
 
+
+                        <div className="sm:col-span-3">
+                            <label htmlFor="howdiduhearaboutus" className="block text-sm  ">How
+                                did you
+                                hear about us</label>
+                            <select
+                                id="howdiduhearaboutus"
+                                {...register("howdiduhearaboutus", {
+                                    required: "This question is required",
+                                    validate: (value) => value !== "" || "Please select an option"
+                                })}
+
+                                className="mt-2 block w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:border-white  disabled:cursor-not-allowed disabled:opacity-50"
+                            >
+                                <option value="" style={{backgroundColor: 'black'}}>Select an option</option>
+                                <option value="facebook" style={{backgroundColor: 'black'}}>facebook</option>
+                                <option value="instagram" style={{backgroundColor: 'black'}}>instagram</option>
+                                <option value="friend" style={{backgroundColor: 'black'}}>a friend</option>
+                                <option value="Tiktok" style={{backgroundColor: 'black'}}>tiktok</option>
+                                <option value="Tiktok" style={{backgroundColor: 'black'}}>search</option>
+
+                            </select>
+                            {errors.howdiduhearaboutus &&
+                                <p className="text-red-500 text-sm mt-1">{errors.howdiduhearaboutus.message}</p>}
+
+                        </div>
+
+
                         <div className="sm:col-span-3">
                             <Label htmlFor="whyjoinus">Why do you want to join this event</Label>
                             <textarea
@@ -168,19 +196,6 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
                             {errors.whyjoinus &&
                                 <p className="text-red-500 text-sm mt-1">{errors.whyjoinus.message}</p>}
                         </div>
-                        <div className="sm:col-span-3">
-                            <Label htmlFor="howdiduhearaboutus">How did you hear about us</Label>
-                            <textarea
-                                id="howdiduhearaboutus"
-                                {...register("howdiduhearaboutus", {
-                                    required: "the question is required",
-                                })}
-                                className="mt-2 flex h-20 w-full focus-visible:border-white rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 "
-                            />
-                            {errors.howdiduhearaboutus &&
-                                <p className="text-red-500 text-sm mt-1">{errors.howdiduhearaboutus.message}</p>}
-                        </div>
-
 
                         <div className="sm:col-span-3">
                             <div className="flex items-center">
