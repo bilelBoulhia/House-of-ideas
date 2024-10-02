@@ -25,6 +25,7 @@ import {notFound} from "next/navigation";
 import Toast from "@/components/ui/toast";
 import {Loading} from "@/app/Loading";
 import useSWR from "swr";
+import {NoData} from "@/components/ui/not-data";
 
 
 
@@ -33,125 +34,132 @@ import useSWR from "swr";
 
 function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
+    if(data.length === 0 ){
+        return (
+            <NoData sentence='sorry , no workshops at the moment'/>
+        )
+    }else {
 
 
-    const formRef = useRef<SubscribeFormRef>(null);
-    const modalRef = useRef<ModalBodyRef>(null);
-    const [showToast, setShowToast] = useState(false);
-    const handleFormSubmit = (data: Tables<'applicants'>) => {
-        const insertdata = async (data: Tables<'applicants'>) => {
-            try {
-                const issuccess = await insert<Tables<'applicants'>>('applicants', data).catch(r => console.error(r));
-                if (issuccess) {
-                    modalRef.current?.closeModal();
-                    setShowToast(true);
+        const formRef = useRef<SubscribeFormRef>(null);
+        const modalRef = useRef<ModalBodyRef>(null);
+        const [showToast, setShowToast] = useState(false);
+        const handleFormSubmit = (data: Tables<'applicants'>) => {
+            const insertdata = async (data: Tables<'applicants'>) => {
+                try {
+                    const issuccess = await insert<Tables<'applicants'>>('applicants', data).catch(r => console.error(r));
+                    if (issuccess) {
+                        modalRef.current?.closeModal();
+                        setShowToast(true);
 
+                    }
+
+                } catch (error) {
+                    console.error(error);
                 }
+            };
 
-            } catch (error) {
-                console.error(error);
-            }
+            insertdata(data).catch(r => console.error(r));
+        };
+        const handleCloseToast = () => {
+            setShowToast(false);
+        };
+        const pages = (selectedworkshop: Tables<'workshops'> | null) => [
+            <div key="1" className="space-y-2">
+                <WorkshopDetails data={selectedworkshop}/>
+            </div>
+            ,
+            <div key="2" className="space-y-2">
+                <SubscribeForm
+                    ref={formRef}
+                    workshopid={selectedworkshop?.workshopid || 0}
+                    onSubmit={handleFormSubmit}
+                />
+            </div>,
+
+        ]
+
+        const handleStepperFinish = () => {
+            formRef.current?.submitForm();
         };
 
-        insertdata(data).catch(r => console.error(r));
-    };
-    const handleCloseToast = () => {
-        setShowToast(false);
-    };
-    const pages = (selectedworkshop: Tables<'workshops'> | null) => [
-        <div key="1" className="space-y-2">
-            <WorkshopDetails data={selectedworkshop}/>
-        </div>
-        ,
-        <div key="2" className="space-y-2">
-            <SubscribeForm
-                ref={formRef}
-                workshopid={selectedworkshop?.workshopid || 0}
-                onSubmit={handleFormSubmit}
-            />
-        </div>,
-
-    ]
-
-    const handleStepperFinish = () => {
-        formRef.current?.submitForm();
-    };
-
-    return (
-
-<div className='z-10 w-full'>
-
-    <AnimatedHeading sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] blur-[3px]'/>
+        return (
 
 
+            <div className='z-10 w-full'>
 
-            <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
-                {data.map((workshop, index) => (
-                    <Card key={index}
-                          className='relative group bg-[#fffef9] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
-
-                        <CardContent>
-
-                            <CardUpperBody>
-
-                                <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
-                                    {workshop.workshopname}
-
-                                </CardTitle>
-
-                                <CardDescription className='text-neutral-800 dark:text-neutral-200'
-                                >
-                                    {workshop.workshopdescription}
-                                </CardDescription>
-                            </CardUpperBody>
+                <AnimatedHeading sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] blur-[3px]'/>
 
 
-                            <CardBottomBody>
-                                <CardFooter>
+                <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
+                    {data.map((workshop, index) => (
+                        <Card key={index}
+                              className='relative group bg-[#fffef9] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
 
-                                    <Modal>
-                                        <ModalTrigger asChild>
-                                            <Button
-                                                className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
-                                        </ModalTrigger>
-                                        <ModalBody ref={modalRef}>
+                            <CardContent>
 
-                                            <ModalContent>
-                                                <div>
-                                                    <Stepper
-                                                        finishSentnce='subscribe'
-                                                        pages={pages(workshop)}
-                                                        onFinish={handleStepperFinish}
-                                                    />
+                                <CardUpperBody>
 
-                                                </div>
-                                            </ModalContent>
-                                        </ModalBody>
-                                    </Modal>
+                                    <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
+                                        {workshop.workshopname}
 
-                                    <CardBadge>Free</CardBadge>
-                                </CardFooter>
-                            </CardBottomBody>
+                                    </CardTitle>
+
+                                    <CardDescription className='text-neutral-800 dark:text-neutral-200'
+                                    >
+                                        {workshop.workshopdescription}
+                                    </CardDescription>
+                                </CardUpperBody>
 
 
-                        </CardContent>
+                                <CardBottomBody>
+                                    <CardFooter>
 
-                    </Card>
+                                        <Modal>
+                                            <ModalTrigger asChild>
+                                                <Button
+                                                    className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
+                                            </ModalTrigger>
+                                            <ModalBody ref={modalRef}>
+
+                                                <ModalContent>
+                                                    <div>
+                                                        <Stepper
+                                                            finishSentnce='subscribe'
+                                                            pages={pages(workshop)}
+                                                            onFinish={handleStepperFinish}
+                                                        />
+
+                                                    </div>
+                                                </ModalContent>
+                                            </ModalBody>
+                                        </Modal>
+
+                                        <CardBadge>Free</CardBadge>
+                                    </CardFooter>
+                                </CardBottomBody>
 
 
-                ))}
+                            </CardContent>
 
-                <Toast
-                    show={showToast}
-                    message="thank you well contact you soon"
-                    onClose={handleCloseToast}
-                />
+                        </Card>
+
+
+                    ))}
+
+                    <Toast
+                        show={showToast}
+                        message="thank you well contact you soon"
+                        onClose={handleCloseToast}
+                    />
+
+                </div>
+
 
             </div>
+        )
 
-
-</div>
-    )
+    }
 }
 
 
@@ -174,6 +182,7 @@ export default function Index() {
                 {isLoading ?
                     <Loading/>
                     :
+
                     <PageContent data={data || []}/>
                 }
             </Suspense>

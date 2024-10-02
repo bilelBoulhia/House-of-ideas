@@ -7,12 +7,16 @@ import {shadowVariants} from "@/utils/types";
 import {Tables} from '@/utils/DatabaseTypes'
 import {useRouter} from "next/navigation";
 import React from "react";
+import {NoData} from "@/components/ui/not-data";
 
 
 
 
 
 export default function Event({data}: {data: Tables<'events'>[]}) {
+
+
+
 
     console.log(data)
     const router = useRouter();
@@ -30,30 +34,9 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
             </div>
 
 
-            {data == undefined || null ? (
-                <div
-                    className="flex flex-col m-4 min-h-[40rem] items-center justify-center  p-8 bg-gradient-to-br from-blue-950 to-black/80 rounded-3xl shadow-lg"
-                >
+            {data.length <= 0  ? (
 
-                    <motion.h2
-                        className="text-3xl md:text-4xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600"
-                    >
-                        Sorry, No Event at the Moment
-                    </motion.h2>
-                    <motion.div
-
-                        className=" p-6 rounded-2xl shadow-md  max-w-md w-full"
-                    >
-                        <p className="text-lg mb-4">
-                            We're working hard to bring you exciting new workshops
-                        </p>
-                        <div className="flex items-center justify-between text-sm ">
-                            <span>Next check: Soon</span>
-                            <span>Stay tuned!</span>
-                        </div>
-                    </motion.div>
-
-                </div>
+                <NoData sentence='sorry no events at the moment'/>
             ) : (
 
                 <Carousel
