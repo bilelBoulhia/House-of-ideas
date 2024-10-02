@@ -3,8 +3,10 @@ import React from "react";
 
 export const NoData = ({sentence}:{sentence:string}) => (
     <div
-        className="flex z-10  flex-col m-4 min-h-[30rem] items-center justify-center   p-8 rounded-3xl shadow-lg"
+        className="flex z-10  flex-col m-4 min-h-[40rem] items-center justify-center   p-8 rounded-3xl "
     >
+
+
 
         <motion.h2
             className="text-3xl md:text-4xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600"
