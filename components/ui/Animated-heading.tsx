@@ -7,6 +7,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 export type AnimatedHeading = {
   sentence: string[]
   className?: string
+  firstsentenceClassName?: string
   size?: VariantProps<typeof Variants>["size"]
   color?: VariantProps<typeof Variants>["color"]
 }
@@ -29,7 +30,7 @@ const Variants = cva("flex flex-row items-center text-center justify-center", {
   },
 })
 
-export const AnimatedHeading = ({ sentence, className,color, size }: AnimatedHeading) => {
+export const AnimatedHeading = ({firstsentenceClassName, sentence, className,color, size }: AnimatedHeading) => {
   return (
     <div className={Variants({ size })}>
       <div className="relative flex-row flex items-end w-full justify-end">
@@ -38,7 +39,7 @@ export const AnimatedHeading = ({ sentence, className,color, size }: AnimatedHea
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4, ease: "easeInOut" }}
-          className="uppercase  text-center mr-1 font-[1000]  text-black dark:text-white  tracking-tight"
+          className={cn("uppercase  text-center mr-1 font-[1000]  text-black dark:text-white  tracking-tight",firstsentenceClassName)}
         >
           {sentence[0]}
         </motion.h2>

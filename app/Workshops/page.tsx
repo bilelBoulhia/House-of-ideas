@@ -86,9 +86,11 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
         return (
 
 
-            <div className='z-10 w-full'>
+            <>
+                <AnimatedHeading firstsentenceClassName='z-10' sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] '/>
+            <div className='z-10  w-full'>
 
-                <AnimatedHeading sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] blur-[3px]'/>
+
 
 
                 <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
@@ -157,6 +159,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
 
             </div>
+                </>
         )
 
     }
@@ -182,7 +185,6 @@ export default function Index() {
                 {isLoading ?
                     <Loading/>
                     :
-
                     <PageContent data={data || []}/>
                 }
             </Suspense>
