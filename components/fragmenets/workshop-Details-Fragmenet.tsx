@@ -35,7 +35,20 @@ function TutorContent({tutor}: { tutor: Tables<'tutors'>[] }) {
             </div>
             <div className="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"/>
             <div className="relative lg:w-1/2 p-12 flex items-center justify-center overflow-hidden">
-                <img className='rounded-xl' src={tutor[0]?.tutorpic?.toString()} alt={tutor[0]?.tutorname}/>
+                {tutor[0]?.tutorpic === null ? (
+
+                    <img className='rounded-xl'
+                         src='https://static.vecteezy.com/system/resources/previews/020/911/740/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png'
+                         alt={tutor[0]?.tutorname}/>
+
+
+                ) : (
+
+                    <img className='rounded-xl' src={tutor[0]?.tutorpic?.toString()} alt={tutor[0]?.tutorname}/>
+
+                )}
+
+
             </div>
         </div>
     )

@@ -36,7 +36,7 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
 
             {data.length <= 0  ? (
 
-                <NoData sentence='sorry no events at the moment'/>
+                <NoData sentence='no events at the moment'/>
             ) : (
 
                 <Carousel

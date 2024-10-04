@@ -76,7 +76,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                 <AnimatedHeading sentence={["Latest", "Workshops"]} className='bg-[#f5f7f3] dark:bg-[#00070e]'/>
 
                 {data.length <= 0  ? (
-                    <NoData sentence='sorry , no workshops at the moment'/>
+                    <NoData sentence='no workshops at the moment'/>
                 ) : (
 
 

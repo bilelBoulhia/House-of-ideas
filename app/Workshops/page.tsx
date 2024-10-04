@@ -36,7 +36,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
     if(data.length === 0 ){
         return (
-            <NoData sentence='sorry , no workshops at the moment'/>
+            <NoData sentence='no workshops at the moment'/>
         )
     }else {
 

@@ -13,75 +13,60 @@ type departmentsType ={
 
 const departments : departmentsType[] = [
     {
-        name: 'IT Department',
+        name: 'Human Resources',
         description: [
-            'Cutting-edge technology ',
-            'Hands-on  experience',
-            'Focus on cybersecurity',
-            'Industry-aligned curriculum'
+            'Organization',
+            'Recruitment',
+            'Evaluation',
+            'Conflict resolution',
+            'Department orientation'
+
         ]
     },
     {
-        name: 'Marketing Department',
+        name: 'Information Technology',
         description: [
-            'Strategic brand management',
-            'Digital marketing expertise',
-            'Consumer behavior analysis',
-            'Integrated marketing '
+            'Web development',
+            'Database management',
+            'Research',
+            'Integrated marketing'
         ]
     },
       {
-        name: 'Polictics Department',
+        name: 'External Resources',
         description: [
-            'Strategic brand management',
-            'Digital marketing expertise',
-            'Consumer behavior analysis ',
-            'Integrated marketing '
+            'Contacting trainers',
+            'Contacting hosts',
+            'Contacting sponsors',
+
         ]
     },
     {
-        name: 'French Department',
+        name: 'Internal Activities',
         description: [
-            'Strategic brand management',
-            'Digital marketing expertise',
-            'Consumer behavior analysis ',
-            'Integrated marketing '
+            'Activities, practical internships',
+            'Practical internships',
+            'recruitments',
+
         ]
     },
     {
-        name: 'Italian Department',
+        name: 'Secretariat Department',
         description: [
-            'Strategic brand management',
-            'Digital marketing expertise',
-            'Consumer behavior analysis ',
-            'Integrated marketing '
+            'making minutes',
+            'creating reports',
+            'Electronic journal'
+
         ]
     },
+
     {
-        name: 'Idk Department',
+        name: 'Marketing Department',
         description: [
-            'Strategic brand management',
-            'Digital marketing expertise',
-            'Consumer behavior analysis ',
-            'Integrated marketing '
-        ]
-    },
-    {
-        name: 'Bilel Department',
-        description: [
-            'Strategic brand management',
-            'Digital marketing expertise',
-            'Consumer behavior analysis ',
-            'Integrated marketing '
-        ]
-    },
-    {
-        name: 'Design Department',
-        description: [
-            'Strategic brand management',
-            'Digital marketing expertise',
-            'Consumer behavior analysis ',
-            'Integrated marketing '
+            'Maintaining the club\'s image',
+            'Training on the club’s services',
+            'Training for events ',
+            'Training on the club’s activities'
         ]
     },
 
@@ -115,9 +100,8 @@ export default function Departament() {
 
             <div className="flex flex-col md:flex-row">
 
-            <div className="relative   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
-                <div
-                    style={{zIndex:-3}} className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
+            <div className="relative md:min-h-[29rem]   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
+                <div style={{zIndex:-3}} className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
 
                 <AnimatePresence mode="wait">
                     <motion.h2
@@ -127,7 +111,7 @@ export default function Departament() {
                         animate={{y: 0}}
                         exit={{y: -190}}
                         transition={{duration: 0.6, ease: "easeInOut"}}
-                        className="iphone5:text-5xl   medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
+                        className="iphone5:text-5xl    medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
                         style={{
                             zIndex:-4,
                             textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
@@ -145,7 +129,7 @@ export default function Departament() {
 
                             key={c}
                             //max-w-md
-                            className="space-y-4 min-w-[310px]  max-w-[350px]  relative z-10"
+                            className="space-y-4 min-w-[320px] p-1  max-w-[350px]  relative z-10"
                         >
                             {departments[c].description.map((item, index) => (
                                 <motion.li
