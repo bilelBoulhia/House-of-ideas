@@ -107,14 +107,16 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                                                 <Modal>
                                                     <ModalTrigger asChild>
                                                         <Button
-                                                            disabled={Date.parse(workshop.date) < Date.now()}
-                                                            className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
+
+                                                            className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>Details</Button>
                                                     </ModalTrigger>
                                                     <ModalBody>
 
                                                         <ModalContent>
                                                             <div>
                                                                 <Stepper
+
+                                                                    isDisabled={Date.parse(workshop.date) < Date.now()}
                                                                     finishSentnce='subscribe'
                                                                     pages={pages(workshop)}
                                                                     onFinish={handleStepperFinish}
