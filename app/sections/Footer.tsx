@@ -5,8 +5,7 @@ export default function Footer() {
     return (
 
 
-        <footer style={{zIndex: 2}} id='ContactUs'
-                className="relative border-gray-800 mt-4  overflow-hidden border-t-[1px]">
+        <footer style={{zIndex: 21}} id='ContactUs' className="relative border-gray-800 mt-4  overflow-hidden border-t-[1px]">
             <div className="mx-auto w-full px-2 p-1 py-6 lg:py-8">
                 <div className="md:flex md:justify-between ">
 
@@ -17,12 +16,12 @@ export default function Footer() {
                             <ul className="text-gray-500 text-xs dark:text-gray-400 font-medium">
 
                                 <li className="mb-4">
-                                    <a href="https://github.com/bilelBoulhia" className="hover:underline ">university of algiers 3
+                                    <a href="https://www.univ-alger3.dz/en/" className="hover:underline ">university of algiers 3
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a className="hover:underline ">hoi.univalger3@gmail.com</a>
+                                    <span >hoi.univalger3@gmail.com</span>
                                 </li>
                             </ul>
                         </div>
