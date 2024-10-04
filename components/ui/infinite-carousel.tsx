@@ -84,7 +84,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item) => (
           <li
-            className="w-[250px]  min-h-[15rem] max-w-full relative rounded-2xl border border-b-[1px] flex-shrink-0 border-slate-700 px-8 py-6 md:w-[450px]"
+            className="w-[250px] md:w-[350px]  max-w-full relative rounded-2xl border border-b-[1px] flex-shrink-0 border-white px-8 py-6 "
             style={{
               background:
                 "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
@@ -100,7 +100,7 @@ export const InfiniteMovingCards = ({
                 {item.review}
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
+                <span className="flex flex-col  gap-1">
                   <span className=" text-sm leading-[1.6] dark:text-gray-400 text-gray-800 font-normal">
                     {item.reviewer}
                   </span>

@@ -26,8 +26,7 @@ export default function Testimonials({data}:{data:Tables<'reviews'>[]}) {
 
 
             <AnimatedHeading sentence={sentence} className='bg-[#f6faf4] dark:bg-[#000306]'/>
-            <div
-                className=" mt-12  rounded-md flex flex-col antialiased  dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+            <div className=" mt-12  rounded-md flex flex-col antialiased  dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
                 <InfiniteMovingCards
                     items={data}
                     direction="right"
