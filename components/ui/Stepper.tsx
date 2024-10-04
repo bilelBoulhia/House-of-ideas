@@ -48,7 +48,7 @@ export default function Stepper({isDisabled, pages, finishSentnce, onFinish }: S
         <Button
             disabled={isDisabled}
             onClick={() => goToNextStep()}>
-          {currentStep === pages.length - 1 ? finishSentnce :  'Next'} <ChevronRight className="ml-2 h-4 w-4" />
+          {currentStep === pages.length - 1 ? finishSentnce :  (isDisabled ? 'unavailabe' : 'Next')} <ChevronRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
     </div>
