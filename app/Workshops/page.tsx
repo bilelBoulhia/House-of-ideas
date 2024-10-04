@@ -164,7 +164,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
 
 const fetcher = async () => {
-    const fetcheddata = await fetch("workshops", ['*'],q=>q.order('createdat', {ascending: true}));
+    const fetcheddata = await fetch("workshops", ['*'],q=>q.order('date', {ascending: false}));
     return fetcheddata as Tables<'workshops'>[] || [];
 
 }
