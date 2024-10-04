@@ -7,7 +7,7 @@ interface StepperProps {
   pages: React.ReactNode[];
   finishSentnce: string;
   onFinish: () => void;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 export default function Stepper({isDisabled, pages, finishSentnce, onFinish }: StepperProps) {
