@@ -33,7 +33,7 @@ export const Card: React.FC<CardProps> = ({ children, className, ...props }) => 
               viewport={{once:true}}
               whileInView="visible"
               variants={shadowVariants}
-            className={cn("rounded-2xl min-w-[300px] md:min-w-[550px]  m-7 p-4 overflow-hidden group-hover:border-slate-700 relative ",
+            className={cn("rounded-2xl min-w-[300px]   m-7 p-4 overflow-hidden group-hover:border-slate-700 relative ",
                 className
             )}
             {...props}
