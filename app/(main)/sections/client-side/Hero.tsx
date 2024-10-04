@@ -26,7 +26,7 @@ export default function Hero() {
 
             <div className='flex min-h-[calc(100vh-40rem)]  justify-evenly gap-6   overflow-hidden  flex-col w-full '>
                 <motion.div>
-                    <h2 className="mt-[4rem] iphone5:text-[2.7rem] medium-phone:text-[3.5rem] slighty-large-phone:text-[4rem] large-phone:text-7xl    font-bold text-center text-black dark:text-white font-sans tracking-tight">
+                    <h2 className="mt-[5rem] iphone5:text-[2.7rem] medium-phone:text-[3.2rem] slighty-large-phone:text-[4rem] large-phone:text-7xl   font-[1000]   text-center text-black dark:text-white  tracking-tight">
                         <FlipText>Welcome</FlipText> <FlipText>to </FlipText>   <br/>
 
                         <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">

@@ -64,7 +64,7 @@ export default function Navbar() {
                     <Menu className="h-6 w-6"/>
                 </Button>
 
-                <NewHiIcon animate={isOpen} className='float-right  relative size-20 p-4  '/>
+                <NewHiIcon animate={isOpen}   className='float-right  relative size-20 p-4  '/>
             </div>
 
 

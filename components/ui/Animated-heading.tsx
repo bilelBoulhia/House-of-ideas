@@ -19,7 +19,7 @@ const Variants = cva("flex flex-row items-center text-center justify-center", {
     },
 
     size: {
-      default: "iphone5:text-3xl z-12 medium-phone:text-4xl large-phone:text-5xl",
+      default: "iphone5:text-[1.75rem] z-12 medium-phone:text-[2.10rem] large-phone:text-5xl",
       xl: "text-3xl sm:text-5xl",
     },
   },
@@ -38,7 +38,7 @@ export const AnimatedHeading = ({ sentence, className,color, size }: AnimatedHea
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4, ease: "easeInOut" }}
-          className="uppercase  text-center mr-1 font-extrabold text-black dark:text-white font-sans tracking-tight"
+          className="uppercase  text-center mr-1 font-[1000]  text-black dark:text-white  tracking-tight"
         >
           {sentence[0]}
         </motion.h2>
@@ -70,7 +70,7 @@ export const AnimatedHeading = ({ sentence, className,color, size }: AnimatedHea
           initial={{ opacity: 1, x: '-100%' }}
           whileInView={{ opacity: 1, x: 5 }}
           transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.6 }}
-          className={cn("uppercase  font-extrabold text-center  font-sans tracking-tight",Variants({color}))}
+          className={cn("uppercase  text-center  font-[1000] tracking-tight",Variants({color}))}
         >
           {sentence[1]}
         </motion.span>
