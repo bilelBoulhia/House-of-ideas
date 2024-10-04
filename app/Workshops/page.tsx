@@ -117,8 +117,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
                                         <Modal>
                                             <ModalTrigger asChild>
-                                                <Button
-                                                    className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
+                                                <Button disabled={Date.parse(workshop.date) < Date.now()} className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>subscribe</Button>
                                             </ModalTrigger>
                                             <ModalBody ref={modalRef}>
 
