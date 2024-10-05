@@ -2,7 +2,7 @@
 import {AnimatePresence, motion} from "framer-motion";
 import React, {useEffect, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
-import {it} from "node:test";
+
 import {Sparkles} from "lucide-react";
 
 
