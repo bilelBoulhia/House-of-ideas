@@ -88,7 +88,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
             <>
             <AnimatedHeading firstsentenceClassName='z-10' sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] '/>
-            <div className='z-10  w-full'>
+            <div  className='z-10  w-full'>
 
 
 
@@ -179,7 +179,7 @@ export default function Index() {
     return (
 
         <div
-            style={{zIndex:15}}
+
             className='flex flex-col  mt-[8rem] items-center justify-center overflow-hidden gap-2'>
             <Suspense fallback={<Loading/>}>
                 {isLoading ?
@@ -188,7 +188,10 @@ export default function Index() {
                     <PageContent data={data || []}/>
                 }
             </Suspense>
-            <BackgroundBeams/>
+
+                <BackgroundBeams  />
+
+
         </div>
     )
 }

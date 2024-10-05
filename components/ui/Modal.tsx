@@ -41,7 +41,7 @@ export const useModal = () => {
 };
 
 export function Modal({ children }: { children: ReactNode }) {
-    return  <ModalProvider>{children}</ModalProvider>;
+    return    <ModalProvider>{children}</ModalProvider> ;
 }
 
 export const ModalTrigger = ({children, className, asChild
@@ -88,7 +88,7 @@ export const ModalBody = forwardRef<ModalBodyRef, {
         <AnimatePresence >
             {open && (
                 <motion.div
-                    style={{zIndex: 23}}
+
                     initial={{
                         opacity: 0,
 
@@ -181,7 +181,7 @@ export const ModalFooter = ({
 const Overlay = ({ className }: { className?: string }) => {
     return (
         <motion.div
-            style={{zIndex: 23}}
+
             initial={{
                 opacity: 0,
             }}

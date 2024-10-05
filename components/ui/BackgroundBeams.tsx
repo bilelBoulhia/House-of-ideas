@@ -1,13 +1,14 @@
 
-import React from "react";
+import React, {DetailedHTMLProps, HTMLAttributes} from "react";
 import { motion } from "framer-motion";
 import {cn} from "@/app/lib/utils";
+import {Properties} from "csstype";
 
 //absolute  h-full w-full inset-0  [mask-size:40px] [mask-repeat:no-repeat]
 export const BackgroundBeams = React.memo(
-    ({ className }: { className?: string }) => {
+    ({ className ,style }: {style?: React.CSSProperties , className?: string }) => {
         return (
-            <div className={cn("fixed inset-0  [mask-size:40px] [mask-repeat:no-repeat] flex items-center justify-center",
+            <div style={style} className={cn("fixed inset-0  [mask-size:40px] [mask-repeat:no-repeat] flex items-center justify-center",
                     className
                 )}
 

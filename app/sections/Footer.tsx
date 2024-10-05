@@ -5,7 +5,7 @@ export default function Footer() {
     return (
 
 
-        <footer style={{zIndex: 15}} id='ContactUs' className="relative border-gray-800 mt-4  overflow-hidden border-t-[1px]">
+        <footer  id='ContactUs' className="relative border-gray-800 mt-4  overflow-hidden border-t-[1px]">
             <div className="mx-auto w-full px-2 p-1 py-6 lg:py-8">
                 <div className="md:flex md:justify-between ">
 

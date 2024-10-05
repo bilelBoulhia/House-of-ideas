@@ -74,7 +74,7 @@ export function WorkshopDetails({data}: { data: Tables<'workshops'> | null }) {
     },[])
 
     return (
-        <div className='flex flex-col cursor-default h-full w-full items-center justify-center'>
+        <div  className='flex flex-col cursor-default h-full w-full items-center justify-center'>
             <div className='flex flex-col h-full w-full items-center justify-center'>
                 <h2 className='text-4xl tracking-tight font-bold uppercase text-center'>{data?.workshopname}</h2>
                 <h2 className='text-xl max-w-xl tracking-tight font-medium p-3 text-center'>
