@@ -1,5 +1,5 @@
 'use client'
-import React, {Suspense, useEffect, useState} from "react";
+import React, {Suspense} from "react";
 import {motion} from "framer-motion";
 
 
@@ -12,7 +12,7 @@ import {Tables} from "@/utils/DatabaseTypes";
 import {fetch} from "@/app/lib/supabase/client-api";
 import {useRouter} from "next/navigation";
 import {Loading} from "@/app/Loading";
-import {Loader} from "lucide-react";
+
 import useSWR from "swr";
 import {NoData} from "@/components/ui/not-data";
 
