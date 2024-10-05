@@ -13,6 +13,8 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Welcome to house of Ideas",
+  description:"Turning your ideas into projects"
+
 
 };
 
