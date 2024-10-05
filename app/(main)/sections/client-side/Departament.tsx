@@ -2,6 +2,8 @@
 import {AnimatePresence, motion} from "framer-motion";
 import React, {useEffect, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
+import {it} from "node:test";
+import {Sparkles} from "lucide-react";
 
 
 
@@ -21,6 +23,7 @@ const departments : departmentsType[] = [
             'Conflict resolution',
             'Department orientation'
 
+
         ]
     },
     {
@@ -29,7 +32,8 @@ const departments : departmentsType[] = [
             'Web development',
             'Database management',
             'Research',
-            'Service Desgin'
+            'Design service'
+
         ]
     },
       {
@@ -37,17 +41,18 @@ const departments : departmentsType[] = [
         description: [
             'Contacting trainers',
             'Contacting hosts',
-            'Contacting sponsors',
-            'Commercial service'
+            'Contacting sponsors'
+
 
         ]
     },
     {
         name: 'Internal Activities',
         description: [
-            'Activities, practical internships',
-            'Practical internships',
-            'recruitments',
+            'Club-bounding activities',
+            'Recruitments',
+            'Internship facilitation for partners',
+
 
         ]
     },
@@ -58,6 +63,7 @@ const departments : departmentsType[] = [
             'creating reports',
             'Electronic journal'
 
+
         ]
     },
 
@@ -65,9 +71,9 @@ const departments : departmentsType[] = [
         name: 'Marketing Department',
         description: [
             'Maintaining the club\'s image',
-            'Training on the club’s services',
-            'Training for events ',
-            'Training on the club’s activities'
+            'Promoting club’s services',
+            'Promoting events ',
+            'Commercial service'
         ]
     },
 
@@ -101,7 +107,7 @@ export default function Departament() {
 
             <div className="flex flex-col md:flex-row">
 
-            <div className="relative md:min-h-[29rem]   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
+            <div className="relative   md:min-h-[30rem]   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
                 <div style={{zIndex:-3}} className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
 
                 <AnimatePresence mode="wait">
@@ -112,7 +118,7 @@ export default function Departament() {
                         animate={{y: 0}}
                         exit={{y: -190}}
                         transition={{duration: 0.6, ease: "easeInOut"}}
-                        className="iphone5:text-5xl    medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
+                        className="iphone5:text-5xl     medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
                         style={{
                             zIndex:-4,
                             textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
@@ -133,20 +139,56 @@ export default function Departament() {
                             className="space-y-4 min-w-[320px] p-1  max-w-[350px]  relative z-10"
                         >
                             {departments[c].description.map((item, index) => (
-                                <motion.li
-                                    key={`${c}-${index}`}
-                                    initial={{x: 250, opacity: 0}}
-                                    animate={{x: 0, opacity: 1}}
-                                    exit={{x: -450, opacity: 0}}
-                                    transition={{
-                                        duration: 0.5,
-                                        delay: index * 0.05,
-                                        ease: "easeOut"
-                                    }}
-                                    className="bg-black dark:bg-white  text-center  backdrop-blur-sm rounded-lg p-4 shadow-md"
-                                >
-                                    <span className="medium-phone:text-lg text-gray-100  dark:text-gray-800">{item}</span>
-                                </motion.li>
+
+                                item === 'Design service' || item === 'Commercial service' || item === 'Internship facilitation'? (
+                                    <motion.li
+                                        key={`${item}-${index}`}
+                                        initial={{x: 250, opacity: 0}}
+                                        animate={{x: 0, opacity: 1}}
+                                        exit={{x: -450, opacity: 0}}
+                                        transition={{
+                                            duration: 0.5,
+                                            delay: index * 0.05,
+                                            ease: "easeOut"
+                                        }}
+                                        className="relative  bg-gradient-to-r from-green-500 via-blue-600 to-purple-800     dark:bg-gradient-to-r dark:from-green-500 dark:via-blue-500 dark:to-purple-600 text-center backdrop-blur-sm rounded-lg p-4 shadow-lg overflow-hidden "
+                                    >
+                                        <div className="absolute top-2 right-2 z-10">
+                                            <div
+                                                className="bg-white  text-indigo-800 dark:text-indigo-400 text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-md transform hover:scale-105 transition-transform duration-200">
+                                                <Sparkles className="w-3 h-3"/>
+                                                NEW
+                                            </div>
+                                        </div>
+                                        <span className="medium-phone:text-lg text-white font-medium drop-shadow-md">
+        {item}
+      </span>
+                                        <motion.div
+                                            className="absolute inset-0 bg-white/10 dark:bg-white/5"
+                                            initial={{opacity: 0}}
+                                            animate={{opacity: [0, 0.2, 0]}}
+                                            transition={{duration: 2, repeat: Infinity, repeatType: "reverse"}}
+                                        />
+                                    </motion.li>
+                                ) : (
+                                    <motion.li
+                                        key={`${c}-${index}`}
+                                        initial={{x: 250, opacity: 0}}
+                                        animate={{x: 0, opacity: 1}}
+                                        exit={{x: -450, opacity: 0}}
+                                        transition={{
+                                            duration: 0.5,
+                                            delay: index * 0.05,
+                                            ease: "easeOut"
+                                        }}
+                                        className="bg-black dark:bg-white  text-center  backdrop-blur-sm rounded-lg p-4 shadow-md"
+                                    >
+
+
+                                        <span className="medium-phone:text-lg text-gray-100    dark:text-gray-800">{item}</span>
+                                    </motion.li>
+
+                                )
                             ))}
                         </motion.ul>
                     </AnimatePresence>

@@ -2,7 +2,7 @@
 
 Welcome to the **Excompo-n** website! 🎉
 
-This project is live at: [excompo-n.vercel.app](https://excompo-n.vercel.app)
+This project is live at: [houseofideas.club](https://www.houseofideas.club)
 
 ## About
 

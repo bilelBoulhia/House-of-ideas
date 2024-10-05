@@ -93,10 +93,10 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
 
 
-                <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-2'>
+                <div className='grid sm:grid-cols-2  lg:grid-cols-3 gap-2'>
                     {data.map((workshop, index) => (
                         <Card key={index}
-                              className='relative group bg-[#fffef9] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
+                              className=' relative group bg-[#fffef9] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
 
                             <CardContent>
 
@@ -178,9 +178,7 @@ export default function Index() {
 
     return (
 
-        <div
-
-            className='flex flex-col  mt-[8rem] items-center justify-center overflow-hidden gap-2'>
+        <div className='flex flex-col  mt-[8rem] items-center justify-center overflow-hidden gap-2'>
             <Suspense fallback={<Loading/>}>
                 {isLoading ?
                     <Loading/>
@@ -189,7 +187,7 @@ export default function Index() {
                 }
             </Suspense>
 
-                <BackgroundBeams  />
+                <BackgroundBeams style={{zIndex:-4}} />
 
 
         </div>
