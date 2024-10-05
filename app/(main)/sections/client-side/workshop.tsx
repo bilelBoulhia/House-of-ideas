@@ -22,6 +22,7 @@ import Toast from "@/components/ui/toast";
 import {NoData} from "@/components/ui/not-data";
 import {ArrowRight} from "lucide-react";
 import {useRouter} from "next/navigation";
+import {NewTag} from "@/components/NewTag";
 
 
 
@@ -97,8 +98,9 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                                     <Card
                                         key={index}
                                         transition={{delay: 0.7, ease: 'easeInOut'}}
-                                        className=' bg-[#fffef9]  dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
+                                        className=' bg-gradient-to-tl from-gray-100 via-fuchsia-50/50 to-stone-100  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'
                                     >
+                                        {workshop.isavailable && <NewTag className=''/>}
                                         <CardContent>
 
                                             <CardUpperBody>
@@ -156,8 +158,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                             className="group relative inline-flex items-center justify-center px-8 py-3 text-md text-white transition-all duration-300 ease-in-out bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full overflow-hidden shadow-lg hover:shadow-purple-500/25">
                             <span
                                 className="absolute inset-0 w-full h-full bg-gradient-to-br from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></span>
-                            <span
-                                className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                            <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
                             <span className="relative flex items-center">See more
                              <ArrowRight
                                  className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1"/>

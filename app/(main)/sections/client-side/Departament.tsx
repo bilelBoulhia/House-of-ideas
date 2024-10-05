@@ -2,8 +2,7 @@
 import {AnimatePresence, m} from "framer-motion";
 import React, {useEffect, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
-
-import {Sparkles} from "lucide-react";
+import {NewTag} from "@/components/NewTag";
 
 
 
@@ -158,13 +157,7 @@ export default function Departament() {
                                         }}
                                         className="relative  bg-gradient-to-r from-violet-500 via-blue-600 to-purple-800     dark:bg-gradient-to-r dark:from-pink-500  dark:to-indigo-700 text-center backdrop-blur-sm rounded-lg p-4 shadow-lg overflow-hidden "
                                     >
-                                        <div className="absolute top-2 right-2 z-10">
-                                            <div
-                                                className="bg-white  text-indigo-800 dark:text-indigo-400 text-xs font-bold px-2 py-1 rounded-md flex items-center gap-1 shadow-md transform hover:scale-105 transition-transform duration-200">
-                                                <Sparkles className="w-3 h-3"/>
-                                                NEW
-                                            </div>
-                                        </div>
+                                        <NewTag />
                                         <span className="medium-phone:text-lg text-white font-medium drop-shadow-md">
                                       {item}
                                        </span>

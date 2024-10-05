@@ -26,6 +26,7 @@ import Toast from "@/components/ui/toast";
 import {Loading} from "@/app/Loading";
 import useSWR from "swr";
 import {NoData} from "@/components/ui/not-data";
+import {NewTag} from "@/components/NewTag";
 
 
 
@@ -96,8 +97,9 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
                 <div className='grid sm:grid-cols-2  lg:grid-cols-3 gap-2'>
                     {data.map((workshop, index) => (
                         <Card key={index}
-                              className=' relative group bg-[#fffef9] dark:bg-gradient-to-tl from-black via-gray-950 to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
+                              className='bg-gradient-to-r from-gray-100 via-fuchsia-50 to-stone-100  relative group  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black border border-black/[0.2]  dark:border-white/[0.2] group-hover:border-slate-700'>
 
+                            {workshop.isavailable && <NewTag className='dark:bg-black '/>}
                             <CardContent>
 
                                 <CardUpperBody>
