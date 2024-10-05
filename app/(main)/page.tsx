@@ -21,7 +21,7 @@ export default function Index() {
           <EventSection/>
           <WorkshopSection/>
 
-          <Departament/>
+          {/*<Departament/>*/}
           <NewLetter/>
           <TestimonialSection/>
 
