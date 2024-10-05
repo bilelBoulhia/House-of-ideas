@@ -5,7 +5,7 @@ import {cn} from "@/app/lib/utils";
 import {Properties} from "csstype";
 
 //absolute  h-full w-full inset-0  [mask-size:40px] [mask-repeat:no-repeat]
-export const BackgroundBeams = React.memo(
+ const BackgroundBeams = React.memo(
     ({ className ,style }: {style?: React.CSSProperties , className?: string }) => {
         return (
             <div style={style} className={cn("fixed inset-0  [mask-size:40px] [mask-repeat:no-repeat] flex items-center justify-center",
@@ -48,3 +48,4 @@ export const BackgroundBeams = React.memo(
 );
 
 BackgroundBeams.displayName = "BackgroundBeams";
+export default BackgroundBeams;

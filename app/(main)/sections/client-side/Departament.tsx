@@ -161,8 +161,8 @@ export default function Departament() {
                                             </div>
                                         </div>
                                         <span className="medium-phone:text-lg text-white font-medium drop-shadow-md">
-        {item}
-      </span>
+                                      {item}
+                                       </span>
                                         <motion.div
                                             className="absolute inset-0 bg-white/10 dark:bg-white/5"
                                             initial={{opacity: 0}}

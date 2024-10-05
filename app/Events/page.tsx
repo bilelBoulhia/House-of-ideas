@@ -4,7 +4,7 @@ import {motion} from "framer-motion";
 
 
 
-import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
+import BackgroundBeams from "@/components/ui/BackgroundBeams";
 import {shadowVariants} from "@/utils/types";
 
 

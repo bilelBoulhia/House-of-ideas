@@ -14,7 +14,7 @@ import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
 import React, {Suspense, useEffect, useRef, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
-import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
+import BackgroundBeams from "@/components/ui/BackgroundBeams";
 import {Tables} from "@/utils/DatabaseTypes";
 import {fetch, insert} from "@/app/lib/supabase/client-api";
 
