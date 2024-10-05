@@ -21,7 +21,7 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
 
     if (data.length === 0) {
         return (
-            <NoData sentence='no workshops at the moment'/>
+            <NoData sentence='no events at the moment'/>
         )
     } else {
 

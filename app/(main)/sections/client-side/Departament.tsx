@@ -108,9 +108,14 @@ export default function Departament() {
             <div className="flex flex-col md:flex-row">
 
             <div className="relative   md:min-h-[30rem]   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
-                <div style={{zIndex:-3}} className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
+                <div style={{zIndex:-1}} className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
 
                 <AnimatePresence mode="wait">
+
+
+
+
+
                     <m.h2
 
                         key={departments[c].name}
@@ -118,9 +123,9 @@ export default function Departament() {
                         animate={{y: 0}}
                         exit={{y: -190}}
                         transition={{duration: 0.6, ease: "easeInOut"}}
-                        className="iphone5:text-5xl     medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
+                        className="iphone5:text-5xl  medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
                         style={{
-                            zIndex:-4,
+                            zIndex:-2,
                             textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
                             WebkitTextStroke: '2px rgba(255,255,255,0.1)',
                         }}
@@ -151,7 +156,7 @@ export default function Departament() {
                                             delay: index * 0.05,
                                             ease: "easeOut"
                                         }}
-                                        className="relative  bg-gradient-to-r from-green-500 via-blue-600 to-purple-800     dark:bg-gradient-to-r dark:from-green-500 dark:via-blue-500 dark:to-purple-600 text-center backdrop-blur-sm rounded-lg p-4 shadow-lg overflow-hidden "
+                                        className="relative  bg-gradient-to-r from-violet-500 via-blue-600 to-purple-800     dark:bg-gradient-to-r dark:from-pink-500  dark:to-indigo-700 text-center backdrop-blur-sm rounded-lg p-4 shadow-lg overflow-hidden "
                                     >
                                         <div className="absolute top-2 right-2 z-10">
                                             <div
