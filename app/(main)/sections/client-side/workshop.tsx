@@ -76,6 +76,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
         ]
 
 
+
         return (
 
             <div className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-10">
@@ -83,6 +84,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
 
                 {data.length <= 0  ? (
                     <NoData sentence='no workshops at the moment'/>
+
                 ) : (
 
 

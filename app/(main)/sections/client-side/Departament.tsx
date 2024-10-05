@@ -29,7 +29,7 @@ const departments : departmentsType[] = [
             'Web development',
             'Database management',
             'Research',
-            'Integrated marketing'
+            'Service Desgin'
         ]
     },
       {
@@ -38,6 +38,7 @@ const departments : departmentsType[] = [
             'Contacting trainers',
             'Contacting hosts',
             'Contacting sponsors',
+            'Commercial service'
 
         ]
     },
