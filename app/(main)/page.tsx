@@ -20,12 +20,9 @@ export default function Index() {
           <Hero/>
           <EventSection/>
           <WorkshopSection/>
-
-          {/*<Departament/>*/}
+          <Departament/>
           <NewLetter/>
           <TestimonialSection/>
-
-
       </div>
 
   );
