@@ -87,7 +87,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
 
             <>
-                <AnimatedHeading firstsentenceClassName='z-10' sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] '/>
+            <AnimatedHeading firstsentenceClassName='z-10' sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] '/>
             <div className='z-10  w-full'>
 
 
@@ -123,7 +123,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
                                             </ModalTrigger>
                                             <ModalBody ref={modalRef}>
 
-                                                <ModalContent>
+                                                <ModalContent className='z-22' >
                                                     <div>
                                                         <Stepper
                                                             isDisabled={Date.parse(workshop.date) < Date.now()}

@@ -91,6 +91,7 @@ export const ModalBody = forwardRef<ModalBodyRef, {
                     style={{zIndex: 23}}
                     initial={{
                         opacity: 0,
+
                     }}
                     animate={{
                         opacity: 1,
@@ -101,6 +102,7 @@ export const ModalBody = forwardRef<ModalBodyRef, {
                         opacity: 0,
                         backdropFilter: "blur(0px)",
                     }}
+
                     className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-50"
                 >
                     <Overlay />
@@ -151,7 +153,7 @@ export const ModalContent = ({
     className?: string;
 }) => {
     return (
-        <div className={cn("flex flex-col dark:bg-black flex-1 p-10 overflow-y-auto ", className)}>
+        <div  className={cn("flex flex-col dark:bg-black flex-1 p-10 overflow-y-auto ", className)}>
             {children}
         </div>
     );

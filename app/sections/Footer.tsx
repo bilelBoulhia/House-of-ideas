@@ -1,11 +1,11 @@
-import {Instagram, LinkedInIcon, Tiktok} from "@/components/ui/Icons";
+import {FacebookIcon, Instagram, LinkedInIcon, Tiktok} from "@/components/ui/Icons";
 
 
 export default function Footer() {
     return (
 
 
-        <footer style={{zIndex: 21}} id='ContactUs' className="relative border-gray-800 mt-4  overflow-hidden border-t-[1px]">
+        <footer style={{zIndex: 15}} id='ContactUs' className="relative border-gray-800 mt-4  overflow-hidden border-t-[1px]">
             <div className="mx-auto w-full px-2 p-1 py-6 lg:py-8">
                 <div className="md:flex md:justify-between ">
 
@@ -57,6 +57,11 @@ export default function Footer() {
                             <span className="sr-only">Instagram page</span>
                         </a>
 
+                        <a href="https://www.facebook.com/profile.php?id=61552555332858&mibextid=LQQJ4d"
+                           className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                            <FacebookIcon/>
+                            <span className="sr-only">Instagram page</span>
+                        </a>
 
                         <a href="https://www.tiktok.com/@clubhouseofideas"
                            className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
@@ -77,7 +82,8 @@ export default function Footer() {
 
             </div>
             <div className="flex mb-1 justify-center">
-               <span className='text-gray-500 p-0 m-0 text-xs dark:text-gray-400 font-medium'> made by bilel, <a  href="https://github.com/bilelBoulhia" className='font-normal hover:underline '>Github</a> {"<3"}</span>
+                <span className='text-gray-500 p-0 m-0 text-xs dark:text-gray-400 font-medium'> made by bilel, <a
+                    href="https://github.com/bilelBoulhia" className='font-normal hover:underline '>Github</a> {"<3"}</span>
             </div>
         </footer>
 

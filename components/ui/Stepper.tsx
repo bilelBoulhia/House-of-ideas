@@ -32,7 +32,7 @@ export default function Stepper({isDisabled, pages, finishSentnce, onFinish }: S
 
 
   return (
-    <div className="w-full  overflow-hidden">
+    <div  className="w-full  overflow-hidden">
 
       <div>
         {pages[currentStep]}
