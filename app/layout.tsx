@@ -1,6 +1,6 @@
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
-
+import {domAnimation, LazyMotion} from "framer-motion"
 import "@/style/globals.css";
 import Header from "@/app/sections/Header";
 import Footer from "@/app/sections/Footer";
@@ -13,7 +13,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Welcome to house of Ideas",
-  description: "AVE DOMINUS NOX",
+
 };
 
 export default function RootLayout({
@@ -31,11 +31,13 @@ export default function RootLayout({
         enableSystem
         disableTransitionOnChange
     >
-      <Header/>
-      <main  className="min-h-[100dvh] overflow-x-hidden  flex flex-col z-0 items-center">
-        {children}
-      </main>
-      <Footer/>
+      <LazyMotion features={domAnimation} strict>
+        <Header/>
+        <main className="min-h-[100dvh] overflow-x-hidden flex flex-col z-0 items-center">
+          {children}
+        </main>
+        <Footer/>
+      </LazyMotion>
 
 
     </ThemeProvider>

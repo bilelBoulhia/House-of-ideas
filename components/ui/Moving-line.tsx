@@ -1,7 +1,7 @@
 'use client'
 import React, {FC, HTMLAttributes, useRef} from "react";
 import {
-    motion, MotionProps,
+    m,
     useScroll,
     useSpring,
     useTransform,
@@ -61,7 +61,7 @@ const MovingLine : FC<props> = ({ Content ,className }) => {
                         <stop offset="1" stopColor="#14b8a6" />
                     </linearGradient>
                 </defs>
-                <motion.path
+                <m.path
                     style={{
                         pathLength: useSpring(pathLengthValue, {
                             stiffness: 500,

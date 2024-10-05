@@ -1,5 +1,4 @@
 import React, {Suspense, useEffect, useState} from "react"
-import {motion} from "framer-motion"
 import {Tables} from "@/utils/DatabaseTypes"
 import {fetch} from "@/app/lib/supabase/client-api"
 import {CalendarIcon, ClockIcon} from "lucide-react";
@@ -24,14 +23,14 @@ function TutorContent({tutor}: { tutor: Tables<'tutors'>[] }) {
     return (
         <div className="flex flex-col lg:flex-row w-full">
             <div className="relative lg:w-1/2 p-12 flex items-center justify-center overflow-hidden">
-                <motion.h2
+                <h2
                     className="iphone5:text-5xl medium-phone:text-6xl font-bold dark:text-white text-center relative z-10"
                 >
                     With mrs
                     <h1 className='relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500'>
                         {tutor[0]?.tutorname}
                     </h1>
-                </motion.h2>
+                </h2>
             </div>
             <div className="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"/>
             <div className="relative lg:w-1/2 p-12 flex items-center justify-center overflow-hidden">

@@ -1,7 +1,7 @@
 'use client'
 import Carousel from "@/components/ui/Carousel"
 
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {shadowVariants} from "@/utils/types";
 import {Tables} from '@/utils/DatabaseTypes'
@@ -45,7 +45,7 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
                     slideClassName="p-5  flex-[0_0_100%] "
                 >
                     {data.map((event, index) => (
-                        <motion.div
+                        <m.div
                             key={index}
 
                             onClick={() => handleRouterClick(event.eventid)}
@@ -62,7 +62,7 @@ export default function Event({data}: {data: Tables<'events'>[]}) {
                                     alt='Eventsimae'
                             />
 
-                        </motion.div>
+                        </m.div>
                     ))}
                 </Carousel>
             )}

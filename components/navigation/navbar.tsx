@@ -4,7 +4,7 @@ import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { NewHiIcon} from "@/components/ui/Icons"
 
-import {motion, useScroll} from "framer-motion"
+import {m, useScroll} from "framer-motion"
 import useScrollAnimations from "@/app/lib/hooks/useScrollAnimations";
 import {ThemeSwitcher} from "@/components/theme-switcher";
 import AnimatedNavBarBg from "@/components/navigation/ui/animated-navbar-background";
@@ -99,7 +99,7 @@ export default function Navbar() {
                     <ul className="flex-grow py-10">
                         <ThemeSwitcher/>
                         {links.map((item, index) => (
-                            <motion.li
+                            <m.li
                                 animate={{
                                     opacity: isOpen ? 1 : 0,
                                     scale: isOpen ? 1 : 0.3,
@@ -118,7 +118,7 @@ export default function Navbar() {
                                 >
                                     {item.label}
                                 </a>
-                            </motion.li>
+                            </m.li>
                         ))}
 
 

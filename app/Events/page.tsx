@@ -1,6 +1,6 @@
 'use client'
 import React, {Suspense} from "react";
-import {motion} from "framer-motion";
+import {m} from "framer-motion";
 
 
 
@@ -38,23 +38,23 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
                     {data.map((event, i) => (
                         <div onClick={() => handleRouterClick(event.eventid)} key={i}>
 
-                            <motion.div
+                            <m.div
                                 style={{zIndex: -4}}
 
                                 transition={{duration: 0.3, ease: 'easeInOut'}}
                                 className=" z-1 max-w-3xl">
                                 <div className="max-w-3xl hover:cursor-default mx-auto pl-2 overflow-hidden">
 
-                                    <motion.h1
+                                    <m.h1
                                         whileHover={{x: 4}}
                                         className="text-2xl p-1  md:text-3xl font-extrabold text-left tracking-tight bg-clip-text text-transparent bg-black  dark:bg-white ">
                                         {event.eventname}
-                                    </motion.h1>
+                                    </m.h1>
 
                                 </div>
-                            </motion.div>
+                            </m.div>
 
-                            <motion.div
+                            <m.div
 
                                 className="w-full max-h-[50vh]  aspect-[16/9]   rounded-xl overflow-hidden"
                                 variants={shadowVariants}
@@ -62,13 +62,13 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
                                 whileInView="visible"
                                 transition={{duration: 0.3, ease: 'easeInOut'}}
                             >
-                                <motion.img
+                                <m.img
                                     src={event.eventpic}
                                     whileHover={{scale: 1.02}}
                                     className="rounded-xl relative h-full w-full object-cover"
 
                                 />
-                            </motion.div>
+                            </m.div>
 
                         </div>
                     ))}

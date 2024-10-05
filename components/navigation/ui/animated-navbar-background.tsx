@@ -1,12 +1,12 @@
 
-import {motion} from "framer-motion";
+import {m} from "framer-motion";
 import React from "react";
 import useScrollAnimations from "@/app/lib/hooks/useScrollAnimations";
 
 export  default function AnimatedNavBarBg({width, borderRadius, backgroundColor}: ReturnType<typeof useScrollAnimations>) {
     return (
 
-        <motion.div
+        <m.div
             style={{
                 width,
                 borderRadius,

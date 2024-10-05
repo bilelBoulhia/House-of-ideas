@@ -1,5 +1,5 @@
 'use client'
-import {AnimatePresence, motion} from "framer-motion";
+import {AnimatePresence, m} from "framer-motion";
 import React, {useEffect, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 
@@ -111,7 +111,7 @@ export default function Departament() {
                 <div style={{zIndex:-3}} className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
 
                 <AnimatePresence mode="wait">
-                    <motion.h2
+                    <m.h2
 
                         key={departments[c].name}
                         initial={{y: 150}}
@@ -126,13 +126,13 @@ export default function Departament() {
                         }}
                     >
                         {departments[c].name}
-                    </motion.h2>
+                    </m.h2>
                 </AnimatePresence>
                 </div>
                 <div className="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"/>
                 <div className="relative md:w-1/2 p-12 flex items-center  justify-center overflow-hidden">
                     <AnimatePresence mode="wait">
-                        <motion.ul
+                        <m.ul
 
                             key={c}
                             //max-w-md
@@ -141,7 +141,7 @@ export default function Departament() {
                             {departments[c].description.map((item, index) => (
 
                                 item === 'Design service' || item === 'Commercial service' || item === 'Internship facilitation'? (
-                                    <motion.li
+                                    <m.li
                                         key={`${item}-${index}`}
                                         initial={{x: 250, opacity: 0}}
                                         animate={{x: 0, opacity: 1}}
@@ -163,15 +163,15 @@ export default function Departament() {
                                         <span className="medium-phone:text-lg text-white font-medium drop-shadow-md">
                                       {item}
                                        </span>
-                                        <motion.div
+                                        <m.div
                                             className="absolute inset-0 bg-white/10 dark:bg-white/5"
                                             initial={{opacity: 0}}
                                             animate={{opacity: [0, 0.2, 0]}}
                                             transition={{duration: 2, repeat: Infinity, repeatType: "reverse"}}
                                         />
-                                    </motion.li>
+                                    </m.li>
                                 ) : (
-                                    <motion.li
+                                    <m.li
                                         key={`${c}-${index}`}
                                         initial={{x: 250, opacity: 0}}
                                         animate={{x: 0, opacity: 1}}
@@ -186,11 +186,11 @@ export default function Departament() {
 
 
                                         <span className="medium-phone:text-lg text-gray-100    dark:text-gray-800">{item}</span>
-                                    </motion.li>
+                                    </m.li>
 
                                 )
                             ))}
-                        </motion.ul>
+                        </m.ul>
                     </AnimatePresence>
                 </div>
             </div>

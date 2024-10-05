@@ -18,7 +18,7 @@ import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmene
 import {Tables} from "@/utils/DatabaseTypes";
 import {insert} from "@/app/lib/supabase/client-api";
 import Toast from "@/components/ui/toast";
-import { motion } from "framer-motion";
+
 import {NoData} from "@/components/ui/not-data";
 import {ArrowRight} from "lucide-react";
 import {useRouter} from "next/navigation";

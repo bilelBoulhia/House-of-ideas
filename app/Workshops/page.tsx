@@ -12,7 +12,7 @@ import {
 import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger} from "@/components/ui/Modal";
 import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
-import React, {Suspense, useEffect, useRef, useState} from "react";
+import React, {Suspense, useRef, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import BackgroundBeams from "@/components/ui/BackgroundBeams";
 import {Tables} from "@/utils/DatabaseTypes";
@@ -20,7 +20,7 @@ import {fetch, insert} from "@/app/lib/supabase/client-api";
 
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
 import {SubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/subscribe form";
-import {notFound} from "next/navigation";
+
 
 import Toast from "@/components/ui/toast";
 import {Loading} from "@/app/Loading";

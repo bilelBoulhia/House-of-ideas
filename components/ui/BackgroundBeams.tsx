@@ -1,8 +1,6 @@
-
-import React, {DetailedHTMLProps, HTMLAttributes} from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import {cn} from "@/app/lib/utils";
-import {Properties} from "csstype";
+
 
 //absolute  h-full w-full inset-0  [mask-size:40px] [mask-repeat:no-repeat]
  const BackgroundBeams = React.memo(

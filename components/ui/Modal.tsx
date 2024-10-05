@@ -1,6 +1,6 @@
 "use client";
 import {cn} from "@/app/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import React, {
     ReactNode,
     createContext,
@@ -87,7 +87,7 @@ export const ModalBody = forwardRef<ModalBodyRef, {
     return (
         <AnimatePresence >
             {open && (
-                <motion.div
+                <m.div
 
                     initial={{
                         opacity: 0,
@@ -107,7 +107,7 @@ export const ModalBody = forwardRef<ModalBodyRef, {
                 >
                     <Overlay />
 
-                    <motion.div
+                    <m.div
                         ref={modalRef}
                         className={cn(
                             "max-h-[80%] max-w-full md:max-w-[60%] mx-4 bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800  rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden ",
@@ -138,8 +138,8 @@ export const ModalBody = forwardRef<ModalBodyRef, {
                     >
                         <CloseIcon />
                         {children}
-                    </motion.div>
-                </motion.div>
+                    </m.div>
+                </m.div>
             )}
         </AnimatePresence>
 
@@ -159,28 +159,11 @@ export const ModalContent = ({
     );
 };
 
-export const ModalFooter = ({
-                                children,
-                                className,
-                            }: {
-    children: ReactNode;
-    className?: string;
-}) => {
-    return (
-        <div
-            className={cn(
-                "flex justify-end p-4 bg-gray-100 dark:bg-neutral-900",
-                className
-            )}
-        >
-            {children}
-        </div>
-    );
-};
+
 
 const Overlay = ({ className }: { className?: string }) => {
     return (
-        <motion.div
+        <m.div
 
             initial={{
                 opacity: 0,
@@ -194,7 +177,7 @@ const Overlay = ({ className }: { className?: string }) => {
                 backdropFilter: "blur(0px)",
             }}
             className={`fixed  inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className}`}
-        ></motion.div>
+        ></m.div>
     );
 };
 

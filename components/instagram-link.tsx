@@ -1,7 +1,7 @@
 "use client"
 
-import {useState, useEffect} from "react"
-import {motion, useAnimation} from "framer-motion"
+import {useEffect} from "react"
+import {m, useAnimation} from "framer-motion"
 import {Instagram} from "lucide-react"
 
 interface InstagramLinkProps {
@@ -12,7 +12,7 @@ interface InstagramLinkProps {
 export default function InstagramLink({href,
 
                                       }: InstagramLinkProps) {
-    const [isHovered, setIsHovered] = useState(false)
+
     const controls = useAnimation()
     const instagramUsername = "more picture at "
 
@@ -25,22 +25,22 @@ export default function InstagramLink({href,
     }, [controls])
 
     const handleHoverStart = () => {
-        setIsHovered(true)
+
         controls.start({width: "auto", opacity: 1, x: 0})
     }
 
     const handleHoverEnd = () => {
-        setIsHovered(false)
+
         controls.start({width: 0, opacity: 0, x: -20})
     }
 
     return (
-        <motion.div
+        <m.div
             className="inline-flex items-center space-x-3 bg-gradient-to-r from-purple-600 to-pink-500  rounded-full"
             whileHover={{scale: 1.05}}
             whileTap={{scale: 0.95}}
         >
-            <motion.a
+            <m.a
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -51,7 +51,7 @@ export default function InstagramLink({href,
                 <div className="bg-white p-2 rounded-full">
                     <Instagram className="w-4 h-4 text-pink-500"/>
                 </div>
-                <motion.div
+                <m.div
                     initial={{width: 0, opacity: 0, x: -20}}
                     animate={controls}
                     className="overflow-hidden ml-2"
@@ -61,8 +61,8 @@ export default function InstagramLink({href,
                           @{instagramUsername}
                  </span>
 
-                </motion.div>
-            </motion.a>
-        </motion.div>
+                </m.div>
+            </m.a>
+        </m.div>
     )
 }

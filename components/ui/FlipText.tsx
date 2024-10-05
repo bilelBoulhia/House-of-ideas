@@ -1,4 +1,4 @@
-import {motion} from "framer-motion";
+import {m} from "framer-motion";
 import React from "react";
 
 export const FlipText = ({ children  }:{children:string}) => {
@@ -6,7 +6,7 @@ export const FlipText = ({ children  }:{children:string}) => {
     const STAGGER = 0.025;
 
     return (
-        <motion.span
+        <m.span
             initial="initial"
             whileInView="hovered"
             className="relative   inline-block overflow-hidden whitespace-nowrap hover:cursor-default"
@@ -16,7 +16,7 @@ export const FlipText = ({ children  }:{children:string}) => {
         >
             <div className="relative mb-1">
                 {children.split("").map((l, i) => (
-                    <motion.span
+                    <m.span
                         key={i}
                         variants={{
                             initial: { y: 0 },
@@ -30,11 +30,11 @@ export const FlipText = ({ children  }:{children:string}) => {
                         className="inline-block"
                     >
                         {l}
-                    </motion.span>
+                    </m.span>
                 ))}
                 <div className="absolute inset-0">
                     {children.split("").map((l, i) => (
-                        <motion.span
+                        <m.span
                             key={i}
                             variants={{
                                 initial: { y: "100%" },
@@ -48,11 +48,11 @@ export const FlipText = ({ children  }:{children:string}) => {
                             className="inline-block"
                         >
                             {l}
-                        </motion.span>
+                        </m.span>
                     ))}
                 </div>
             </div>
-        </motion.span>
+        </m.span>
 
     );
 };

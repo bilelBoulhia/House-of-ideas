@@ -1,10 +1,10 @@
 
-import React, {createContext, ReactNode, useContext, useState} from "react";
+import React from "react";
 import {cn} from "@/app/lib/utils";
 
-import {motion, MotionProps} from "framer-motion";
+import {m, MotionProps} from "framer-motion";
 
-import Image, {StaticImageData} from "next/image";
+
 import {Badge} from "@/components/ui/badge";
 import {shadowVariants} from "@/utils/types";
 
@@ -28,7 +28,7 @@ interface CardProps extends MotionProps {
 export const Card: React.FC<CardProps> = ({ children, className, ...props }) => {
     return (
 
-        <motion.div
+        <m.div
               initial="hidden"
               viewport={{once:true}}
               whileInView="visible"
@@ -42,7 +42,7 @@ export const Card: React.FC<CardProps> = ({ children, className, ...props }) => 
 
             {children}
 
-        </motion.div>
+        </m.div>
 
 
     );
@@ -59,7 +59,7 @@ export const CardContent = ({children, className}: { children: React.ReactNode[]
 }
 export const CardTitle=({children,className}:{children:string,className?:string}) => {
     return (
-        <motion.h2
+        <m.h2
             style={{
                 zIndex: -2,
             }}
@@ -71,7 +71,7 @@ export const CardTitle=({children,className}:{children:string,className?:string}
 
             className={cn("mb-2 line-clamp-1",className)}
         >{children}
-        </motion.h2>
+        </m.h2>
     )
 }
 
@@ -85,11 +85,7 @@ export const CardDescription=({children,className}:{children:string,className?:s
         </p>
     )
 }
-export const CardImage=({src,alt,className}:{src: StaticImageData, className?:string,alt:string}) => {
-    return (
-        <Image src={src} alt={alt} className={cn("w-12 h-12 rounded-full mr-4",className)} />
-    )
-}
+
 export const CardUpperBody=({children,className}:{children:React.ReactNode[],className?:string}) => {
     return (
         <div className={className}>
@@ -111,11 +107,7 @@ export const CardFooter=({children,className}:{children:React.ReactNode[],classN
         </div>
     )
 }
-export const CardName=({children,className}:{children:string,className?:string}) => {
-    return (
-        <span className={cn("font-semibold",className)}>{"with"} {children}</span>
-    )
-}
+
 
 export const CardBadge=({children,className}:{children:string,className?:string}) => {
     return (

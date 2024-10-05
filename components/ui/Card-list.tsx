@@ -1,4 +1,4 @@
-import {EmblaOptionsType} from "embla-carousel";
+
 import React from "react";
 
 

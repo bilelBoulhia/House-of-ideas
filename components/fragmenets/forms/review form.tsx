@@ -8,7 +8,7 @@ import {useForm, SubmitHandler} from "react-hook-form"
 import Toast from "@/components/ui/toast"
 import {Tables} from "@/utils/DatabaseTypes";
 import {insert} from "@/app/lib/supabase/client-api";
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 
 
 
@@ -42,12 +42,12 @@ export const ReviewForm = () => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col  justify-center items-center w-full p-4  md:w-1/2 gap-5 m-9 relative">
-                <motion.h2
+                <m.h2
                     initial={{y:20}}
                     whileInView={{y:0}}
                     transition={{duration:0.6,delay:0.4}}
 
-                    className="text-2xl  font-bold  tracking-tighter sm:text-3xl">Review us</motion.h2>
+                    className="text-2xl  font-bold  tracking-tighter sm:text-3xl">Review us</m.h2>
                 <div className="relative  w-full">
                     <Input
                         type="text"

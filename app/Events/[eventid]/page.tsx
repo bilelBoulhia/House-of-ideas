@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {Calendar, Clock, Location, NewHiIcon} from "@/components/ui/Icons";
 import {Tag} from "@/components/ui/Tag";
 
@@ -8,7 +8,7 @@ import BackgroundBeams from "@/components/ui/BackgroundBeams";
 import {Events, shadowVariants} from "@/utils/types";
 import {Tables} from "@/utils/DatabaseTypes";
 
-import React, {Suspense, useEffect, useRef, useState} from "react";
+import React, {Suspense, useRef, useState} from "react";
 import { insert, proc} from "@/app/lib/supabase/client-api";
 
 import {Loading} from "@/app/Loading";
@@ -86,7 +86,7 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
 
                     <div className="flex flex-col z-10    lg:flex-row ">
                         <div className="lg:w-1/2  flex  justify-center">
-                            <motion.div
+                            <m.div
                                 variants={shadowVariants}
                                 initial="hidden"
                                 whileInView="visible"
@@ -97,7 +97,7 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
                                     alt='Event image'
                                     className="w-full h-full object-cover"
                                 />
-                            </motion.div>
+                            </m.div>
                         </div>
 
                         <div className="lg:w-1/2 mt-4 lg:p-4 overflow-y-auto">
@@ -322,7 +322,7 @@ const fetcher = async (key: string) => {
     return fetchedData.data as Events[] | []
 }
 export default function Index({params}: { params: { eventid: number } }) {
-    const {data, error, isLoading} = useSWR<Events[]>(`events|${params.eventid}`, fetcher)
+    const {data, isLoading} = useSWR<Events[]>(`events|${params.eventid}`, fetcher)
 
     return (
         <div className='w-full'>
