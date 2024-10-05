@@ -41,8 +41,8 @@ const departments : departmentsType[] = [
         description: [
             'Contacting trainers',
             'Contacting hosts',
-            'Contacting sponsors'
-
+            'Contacting sponsors',
+            'Commercial service'
 
         ]
     },
@@ -73,7 +73,7 @@ const departments : departmentsType[] = [
             'Maintaining the club\'s image',
             'Promoting club’s services',
             'Promoting events ',
-            'Commercial service'
+            'Design service'
         ]
     },
 

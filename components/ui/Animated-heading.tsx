@@ -38,7 +38,7 @@ export const AnimatedHeading = ({firstsentenceClassName, sentence, className,col
           initial={{ opacity: 1, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4, ease: "easeInOut" }}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
           className={cn("uppercase  text-center mr-1 font-[1000]  text-black dark:text-white  tracking-tight",firstsentenceClassName)}
         >
           {sentence[0]}
