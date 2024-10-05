@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {Calendar, Clock, Location, NewHiIcon} from "@/components/ui/Icons";
 import {Tag} from "@/components/ui/Tag";
 
-import {BackgroundBeams} from "@/components/ui/BackgroundBeams";
+import BackgroundBeams from "@/components/ui/BackgroundBeams";
 import {Events, shadowVariants} from "@/utils/types";
 import {Tables} from "@/utils/DatabaseTypes";
 
