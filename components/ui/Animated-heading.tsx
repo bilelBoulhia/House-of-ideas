@@ -1,5 +1,5 @@
 
-import {m} from "framer-motion"
+import { motion} from "framer-motion"
 
 import { cn } from "@/app/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -34,7 +34,7 @@ export const AnimatedHeading = ({firstsentenceClassName, sentence, className,col
   return (
     <div className={Variants({ size })}>
       <div className="relative flex-row flex items-end w-full justify-end">
-        <m.h2
+        <motion.h2
           initial={{ opacity: 1, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -42,7 +42,7 @@ export const AnimatedHeading = ({firstsentenceClassName, sentence, className,col
           className={cn("uppercase  text-center mr-1 font-[1000]  text-black dark:text-white  tracking-tight",firstsentenceClassName)}
         >
           {sentence[0]}
-        </m.h2>
+        </motion.h2>
 
         <div
           className={cn("absolute inset-0 h-full", className)}
@@ -58,14 +58,14 @@ export const AnimatedHeading = ({firstsentenceClassName, sentence, className,col
 
 
       */}
-      <m.div
+      <motion.div
           whileInView={{zIndex: 2}}
           transition={{delay: 3}}
           viewport={{once: true}}
           style={{zIndex:-2}}
 
           className="flex-row flex items-start  w-full justify-start">
-        <m.span
+        <motion.span
 
           viewport={{ once: true }}
           initial={{ opacity: 1, x: '-100%' }}
@@ -74,8 +74,8 @@ export const AnimatedHeading = ({firstsentenceClassName, sentence, className,col
           className={cn("uppercase  text-center  font-[1000] tracking-tight",Variants({color}))}
         >
           {sentence[1]}
-        </m.span>
-      </m.div>
+        </motion.span>
+      </motion.div>
     </div>
   )
 }
