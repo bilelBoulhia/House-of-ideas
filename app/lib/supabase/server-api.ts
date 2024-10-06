@@ -30,3 +30,21 @@ export async function proc(
     return  SecondaryQuery ? await  SecondaryQuery(query) : await query;
 
 }
+
+
+export async function insert<T>(
+    table: string,
+    data: Partial<T> | Partial<T>[] | null
+): Promise<boolean> {
+    try {
+        const supabaseClient = createClient();
+        const {error} = await supabaseClient
+            .from(table)
+            .insert(data);
+
+        return !error;
+    } catch (error) {
+        console.error('Error inserting data:', error);
+        return false;
+    }
+}

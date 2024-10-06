@@ -8,8 +8,11 @@ import {Label} from "@/components/ui/label"
 
 import {Tables} from "@/utils/DatabaseTypes";
 import {Checkbox} from "@/components/ui/checkbox";
-import {insert} from "@/app/lib/supabase/client-api";
 import {CheckedState} from "@radix-ui/react-checkbox";
+import {addApplicant } from './validateform-action'
+import {Simulate} from "react-dom/test-utils";
+import reset = Simulate.reset;
+import Toast from "@/components/ui/toast";
 
 
 export interface SubscribeFormRef {
@@ -21,47 +24,35 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
     eventid: number,
     onSubmit: (formData: Tables<'eventapplicants'>) => void
 }, ref) => {
-    const {register, handleSubmit, formState: {errors}} = useForm<Tables<'eventapplicants'>>()
+    const {register,reset, handleSubmit, formState: {errors}} = useForm<Tables<'eventapplicants'>>()
     const [termsAccepted, setTermsAccepted] = useState(false);
+    const [showToast, setShowToast] = useState({value:false,message:''})
+    // const [toast,settoast] =
+    const handleFormSubmit = async (data: any) => {
+        const formData = new FormData()
+        console.log(formData)
+        Object.entries(data).forEach(([key, value]) => {
+            formData.append(key, value as string)
+        })
+        formData.append('eventid', eventid.toString())
 
-    const handleFormSubmit = (data: Tables<'eventapplicants'>) => {
 
+        const r=  await addApplicant(formData,'event')
+        if(r.success){
+            setShowToast({value: true,message: 'thank you for enlisting'})
+            reset();
 
-        // @ts-ignore
-        const newsdata : Tables<'newsletter'> ={
-
-            email : data.email
-
+        }else {
+            console.log(r.errors)
+            setShowToast({value: true, message: 'an error has occured'})
         }
-        if(termsAccepted){
-            const insertdata = async (newsdata: Tables<'newsletter'>) => {
-                try {
-                    await insert<Tables<'newsletter'>>('newsletter', newsdata).catch(r => console.error(r));
-
-                } catch (error) {
-                    console.error(error);
-                }
-            };
-            insertdata(newsdata).catch(r => console.error(r));
-
-        }
-
-
-        const formDataWithWorkshop = {
-            ...data,
-            eventid: eventid
-        };
-        onSubmit(formDataWithWorkshop);
-    };
-
-
+    }
 
     useImperativeHandle(ref, () => ({
         submitForm: () => {
-            handleSubmit(handleFormSubmit)();
+            handleSubmit(handleFormSubmit)()
         }
-    }));
-
+    }))
 
 
 
@@ -215,7 +206,13 @@ export const EventSubscribeForm = forwardRef(({onSubmit, eventid}: {
 
                     </div>
                 </div>
+
             </form>
+            <Toast
+                show={showToast.value}
+                onClose={() => setShowToast({value: false, message: ''})}
+                message={showToast.message}
+            />
 
         </>
     )
