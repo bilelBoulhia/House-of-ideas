@@ -133,6 +133,7 @@ export default function Departament() {
                     </m.h2>
                 </AnimatePresence>
                 </div>
+
                 <div className="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"/>
                 <div className="relative md:w-1/2 p-12 flex items-center  justify-center overflow-hidden">
                     <AnimatePresence mode="wait">
@@ -142,33 +143,13 @@ export default function Departament() {
                             //max-w-md
                             className="space-y-4 min-w-[320px] p-1  max-w-[350px]  relative z-10"
                         >
+                            {/*bg-gradient-to-r from-violet-500 via-blue-600 to-purple-800     dark:bg-gradient-to-r dark:from-pink-500  dark:to-indigo-700*/}
                             {departments[c].description.map((item, index) => (
 
-                                item === 'Design service' || item === 'Commercial service' || item === 'Internship facilitation'? (
-                                    <m.li
-                                        key={`${item}-${index}`}
-                                        initial={{x: 250, opacity: 0}}
-                                        animate={{x: 0, opacity: 1}}
-                                        exit={{x: -450, opacity: 0}}
-                                        transition={{
-                                            duration: 0.5,
-                                            delay: index * 0.05,
-                                            ease: "easeOut"
-                                        }}
-                                        className="relative  bg-gradient-to-r from-violet-500 via-blue-600 to-purple-800     dark:bg-gradient-to-r dark:from-pink-500  dark:to-indigo-700 text-center backdrop-blur-sm rounded-lg p-4 shadow-lg overflow-hidden "
-                                    >
-                                        <NewTag />
-                                        <span className="medium-phone:text-lg text-white font-medium drop-shadow-md">
-                                      {item}
-                                       </span>
-                                        <m.div
-                                            className="absolute inset-0 bg-white/10 dark:bg-white/5"
-                                            initial={{opacity: 0}}
-                                            animate={{opacity: [0, 0.2, 0]}}
-                                            transition={{duration: 2, repeat: Infinity, repeatType: "reverse"}}
-                                        />
-                                    </m.li>
-                                ) : (
+
+
+
+
                                     <m.li
                                         key={`${c}-${index}`}
                                         initial={{x: 250, opacity: 0}}
@@ -183,10 +164,11 @@ export default function Departament() {
                                     >
 
 
+                                        {(item === 'Design service' || item === 'Commercial service' || item === 'Internship facilitation') && <NewTag/>}
                                         <span className="medium-phone:text-lg text-gray-100    dark:text-gray-800">{item}</span>
                                     </m.li>
 
-                                )
+
                             ))}
                         </m.ul>
                     </AnimatePresence>

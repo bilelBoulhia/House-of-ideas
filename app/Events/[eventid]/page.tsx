@@ -20,6 +20,7 @@ import InstagramLink from "@/components/instagram-link";
 import {PersonStanding} from "lucide-react";
 import Toast from "@/components/ui/toast";
 import useSWR from "swr";
+import {notFound} from "next/navigation";
 
 
 
@@ -323,6 +324,9 @@ const fetcher = async (key: string) => {
 }
 export default function Index({params}: { params: { eventid: number } }) {
     const {data, isLoading} = useSWR<Events[]>(`events|${params.eventid}`, fetcher)
+    if(data?.length===0){
+        notFound();
+    }
 
     return (
         <div className='w-full'>
