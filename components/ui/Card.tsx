@@ -59,13 +59,23 @@ export const CardContent = ({children, className}: { children: React.ReactNode[]
 }
 export const CardTitle=({children,className}:{children:string,className?:string}) => {
     return (
-        <h2 className={cn("mb-2 text-2xl font-bold  ", className)}>
-            {children}
-        </h2>
+        <m.h2
+            style={{
+                zIndex: -2,
+            }}
+
+            initial={{x:'-100%'}}
+            viewport={{once:true}}
+            whileInView={{x:1}}
+            transition={{type: 'spring', stiffness: 100, damping: 15, delay: 0.2}}
+
+            className={cn("mb-2 line-clamp-1",className)}
+        >{children}
+        </m.h2>
     )
 }
 
-export const CardDescription = ({children, className}: { children: string, className?: string }) => {
+export const CardDescription=({children,className}:{children:string,className?:string}) => {
     return (
         <p
 
@@ -116,23 +126,3 @@ export const CardSkeleton = () => {
         </div>
     );
 };
-/*
-*
-*      <m.div
-              initial="hidden"
-              viewport={{once:true}}
-              whileInView="visible"
-              variants={shadowVariants}
-            className={cn("rounded-2xl min-w-[250px]   m-7 p-4 overflow-hidden group-hover:border-slate-700 relative ",
-                className
-            )}
-            {...props}
-        >
-
-
-            {children}
-
-        </m.div>
-*
-*
-* */
