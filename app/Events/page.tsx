@@ -1,5 +1,5 @@
 'use client'
-import React, {Suspense} from "react";
+import React, {Suspense, useMemo, useState} from "react";
 import {m} from "framer-motion";
 
 
@@ -15,6 +15,8 @@ import {Loading} from "@/app/Loading";
 
 import useSWR from "swr";
 import {NoData} from "@/components/ui/not-data";
+import SearchBar from "@/components/search-bar";
+import {AnimatedHeading} from "@/components/ui/Animated-heading";
 
 
 const PageContent = ({data}: { data: Tables<'events'>[] }) => {
@@ -25,6 +27,17 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
         )
     } else {
 
+        const [searchQuery, setSearchQuery] = useState("");
+        const handleSearchQuery = function (searchQuery: string) {
+            setSearchQuery(searchQuery);
+        }
+        const filteredEvents = useMemo(() => {
+            return data.filter(event =>
+                event.eventname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                event.eventname.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        }, [data, searchQuery]);
+
         const router = useRouter();
         const handleRouterClick = (eventid: number) => {
             router.push(`/Events/${eventid}`);
@@ -33,9 +46,18 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
         return (
             <>
 
+                <div className='max-w-md'>
+
+                    <AnimatedHeading
+                        firstsentenceClassName='z-10'
+                        sentence={["explore", "more"]}
+                        className='bg-[#f2f3f3]  dark:bg-[#000913]'/>
+                    <SearchBar SendsearchQuery={handleSearchQuery}/>
+
+                </div>
 
                 <div className='grid  z-10 grid-cols-1 lg:grid-cols-2 gap-10'>
-                    {data.map((event, i) => (
+                    {filteredEvents.map((event, i) => (
                         <div onClick={() => handleRouterClick(event.eventid)} key={i}>
 
                             <m.div
@@ -81,16 +103,16 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
     }
 }
 
-const fetcher = async ()=>{
+const fetcher = async () => {
     const fetcheddata = await fetch("events", ['eventname,eventpic,eventid'], (q) => q.order('date', {ascending: false}));
 
-    return fetcheddata as Tables<'events'>[] || [] ;
+    return fetcheddata as Tables<'events'>[] || [];
 
 }
 
 export default function Index() {
 
-    const {data,isLoading} = useSWR<Tables<'events'>[]>('/events',fetcher);
+    const {data, isLoading} = useSWR<Tables<'events'>[]>('/events',fetcher);
 
 
 
