@@ -104,7 +104,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
                 <AnimatedHeading
                     firstsentenceClassName='z-10'
                     sentence={["explore", "more"]}
-                    className='bg-[#f2f3f3]  dark:bg-[#000913]'/>
+                    className='bg-[#f2f3f3]  dark:bg-[#000a14]'/>
                 <div className='max-w-md'>
                     <SearchBar SendsearchQuery={handleSearchQuery}/>
                 </div>
