@@ -100,7 +100,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                                         transition={{delay: 0.7, ease: 'easeInOut'}}
                                         className=' bg-gradient-to-bl from-white via-white to-transparent dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
                                     >
-                                        {workshop.isavailable && <NewTag className=''/>}
+                                        {workshop.isavailable && <NewTag />}
                                         <CardContent>
 
                                             <CardUpperBody>
