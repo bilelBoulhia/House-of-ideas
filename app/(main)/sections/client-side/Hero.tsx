@@ -24,7 +24,7 @@ export default function Hero() {
     return (
         <div id='Hero'>
 
-            <div className='flex min-h-[calc(100vh-40rem)]  justify-evenly gap-6   overflow-hidden  flex-col w-full '>
+            <div className='flex min-h-[calc(100vh-40rem)]  justify-evenly gap-4   overflow-hidden  flex-col w-full '>
                 <m.div>
                     <h2 className="mt-[5rem] iphone5:text-[2.3rem] uppercase medium-phone:text-[2.8rem] slighty-large-phone:text-[3.4rem] large-phone:text-6xl  tablet:text-7xl  font-[1000]   text-center text-black dark:text-white  tracking-tight">
                         <FlipText>Welcome</FlipText> <FlipText>to </FlipText>   <br/>
@@ -56,11 +56,10 @@ export default function Hero() {
                         <TypewriterEffect className='text-purple-600  dark:text-purple-400' words={sentence}/>
                     </div>
                     <p className="whitespace-pre-line  text-purple-400 dark:text-purple-300 text-left ">
-                        Welcome to the official website of House of Ideas,
-                        where passion meets discovery. As a leading
-                        scientific club at Economic University, we are
-                        dedicated to fostering curiosity, collaboration,
-                        and innovation in the field of science and economics.
+                        Welcome to House Of Ideas at Algiers University 3.We are a club
+                        dedicated to teaching through insightful events and engaging workshops.
+                        Our mission is to create a space where students
+                        can acquire and enhance their skills and become a better version of themselves
                     </p>
                     <p className="mt-2 text-left">
                         <span className="text-purple-600  dark:text-purple-400">user@houseofideas:~$</span>

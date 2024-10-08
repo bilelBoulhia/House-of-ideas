@@ -22,7 +22,6 @@ export const ReviewForm = () => {
     } = useForm<Tables<'reviews'>>()
 
     const onSubmit: SubmitHandler<Tables<'reviews'>> = (data) => {
-
         const insertdata = async (data: Tables<'reviews'>) => {
             try {
                 const issuccess = await insert<Tables<'reviews'>>('reviews', data).catch(r => console.error(r));

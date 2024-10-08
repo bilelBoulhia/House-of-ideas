@@ -12,7 +12,7 @@ import {
 import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger} from "@/components/ui/Modal";
 import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
-import React, {Suspense, useRef, useState} from "react";
+import React, {Suspense, useMemo, useRef, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import BackgroundBeams from "@/components/ui/BackgroundBeams";
 import {Tables} from "@/utils/DatabaseTypes";
@@ -28,6 +28,8 @@ import useSWR from "swr";
 import {NoData} from "@/components/ui/not-data";
 import {NewTag} from "@/components/NewTag";
 
+import SearchBar from "@/components/search-bar";
+
 
 
 
@@ -35,11 +37,22 @@ import {NewTag} from "@/components/NewTag";
 
 function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
+
     if(data.length === 0 ){
         return (
             <NoData sentence='no workshops at the moment'/>
         )
     }else {
+        const [searchQuery, setSearchQuery] = useState("");
+        const handleSearchQuery = function (searchQuery: string) {
+            setSearchQuery(searchQuery);
+        }
+        const filteredWorkshops = useMemo(() => {
+            return data.filter(workshop =>
+                workshop.workshopname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                workshop.workshopdescription.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        }, [data, searchQuery]);
 
 
         const formRef = useRef<SubscribeFormRef>(null);
@@ -88,80 +101,86 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
 
             <>
-            <AnimatedHeading firstsentenceClassName='z-10' sentence={["explore", "more"]} className='bg-[#f2f3f3]  dark:bg-[#000913] '/>
-            <div  className='z-10  w-full'>
 
+                <div>
 
-
-
-                <div className='grid sm:grid-cols-2  lg:grid-cols-3 gap-2'>
-                    {data.map((workshop, index) => (
-                        <Card key={index}
-                              className='bg-gradient-to-r from-gray-100 via-fuchsia-50 to-stone-100  relative group  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '>
-
-                            {workshop.isavailable && <NewTag className='dark:bg-black '/>}
-                            <CardContent>
-
-                                <CardUpperBody>
-
-                                    <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
-                                        {workshop.workshopname}
-
-                                    </CardTitle>
-
-                                    <CardDescription className='text-neutral-800 dark:text-neutral-200'
-                                    >
-                                        {workshop.workshopdescription}
-                                    </CardDescription>
-                                </CardUpperBody>
-
-
-                                <CardBottomBody>
-                                    <CardFooter>
-
-                                        <Modal>
-                                            <ModalTrigger asChild>
-                                                <Button   className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>Details</Button>
-                                            </ModalTrigger>
-                                            <ModalBody ref={modalRef}>
-
-                                                <ModalContent className='z-22' >
-                                                    <div>
-                                                        <Stepper
-                                                            isDisabled={Date.parse(workshop.date) < Date.now()}
-                                                            finishSentnce='subscribe'
-                                                            pages={pages(workshop)}
-                                                            onFinish={handleStepperFinish}
-                                                        />
-
-                                                    </div>
-                                                </ModalContent>
-                                            </ModalBody>
-                                        </Modal>
-
-                                        <CardBadge>Free</CardBadge>
-                                    </CardFooter>
-                                </CardBottomBody>
-
-
-                            </CardContent>
-
-                        </Card>
-
-
-                    ))}
-
-                    <Toast
-                        show={showToast}
-                        message="thank you well contact you soon"
-                        onClose={handleCloseToast}
-                    />
+                <AnimatedHeading
+                        firstsentenceClassName='z-10'
+                        sentence={["explore", "more"]}
+                        className='bg-[#f2f3f3]  dark:bg-[#000913]'/>
+                <SearchBar SendsearchQuery={handleSearchQuery}/>
 
                 </div>
+                <div className='z-10  w-full'>
+                    <div className='grid sm:grid-cols-2  lg:grid-cols-3 gap-2'>
+                        {filteredWorkshops.map((workshop, index) => (
+                            <Card key={index}
+                                  className='bg-gradient-to-r from-gray-100 via-fuchsia-50 to-stone-100  relative group  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '>
+
+                                {workshop.isavailable && <NewTag className='dark:bg-black '/>}
+                                <CardContent>
+
+                                    <CardUpperBody>
+
+                                        <CardTitle className='text-2xl font-bold dark:text-white tracking-wide'>
+                                            {workshop.workshopname}
+
+                                        </CardTitle>
+
+                                        <CardDescription className='text-neutral-800 dark:text-neutral-200'
+                                        >
+                                            {workshop.workshopdescription}
+                                        </CardDescription>
+                                    </CardUpperBody>
 
 
-            </div>
-                </>
+                                    <CardBottomBody>
+                                        <CardFooter>
+
+                                            <Modal>
+                                                <ModalTrigger asChild>
+                                                    <Button
+                                                        className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>Details</Button>
+                                                </ModalTrigger>
+                                                <ModalBody ref={modalRef}>
+
+                                                    <ModalContent className='z-22'>
+                                                        <div>
+                                                            <Stepper
+                                                                isDisabled={Date.parse(workshop.date) < Date.now()}
+                                                                finishSentnce='subscribe'
+                                                                pages={pages(workshop)}
+                                                                onFinish={handleStepperFinish}
+                                                            />
+
+                                                        </div>
+                                                    </ModalContent>
+                                                </ModalBody>
+                                            </Modal>
+
+                                            <CardBadge>Free</CardBadge>
+                                        </CardFooter>
+                                    </CardBottomBody>
+
+
+                                </CardContent>
+
+                            </Card>
+
+
+                        ))}
+
+                        <Toast
+                            show={showToast}
+                            message="thank you well contact you soon"
+                            onClose={handleCloseToast}
+                        />
+
+                    </div>
+
+
+                </div>
+            </>
         )
 
     }
@@ -169,7 +188,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
 
 const fetcher = async () => {
-    const fetcheddata = await fetch("workshops", ['*'],q=>q.order('date', {ascending: false}));
+    const fetcheddata = await fetch("workshops", ['*'], q => q.order('date', {ascending: false}));
     return fetcheddata as Tables<'workshops'>[] || [];
 
 }
@@ -180,7 +199,7 @@ export default function Index() {
 
     return (
 
-        <div className='flex flex-col  mt-[8rem] items-center justify-center overflow-hidden gap-2'>
+        <div className='flex flex-col mt-[8rem] items-center justify-center gap-2'>
             <Suspense fallback={<Loading/>}>
                 {isLoading ?
                     <Loading/>
@@ -189,7 +208,7 @@ export default function Index() {
                 }
             </Suspense>
 
-                <BackgroundBeams style={{zIndex:-4}} />
+                <BackgroundBeams/>
 
 
         </div>
