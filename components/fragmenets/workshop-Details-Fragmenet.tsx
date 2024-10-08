@@ -85,7 +85,7 @@ export function WorkshopDetails({data}: { data: Tables<'workshops'> | null }) {
                         <CalendarIcon className="w-6 h-6 text-primary"/>
                         <h2 className="text-xl font-semibold  text-foreground">{data?.date}</h2>
                     </div>
-                    <div className="flex  items-center space-x-2">
+                    <div className="flex flex-col md:flex-row items-center space-x-2">
                         <ClockIcon className="w-6 h-6 text-primary"/>
                         <Badge variant="secondary" className="text-lg px-0 hover:bg-transparent  py-1">
                                 {data?.starthour?.slice(0, 5)}
