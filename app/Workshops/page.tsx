@@ -101,15 +101,12 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
 
             <>
-
-                <div>
-
                 <AnimatedHeading
-                        firstsentenceClassName='z-10'
-                        sentence={["explore", "more"]}
-                        className='bg-[#f2f3f3]  dark:bg-[#000913]'/>
-                <SearchBar SendsearchQuery={handleSearchQuery}/>
-
+                    firstsentenceClassName='z-10'
+                    sentence={["explore", "more"]}
+                    className='bg-[#f2f3f3]  dark:bg-[#000913]'/>
+                <div className='max-w-md'>
+                    <SearchBar SendsearchQuery={handleSearchQuery}/>
                 </div>
                 <div className='z-10  w-full'>
                     <div className='grid sm:grid-cols-2  lg:grid-cols-3 gap-2'>

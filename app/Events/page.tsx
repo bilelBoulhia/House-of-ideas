@@ -46,14 +46,12 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
         return (
             <>
 
+                <AnimatedHeading
+                    firstsentenceClassName='z-10'
+                    sentence={["explore", "more"]}
+                    className='bg-[#f2f3f3]  dark:bg-[#000913]'/>
                 <div className='max-w-md'>
-
-                    <AnimatedHeading
-                        firstsentenceClassName='z-10'
-                        sentence={["explore", "more"]}
-                        className='bg-[#f2f3f3]  dark:bg-[#000913]'/>
                     <SearchBar SendsearchQuery={handleSearchQuery}/>
-
                 </div>
 
                 <div className='grid  z-10 grid-cols-1 lg:grid-cols-2 gap-10'>

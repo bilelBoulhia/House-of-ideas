@@ -21,7 +21,7 @@ const SearchBar= ({SendsearchQuery}:{SendsearchQuery:(searchquery:string)=> void
 
     return (
         <>
-            <div className="relative m-5 z-10 w-full max-w-md mx-auto">
+            <div className="relative m-5 z-10  ">
                 <m.div
                     initial='hidden'
                     whileInView='visible'
