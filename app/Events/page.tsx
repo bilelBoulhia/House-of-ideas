@@ -43,6 +43,8 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
             router.push(`/Events/${eventid}`);
         };
 
+
+
         return (
             <>
 
@@ -55,43 +57,42 @@ const PageContent = ({data}: { data: Tables<'events'>[] }) => {
                 </div>
 
                 <div className='grid  z-10 grid-cols-1 lg:grid-cols-2 gap-10'>
-                    {filteredEvents.map((event, i) => (
-                        <div onClick={() => handleRouterClick(event.eventid)} key={i}>
-
-                            <m.div
-                                style={{zIndex: -4}}
-
-                                transition={{duration: 0.3, ease: 'easeInOut'}}
-                                className=" z-1 max-w-3xl">
-                                <div className="max-w-3xl hover:cursor-default mx-auto pl-2 overflow-hidden">
-
-                                    <m.h1
-                                        whileHover={{x: 4}}
-                                        className="text-2xl p-1  md:text-3xl font-extrabold text-left tracking-tight bg-clip-text text-transparent bg-black  dark:bg-white ">
-                                        {event.eventname}
-                                    </m.h1>
-
-                                </div>
-                            </m.div>
-
-                            <m.div
-
-                                className="w-full max-h-[50vh]  aspect-[16/9]   rounded-xl overflow-hidden"
-                                variants={shadowVariants}
-                                initial="hidden"
-                                whileInView="visible"
-                                transition={{duration: 0.3, ease: 'easeInOut'}}
-                            >
-                                <m.img
-                                    src={event.eventpic}
-                                    whileHover={{scale: 1.02}}
-                                    className="rounded-xl relative h-full w-full object-cover"
-
-                                />
-                            </m.div>
-
+                    {filteredEvents.length === 0 ? (
+                        <div className='absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'>
+                            Couldn't find what you're looking for
                         </div>
-                    ))}
+                    ) : (
+                        filteredEvents.map((event, i) => (
+                            <div onClick={() => handleRouterClick(event.eventid)} key={i}>
+                                <m.div
+                                    style={{zIndex: -4}}
+                                    transition={{duration: 0.3, ease: 'easeInOut'}}
+                                    className="z-1 max-w-3xl">
+                                    <div className="max-w-3xl hover:cursor-default mx-auto pl-2 overflow-hidden">
+                                        <m.h1
+                                            whileHover={{x: 4}}
+                                            className="text-2xl p-1 md:text-3xl font-extrabold text-left tracking-tight bg-clip-text text-transparent bg-black dark:bg-white ">
+                                            {event.eventname}
+                                        </m.h1>
+                                    </div>
+                                </m.div>
+
+                                <m.div
+                                    className="w-full max-h-[50vh] aspect-[16/9] rounded-xl overflow-hidden"
+                                    variants={shadowVariants}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    transition={{duration: 0.3, ease: 'easeInOut'}}
+                                >
+                                    <m.img
+                                        src={event.eventpic}
+                                        whileHover={{scale: 1.02}}
+                                        className="rounded-xl relative h-full w-full object-cover"
+                                    />
+                                </m.div>
+                            </div>
+                        ))
+                    )}
 
                 </div>
 

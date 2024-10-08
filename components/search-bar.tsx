@@ -25,6 +25,7 @@ const SearchBar= ({SendsearchQuery}:{SendsearchQuery:(searchquery:string)=> void
                 <m.div
                     initial='hidden'
                     whileInView='visible'
+                    viewport={{once:true}}
                     variants={{
                         hidden: {width: '0', opacity: 1},
                         visible: {width: '100%', opacity: 1}

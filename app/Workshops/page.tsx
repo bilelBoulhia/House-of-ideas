@@ -110,7 +110,12 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
                 </div>
                 <div className='z-10  w-full'>
                     <div className='grid sm:grid-cols-2  lg:grid-cols-3 gap-2'>
-                        {filteredWorkshops.map((workshop, index) => (
+                        {filteredWorkshops.length === 0 ? (
+                                <div className='absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'>
+                                    Couldn't find what you're looking for
+                                </div>
+                            ) :
+                            (filteredWorkshops.map((workshop, index) => (
                             <Card key={index}
                                   className='bg-gradient-to-r from-gray-100 via-fuchsia-50 to-stone-100  relative group  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '>
 
@@ -164,7 +169,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
 
                             </Card>
 
-
+                            )
                         ))}
 
                         <Toast
