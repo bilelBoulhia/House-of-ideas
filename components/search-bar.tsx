@@ -37,14 +37,14 @@ const SearchBar= ({SendsearchQuery}:{SendsearchQuery:(searchquery:string)=> void
                         placeholder="search"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full dark:bg-white text-black placeholder-gray-600 px-4 py-2 focus:outline-none"
+                        className="w-full dark:bg-white text-black placeholder-neutral-400  px-4 py-2 focus:outline-none"
 
                     />
 
                     <div
-                        className="rounded-full  h-10 w-11 bg-purple-600 flex justify-center items-center"
+                        className="rounded-full  h-10 w-11 flex justify-center items-center"
                     >
-                        <MagnifyingGlassIcon className="w-5 text-white h-5 "/>
+                        <MagnifyingGlassIcon className="w-5  text-purple-500  h-5 "/>
                     </div>
                 </m.div>
 
