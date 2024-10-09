@@ -24,7 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+
     <html lang="en" className={GeistSans.className}>
+    <head>
+      <title>House of ideas</title>
+      <link rel="shortcut icon" href="/favicon.ico"/>
+    </head>
     <body className="bg-background text-foreground">
 
     <ThemeProvider
