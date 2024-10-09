@@ -233,12 +233,25 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
 
 
                                     <div className="group relative min-h-[14rem] min-w-[10rem] slighty-large-phone:w-64 slighty-large-phone:h-80 overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
-                                        <img
-                                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                            src={guest.guestpic}
-                                            alt="Profile background"
+                                        {guest.guestpic === '' ? (
 
-                                        />
+                                            <img
+                                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                                src='https://as2.ftcdn.net/v2/jpg/00/64/67/63/1000_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'
+                                                alt="Profile background"
+
+                                            />
+
+
+                                            ):(
+
+                                            <img
+                                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                                src={guest.guestpic}
+                                                alt="Profile background"
+
+                                            />
+                                        )}
                                         <div
                                             className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80"/>
 
