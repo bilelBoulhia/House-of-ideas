@@ -324,7 +324,7 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
                                             <a>
                                                 <img
                                                     className='h-[4.2rem] p-1 w-[4.7rem]  medium-phone:h-[5rem] medium-phone:w-[6rem] large-phone:w-[9rem] large-phone:h-[6rem] lg:w-[13rem]  lg:h-[7rem] rounded-xl bg-gray-100'
-                                                    src='https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko='
+                                                    src='https://thumbs.dreamstime.com/b/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available-235041328.jpg'
                                                     alt='img'/>
                                             </a>
 
