@@ -295,28 +295,54 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>
                         </div>
                         <div className="max-w-2xl mx-auto flex flex-wrap justify-around gap-2 py-12 px-4">
+
+
+
                             {eventdata[0].sponsor_pics.map((sponsor, i) => (
-                                <div key={i}
-                                     className="flex items-center  justify-center p-4  ">
+                                sponsor.sponsorpic === '' ?
+                                    (
 
-                                    <a>
-                                        <img className='h-[4.2rem] p-1 w-[4.7rem]  medium-phone:h-[5rem] medium-phone:w-[6rem] large-phone:w-[9rem] large-phone:h-[6rem] lg:w-[13rem]  lg:h-[7rem] rounded-xl bg-gray-100' src={String(sponsor)}
-                                             alt='img'/>
-                                    </a>
 
-                                </div>
+
+                                    <div key={i}
+                                         className="flex items-center  justify-center p-4  ">
+
+                                        <a>
+                                            <img
+                                                className='h-[4.2rem] p-1 w-[4.7rem]  medium-phone:h-[5rem] medium-phone:w-[6rem] large-phone:w-[9rem] large-phone:h-[6rem] lg:w-[13rem]  lg:h-[7rem] rounded-xl bg-gray-100'
+                                                src={String(sponsor)}
+                                                alt='img'/>
+                                        </a>
+
+                                    </div>
+
+                            ): (
+
+                                        <div key={i}
+                                             className="flex items-center  justify-center p-4  ">
+
+                                            <a>
+                                                <img
+                                                    className='h-[4.2rem] p-1 w-[4.7rem]  medium-phone:h-[5rem] medium-phone:w-[6rem] large-phone:w-[9rem] large-phone:h-[6rem] lg:w-[13rem]  lg:h-[7rem] rounded-xl bg-gray-100'
+                                                    src='https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko='
+                                                    alt='img'/>
+                                            </a>
+
+                                        </div>
+
+                                    )
+
+
                             ))}
                         </div>
                     </div>
                 </section>
                     )}
 
+                </div>
+
+
             </div>
-
-
-
-
-        </div>
 
             <Toast
                 show={showToast}
