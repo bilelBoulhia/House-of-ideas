@@ -324,7 +324,7 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
                                             <a>
                                                 <img
                                                     className='h-[4.2rem] p-1 w-[4.7rem]  medium-phone:h-[5rem] medium-phone:w-[6rem] large-phone:w-[9rem] large-phone:h-[6rem] lg:w-[13rem]  lg:h-[7rem] rounded-xl bg-gray-100'
-                                                    src='https://thumbs.dreamstime.com/b/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available-235041328.jpg'
+                                                    src='https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg'
                                                     alt='img'/>
                                             </a>
 
