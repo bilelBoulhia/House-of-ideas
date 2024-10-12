@@ -120,7 +120,7 @@ const CloseIcon = ({className, ...props}: IconProps) => {
 }
 
 
-const NewHiIcon = ({className, animate = true, ...props}: IconProps) => {
+const NewHiIcon = ({className, animate = false, ...props}: IconProps) => {
 
 
     return (
@@ -155,7 +155,7 @@ const NewHiIcon = ({className, animate = true, ...props}: IconProps) => {
                 fill="#FFD524"/>
             <m.path
                 variants={icon}
-                initial={animate ? "visible" : "hidden"}
+                initial={animate ?  "hidden" : "visible" }
                 whileInView="visible"
 
                 transition={{
@@ -166,7 +166,7 @@ const NewHiIcon = ({className, animate = true, ...props}: IconProps) => {
             />
             <m.path
                 variants={icon}
-                initial={animate ? "visible" : "hidden"}
+                initial={animate ?  "hidden" : "visible" }
                 whileInView="visible"
                 transition={{
                     default: {duration: 2, ease: "easeInOut"},
@@ -176,7 +176,7 @@ const NewHiIcon = ({className, animate = true, ...props}: IconProps) => {
             />
             <m.path
                 variants={icon}
-                initial={animate ? "visible" : "hidden"}
+                initial={animate ?  "hidden" : "visible" }
                 whileInView="visible"
                 transition={{
                     default: {duration: 2, ease: "easeInOut"},
@@ -186,7 +186,7 @@ const NewHiIcon = ({className, animate = true, ...props}: IconProps) => {
             />
             <m.path
 
-                initial={animate ? "visible" : "hidden"}
+                initial={animate ?  "hidden" : "visible" }
                 whileInView="visible"
                 transition={{
                     default: {duration: 2, ease: "easeInOut"},

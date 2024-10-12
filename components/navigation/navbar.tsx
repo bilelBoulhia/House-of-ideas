@@ -55,16 +55,16 @@ export default function Navbar() {
 
             <div className={`block slighty-large-phone:hidden ${isOpen ? "hidden" : "block"}`}>
                 <Button
-                    variant="link"
+                    variant="ghost"
                     size="icon"
-                    className='block slighty-large-phone:hidden fixed top-4 left-4 '
+                    className='block slighty-large-phone:hidden hover:bg-transparent fixed top-4 left-4 '
                     onClick={toggleMenu}
                     aria-label="Toggle menu"
                 >
                     <Menu className="h-6 w-6"/>
                 </Button>
 
-                <NewHiIcon animate={isOpen}   className='float-right  relative size-20 p-4  '/>
+                <NewHiIcon animate={false}   className='float-right  relative size-20 p-4  '/>
             </div>
 
 
@@ -129,7 +129,7 @@ export default function Navbar() {
                 <div className='relative flex-row items-center p-1  justify-center hidden slighty-large-phone:flex'>
 
                     <AnimatedNavBarBg {...animations} />
-                    <NewHiIcon animate={isOpen} className='size-[3rem]'/>
+                    <NewHiIcon animate={true} className='size-[3rem]'/>
                     {links.map((section, index) => (
                             <Button  variant='link' onClick={() => router.push(section.href)} key={index}>{section.label}</Button>
                     ))}
