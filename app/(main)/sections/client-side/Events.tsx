@@ -14,11 +14,6 @@ import {NoData} from "@/components/ui/not-data";
 
 
 export default function Event({data}: {data: Tables<'events'>[]}) {
-
-
-
-
-
     const router = useRouter();
     const handleRouterClick = (eventid: number) => {
         router.push(`/Events/${eventid}`);

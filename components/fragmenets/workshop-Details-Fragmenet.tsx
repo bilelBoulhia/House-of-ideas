@@ -34,7 +34,7 @@ function TutorContent({tutor}: { tutor: Tables<'tutors'>[] }) {
             </div>
             <div className="w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent"/>
             <div className="relative lg:w-1/2 p-12 flex items-center justify-center overflow-hidden">
-                {tutor[0]?.tutorpic === null ? (
+                {tutor[0]?.tutorpic === null || '' ? (
 
                     <img
                         className='rounded-xl'
