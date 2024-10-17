@@ -110,11 +110,6 @@ export default function Departament() {
                 <div style={{zIndex:-1}} className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
 
                 <AnimatePresence mode="wait">
-
-
-
-
-
                     <m.h2
 
                         key={departments[c].name}

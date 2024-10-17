@@ -12,7 +12,7 @@ export const shadowVariants = {
 }
 
 
-// Guest type
+
 export type Guest = {
     name: string;
     guestpic:string;
@@ -23,7 +23,7 @@ export type Sponsor = {
     sponsorpic: string;
 };
 
-// Event type
+
 export type Events = {
     eventid: number;
     eventname: string;

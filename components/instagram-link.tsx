@@ -14,7 +14,7 @@ export default function InstagramLink({href,
                                       }: InstagramLinkProps) {
 
     const controls = useAnimation()
-    const instagramUsername = "more picture at "
+    const instagramUsername = "more pictures at "
 
     useEffect(() => {
         controls.start({
