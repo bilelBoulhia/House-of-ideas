@@ -14,7 +14,7 @@ import {
 import {Button} from "@/components/ui/button";
 import {LabelTag} from "@/components/LabelTag";
 import { m } from "framer-motion";
-import {Beams, Rays} from "@/components/ui/RaysBeams";
+
 
 
 export  default function Formations() {
@@ -78,10 +78,10 @@ export  default function Formations() {
                 <Card
 
                     transition={{delay: 0.7, ease: 'easeInOut'}}
-                    className='max-w-[320px] bg-gradient-to-t from-violet-400 via-cyan-400 to-pink-100 dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
+                    className='max-w-[320px] bg-gradient-to-bl from-white via-white to-transparent  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
                 >
 
-                    <Beams/>
+
                     <LabelTag Label='New'/>
 
                     <CardContent>
