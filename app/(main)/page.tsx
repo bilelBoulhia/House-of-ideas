@@ -7,6 +7,7 @@ const DynamicDepartament = dynamic(() => import("@/app/(main)/sections/client-si
 const DynamicBackgroundBeams = dynamic(() => import("@/components/ui/BackgroundBeams"));
 const DynamicEventSection = dynamic(() => import("@/app/(main)/sections/server-actions/Events"));
 const DynamicWorkshopSection = dynamic(() => import("@/app/(main)/sections/server-actions/workshop"));
+const DynamicFormations = dynamic(() => import("@/app/(main)/sections/server-actions/Formations"));
 const DynamicTestimonialSection = dynamic(() => import("@/app/(main)/sections/server-actions/Testimonials"));
 const DynamicNewLetter = dynamic(() => import("@/app/(main)/sections/client-side/NewLetter"));
 export default function Index() {
@@ -18,6 +19,7 @@ export default function Index() {
           <DynamicHero/>
           <DynamicEventSection/>
           <DynamicWorkshopSection/>
+          <DynamicFormations/>
           <DynamicDepartament/>
           <DynamicNewLetter/>
           <DynamicTestimonialSection/>

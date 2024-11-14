@@ -25,6 +25,7 @@ interface CardProps extends MotionProps {
     children: React.ReactNode;
     className?: string;
 }
+
 export const Card: React.FC<CardProps> = ({ children, className, ...props }) => {
     return (
 
@@ -48,7 +49,7 @@ export const Card: React.FC<CardProps> = ({ children, className, ...props }) => 
     );
 };
 
-export const CardContent = ({children, className}: { children: React.ReactNode[], className?: string }) => {
+export const CardContent = ({children, className}: { children?: React.ReactNode, className?: string }) => {
 
     return (
         <div className={cn("relative min-h-[15rem]  p-2 h-full flex flex-col justify-center", className)}>
@@ -100,7 +101,7 @@ export const CardBottomBody=({children,className}:{children:React.ReactNode[] | 
         </div>
     )
 }
-export const CardFooter=({children,className}:{children:React.ReactNode[],className?:string}) => {
+export const CardFooter=({children,className}:{children?:React.ReactNode,className?:string}) => {
     return (
         <div className={cn("flex justify-between items-center",className)}>
             {children}

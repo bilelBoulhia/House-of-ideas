@@ -2,7 +2,7 @@
 import {AnimatePresence, m} from "framer-motion";
 import React, {useEffect, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
-import {NewTag} from "@/components/NewTag";
+import {LabelTag} from "@/components/LabelTag";
 
 
 
@@ -159,7 +159,7 @@ export default function Departament() {
                                     >
 
 
-                                        {(item === 'Design service' || item === 'Commercial service' || item === 'Internship facilitation') && <NewTag/>}
+                                        {(item === 'Design service' || item === 'Commercial service' || item === 'Internship facilitation') && <LabelTag Label='New'/>}
                                         <span className="medium-phone:text-lg text-gray-100    dark:text-gray-800">{item}</span>
                                     </m.li>
 
