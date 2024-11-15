@@ -14,6 +14,9 @@ import {
 import {Button} from "@/components/ui/button";
 import {LabelTag} from "@/components/LabelTag";
 import { m } from "framer-motion";
+import Carousel from "@/components/ui/Carousel";
+import {shadowVariants} from "@/utils/types";
+import {NoData} from "@/components/ui/not-data";
 
 
 
@@ -73,44 +76,71 @@ export  default function Formations() {
             </div>
 
 
-            <div>
-
-                <Card
-
-                    transition={{delay: 0.7, ease: 'easeInOut'}}
-                    className='max-w-[320px] bg-gradient-to-bl from-white via-white to-transparent  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
-                >
+            <div className='w-full '>
 
 
-                    <LabelTag Label='New'/>
 
-                    <CardContent>
 
-                        <CardUpperBody>
-                            <CardTitle className='text-2xl  font-bold text-neutral-800 dark:text-white tracking-wide'>
-                                Mix speaking
-                            </CardTitle>
-                            <CardDescription className='text-neutral-800 dark:text-neutral-200'
+
+
+
+
+                            <Carousel
+                                useArrows={true}
+                                className="w-full"
+                                slideClassName="p-5 flex-[0_0_100%] md:flex-[0_0_50%]  extra-large-tablet:flex-[0_0_33%]  "
                             >
-                                Join us to boost key soft skills like communication, teamwork, and leadership! Complete
-                                this short form to let us know your goals and preferences, so we can shape a training
-                                experience that meets your needs
-                            </CardDescription>
-                        </CardUpperBody>
+                                <Card
+
+                                    transition={{delay: 0.7, ease: 'easeInOut'}}
+                                    className=' max-w-full md:max-w-[400px]     bg-gradient-to-bl from-white via-white to-transparent  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
+                                >
 
 
-                        <CardBottomBody>
-                            <CardFooter>
-                                <Button
-                                    className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>Details</Button>
+                                    <LabelTag Label='New'/>
 
-                                <CardBadge>Exclusive</CardBadge>
-                            </CardFooter>
-                        </CardBottomBody>
+                                    <CardContent>
+
+                                        <CardUpperBody>
+                                            <CardTitle
+                                                className='text-2xl  font-bold text-neutral-800 dark:text-white tracking-wide'>
+                                                Mix speaking
+                                            </CardTitle>
+                                            <CardDescription className='text-neutral-800 dark:text-neutral-200'
+                                            >
+                                                Join us to boost key soft skills like communication, teamwork, and leadership!
+                                                Complete
+                                                this short form to let us know your goals and preferences, so we can shape a
+                                                training
+                                                experience that meets your needs
+                                            </CardDescription>
+                                        </CardUpperBody>
 
 
-                    </CardContent>
-                </Card>
+                                        <CardBottomBody>
+                                            <CardFooter>
+                                                <Button
+                                                    className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>Details</Button>
+
+                                                <CardBadge>Exclusive</CardBadge>
+                                            </CardFooter>
+                                        </CardBottomBody>
+
+
+                                    </CardContent>
+                                </Card>
+
+
+
+
+
+
+                            </Carousel>
+
+
+
+
+
 
             </div>
 
