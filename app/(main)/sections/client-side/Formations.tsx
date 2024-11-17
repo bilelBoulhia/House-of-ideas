@@ -20,7 +20,7 @@ export  default function Formations({data}:{data:Tables<'formations'>[]}) {
     return (
 
         <div id="Formations" className="relative  flex w-full  items-center mt-16 overflow-hidden flex-col gap-2">
-            <div className="relative text-center max-w-2xl w-full whitespace-nowrap overflow-hidden">
+            <div className="relative text-center max-w-2xl w-full  overflow-hidden">
                 <m.span
                     className="inline-block mx-1 "
                     initial={{opacity: 0, x: -10}}
