@@ -41,12 +41,14 @@ export default function Stepper({isDisabled, pages, finishSentnce, onFinish }: S
         <Button
           variant="outline"
           onClick={goToPreviousStep}
+          aria-label='previous step'
           disabled={currentStep === 0 }
         >
           <ChevronLeft className="mr-2 h-4 w-4" /> Previous
         </Button>
         <Button
             disabled={isDisabled}
+            aria-label='next step'
             onClick={() => goToNextStep()}>
           {currentStep === pages.length - 1 ? finishSentnce :  (isDisabled ? 'unavailabe' : 'Next')} <ChevronRight className="ml-2 h-4 w-4" />
         </Button>

@@ -61,6 +61,7 @@ export const ReviewForm = () => {
                         })}
                     />
                     <Button type='submit'
+                            aria-label='add a review'
                             className="absolute right-0 rounded-l-[0px] top-0 bottom-0 h-full w-14 group dark:hover:bg-gray-200">
                         <ArrowRight
                             className="size-10 transition-transform duration-300 ease-in-out transform group-hover:translate-x-1"/>

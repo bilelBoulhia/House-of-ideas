@@ -66,7 +66,7 @@ export default function Hero() {
                     </p>
                 </m.div>
                 <div className='flex md:gap-12 gap-5   flex-col sm:flex-row justify-center items-center'>
-                    <Button className='bg-gradient-to-r  from-purple-700 to-purple-900' onClick={()=>router.push('/Workshops')} size='md' variant='cto'>
+                    <Button  aria-label='check all workshops' className='bg-gradient-to-r  from-purple-700 to-purple-900' onClick={()=>router.push('/Workshops')} size='md' variant='cto'>
                         <span className="mr-2 min-w-[13rem]">
                             check out  all   Workshops
                         </span>
@@ -74,7 +74,7 @@ export default function Hero() {
 
 
                     </Button>
-                    <Button className=' bg-gradient-to-r  from-blue-700 to-blue-900' onClick={()=>{router.push('/Events')}} size='md' variant='cto'>
+                    <Button aria-label='check all events' className=' bg-gradient-to-r  from-blue-700 to-blue-900' onClick={()=>{router.push('/Events')}} size='md' variant='cto'>
                         <span className="mr-2 min-w-[13rem]">
                             check out all Events
                         </span>

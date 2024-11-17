@@ -84,7 +84,7 @@ export default function CoolNewsletter() {
                                 <div className="mt-3 sm:mt-0 sm:ml-3">
                                     <Button
                                         type='submit'
-
+                                        aria-label='subscribe to news letter'
                                         className="w-full flex items-center justify-center  bg-violet-500  group hover:bg-violet-600 text-white transition-all duration-300 ease-in-out transform hover:scale-105"
                                     >
 
