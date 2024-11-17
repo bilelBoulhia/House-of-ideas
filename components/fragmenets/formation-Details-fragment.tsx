@@ -38,8 +38,8 @@ function TutorContent({tutor}: { tutor: Tables<'tutors'>[] }) {
 
                     <img
                         className='rounded-xl'
-                         src='https://static.vecteezy.com/system/resources/previews/020/911/740/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png'
-                         alt={tutor[0]?.tutorname}/>
+                        src='https://static.vecteezy.com/system/resources/previews/020/911/740/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png'
+                        alt={tutor[0]?.tutorname}/>
 
 
                 ) : (
@@ -54,16 +54,16 @@ function TutorContent({tutor}: { tutor: Tables<'tutors'>[] }) {
     )
 }
 
-export function WorkshopDetails({data}: { data: Tables<'workshops'> | null }) {
+export function FormationDetails({data}: { data: Tables<'formations'> | null }) {
     const [tutor, setTutor] = useState<Tables<'tutors'>[]>([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const getdata = async () => {
-            if (data?.tutor) {
+            if (data?.tutorid) {
                 try {
                     setIsLoading(true)
-                    const tutorData: Tables<'tutors'>[] = await fetch("tutors",  [], (q) => q.eq('tutorid', data.tutor))
+                    const tutorData: Tables<'tutors'>[] = await fetch("tutors",  [], (q) => q.eq('tutorid', data.tutorid))
                     setTutor(tutorData)
                 } finally {
                     setIsLoading(false)
@@ -76,21 +76,21 @@ export function WorkshopDetails({data}: { data: Tables<'workshops'> | null }) {
     return (
         <div  className='flex flex-col cursor-default h-full w-full items-center justify-center'>
             <div className='flex flex-col h-full w-full items-center justify-center'>
-                <h2 className='text-4xl tracking-tight font-bold uppercase text-center'>{data?.workshopname}</h2>
+                <h2 className='text-4xl tracking-tight font-bold uppercase text-center'>{data?.formationname}</h2>
                 <h2 className='text-xl max-w-xl tracking-tight font-medium p-3 text-center'>
-                    {data?.workshopdescription}
+                    {data?.description}
                 </h2>
                 <div className="flex flex-col  md:flex-row justify-between py-4 px-8  gap-8 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg shadow-sm">
                     <div className="flex items-center space-x-3">
                         <CalendarIcon className="w-6 h-6 text-primary"/>
-                        <h2 className="text-xl font-semibold  text-foreground">{data?.date}</h2>
+                        <h2 className="text-xl font-semibold  text-foreground">{data?.Date}</h2>
                     </div>
                     <div className="flex  items-center space-x-2">
                         <ClockIcon className="w-6 h-6 text-primary"/>
                         <Badge variant="secondary" className="text-lg px-0 hover:bg-transparent  py-1">
-                                {data?.starthour?.slice(0, 5)}
+                            {data?.starthour?.slice(0, 5)}
                         </Badge>
-                            <span className="text-lg font-medium">-</span>
+                        <span className="text-lg font-medium">-</span>
                         <Badge variant="secondary" className="text-lg px-0 hover:bg-transparent  py-1">{data?.endhour?.slice(0, 5)}
                         </Badge>
 

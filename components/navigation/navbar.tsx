@@ -17,9 +17,9 @@ interface Item {
 }
 
 const links: Item[] = [
-    { label: "Formations", href: "/#Hero" },
+    { label: "Formations", href: "/#Formations" },
     { label: "Events", href: "/#Events" },
-    { label: "Workshops", href: "/#ContactUs" },
+    { label: "Workshops", href: "/#Workshops" },
     { label: "Reviews", href: "/#Reviews" },
 
 ]

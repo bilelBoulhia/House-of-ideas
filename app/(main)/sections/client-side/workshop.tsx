@@ -80,7 +80,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
 
         return (
 
-            <div className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-10">
+            <div id='Workshops' className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-10">
                 <AnimatedHeading sentence={["Latest", "Workshops"]} className='bg-[#f5f7f3] dark:bg-[#00070e]'/>
 
                 {data.length <= 0  ? (
@@ -98,7 +98,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                                     <Card
                                         key={index}
                                         transition={{delay: 0.7, ease: 'easeInOut'}}
-                                        className=' bg-gradient-to-bl from-white via-white to-transparent dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
+                                        className='bg-gradient-to-bl from-white via-white to-transparent dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
                                     >
                                         {workshop.isavailable && <LabelTag Label='New' />}
                                         <CardContent>

@@ -1,39 +1,45 @@
 'use client'
-import {AnimatedHeading} from "@/components/ui/Animated-heading";
+
 
 import React from "react";
-import {
-    Card,
-    CardBadge, CardBottomBody,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardTitle,
-    CardUpperBody
-} from "@/components/ui/Card";
-import {Button} from "@/components/ui/button";
-import {LabelTag} from "@/components/LabelTag";
+
 import { m } from "framer-motion";
-import Carousel from "@/components/ui/Carousel";
-import {shadowVariants} from "@/utils/types";
+
+import {Tables} from "@/utils/DatabaseTypes";
 import {NoData} from "@/components/ui/not-data";
 
+import {FormationCarousel} from "@/components/FormationCarousel";
 
 
-export  default function Formations() {
+
+
+export  default function Formations({data}:{data:Tables<'formations'>[]}) {
+
+
+
     return (
 
-        <div id="#about" className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
-
-            <AnimatedHeading size='default' sentence={["our", "Formations"]}
-                             className='bg-[#f5f9f3] dark:bg-[#00050a]'/>
-
+        <div id="Formations" className="relative  flex w-full  items-center mt-16 overflow-hidden flex-col gap-2">
             <div className="relative text-center max-w-2xl w-full whitespace-nowrap overflow-hidden">
+                <m.span
+                    className="inline-block mx-1 "
+                    initial={{opacity: 0, x: -10}}
+                    whileInView={{opacity: 1, x: 0}}
+                    viewport={{once: true}}
+                    transition={{
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 10,
+                        delay: 0.4
+                    }}
+                >
+                    some of our
+                </m.span>
                 <m.span
                     className="inline-block mx-1 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500"
                     initial={{opacity: 0, y: -10}}
                     whileInView={{opacity: 1, y: 0}}
-                    viewport={{once:true}}
+                    viewport={{once: true}}
                     transition={{
                         type: "spring",
                         stiffness: 100,
@@ -48,7 +54,7 @@ export  default function Formations() {
                     className="inline-block mx-1 "
                     initial={{opacity: 0, x: -10}}
                     whileInView={{opacity: 1, x: 0}}
-                    viewport={{once:true}}
+                    viewport={{once: true}}
                     transition={{
                         type: "spring",
                         stiffness: 100,
@@ -56,14 +62,14 @@ export  default function Formations() {
                         delay: 0.4
                     }}
                 >
-                     only for
+                    only for
                 </m.span>
 
                 <m.span
                     className="inline-block mx-1  font-bold"
                     initial={{opacity: 0, x: 10}}
                     whileInView={{opacity: 1, x: 0}}
-                    viewport={{once:true}}
+                    viewport={{once: true}}
                     transition={{
                         type: "spring",
                         stiffness: 100,
@@ -71,81 +77,22 @@ export  default function Formations() {
                         delay: 0.6
                     }}
                 >
-                     HI Members
+                    HI Members
                 </m.span>
             </div>
 
+            {data.length <= 0  ? (
+                <NoData sentence='no formation at the moment'/>
 
-            <div className='w-full '>
-
-
-
-
+            ) : (
 
 
+                <FormationCarousel formations={data}/>
 
-
-                            <Carousel
-                                useArrows={true}
-                                className="w-full"
-                                slideClassName="p-5 flex-[0_0_100%] md:flex-[0_0_50%]  extra-large-tablet:flex-[0_0_33%]  "
-                            >
-                                <Card
-
-                                    transition={{delay: 0.7, ease: 'easeInOut'}}
-                                    className=' max-w-full md:max-w-[400px]     bg-gradient-to-bl from-white via-white to-transparent  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
-                                >
-
-
-                                    <LabelTag Label='New'/>
-
-                                    <CardContent>
-
-                                        <CardUpperBody>
-                                            <CardTitle
-                                                className='text-2xl  font-bold text-neutral-800 dark:text-white tracking-wide'>
-                                                Mix speaking
-                                            </CardTitle>
-                                            <CardDescription className='text-neutral-800 dark:text-neutral-200'
-                                            >
-                                                Join us to boost key soft skills like communication, teamwork, and leadership!
-                                                Complete
-                                                this short form to let us know your goals and preferences, so we can shape a
-                                                training
-                                                experience that meets your needs
-                                            </CardDescription>
-                                        </CardUpperBody>
-
-
-                                        <CardBottomBody>
-                                            <CardFooter>
-                                                <Button
-                                                    className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>Details</Button>
-
-                                                <CardBadge>Exclusive</CardBadge>
-                                            </CardFooter>
-                                        </CardBottomBody>
-
-
-                                    </CardContent>
-                                </Card>
-
-
-
-
-
-
-                            </Carousel>
-
-
-
-
-
-
-            </div>
-
-
+                )}
         </div>
     )
 
 }
+
+
