@@ -139,6 +139,7 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
                     <Modal>
                         <ModalTrigger asChild>
                             <Button
+                                aria-label='subscribe to the event'
                                 disabled={!eventdata[0].isavailable}
                                 className='bg-violet-500  text-md medium-phone:text-lg shadow-[5px_5px_0px_0px_rgba(109,40,217)] rounded-xl hover:bg-violet-600 dark:text-white  py-8  px-10'>
                                 {eventdata[0].isavailable ? 'Subscribe to the event' : 'the event has passed !'}
