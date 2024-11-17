@@ -101,21 +101,21 @@ export default function Departament() {
 
         <div id="#about" className="relative  flex w-full items-center mt-16 overflow-hidden flex-col gap-2">
 
-            <AnimatedHeading size='default' sentence={["our","Departements"]} className='bg-[#f5f9f3] dark:bg-[#00050a]'/>
+            <AnimatedHeading size='default' sentence={["our","Departements"]} className='bg-[#f5f9f3] dark:bg-[#000409] '/>
 
 
             <div className="flex flex-col md:flex-row">
 
             <div className="relative   md:min-h-[30rem]   md:w-1/2   p-12 flex items-center justify-center overflow-hidden">
-                <div style={{zIndex:-1}} className='absolute inset-0  bg-[#f5f9f3] dark:bg-[#00050a] h-1/4'></div>
+                {/*<div style={{zIndex:-1}} className='absolute inset-0   h-1/4'></div>*/}
 
                 <AnimatePresence mode="wait">
                     <m.h2
 
                         key={departments[c].name}
-                        initial={{y: 150}}
-                        animate={{y: 0}}
-                        exit={{y: -190}}
+                        initial={{x: -150}}
+                        animate={{x: 0}}
+                        exit={{x: '100%'}}
                         transition={{duration: 0.6, ease: "easeInOut"}}
                         className="iphone5:text-5xl  medium-phone:text-6xl  font-bold dark:text-white text-center relative z-10"
                         style={{
@@ -133,12 +133,10 @@ export default function Departament() {
                 <div className="relative md:w-1/2 p-12 flex items-center  justify-center overflow-hidden">
                     <AnimatePresence mode="wait">
                         <m.ul
-
                             key={c}
-                            //max-w-md
                             className="space-y-4 min-w-[320px] p-1  max-w-[350px]  relative z-10"
                         >
-                            {/*bg-gradient-to-r from-violet-500 via-blue-600 to-purple-800     dark:bg-gradient-to-r dark:from-pink-500  dark:to-indigo-700*/}
+
                             {departments[c].description.map((item, index) => (
 
 
