@@ -17,10 +17,11 @@ interface Item {
 }
 
 const links: Item[] = [
-    { label: "Home", href: "/#Hero" },
+    { label: "Formations", href: "/#Formations" },
     { label: "Events", href: "/#Events" },
+    { label: "Workshops", href: "/#Workshops" },
     { label: "Reviews", href: "/#Reviews" },
-    { label: "Contact", href: "/#ContactUs" },
+
 ]
 export default function Navbar() {
     const router = useRouter()
@@ -33,7 +34,7 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const navRef = useRef<HTMLDivElement>(null)
     const toggleMenu = () => setIsOpen(!isOpen)
-    const animations = useScrollAnimations(scrollYProgress,430,0.2)
+    const animations = useScrollAnimations(scrollYProgress,480,0.2)
 
 
 

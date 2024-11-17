@@ -26,7 +26,7 @@ import Toast from "@/components/ui/toast";
 import {Loading} from "@/app/Loading";
 import useSWR from "swr";
 import {NoData} from "@/components/ui/not-data";
-import {NewTag} from "@/components/NewTag";
+import {LabelTag} from "@/components/LabelTag";
 
 import SearchBar from "@/components/search-bar";
 
@@ -119,7 +119,7 @@ function PageContent({data}: { data: Tables<'workshops'>[] }) {
                             <Card key={index}
                                   className='bg-gradient-to-r from-gray-100 via-fuchsia-50 to-stone-100  relative group  dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '>
 
-                                {workshop.isavailable && <NewTag className='dark:bg-black '/>}
+                                {workshop.isavailable && <LabelTag Label='New' className='dark:bg-black '/>}
                                 <CardContent>
 
                                     <CardUpperBody>

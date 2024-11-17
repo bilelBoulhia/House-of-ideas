@@ -22,7 +22,7 @@ import Toast from "@/components/ui/toast";
 import {NoData} from "@/components/ui/not-data";
 import {ArrowRight} from "lucide-react";
 import {useRouter} from "next/navigation";
-import {NewTag} from "@/components/NewTag";
+import {LabelTag} from "@/components/LabelTag";
 
 
 
@@ -80,7 +80,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
 
         return (
 
-            <div className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-10">
+            <div id='Workshops' className="relative flex w-full items-center mt-16 overflow-hidden flex-col gap-10">
                 <AnimatedHeading sentence={["Latest", "Workshops"]} className='bg-[#f5f7f3] dark:bg-[#00070e]'/>
 
                 {data.length <= 0  ? (
@@ -98,9 +98,9 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
                                     <Card
                                         key={index}
                                         transition={{delay: 0.7, ease: 'easeInOut'}}
-                                        className=' bg-gradient-to-bl from-white via-white to-transparent dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
+                                        className='bg-gradient-to-bl from-white via-white to-transparent dark:bg-gradient-to-tl dark:from-black dark:via-gray-950 dark:to-black '
                                     >
-                                        {workshop.isavailable && <NewTag />}
+                                        {workshop.isavailable && <LabelTag Label='New' />}
                                         <CardContent>
 
                                             <CardUpperBody>
@@ -119,9 +119,7 @@ export default function Workshop({data}: { data: Tables<'workshops'>[]}) {
 
                                                     <Modal>
                                                         <ModalTrigger asChild>
-                                                            <Button
-
-                                                                className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>Details</Button>
+                                                            <Button className='bg-violet-500 rounded-xl hover:bg-violet-600 dark:text-white  py-2 px-4'>Details</Button>
                                                         </ModalTrigger>
                                                         <ModalBody>
 
