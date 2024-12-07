@@ -89,7 +89,6 @@ export default function CoolNewsletter() {
                                     >
 
                                         <Mail className="mr-2  transition-transform transform group-hover:scale-110   h-5 w-5"/>
-
                                         subscribe
                                     </Button>
                                 </div>
