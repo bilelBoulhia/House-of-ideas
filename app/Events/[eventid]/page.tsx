@@ -8,7 +8,7 @@ import BackgroundBeams from "@/components/ui/BackgroundBeams";
 import {Events, shadowVariants} from "@/utils/types";
 import {Tables} from "@/utils/DatabaseTypes";
 
-import React, {Suspense, useRef, useState} from "react";
+import React, {Suspense, useEffect, useRef, useState} from "react";
 import { insert, proc} from "@/app/lib/supabase/client-api";
 
 import {Loading} from "@/app/Loading";
@@ -35,6 +35,7 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
 
 
     const formRef = useRef<SubscribeFormRef>(null);
+
     const modalRef = useRef<ModalBodyRef>(null);
     const [showToast, setShowToast] = useState(false);
     const handleFormSubmit = (data: Tables<'eventapplicants'>) => {
@@ -70,8 +71,6 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
     const handleStepperFinish = () => {
         formRef.current?.submitForm();
     };
-
-
 
 
 
@@ -166,7 +165,7 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
                 <div className='p-2 relative mt-6'>
 
 
-                        <section className="mb-12 text-left">
+                    <section className="mb-12 text-left">
 
                         <h2 className="text-2xl medium-phone:text-3xl  font-bold tracking-tighter  mb-6 ">Event
                             Details</h2>
@@ -198,146 +197,126 @@ const PageContent = ({eventdata}: { eventdata: Events[] }) => {
                             </Tag>
 
                         </div>
-                        </section>
+                    </section>
 
 
                     {!eventdata[0].isavailable && (
                         <section className="mb-12 text-left">
-                        <h2 className="text-2xl medium-phone:text-3xl font-bold tracking-tighter mb-6">
-                                    Event Overview
-                                </h2>
+                            <h2 className="text-2xl medium-phone:text-3xl font-bold tracking-tighter mb-6">
+                                Event Overview
+                            </h2>
 
-                                <div className="grid gap-8 md:grid-cols-2">
-                                    <Tag className="dark:bg-slate-700 bg-[#A0DEFF]">
-                                        <PersonStanding className="w-8 h-8 text-purple-400"/>
-                                        <div>
-                                            <p className="text-sm">event attendees</p>
-                                            <p className="text-lg font-medium">
-                                                {eventdata[0].visitorsnum === null ?  'no data' : eventdata[0].visitorsnum }
-                                            </p>
-                                        </div>
-                                    </Tag>
-                                </div>
-                            </section>
+                            <div className="grid gap-8 md:grid-cols-2">
+                                <Tag className="dark:bg-slate-700 bg-[#A0DEFF]">
+                                    <PersonStanding className="w-8 h-8 text-purple-400"/>
+                                    <div>
+                                        <p className="text-sm">event attendees</p>
+                                        <p className="text-lg font-medium">
+                                            {eventdata[0].visitorsnum === null ? 'no data' : eventdata[0].visitorsnum}
+                                        </p>
+                                    </div>
+                                </Tag>
+                            </div>
+                        </section>
                     )}
 
 
                     {eventdata[0].guests != null && eventdata[0].guests.length > 0 && (
-                <section  className="w-full py-12 md:py-24 lg:py-32">
-                    <div className="container px-4 md:px-6">
-                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Guests</h2>
-                        </div>
-                        <div className="max-w-6xl mx-auto flex flex-wrap justify-around gap-3 py-12 px-4">
-                            {eventdata[0].guests.map((guest, i) => (
-                                <div key={i} className="flex items-center justify-center p-4  rounded-lg ">
-
-
-                                    <div className="group relative min-h-[14rem] min-w-[10rem] slighty-large-phone:w-64 slighty-large-phone:h-80 overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
-                                        {guest.guestpic === '' ? (
-
-                                            <img
-                                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                                src='https://as2.ftcdn.net/v2/jpg/00/64/67/63/1000_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'
-                                                alt="Profile background"
-
-                                            />
-
-
-                                            ):(
-
-                                            <img
-                                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                                src={guest.guestpic}
-                                                alt="Profile background"
-
-                                            />
-                                        )}
-                                        <div
-                                            className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80"/>
-
-                                        <div
-                                            className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
-                                            <h1 className="text-white text-center font-bold font-sans text-xl  md:text-2xl mb-2 tracking-tight">
-                                                {guest.name}
-                                            </h1>
-                                            <div
-                                                className="space-y-1 text-center overflow-hidden max-h-0 transition-all duration-300 group-hover:max-h-24">
-                                                {guest.occupations.map((oc, i) => (
-                                                    <p
-                                                        key={i}
-                                                        className="text-gray-300 text-sm font-medium truncate transform translate-y-4 transition-transform duration-300 delay-100 group-hover:translate-y-0"
-                                                        style={{transitionDelay: `${i * 50}ms`}}
-                                                    >
-                                                        {oc}
-                                                    </p>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <div className="absolute top-4 right-4  rounded-full p-2 opacity-0 transform -translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                                          <NewHiIcon className='h-6 w-6 '/>
-                                        </div>
-                                    </div>
-
-
+                        <section className="w-full py-12 md:py-24 lg:py-32">
+                            <div className="container px-4 md:px-6">
+                                <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Guests</h2>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                                <div className="max-w-6xl mx-auto flex flex-wrap justify-around gap-3 py-12 px-4">
+                                    {eventdata[0].guests.map((guest, i) => (
+                                        <div key={i} className="flex items-center justify-center p-4  rounded-lg ">
+
+
+
+                                            <div
+                                                className="group relative min-h-[14rem] min-w-[10rem] slighty-large-phone:w-64 slighty-large-phone:h-80 overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
+
+
+                                                <img
+                                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                                    src={guest.guestpic === "" ? 'https://as2.ftcdn.net/v2/jpg/00/64/67/63/1000_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg' : guest.guestpic}
+                                                    alt="Profile background"
+
+                                                />
+
+
+                                                <div
+                                                    className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80"/>
+
+                                                <div
+                                                    className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+                                                    <h1 className="text-white text-center font-bold font-sans text-xl  md:text-2xl mb-2 tracking-tight">
+                                                        {guest.name}
+                                                    </h1>
+                                                    <div
+                                                        className="space-y-1 text-center overflow-hidden max-h-0 transition-all duration-300 group-hover:max-h-24">
+                                                        {guest.occupations.map((oc, i) => (
+                                                            <p
+                                                                key={i}
+                                                                className="text-gray-300 text-sm font-medium truncate transform translate-y-4 transition-transform duration-300 delay-100 group-hover:translate-y-0"
+                                                                style={{transitionDelay: `${i * 50}ms`}}
+                                                            >
+                                                                {oc}
+                                                            </p>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
+                                                <div
+                                                    className="absolute top-4 right-4  rounded-full p-2 opacity-0 transform -translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                                                    <NewHiIcon className='h-6 w-6 '/>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
 
                     )}
+
                     {eventdata[0].sponsor_pics != null && eventdata[0].sponsor_pics.length > 0 && (
-                <section id='sponsors' className="w-full py-12 md:py-24 lg:py-12">
+                        <section id='sponsors' className="w-full py-12 md:py-24 lg:py-12">
 
-                    <div className="container px-4 md:px-6">
-                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>
-                        </div>
-                        <div className="max-w-2xl mx-auto flex flex-wrap justify-around gap-2 py-12 px-4">
+                            <div className="container px-4 md:px-6">
+                                <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Sponsors</h2>
+                                </div>
 
-
-
-                            {eventdata[0].sponsor_pics.map((sponsor, i) => (
-                                sponsor.sponsorpic === '' ?
-                                    (
+                                <div className="max-w-2xl mx-auto flex flex-wrap justify-around gap-2 py-12 px-4">
 
 
-
-                                    <div key={i}
-                                         className="flex items-center  justify-center p-4  ">
-
-                                        <a>
-                                            <img
-                                                className='h-[4.2rem] p-1 w-[4.7rem]  medium-phone:h-[5rem] medium-phone:w-[6rem] large-phone:w-[9rem] large-phone:h-[6rem] lg:w-[13rem]  lg:h-[7rem] rounded-xl bg-gray-100'
-                                                src={String(sponsor)}
-                                                alt='img'/>
-                                        </a>
-
-                                    </div>
-
-                            ): (
+                                    {eventdata[0].sponsor_pics.map((sponsor, i) => (
 
                                         <div key={i}
                                              className="flex items-center  justify-center p-4  ">
-
                                             <a>
+                                                {/*h-[4.2rem] p-1 w-[4.7rem]  medium-phone:h-[5rem] medium-phone:w-[6rem] large-phone:w-[9rem] large-phone:h-[6rem] lg:w-[13rem]  lg:h-[7rem]*/}
                                                 <img
-                                                    className='h-[4.2rem] p-1 w-[4.7rem]  medium-phone:h-[5rem] medium-phone:w-[6rem] large-phone:w-[9rem] large-phone:h-[6rem] lg:w-[13rem]  lg:h-[7rem] rounded-xl bg-gray-100'
-                                                    src='https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg'
+                                                    className='h-[6rem] w-auto rounded-xl '
+                                                    src={sponsor.toString() === "" ?   'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg' : sponsor.toString()}
                                                     alt='img'/>
+
+
+
                                             </a>
 
                                         </div>
 
-                                    )
+                                            ))}
 
 
-                            ))}
-                        </div>
-                    </div>
-                </section>
+
+                                </div>
+                            </div>
+                        </section>
                     )}
 
                 </div>
@@ -364,7 +343,7 @@ const fetcher = async (key: string) => {
 }
 export default function Index({params}: { params: { eventid: number } }) {
     const {data, isLoading} = useSWR<Events[]>(`events|${params.eventid}`, fetcher)
-    if(data?.length===0){
+    if (data?.length === 0) {
         notFound();
     }
 
