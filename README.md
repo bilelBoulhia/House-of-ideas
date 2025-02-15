@@ -1,18 +1,13 @@
 # House of ideas
 
-Welcome to the **Excompo-n** website! 🎉
+Welcome to the **house of ideas** website! 🎉
 
 This project is live at: [houseofideas.club](https://www.houseofideas.club)
 
-## About
+
 
 **House of ideas** 
-## Features
-
-- 🚀 
-- 🎨 **Sleek Design**: Minimalist and user-friendly interface.
-- 📱 **Responsive Layout**: Works beautifully on all devices – from desktops to mobile.
-- ⚡ **Fast Deployment**: Hosted on Vercel for speed and reliability.
+a website for a university club
 
 ## Technologies Used
 
