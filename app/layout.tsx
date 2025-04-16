@@ -5,6 +5,7 @@ import "@/style/globals.css";
 import Header from "@/app/sections/Header";
 import Footer from "@/app/sections/Footer";
 import React from "react";
+import {Analytics} from "@vercel/analytics/next";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -31,7 +32,7 @@ export default function RootLayout({
       <link rel="shortcut icon" href="/favicon.ico"/>
     </head>
     <body className="bg-background text-foreground">
-
+    <Analytics mode="production" />;
     <ThemeProvider
         attribute="class"
         defaultTheme="dark"
