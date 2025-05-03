@@ -12,7 +12,7 @@ import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {Tables} from "@/utils/DatabaseTypes";
 import React from "react";
 
-import {ReviewForm} from "@/components/fragmenets/forms/review form";
+import {ReviewForm} from "@/components/fragmenets/forms/review-form";
 
 const images :imgtype[] = [{id:1 ,img:img4},{id:2, img:img2}, {id:3,img:img1} , {id:4,img:img5}]
 

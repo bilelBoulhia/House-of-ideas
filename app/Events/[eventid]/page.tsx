@@ -9,11 +9,11 @@ import {Events, shadowVariants} from "@/utils/types";
 import {Tables} from "@/utils/DatabaseTypes";
 
 import React, {Suspense, useEffect, useRef, useState} from "react";
-import { insert, proc} from "@/app/lib/supabase/client-api";
+import { insert, proc} from "@/app/lib/supabase/supabase-client-handlers";
 
 import {Loading} from "@/app/Loading";
 import { Button } from "@/components/ui/button";
-import {EventSubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/event subscribe form";
+import {EventSubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/event-subscribe-form";
 import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger} from "@/components/ui/Modal";
 import Stepper from "@/components/ui/Stepper";
 import InstagramLink from "@/components/instagram-link";

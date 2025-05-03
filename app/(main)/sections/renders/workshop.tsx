@@ -10,13 +10,13 @@ import {
 } from "@/components/ui/Card";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import {Modal, ModalBody, ModalBodyRef, ModalContent, ModalTrigger} from "@/components/ui/Modal";
-import {SubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/subscribe form";
+import {SubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/subscribe-form";
 import {Button} from "@/components/ui/button";
 import Stepper from "@/components/ui/Stepper";
 import React, {useRef, useState} from "react";
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
 import {Tables} from "@/utils/DatabaseTypes";
-import {insert} from "@/app/lib/supabase/client-api";
+import {insert} from "@/app/lib/supabase/supabase-client-handlers";
 import Toast from "@/components/ui/toast";
 
 import {NoData} from "@/components/ui/not-data";

@@ -5,7 +5,7 @@ import {Mail} from "lucide-react"
 import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
 import {Tables} from "@/utils/DatabaseTypes";
-import {insert} from "@/app/lib/supabase/client-api";
+import {insert} from "@/app/lib/supabase/supabase-client-handlers";
 import Toast from "@/components/ui/toast";
 import {useForm} from "react-hook-form";
 import { SubmitHandler} from "react-hook-form"

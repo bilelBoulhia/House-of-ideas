@@ -7,7 +7,7 @@ import React, {useState} from "react"
 import {useForm, SubmitHandler} from "react-hook-form"
 import Toast from "@/components/ui/toast"
 import {Tables} from "@/utils/DatabaseTypes";
-import {insert} from "@/app/lib/supabase/client-api";
+import {insert} from "@/app/lib/supabase/supabase-client-handlers";
 import { m } from "framer-motion"
 
 

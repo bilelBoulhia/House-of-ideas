@@ -16,10 +16,10 @@ import React, {Suspense, useMemo, useRef, useState} from "react";
 import {AnimatedHeading} from "@/components/ui/Animated-heading";
 import BackgroundBeams from "@/components/ui/BackgroundBeams";
 import {Tables} from "@/utils/DatabaseTypes";
-import {fetch, insert} from "@/app/lib/supabase/client-api";
+import {fetch, insert} from "@/app/lib/supabase/supabase-client-handlers";
 
 import {WorkshopDetails} from "@/components/fragmenets/workshop-Details-Fragmenet";
-import {SubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/subscribe form";
+import {SubscribeForm, SubscribeFormRef} from "@/components/fragmenets/forms/subscribe-form";
 
 
 import Toast from "@/components/ui/toast";

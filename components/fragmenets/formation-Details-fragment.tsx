@@ -1,6 +1,6 @@
 import React, {Suspense, useEffect, useState} from "react"
 import {Tables} from "@/utils/DatabaseTypes"
-import {fetch} from "@/app/lib/supabase/client-api"
+import {fetch} from "@/app/lib/supabase/supabase-client-handlers"
 import {CalendarIcon, ClockIcon} from "lucide-react";
 import {Badge} from "@/components/ui/badge";
 

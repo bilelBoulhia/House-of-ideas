@@ -9,7 +9,7 @@ import {shadowVariants} from "@/utils/types";
 
 
 import {Tables} from "@/utils/DatabaseTypes";
-import {fetch} from "@/app/lib/supabase/client-api";
+import {fetch} from "@/app/lib/supabase/supabase-client-handlers";
 import {useRouter} from "next/navigation";
 import {Loading} from "@/app/Loading";
 

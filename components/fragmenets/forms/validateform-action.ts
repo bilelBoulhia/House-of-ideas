@@ -1,7 +1,7 @@
 'use server'
 
 import {z} from 'zod'
-import {insert} from "@/app/lib/supabase/server-api"
+import {insert} from "@/app/lib/supabase/handlers"
 import {Tables} from "@/utils/DatabaseTypes"
 
 const EventApplicantSchema = z.object({

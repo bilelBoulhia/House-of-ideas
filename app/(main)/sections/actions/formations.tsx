@@ -1,7 +1,8 @@
+'use server'
 
-import Formations from "@/app/(main)/sections/client-side/Formations";
 import {Tables} from "@/utils/DatabaseTypes";
-import {fetch} from "@/app/lib/supabase/server-api";
+import {fetch} from "@/app/lib/supabase/handlers";
+import Formations from "@/app/(main)/sections/renders/formations";
 
 export default async function FormationSection() {
     const data = await fetch('formations',['*']) as Tables<'formations'>[];

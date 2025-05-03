@@ -1,6 +1,6 @@
 'use server'
-import Event from "@/app/(main)/sections/client-side/Events";
-import {fetch} from "@/app/lib/supabase/server-api";
+import Event from "@/app/(main)/sections/renders/events";
+import {fetch} from "@/app/lib/supabase/handlers";
 import {Tables} from "@/utils/DatabaseTypes";
 
 
