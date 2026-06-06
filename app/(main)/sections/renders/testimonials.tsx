@@ -4,6 +4,7 @@ import img1 from '@/assets/diplomas images/image (2).png'
 import img2 from '@/assets/diplomas images/image (3).png'
 import img4 from '@/assets/diplomas images/image (5).jpeg'
 import img5 from '@/assets/diplomas images/image (6).jpeg'
+import img6 from '@/assets/diplomas images/IMG_9485.png'
 
 
 import {InfiniteMovingCards} from "@/components/ui/infinite-carousel";
@@ -14,7 +15,7 @@ import React from "react";
 
 import {ReviewForm} from "@/components/fragmenets/forms/review-form";
 
-const images :imgtype[] = [{id:1 ,img:img4},{id:2, img:img2}, {id:3,img:img1} , {id:4,img:img5}]
+const images :imgtype[] = [{id:1 ,img:img4},{id:2, img:img2}, {id:3,img:img1} , {id:4,img:img5},{id:4,img:img6}]
 
 
 
