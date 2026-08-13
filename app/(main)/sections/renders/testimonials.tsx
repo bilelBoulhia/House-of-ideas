@@ -1,7 +1,6 @@
 'use client'
 
 import img1 from '@/assets/diplomas images/image (2).png'
-import img2 from '@/assets/diplomas images/image (3).png'
 import img4 from '@/assets/diplomas images/image (5).jpeg'
 import img5 from '@/assets/diplomas images/image (6).jpeg'
 import img6 from '@/assets/diplomas images/image (7).png'
