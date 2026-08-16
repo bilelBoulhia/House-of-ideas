@@ -1,7 +1,7 @@
 'use client'
 
 
-import img4 from '@/assets/diplomas images/image (5).jpeg'
+
 import img5 from '@/assets/diplomas images/image (6).jpeg'
 import img6 from '@/assets/diplomas images/image (7).png'
 import img7 from '@/assets/diplomas images/image (8).jpg'
@@ -15,7 +15,7 @@ import React from "react";
 
 import {ReviewForm} from "@/components/fragmenets/forms/review-form";
 
-const images :imgtype[] = [{id:1 ,img:img4}, {id:3,img:img1} , {id:4,img:img5},{id:5,img:img6},{id:6,img:img7}]
+const images :imgtype[] = [{id:1 ,img:img4}, {id:3,img:img1} ,{id:5,img:img6},{id:6,img:img7}]
 
 
 
